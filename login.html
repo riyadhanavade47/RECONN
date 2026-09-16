@@ -187,6 +187,11 @@ textarea:focus{
     background:#12543c;
 }
 
+.main-btn:disabled{
+    opacity:0.65;
+    cursor:not-allowed;
+}
+
 .secondary-btn{
     width:100%;
     padding:12px;
@@ -463,10 +468,6 @@ footer{
 
                 <option value="donor" selected>
                     Donor
-                </option>
-
-                <option value="ngo">
-                    NGO
                 </option>
 
                 <option value="ngo">
@@ -1109,6 +1110,10 @@ footer{
 <script type="module">
 
 import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
     getAuth,
     signInWithEmailAndPassword,
     RecaptchaVerifier,
@@ -1123,8 +1128,17 @@ import {
     setDoc
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
-import { app } from "./firebase-config.js";
+const firebaseConfig = {
+    apiKey: "AIzaSyDd8vouJPcPY4didR5mAuFrFcLd7wowyTc",
+    authDomain: "reconnect-4caba.firebaseapp.com",
+    projectId: "reconnect-4caba",
+    storageBucket: "reconnect-4caba.firebasestorage.app",
+    messagingSenderId: "246775765171",
+    appId: "1:246775765171:web:a276d37975ae888ad678c6",
+    measurementId: "G-QH1MH2BHGY"
+};
 
+const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
@@ -1138,13 +1152,7 @@ const ngoBox = document.getElementById("ngoBox");
 const collegeBox = document.getElementById("collegeBox");
 
 registerRole.addEventListener("change", function () {
-    donorBox.classList.remove("show");
-    ngoBox.classList.remove("show");
-    collegeBox.classList.remove("show");
-
-    if (this.value === "donor") donorBox.classList.add("show");
-    if (this.value === "ngo") ngoBox.classList.add("show");
-    if (this.value === "college") collegeBox.classList.add("show");
+    changeRegisterRole(this.value);
 });
 
 /* ==========================================
@@ -1191,12 +1199,22 @@ document.getElementById("loginButton").addEventListener("click", async function 
 let recaptchaVerifier = null;
 
 async function createRecaptcha() {
+    const container = document.getElementById("recaptcha-container");
+
+    if (!container) {
+        throw new Error("reCAPTCHA container was not found.");
+    }
+
     if (recaptchaVerifier) {
         try {
-            await recaptchaVerifier.clear();
-        } catch (e) {}
+            recaptchaVerifier.clear();
+        } catch (e) {
+            console.warn("Could not clear previous reCAPTCHA:", e);
+        }
         recaptchaVerifier = null;
     }
+
+    container.innerHTML = "";
 
     recaptchaVerifier = new RecaptchaVerifier(
         auth,
@@ -1388,16 +1406,25 @@ async function verifyOTP(role, otp, statusId, profileData) {
    DONOR
 ========================================== */
 
-document.getElementById("donorSendOtp").addEventListener("click", function () {
-    sendOTP(
-        "donor",
-        document.getElementById("donorEmail").value.trim(),
-        document.getElementById("donorPassword").value,
-        document.getElementById("donorConfirmPassword").value,
-        document.getElementById("donorPhone").value.trim(),
-        "donorStatus",
-        "donorOtpBox"
-    );
+document.getElementById("donorSendOtp").addEventListener("click", async function () {
+    const button = this;
+    button.disabled = true;
+    button.textContent = "Preparing OTP...";
+
+    try {
+        await sendOTP(
+            "donor",
+            document.getElementById("donorEmail").value.trim(),
+            document.getElementById("donorPassword").value,
+            document.getElementById("donorConfirmPassword").value,
+            document.getElementById("donorPhone").value.trim(),
+            "donorStatus",
+            "donorOtpBox"
+        );
+    } finally {
+        button.disabled = false;
+        button.textContent = "Send OTP";
+    }
 });
 
 document.getElementById("donorVerifyOtp").addEventListener("click", function () {
@@ -1415,16 +1442,25 @@ document.getElementById("donorVerifyOtp").addEventListener("click", function () 
    NGO
 ========================================== */
 
-document.getElementById("ngoSendOtp").addEventListener("click", function () {
-    sendOTP(
-        "ngo",
-        document.getElementById("ngoEmail").value.trim(),
-        document.getElementById("ngoPassword").value,
-        document.getElementById("ngoConfirmPassword").value,
-        document.getElementById("ngoPhone").value.trim(),
-        "ngoStatus",
-        "ngoOtpBox"
-    );
+document.getElementById("ngoSendOtp").addEventListener("click", async function () {
+    const button = this;
+    button.disabled = true;
+    button.textContent = "Preparing OTP...";
+
+    try {
+        await sendOTP(
+            "ngo",
+            document.getElementById("ngoEmail").value.trim(),
+            document.getElementById("ngoPassword").value,
+            document.getElementById("ngoConfirmPassword").value,
+            document.getElementById("ngoPhone").value.trim(),
+            "ngoStatus",
+            "ngoOtpBox"
+        );
+    } finally {
+        button.disabled = false;
+        button.textContent = "Send OTP";
+    }
 });
 
 document.getElementById("ngoVerifyOtp").addEventListener("click", function () {
@@ -1450,16 +1486,25 @@ document.getElementById("ngoVerifyOtp").addEventListener("click", function () {
    COLLEGE / NSS
 ========================================== */
 
-document.getElementById("collegeSendOtp").addEventListener("click", function () {
-    sendOTP(
-        "college",
-        document.getElementById("collegeEmail").value.trim(),
-        document.getElementById("collegePassword").value,
-        document.getElementById("collegeConfirmPassword").value,
-        document.getElementById("collegePhone").value.trim(),
-        "collegeStatus",
-        "collegeOtpBox"
-    );
+document.getElementById("collegeSendOtp").addEventListener("click", async function () {
+    const button = this;
+    button.disabled = true;
+    button.textContent = "Preparing OTP...";
+
+    try {
+        await sendOTP(
+            "college",
+            document.getElementById("collegeEmail").value.trim(),
+            document.getElementById("collegePassword").value,
+            document.getElementById("collegeConfirmPassword").value,
+            document.getElementById("collegePhone").value.trim(),
+            "collegeStatus",
+            "collegeOtpBox"
+        );
+    } finally {
+        button.disabled = false;
+        button.textContent = "Send OTP";
+    }
 });
 
 document.getElementById("collegeVerifyOtp").addEventListener("click", function () {
@@ -1481,66 +1526,12 @@ document.getElementById("collegeVerifyOtp").addEventListener("click", function (
 
 </script>
 
+<script>
+    // If Firebase module fails to load, make the problem visible on the page.
+    window.addEventListener("error", function(event) {
+        console.error("ReConnect error:", event.error || event.message);
+    });
+</script>
+
 </body>
 </html>
-
-<script>
-    // LOGIN / CREATE ACCOUNT TAB SWITCHING
-    // code I gave above
-</script>
-
-
-<script type="module">
-
-    // Firebase imports
-    import {
-        getAuth,
-        signInWithEmailAndPassword,
-        RecaptchaVerifier,
-        signInWithPhoneNumber,
-        EmailAuthProvider,
-        linkWithCredential
-    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-
-    import {
-        getFirestore,
-        doc,
-        setDoc,
-        getDoc
-    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-
-    import { app } from "./firebase-config.js";
-
-    // Rest of your Firebase code...
-
-</script>
-<script>
-    // LOGIN / CREATE ACCOUNT TAB SWITCHING
-    // code I gave above
-</script>
-
-
-<script type="module">
-
-    // Firebase imports
-    import {
-        getAuth,
-        signInWithEmailAndPassword,
-        RecaptchaVerifier,
-        signInWithPhoneNumber,
-        EmailAuthProvider,
-        linkWithCredential
-    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-
-    import {
-        getFirestore,
-        doc,
-        setDoc,
-        getDoc
-    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-
-    import { app } from "./firebase-config.js";
-
-    // Rest of your Firebase code...
-
-</script>
