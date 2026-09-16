@@ -1,738 +1,1219 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-
-<head> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-
-    <title>ReConnect | Connect. Donate. Create Real Impact.</title> 
-
-    <style> 
-
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            font-family: Arial, Helvetica, sans-serif; 
-        } 
-
-        html { scroll-behavior: smooth; } 
-
-        body { 
-            background: #f8faf8; 
-            color: #183f38; 
-        } 
-
-        nav { 
-            height: 72px; 
-            background: white; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            padding: 0 5%; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-            border-bottom: 1px solid #edf2ef; 
-        } 
-
-        .logo { 
-            text-decoration: none; 
-            color: #176b4d; 
-            font-size: 29px; 
-            font-weight: 800; 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-        } 
-
-        .logo-mark { 
-            width: 43px; 
-            height: 43px; 
-            background: #176b4d; 
-            color: white; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 20px; 
-            font-weight: bold; 
-        } 
-
-        .nav-links { 
-            display: flex; 
-            align-items: center; 
-            gap: 30px; 
-        } 
-
-        .nav-links a { 
-            text-decoration: none; 
-            color: #3d5c56; 
-            font-size: 14px; 
-            font-weight: 600; 
-            transition: 0.3s; 
-        } 
-
-        .nav-links a:hover { color: #176b4d; } 
-
-        .nav-links a:first-child { 
-            color: #176b4d; 
-            padding: 25px 0 21px; 
-            border-bottom: 3px solid #176b4d; 
-        } 
-
-        .login-btn { 
-            background: #176b4d; 
-            color: white !important; 
-            padding: 11px 22px !important; 
-            border-radius: 25px !important; 
-            border: 0 !important; 
-        } 
-
-        /* ================= HERO ================= */ 
-
-        .hero { 
-            min-height: 405px; 
-            padding: 0 5%; 
-            display: grid; 
-            grid-template-columns: 49% 51%; 
-            align-items: stretch; 
-            gap: 0; 
-            background: 
-                radial-gradient(circle at 4% 85%, #eaf5df, transparent 28%), 
-                linear-gradient(110deg, #f8fcfa 0%, #edf8f3 100%); 
-        } 
-
-        .hero-text { 
-            max-width: 610px; 
-            align-self: center; 
-            padding: 42px 25px 42px 5px; 
-            z-index: 2; 
-        } 
-
-        .hero-label { 
-            display: inline-block; 
-            background: #d9f4e7; 
-            color: #176b4d; 
-            padding: 8px 16px; 
-            border-radius: 22px; 
-            font-size: 13px; 
-            font-weight: bold; 
-            margin-bottom: 17px; 
-        } 
-
-        .hero h1 { 
-            font-size: 45px; 
-            line-height: 1.06; 
-            letter-spacing: -1px; 
-            color: #173e38; 
-            margin-bottom: 16px; 
-        } 
-
-        .hero h1 span { color: #168263; } 
-
-        .hero-description { 
-            color: #536f72; 
-            font-size: 16px; 
-            line-height: 1.55; 
-            max-width: 520px; 
-            margin-bottom: 22px; 
-        } 
-
-        .hero-buttons { 
-            display: flex; 
-            gap: 12px; 
-            flex-wrap: wrap; 
-        } 
-
-        .btn-primary, 
-        .btn-secondary { 
-            text-decoration: none; 
-            padding: 13px 23px; 
-            border-radius: 24px; 
-            font-weight: bold; 
-            transition: 0.3s; 
-            display: inline-block; 
-        } 
-
-        .btn-primary { 
-            background: #176b4d; 
-            color: white; 
-        } 
-
-        .btn-primary:hover { 
-            background: #0e513b; 
-            transform: translateY(-2px); 
-        } 
-
-        .btn-secondary { 
-            background: white; 
-            color: #176b4d; 
-            border: 1.5px solid #176b4d; 
-        } 
-
-        .btn-secondary:hover { 
-            background: #edf8f1; 
-            transform: translateY(-2px); 
-        } 
-
-        /* ================= HERO IMAGE ================= */ 
-
-        .hero-image-area { 
-            position: relative; 
-            width: 100%; 
-            height: 405px; 
-            overflow: hidden; 
-        } 
-
-        .hero-image { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            object-position: center center; 
-            display: block; 
-            border-radius: 0; 
-            box-shadow: none; 
-        } 
-
-        /* Soft fade makes the photo blend into the text area like the reference. */ 
-        .hero-image-area::before { 
-            content: ""; 
-            position: absolute; 
-            left: 0; 
-            top: 0; 
-            bottom: 0; 
-            width: 24%; 
-            z-index: 1; 
-            pointer-events: none; 
-            background: linear-gradient(90deg, #edf8f3 0%, rgba(237,248,243,.55) 28%, rgba(237,248,243,0) 100%); 
-        } 
-
-        /* Your uploaded image already contains the handwritten message. */ 
-        .image-caption { display: none; } 
-
-        /* ================= STATS ================= */ 
-
-        .stats { 
-            width: 90%; 
-            max-width: 1120px; 
-            margin: 12px auto 30px; 
-            background: #eef8f1; 
-            display: grid; 
-            grid-template-columns: repeat(4, 1fr); 
-            border-radius: 12px; 
-            overflow: hidden; 
-            position: relative; 
-            z-index: 5; 
-            box-shadow: 0 5px 18px rgba(25,83,64,.06); 
-        } 
-
-        .stat { 
-            text-align: center; 
-            padding: 20px 10px; 
-            border-right: 1px solid #c8ddd1; 
-        } 
-
-        .stat:last-child { border-right: none; } 
-
-        .stat strong { 
-            display: block; 
-            color: #176b4d; 
-            font-size: 25px; 
-            margin-bottom: 4px; 
-        } 
-
-        .stat span { 
-            color: #6b8079; 
-            font-size: 12px; 
-        } 
-
-        /* ================= SECTIONS ================= */ 
-
-        section { padding: 48px 5%; } 
-
-        .section-title { 
-            text-align: center; 
-            max-width: 720px; 
-            margin: 0 auto 28px; 
-        } 
-
-        .section-title h2 { 
-            font-size: 30px; 
-            color: #173e38; 
-            margin-bottom: 9px; 
-        } 
-
-        .section-title p { 
-            color: #687b76; 
-            line-height: 1.5; 
-            font-size: 14px; 
-        } 
-
-        /* ================= FEATURES ================= */ 
-
-        .features-section { background: white; } 
-
-        .feature-grid { 
-            max-width: 1120px; 
-            margin: auto; 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 16px; 
-        } 
-
-        .feature-card { 
-            padding: 22px; 
-            border-radius: 12px; 
-            min-height: 165px; 
-            border: 1px solid #edf0ee; 
-            transition: 0.3s; 
-        } 
-
-        .feature-card:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 12px 28px rgba(0,0,0,.07); 
-        } 
-
-        .feature-card:nth-child(1) { background: #eff9ed; } 
-        .feature-card:nth-child(2) { background: #fff1f3; } 
-        .feature-card:nth-child(3) { background: #eef7ff; } 
-        .feature-card:nth-child(4) { background: #f3efff; } 
-        .feature-card:nth-child(5) { background: #eff9f2; } 
-        .feature-card:nth-child(6) { background: #fff7e9; } 
-
-        .feature-icon { 
-            width: 46px; 
-            height: 46px; 
-            background: white; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 21px; 
-            margin-bottom: 12px; 
-        } 
-
-        .feature-card h3 { 
-            color: #173e38; 
-            margin-bottom: 7px; 
-            font-size: 16px; 
-        } 
-
-        .feature-card p { 
-            color: #687b76; 
-            font-size: 12px; 
-            line-height: 1.5; 
-            margin-bottom: 12px; 
-        } 
-
-        .feature-card a { 
-            color: #176b4d; 
-            text-decoration: none; 
-            font-size: 12px; 
-            font-weight: bold; 
-        } 
-
-        /* ================= HOW IT WORKS ================= */ 
-
-        .how-section { background: #eef8f2; } 
-
-        .steps { 
-            max-width: 1100px; 
-            margin: auto; 
-            display: grid; 
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 10px; 
-        } 
-
-        .step { 
-            text-align: center; 
-            padding: 12px; 
-            position: relative; 
-        } 
-
-        .step-number { 
-            width: 62px; 
-            height: 62px; 
-            margin: auto auto 14px; 
-            background: #176b4d; 
-            color: white; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 24px; 
-            font-weight: bold; 
-        } 
-
-        .step:nth-child(2) .step-number { background: #e65b7a; } 
-        .step:nth-child(3) .step-number { background: #3e76a5; } 
-        .step:nth-child(4) .step-number { background: #8464ce; } 
-
-        .step h3 { 
-            color: #173e38; 
-            margin-bottom: 7px; 
-            font-size: 16px; 
-        } 
-
-        .step p { 
-            color: #687b76; 
-            font-size: 12px; 
-            line-height: 1.5; 
-        } 
-
-        .arrow { 
-            position: absolute; 
-            top: 34px; 
-            right: -5px; 
-            color: #5b8d78; 
-            font-size: 21px; 
-        } 
-
-        /* ================= ACHIEVEMENTS ================= */ 
-
-        .achievement-section { background: white; } 
-
-        .achievement-grid { 
-            max-width: 1100px; 
-            margin: auto; 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 16px; 
-        } 
-
-        .achievement-card { 
-            background: #fafbf9; 
-            border: 1px solid #e6ece8; 
-            padding: 22px; 
-            border-radius: 12px; 
-            display: flex; 
-            gap: 16px; 
-            transition: .25s; 
-        } 
-
-        .achievement-card:hover { 
-            transform: translateY(-4px); 
-            box-shadow: 0 10px 25px rgba(0,0,0,.06); 
-        } 
-
-        .achievement-icon { font-size: 34px; } 
-
-        .achievement-card h3 { 
-            color: #176b4d; 
-            margin-bottom: 6px; 
-            font-size: 16px; 
-        } 
-
-        .achievement-card p { 
-            color: #687b76; 
-            font-size: 12px; 
-            line-height: 1.5; 
-        } 
-
-        /* ================= CTA ================= */ 
-
-        .cta-section { padding: 42px 5%; } 
-
-        .cta-box { 
-            max-width: 1120px; 
-            margin: auto; 
-            background: linear-gradient(135deg, #14543f, #238063); 
-            border-radius: 14px; 
-            padding: 35px; 
-            text-align: center; 
-            color: white; 
-            box-shadow: 0 12px 28px rgba(20,84,63,.16); 
-        } 
-
-        .cta-box h2 { 
-            font-size: 27px; 
-            margin-bottom: 9px; 
-        } 
-
-        .cta-box p { 
-            color: #d9eee5; 
-            font-size: 13px; 
-            margin-bottom: 17px; 
-        } 
-
-        .cta-box a { 
-            display: inline-block; 
-            background: white; 
-            color: #176b4d; 
-            text-decoration: none; 
-            padding: 11px 23px; 
-            border-radius: 23px; 
-            font-weight: bold; 
-        } 
-
-        /* ================= FOOTER ================= */ 
-
-        footer { 
-            background: #123f35; 
-            color: white; 
-            padding: 30px 5%; 
-        } 
-
-        .footer-content { 
-            max-width: 1120px; 
-            margin: auto; 
-            display: flex; 
-            justify-content: space-between; 
-            gap: 25px; 
-            flex-wrap: wrap; 
-        } 
-
-        .footer-logo { 
-            font-size: 22px; 
-            font-weight: bold; 
-            margin-bottom: 7px; 
-        } 
-
-        footer p { 
-            color: #c7ddd5; 
-            font-size: 11px; 
-            line-height: 1.6; 
-        } 
-
-        /* ================= RESPONSIVE ================= */ 
-
-        @media (max-width: 950px) { 
-            .hero { 
-                grid-template-columns: 1fr; 
-                padding: 0; 
-            } 
-
-            .hero-text { 
-                max-width: 700px; 
-                margin: auto; 
-                padding: 45px 5%; 
-                text-align: center; 
-            } 
-
-            .hero-buttons { justify-content: center; } 
-
-            .hero-image-area { height: 360px; } 
-
-            .feature-grid { grid-template-columns: 1fr 1fr; } 
-            .steps { grid-template-columns: 1fr 1fr; } 
-            .arrow { display: none; } 
-        } 
-
-        @media (max-width: 650px) { 
-            nav { padding: 0 5%; } 
-            .nav-links { display: none; } 
-
-            .hero-text { padding: 40px 5%; } 
-
-            .hero h1 { font-size: 38px; } 
-            .hero-description { font-size: 15px; } 
-            .hero-image-area { height: 285px; } 
-
-            .stats { 
-                grid-template-columns: 1fr 1fr; 
-                width: 92%; 
-            } 
-
-            .stat:nth-child(2) { border-right: none; } 
-            .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid #c8ddd1; } 
-
-            .feature-grid, .steps, .achievement-grid { grid-template-columns: 1fr; } 
-
-            section { padding: 42px 5%; } 
-            .cta-box { padding: 30px 18px; } 
-        } 
-
-    </style> 
-</head> 
-
-<body> 
-
-<nav> 
-    <a href="index.html" class="logo"> 
-        <span class="logo-mark">R</span> 
-        ReConnect 
-    </a> 
-
-    <div class="nav-links"> 
-        <a href="index.html">Home</a> 
-        <a href="ngos.html">Find NGOs</a> 
-        <a href="donate.html">Donate</a> 
-        <a href="college.html">College/NSS</a> 
-        <a href="reuse.html">Reuse & Recycle</a> 
-        <a href="login.html" class="login-btn">Login</a> 
-    </div> 
-</nav> 
-
-<section class="hero"> 
-
-    <div class="hero-text"> 
-        <div class="hero-label">Together for a better tomorrow</div> 
-
-        <h1> 
-            Connect. Donate. 
-            <span>Create Real Impact.</span> 
-        </h1> 
-
-        <p class="hero-description"> 
-            ReConnect brings donors, NGOs and college/NSS communities together to make donations more transparent, organized and meaningful. 
-        </p> 
-
-        <div class="hero-buttons"> 
-            <a href="ngos.html" class="btn-primary">Find an NGO</a> 
-            <a href="donate.html" class="btn-secondary">Start Donating</a> 
-        </div> 
-    </div> 
-
-    <div class="hero-image-area"> 
-        <img src="image.png" alt="Donation box and community giving" class="hero-image"> 
-        <div class="image-caption"> 
-            <strong>Small Contributions. Real Impact.</strong> 
-            <span>Connect with NGOs and turn unused resources into meaningful support.</span> 
-        </div> 
-    </div> 
-
-</section> 
-
-<div class="stats"> 
-    <div class="stat"><strong>311+</strong><span>NGOs Listed</span></div> 
-    <div class="stat"><strong>4</strong><span>Core User Groups</span></div> 
-    <div class="stat"><strong>100%</strong><span>Transparency Focus</span></div> 
-    <div class="stat"><strong>∞</strong><span>Ways to Help</span></div> 
-</div> 
-
-<section class="features-section"> 
-    <div class="section-title"> 
-        <h2>Everything You Need in One Place</h2> 
-        <p>ReConnect connects people, NGOs and student communities through one simple platform.</p> 
-    </div> 
-
-    <div class="feature-grid"> 
-        <div class="feature-card"> 
-            <div class="feature-icon">🔎</div> 
-            <h3>Find NGOs</h3> 
-            <p>Explore the NGO directory and discover organizations based on their work and location.</p> 
-            <a href="ngos.html">Explore NGOs →</a> 
-        </div> 
-
-        <div class="feature-card"> 
-            <div class="feature-icon">❤️</div> 
-            <h3>Donate</h3> 
-            <p>Support NGOs through monetary contributions or useful reusable items.</p> 
-            <a href="donate.html">Start Donating →</a> 
-        </div> 
-
-        <div class="feature-card"> 
-            <div class="feature-icon">🎓</div> 
-            <h3>College & NSS</h3> 
-            <p>Connect college clubs and NSS units with meaningful community activities.</p> 
-            <a href="college.html">Get Involved →</a> 
-        </div> 
-
-        <div class="feature-card"> 
-            <div class="feature-icon">♻️</div> 
-            <h3>Reuse & Recycle</h3> 
-            <p>Give usable items another purpose and help route unsuitable items towards recycling.</p> 
-            <a href="reuse.html">Reuse Items →</a> 
-        </div> 
-
-        <div class="feature-card"> 
-            <div class="feature-icon">📦</div> 
-            <h3>Track Your Donation</h3> 
-            <p>Follow your donation journey from submission to acknowledgement.</p> 
-            <a href="track-donation.html">Track Donation →</a> 
-        </div> 
-
-        <div class="feature-card"> 
-            <div class="feature-icon">🏆</div> 
-            <h3>Achievements</h3> 
-            <p>Recognize meaningful contributions and celebrate your social impact journey.</p> 
-            <a href="login.html">Join ReConnect →</a> 
-        </div> 
-    </div> 
-</section> 
-
-<section class="how-section"> 
-    <div class="section-title"> 
-        <h2>How ReConnect Works</h2> 
-        <p>From discovering an NGO to tracking your contribution, everything is designed to be simple.</p> 
-    </div> 
-
-    <div class="steps"> 
-        <div class="step"> 
-            <div class="step-number">1</div> 
-            <h3>Find</h3> 
-            <p>Discover NGOs and opportunities that match your interests.</p> 
-            <div class="arrow">→</div> 
-        </div> 
-
-        <div class="step"> 
-            <div class="step-number">2</div> 
-            <h3>Contribute</h3> 
-            <p>Donate money, useful items or participate through college/NSS activities.</p> 
-            <div class="arrow">→</div> 
-        </div> 
-
-        <div class="step"> 
-            <div class="step-number">3</div> 
-            <h3>Track</h3> 
-            <p>Follow the journey of your contribution through ReConnect.</p> 
-            <div class="arrow">→</div> 
-        </div> 
-
-        <div class="step"> 
-            <div class="step-number">4</div> 
-            <h3>Impact</h3> 
-            <p>Understand how your contribution can create meaningful social impact.</p> 
-        </div> 
-    </div> 
-</section> 
-
-<section class="achievement-section"> 
-    <div class="section-title"> 
-        <h2>Your Impact Journey</h2> 
-        <p>ReConnect can recognize participation and encourage users to keep contributing.</p> 
-    </div> 
-
-    <div class="achievement-grid"> 
-        <div class="achievement-card"> 
-            <div class="achievement-icon">🏆</div> 
-            <div> 
-                <h3>Contribution Achievements</h3> 
-                <p>Users can earn recognition for donation milestones, volunteering and community participation.</p> 
-            </div> 
-        </div> 
-
-        <div class="achievement-card"> 
-            <div class="achievement-icon">🌟</div> 
-            <div> 
-                <h3>Make Every Contribution Count</h3> 
-                <p>Build a record of your contributions and see your involvement grow over time.</p> 
-            </div> 
-        </div> 
-    </div> 
-</section> 
-
-<section class="cta-section"> 
-    <div class="cta-box"> 
-        <h2>Ready to Make a Difference?</h2> 
-        <p>Find an NGO, donate an item or join a community activity today.</p> 
-        <a href="ngos.html">Explore ReConnect →</a> 
-    </div> 
-</section> 
-
-<footer> 
-    <div class="footer-content"> 
-        <div> 
-            <div class="footer-logo">ReConnect</div> 
-            <p>Transparent Donations • Community Engagement • Item Reuse</p> 
-        </div> 
-
-        <div> 
-            <p>Connecting people, NGOs and student communities for meaningful social impact.</p> 
-        </div> 
-    </div> 
-</footer> 
-
-</body> 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ReConnect | Connect. Donate. Create Real Impact.</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f8faf8;
+            color: #183f38;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            height: 72px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #edf2ef;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: #176b4d;
+            font-size: 29px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-mark {
+            width: 43px;
+            height: 43px;
+            background: #176b4d;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #3d5c56;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #176b4d;
+        }
+
+        .nav-links a:first-child {
+            color: #176b4d;
+            padding: 25px 0 21px;
+            border-bottom: 3px solid #176b4d;
+        }
+
+        .login-btn {
+            background: #176b4d;
+            color: white !important;
+            padding: 11px 22px !important;
+            border-radius: 25px !important;
+            border: 0 !important;
+        }
+
+        /* ================= LOGGED-IN USER ================= */
+
+        #userDisplay {
+            color: #176b4d;
+            font-size: 14px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .logout-btn {
+            background: #176b4d;
+            color: white !important;
+            padding: 11px 22px;
+            border-radius: 25px;
+            border: none;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #0e513b;
+            transform: translateY(-2px);
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 405px;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 49% 51%;
+            align-items: stretch;
+            gap: 0;
+            background:
+                radial-gradient(circle at 4% 85%, #eaf5df, transparent 28%),
+                linear-gradient(110deg, #f8fcfa 0%, #edf8f3 100%);
+        }
+
+        .hero-text {
+            max-width: 610px;
+            align-self: center;
+            padding: 42px 25px 42px 5px;
+            z-index: 2;
+        }
+
+        .hero-label {
+            display: inline-block;
+            background: #d9f4e7;
+            color: #176b4d;
+            padding: 8px 16px;
+            border-radius: 22px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 17px;
+        }
+
+        .hero h1 {
+            font-size: 45px;
+            line-height: 1.06;
+            letter-spacing: -1px;
+            color: #173e38;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 span {
+            color: #168263;
+        }
+
+        .hero-description {
+            color: #536f72;
+            font-size: 16px;
+            line-height: 1.55;
+            max-width: 520px;
+            margin-bottom: 22px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            text-decoration: none;
+            padding: 13px 23px;
+            border-radius: 24px;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #176b4d;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0e513b;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #176b4d;
+            border: 1.5px solid #176b4d;
+        }
+
+        .btn-secondary:hover {
+            background: #edf8f1;
+            transform: translateY(-2px);
+        }
+
+        /* ================= HERO IMAGE ================= */
+
+        .hero-image-area {
+            position: relative;
+            width: 100%;
+            height: 405px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            display: block;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .hero-image-area::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 24%;
+            z-index: 1;
+            pointer-events: none;
+            background:
+                linear-gradient(
+                    90deg,
+                    #edf8f3 0%,
+                    rgba(237,248,243,.55) 28%,
+                    rgba(237,248,243,0) 100%
+                );
+        }
+
+        .image-caption {
+            display: none;
+        }
+
+        /* ================= STATS ================= */
+
+        .stats {
+            width: 90%;
+            max-width: 1120px;
+            margin: 12px auto 30px;
+            background: #eef8f1;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            z-index: 5;
+            box-shadow: 0 5px 18px rgba(25,83,64,.06);
+        }
+
+        .stat {
+            text-align: center;
+            padding: 20px 10px;
+            border-right: 1px solid #c8ddd1;
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat strong {
+            display: block;
+            color: #176b4d;
+            font-size: 25px;
+            margin-bottom: 4px;
+        }
+
+        .stat span {
+            color: #6b8079;
+            font-size: 12px;
+        }
+
+        /* ================= SECTIONS ================= */
+
+        section {
+            padding: 48px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 28px;
+        }
+
+        .section-title h2 {
+            font-size: 30px;
+            color: #173e38;
+            margin-bottom: 9px;
+        }
+
+        .section-title p {
+            color: #687b76;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        /* ================= FEATURES ================= */
+
+        .features-section {
+            background: white;
+        }
+
+        .feature-grid {
+            max-width: 1120px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .feature-card {
+            padding: 22px;
+            border-radius: 12px;
+            min-height: 165px;
+            border: 1px solid #edf0ee;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0,0,0,.07);
+        }
+
+        .feature-card:nth-child(1) {
+            background: #eff9ed;
+        }
+
+        .feature-card:nth-child(2) {
+            background: #fff1f3;
+        }
+
+        .feature-card:nth-child(3) {
+            background: #eef7ff;
+        }
+
+        .feature-card:nth-child(4) {
+            background: #f3efff;
+        }
+
+        .feature-card:nth-child(5) {
+            background: #eff9f2;
+        }
+
+        .feature-card:nth-child(6) {
+            background: #fff7e9;
+        }
+
+        .feature-icon {
+            width: 46px;
+            height: 46px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card h3 {
+            color: #173e38;
+            margin-bottom: 7px;
+            font-size: 16px;
+        }
+
+        .feature-card p {
+            color: #687b76;
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .feature-card a {
+            color: #176b4d;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* ================= HOW IT WORKS ================= */
+
+        .how-section {
+            background: #eef8f2;
+        }
+
+        .steps {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 12px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 62px;
+            height: 62px;
+            margin: auto auto 14px;
+            background: #176b4d;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .step:nth-child(2) .step-number {
+            background: #e65b7a;
+        }
+
+        .step:nth-child(3) .step-number {
+            background: #3e76a5;
+        }
+
+        .step:nth-child(4) .step-number {
+            background: #8464ce;
+        }
+
+        .step h3 {
+            color: #173e38;
+            margin-bottom: 7px;
+            font-size: 16px;
+        }
+
+        .step p {
+            color: #687b76;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 34px;
+            right: -5px;
+            color: #5b8d78;
+            font-size: 21px;
+        }
+
+        /* ================= ACHIEVEMENTS ================= */
+
+        .achievement-section {
+            background: white;
+        }
+
+        .achievement-grid {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .achievement-card {
+            background: #fafbf9;
+            border: 1px solid #e6ece8;
+            padding: 22px;
+            border-radius: 12px;
+            display: flex;
+            gap: 16px;
+            transition: .25s;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,.06);
+        }
+
+        .achievement-icon {
+            font-size: 34px;
+        }
+
+        .achievement-card h3 {
+            color: #176b4d;
+            margin-bottom: 6px;
+            font-size: 16px;
+        }
+
+        .achievement-card p {
+            color: #687b76;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        /* ================= CTA ================= */
+
+        .cta-section {
+            padding: 42px 5%;
+        }
+
+        .cta-box {
+            max-width: 1120px;
+            margin: auto;
+            background: linear-gradient(135deg, #14543f, #238063);
+            border-radius: 14px;
+            padding: 35px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 12px 28px rgba(20,84,63,.16);
+        }
+
+        .cta-box h2 {
+            font-size: 27px;
+            margin-bottom: 9px;
+        }
+
+        .cta-box p {
+            color: #d9eee5;
+            font-size: 13px;
+            margin-bottom: 17px;
+        }
+
+        .cta-box a {
+            display: inline-block;
+            background: white;
+            color: #176b4d;
+            text-decoration: none;
+            padding: 11px 23px;
+            border-radius: 23px;
+            font-weight: bold;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #123f35;
+            color: white;
+            padding: 30px 5%;
+        }
+
+        .footer-content {
+            max-width: 1120px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        footer p {
+            color: #c7ddd5;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 950px) {
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 0;
+            }
+
+            .hero-text {
+                max-width: 700px;
+                margin: auto;
+                padding: 45px 5%;
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-image-area {
+                height: 360px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .steps {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .arrow {
+                display: none;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-text {
+                padding: 40px 5%;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero-description {
+                font-size: 15px;
+            }
+
+            .hero-image-area {
+                height: 285px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+                width: 92%;
+            }
+
+            .stat:nth-child(2) {
+                border-right: none;
+            }
+
+            .stat:nth-child(1),
+            .stat:nth-child(2) {
+                border-bottom: 1px solid #c8ddd1;
+            }
+
+            .feature-grid,
+            .steps,
+            .achievement-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 42px 5%;
+            }
+
+            .cta-box {
+                padding: 30px 18px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+    <a href="index.html" class="logo">
+        <span class="logo-mark">R</span>
+        ReConnect
+    </a>
+
+    <div class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="ngos.html">Find NGOs</a>
+
+        <a href="donate.html">Donate</a>
+
+        <a href="college.html">College/NSS</a>
+
+        <a href="reuse.html">Reuse & Recycle</a>
+
+        <!-- LOGIN -->
+        <a
+            href="login.html"
+            class="login-btn"
+            id="loginLink">
+            Login
+        </a>
+
+        <!-- USER NAME -->
+        <span
+            id="userDisplay">
+        </span>
+
+        <!-- LOGOUT -->
+        <button
+            type="button"
+            id="logoutButton"
+            class="logout-btn"
+            style="display:none;"
+            onclick="logoutUser()">
+            Logout
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <div class="hero-label">
+            Together for a better tomorrow
+        </div>
+
+        <h1>
+            Connect. Donate.
+            <span>Create Real Impact.</span>
+        </h1>
+
+        <p class="hero-description">
+            ReConnect brings donors, NGOs and college/NSS
+            communities together to make donations more
+            transparent, organized and meaningful.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+                href="ngos.html"
+                class="btn-primary">
+                Find an NGO
+            </a>
+
+            <a
+                href="donate.html"
+                class="btn-secondary">
+                Start Donating
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-image-area">
+
+        <img
+            src="image.png"
+            alt="Donation box and community giving"
+            class="hero-image">
+
+        <div class="image-caption">
+
+            <strong>
+                Small Contributions. Real Impact.
+            </strong>
+
+            <span>
+                Connect with NGOs and turn unused resources
+                into meaningful support.
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= STATS ================= -->
+
+<div class="stats">
+
+    <div class="stat">
+        <strong>311+</strong>
+        <span>NGOs Listed</span>
+    </div>
+
+    <div class="stat">
+        <strong>4</strong>
+        <span>Core User Groups</span>
+    </div>
+
+    <div class="stat">
+        <strong>100%</strong>
+        <span>Transparency Focus</span>
+    </div>
+
+    <div class="stat">
+        <strong>∞</strong>
+        <span>Ways to Help</span>
+    </div>
+
+</div>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features-section">
+
+    <div class="section-title">
+
+        <h2>
+            Everything You Need in One Place
+        </h2>
+
+        <p>
+            ReConnect connects people, NGOs and student
+            communities through one simple platform.
+        </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🔎
+            </div>
+
+            <h3>
+                Find NGOs
+            </h3>
+
+            <p>
+                Explore the NGO directory and discover
+                organizations based on their work and location.
+            </p>
+
+            <a href="ngos.html">
+                Explore NGOs →
+            </a>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ❤️
+            </div>
+
+            <h3>
+                Donate
+            </h3>
+
+            <p>
+                Support NGOs through monetary contributions
+                or useful reusable items.
+            </p>
+
+            <a href="donate.html">
+                Start Donating →
+            </a>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🎓
+            </div>
+
+            <h3>
+                College & NSS
+            </h3>
+
+            <p>
+                Connect college clubs and NSS units with
+                meaningful community activities.
+            </p>
+
+            <a href="college.html">
+                Get Involved →
+            </a>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ♻️
+            </div>
+
+            <h3>
+                Reuse & Recycle
+            </h3>
+
+            <p>
+                Give usable items another purpose and help
+                route unsuitable items towards recycling.
+            </p>
+
+            <a href="reuse.html">
+                Reuse Items →
+            </a>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📦
+            </div>
+
+            <h3>
+                Track Your Donation
+            </h3>
+
+            <p>
+                Follow your donation journey from submission
+                to acknowledgement.
+            </p>
+
+            <a href="track-donation.html">
+                Track Donation →
+            </a>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🏆
+            </div>
+
+            <h3>
+                Achievements
+            </h3>
+
+            <p>
+                Recognize meaningful contributions and
+                celebrate your social impact journey.
+            </p>
+
+            <a href="login.html">
+                Join ReConnect →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= HOW IT WORKS ================= -->
+
+<section class="how-section">
+
+    <div class="section-title">
+
+        <h2>
+            How ReConnect Works
+        </h2>
+
+        <p>
+            From discovering an NGO to tracking your
+            contribution, everything is designed to be simple.
+        </p>
+
+    </div>
+
+
+    <div class="steps">
+
+
+        <div class="step">
+
+            <div class="step-number">
+                1
+            </div>
+
+            <h3>
+                Find
+            </h3>
+
+            <p>
+                Discover NGOs and opportunities that
+                match your interests.
+            </p>
+
+            <div class="arrow">
+                →
+            </div>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                2
+            </div>
+
+            <h3>
+                Contribute
+            </h3>
+
+            <p>
+                Donate money, useful items or participate
+                through college/NSS activities.
+            </p>
+
+            <div class="arrow">
+                →
+            </div>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                3
+            </div>
+
+            <h3>
+                Track
+            </h3>
+
+            <p>
+                Follow the journey of your contribution
+                through ReConnect.
+            </p>
+
+            <div class="arrow">
+                →
+            </div>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                4
+            </div>
+
+            <h3>
+                Impact
+            </h3>
+
+            <p>
+                Understand how your contribution can
+                create meaningful social impact.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ACHIEVEMENTS ================= -->
+
+<section class="achievement-section">
+
+    <div class="section-title">
+
+        <h2>
+            Your Impact Journey
+        </h2>
+
+        <p>
+            ReConnect can recognize participation and
+            encourage users to keep contributing.
+        </p>
+
+    </div>
+
+
+    <div class="achievement-grid">
+
+
+        <div class="achievement-card">
+
+            <div class="achievement-icon">
+                🏆
+            </div>
+
+            <div>
+
+                <h3>
+                    Contribution Achievements
+                </h3>
+
+                <p>
+                    Users can earn recognition for donation
+                    milestones, volunteering and community
+                    participation.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="achievement-card">
+
+            <div class="achievement-icon">
+                🌟
+            </div>
+
+            <div>
+
+                <h3>
+                    Make Every Contribution Count
+                </h3>
+
+                <p>
+                    Build a record of your contributions and
+                    see your involvement grow over time.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta-section">
+
+    <div class="cta-box">
+
+        <h2>
+            Ready to Make a Difference?
+        </h2>
+
+        <p>
+            Find an NGO, donate an item or join a
+            community activity today.
+        </p>
+
+        <a href="ngos.html">
+            Explore ReConnect →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+
+            <div class="footer-logo">
+                ReConnect
+            </div>
+
+            <p>
+                Transparent Donations • Community Engagement • Item Reuse
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <p>
+                Connecting people, NGOs and student communities
+                for meaningful social impact.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- ================= FIREBASE AUTH ================= -->
+
+<script
+    type="module"
+    src="auth.js">
+</script>
+
+
+</body>
+
 </html>
