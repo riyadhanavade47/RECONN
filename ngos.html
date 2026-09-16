@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ReConnect | Find NGOs</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f8faf8;
+            color: #183f38;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            height: 72px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #edf2ef;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: #176b4d;
+            font-size: 29px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-mark {
+            width: 43px;
+            height: 43px;
+            background: #176b4d;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #3d5c56;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #176b4d;
+        }
+
+        .nav-links a.active {
+            color: #176b4d;
+            padding: 25px 0 21px;
+            border-bottom: 3px solid #176b4d;
+        }
+
+        .login-btn {
+            background: #176b4d;
+            color: white !important;
+            padding: 11px 22px !important;
+            border-radius: 25px !important;
+        }
+
+        /* HERO */
+
+        .hero {
+            background:
+                radial-gradient(circle at 5% 90%, #eaf5df, transparent 28%),
+                linear-gradient(110deg, #f8fcfa 0%, #edf8f3 100%);
+            padding: 58px 5% 48px;
+            text-align: center;
+        }
+
+        .hero-label {
+            display: inline-block;
+            background: #d9f4e7;
+            color: #176b4d;
+            padding: 8px 16px;
+            border-radius: 22px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            color: #173e38;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 span {
+            color: #168263;
+        }
+
+        .hero p {
+            max-width: 680px;
+            margin: auto;
+            color: #687b76;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* STATS */
+
+        .stats {
+            width: 90%;
+            max-width: 1000px;
+            margin: -20px auto 35px;
+            background: white;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-radius: 14px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(25, 83, 64, 0.08);
+        }
+
+        .stat {
+            text-align: center;
+            padding: 22px 10px;
+            border-right: 1px solid #e2ebe6;
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat strong {
+            display: block;
+            color: #176b4d;
+            font-size: 26px;
+            margin-bottom: 5px;
+        }
+
+        .stat span {
+            color: #71827d;
+            font-size: 12px;
+        }
+
+        /* MAIN */
+
+        .main {
+            width: 90%;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        /* SEARCH */
+
+        .search-box {
+            background: white;
+            border: 1px solid #e3ebe7;
+            border-radius: 15px;
+            padding: 22px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 18px rgba(0,0,0,.04);
+        }
+
+        .search-title {
+            color: #173e38;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 14px 17px;
+            border: 1px solid #d7e2dd;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #176b4d;
+            box-shadow: 0 0 0 3px rgba(23,107,77,.08);
+        }
+
+        .clear-btn {
+            border: none;
+            background: #edf6f1;
+            color: #176b4d;
+            padding: 0 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .clear-btn:hover {
+            background: #d9eee4;
+        }
+
+        /* RESULTS HEADER */
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .results-header h2 {
+            font-size: 22px;
+            color: #173e38;
+        }
+
+        .results-count {
+            color: #687b76;
+            font-size: 13px;
+        }
+
+        /* NGO GRID */
+
+        .ngo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            padding-bottom: 55px;
+        }
+
+        .ngo-card {
+            background: white;
+            border: 1px solid #e4ebe7;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: .3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ngo-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 30px rgba(23,107,77,.10);
+            border-color: #cfe1d8;
+        }
+
+        .ngo-top {
+            background: linear-gradient(135deg, #eff9ed, #eef8f3);
+            padding: 20px;
+            min-height: 125px;
+        }
+
+        .ngo-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: white;
+            color: #176b4d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+            margin-bottom: 13px;
+        }
+
+        .ngo-name {
+            color: #173e38;
+            font-size: 17px;
+            line-height: 1.35;
+        }
+
+        .ngo-body {
+            padding: 19px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ngo-info {
+            margin-bottom: 10px;
+        }
+
+        .info-label {
+            color: #81908b;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+        }
+
+        .info-value {
+            color: #4c625d;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .cause {
+            display: inline-block;
+            background: #f1f7f3;
+            color: #176b4d;
+            padding: 6px 9px;
+            border-radius: 8px;
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+        .profile-btn {
+            margin-top: auto;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            background: #176b4d;
+            color: white;
+            padding: 11px;
+            border-radius: 9px;
+            font-size: 12px;
+            font-weight: bold;
+            transition: .25s;
+        }
+
+        .profile-btn:hover {
+            background: #0e513b;
+        }
+
+        /* LOADING */
+
+        .loading {
+            background: white;
+            border: 1px solid #e4ebe7;
+            border-radius: 14px;
+            padding: 35px;
+            text-align: center;
+            color: #687b76;
+            margin-bottom: 50px;
+        }
+
+        .loading-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        /* NO RESULTS */
+
+        .no-results {
+            display: none;
+            background: white;
+            border: 1px solid #e4ebe7;
+            border-radius: 14px;
+            padding: 45px 20px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .no-results-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .no-results h3 {
+            color: #173e38;
+            margin-bottom: 7px;
+        }
+
+        .no-results p {
+            color: #71827d;
+            font-size: 13px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #123f35;
+            color: white;
+            padding: 30px 5%;
+        }
+
+        .footer-content {
+            max-width: 1150px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        footer p {
+            color: #c7ddd5;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 950px) {
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .ngo-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stat {
+                border-right: none;
+                border-bottom: 1px solid #e2ebe6;
+            }
+
+            .stat:last-child {
+                border-bottom: none;
+            }
+
+            .ngo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-row {
+                flex-direction: column;
+            }
+
+            .clear-btn {
+                padding: 12px;
+            }
+
+            .results-header {
+                align-items: flex-start;
+                gap: 8px;
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <a href="index.html" class="logo">
+        <span class="logo-mark">R</span>
+        ReConnect
+    </a>
+
+    <div class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="ngos.html" class="active">Find NGOs</a>
+
+        <a href="donate.html">Donate</a>
+
+        <a href="college.html">College/NSS</a>
+
+        <a href="reuse.html">Reuse & Recycle</a>
+
+        <a href="login.html" class="login-btn">Login</a>
+
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-label">
+        🤝 Connect with organizations
+    </div>
+
+    <h1>
+        Find the Right <span>NGO</span>
+    </h1>
+
+    <p>
+        Explore NGOs listed on ReConnect and discover organizations
+        working across different social causes and communities.
+    </p>
+
+</section>
+
+
+<!-- STATS -->
+
+<div class="stats">
+
+    <div class="stat">
+        <strong id="totalNGOs">311+</strong>
+        <span>NGOs Listed</span>
+    </div>
+
+    <div class="stat">
+        <strong id="causeCount">—</strong>
+        <span>Areas of Work</span>
+    </div>
+
+    <div class="stat">
+        <strong>100%</strong>
+        <span>Dataset Based</span>
+    </div>
+
+</div>
+
+
+<!-- MAIN -->
+
+<div class="main">
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <div class="search-title">
+            🔎 Search NGOs
+        </div>
+
+        <div class="search-row">
+
+            <input
+                type="text"
+                id="searchInput"
+                class="search-input"
+                placeholder="Search by NGO name, location, cause, contact person..."
+            >
+
+            <button
+                class="clear-btn"
+                onclick="clearSearch()"
+            >
+                Clear
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- RESULTS HEADER -->
+
+    <div class="results-header">
+
+        <h2>NGO Directory</h2>
+
+        <div class="results-count" id="resultsCount">
+            Loading NGOs...
+        </div>
+
+    </div>
+
+
+    <!-- LOADING -->
+
+    <div class="loading" id="loading">
+
+        <div class="loading-icon">
+            🌱
+        </div>
+
+        Loading NGO directory...
+
+    </div>
+
+
+    <!-- NGO CARDS -->
+
+    <div class="ngo-grid" id="ngoContainer"></div>
+
+
+    <!-- NO RESULTS -->
+
+    <div class="no-results" id="noResults">
+
+        <div class="no-results-icon">
+            🔍
+        </div>
+
+        <h3>No NGOs Found</h3>
+
+        <p>
+            Try searching with another NGO name, location, cause or contact person.
+        </p>
+
+    </div>
+
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+
+            <div class="footer-logo">
+                ReConnect
+            </div>
+
+            <p>
+                Transparent Donations • Community Engagement • Item Reuse
+            </p>
+
+        </div>
+
+        <div>
+
+            <p>
+                Connecting people, NGOs and student communities
+                for meaningful social impact.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+let ngoData = [];
+
+
+/* LOAD NGO DATA */
+
+fetch("ngos.json")
+
+    .then(response => {
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Could not load ngos.json"
+            );
+
+        }
+
+        return response.json();
+
+    })
+
+    .then(data => {
+
+        if (!Array.isArray(data)) {
+
+            throw new Error(
+                "ngos.json must contain an array of NGOs."
+            );
+
+        }
+
+        ngoData = data;
+
+        document.getElementById("loading").style.display = "none";
+
+        document.getElementById("totalNGOs").textContent =
+            data.length + "+";
+
+        calculateCauses(data);
+
+        displayNGOs(data);
+
+    })
+
+    .catch(error => {
+
+        document.getElementById("loading").innerHTML = `
+
+            <div class="loading-icon">⚠️</div>
+
+            <strong>Unable to load NGO data.</strong>
+
+            <br><br>
+
+            <span style="font-size:12px;">
+                Make sure <b>ngos.json</b> is in the same folder
+                as <b>ngos.html</b>.
+            </span>
+
+        `;
+
+        console.error(error);
+
+    });
+
+
+/* COUNT AREAS OF WORK */
+
+function calculateCauses(data) {
+
+    const causes = new Set();
+
+    data.forEach(ngo => {
+
+        if (ngo["Area of Work"]) {
+
+            causes.add(
+                ngo["Area of Work"].trim().toLowerCase()
+            );
+
+        }
+
+    });
+
+    document.getElementById("causeCount").textContent =
+        causes.size;
+
+}
+
+
+/* DISPLAY NGO CARDS */
+
+function displayNGOs(data) {
+
+    const container =
+        document.getElementById("ngoContainer");
+
+    const noResults =
+        document.getElementById("noResults");
+
+    const resultsCount =
+        document.getElementById("resultsCount");
+
+
+    container.innerHTML = "";
+
+
+    if (data.length === 0) {
+
+        noResults.style.display = "block";
+
+        resultsCount.textContent = "0 NGOs found";
+
+        return;
+
+    }
+
+
+    noResults.style.display = "none";
+
+    resultsCount.textContent =
+        data.length + " NGOs found";
+
+
+    data.forEach((ngo, index) => {
+
+        const originalIndex =
+            ngoData.indexOf(ngo);
+
+
+        const name =
+            ngo["Name of Institution"] ||
+            "NGO Name Not Available";
+
+
+        const address =
+            ngo["Address"] ||
+            "Address not available";
+
+
+        const area =
+            ngo["Area of Work"] ||
+            "Area of work not specified";
+
+
+        const contact =
+            ngo["Local Contact Person"] ||
+            ngo["Chairman/CEO"] ||
+            "Contact person not available";
+
+
+        const card = document.createElement("div");
+
+        card.className = "ngo-card";
+
+
+        card.innerHTML = `
+
+            <div class="ngo-top">
+
+                <div class="ngo-icon">
+                    🌱
+                </div>
+
+                <div class="ngo-name">
+                    ${escapeHTML(name)}
+                </div>
+
+            </div>
+
+
+            <div class="ngo-body">
+
+                <div class="ngo-info">
+
+                    <div class="info-label">
+                        Area of Work
+                    </div>
+
+                    <div class="cause">
+                        ${escapeHTML(area)}
+                    </div>
+
+                </div>
+
+
+                <div class="ngo-info">
+
+                    <div class="info-label">
+                        Location
+                    </div>
+
+                    <div class="info-value">
+                        ${escapeHTML(address)}
+                    </div>
+
+                </div>
+
+
+                <div class="ngo-info">
+
+                    <div class="info-label">
+                        Contact Person
+                    </div>
+
+                    <div class="info-value">
+                        ${escapeHTML(contact)}
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="ngo-profile.html?ngo=${originalIndex}"
+                    class="profile-btn"
+                >
+                    View NGO Profile →
+                </a>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+/* SEARCH */
+
+document
+    .getElementById("searchInput")
+    .addEventListener("input", function () {
+
+        const searchText =
+            this.value
+                .trim()
+                .toLowerCase();
+
+
+        if (searchText === "") {
+
+            displayNGOs(ngoData);
+
+            return;
+
+        }
+
+
+        const filtered =
+            ngoData.filter(ngo => {
+
+                return Object.values(ngo)
+                    .some(value =>
+                        String(value)
+                            .toLowerCase()
+                            .includes(searchText)
+                    );
+
+            });
+
+
+        displayNGOs(filtered);
+
+    });
+
+
+/* CLEAR SEARCH */
+
+function clearSearch() {
+
+    document.getElementById("searchInput").value = "";
+
+    displayNGOs(ngoData);
+
+}
+
+
+/* SECURITY */
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;")
+
+        .replace(/"/g, "&quot;")
+
+        .replace(/'/g, "&#039;");
+
+}
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Donate | ReConnect</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5faf7;
+            color: #1d2d26;
+        }
+
+        /* NAVBAR */
+        nav {
+            height: 72px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #176b4d;
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #176b4d;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #34443d;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        nav ul li a:hover {
+            color: #176b4d;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 65px 20px 40px;
+        }
+
+        .hero span {
+            display: inline-block;
+            background: #dff4e9;
+            color: #176b4d;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            color: #173d2e;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #66736d;
+            line-height: 1.7;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            width: 90%;
+            max-width: 1050px;
+            margin: 20px auto 70px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+            margin-bottom: 25px;
+        }
+
+        .card h2 {
+            color: #173d2e;
+            margin-bottom: 8px;
+        }
+
+        .card-subtitle {
+            color: #718078;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        /* NGO SELECT */
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #34443d;
+        }
+
+        select,
+        input,
+        textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #d7e2dc;
+            border-radius: 10px;
+            outline: none;
+            font-size: 15px;
+            background: white;
+        }
+
+        select:focus,
+        input:focus,
+        textarea:focus {
+            border-color: #176b4d;
+        }
+
+        .ngo-info {
+            margin-top: 18px;
+            padding: 18px;
+            background: #f0f8f4;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .ngo-info h3 {
+            color: #176b4d;
+            margin-bottom: 8px;
+        }
+
+        .ngo-info p {
+            color: #66736d;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* DONATION TYPE */
+        .type-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .type-btn {
+            flex: 1;
+            padding: 18px;
+            border: 2px solid #dce8e1;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: #34443d;
+            transition: 0.2s;
+        }
+
+        .type-btn:hover {
+            border-color: #176b4d;
+        }
+
+        .type-btn.active {
+            background: #e5f5ed;
+            border-color: #176b4d;
+            color: #176b4d;
+        }
+
+        /* SECTIONS */
+        .donation-section {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .donation-section.active {
+            display: block;
+        }
+
+        /* MONEY */
+        .amount-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 15px 0 20px;
+        }
+
+        .amount-btn {
+            padding: 13px;
+            border: 1px solid #cfded6;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            font-weight: bold;
+            color: #176b4d;
+        }
+
+        .amount-btn:hover,
+        .amount-btn.active {
+            background: #176b4d;
+            color: white;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* ITEMS */
+        .item-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 15px 0 25px;
+        }
+
+        .item-option {
+            border: 1px solid #d5e1db;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            text-align: center;
+            background: white;
+            font-weight: bold;
+        }
+
+        .item-option:hover,
+        .item-option.active {
+            background: #e5f5ed;
+            border-color: #176b4d;
+            color: #176b4d;
+        }
+
+        /* SUBMIT */
+        .submit-btn {
+            width: 100%;
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            background: #176b4d;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: #0f583d;
+        }
+
+        /* SUCCESS */
+        .success {
+            display: none;
+            background: #e5f7ed;
+            border: 1px solid #a9dfc1;
+            color: #176b4d;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .success h2 {
+            margin-bottom: 8px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #173d2e;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 14px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 800px) {
+
+            nav {
+                padding: 0 4%;
+            }
+
+            nav ul {
+                gap: 12px;
+            }
+
+            nav ul li a {
+                font-size: 12px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .amount-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .item-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            nav {
+                height: auto;
+                padding: 15px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .card {
+                padding: 22px;
+            }
+
+            .type-buttons {
+                flex-direction: column;
+            }
+
+            .item-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+
+    <div class="logo">
+        <div class="logo-circle">R</div>
+        ReConnect
+    </div>
+
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="ngos.html">Find NGOs</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="college.html">College/NSS</a></li>
+        <li><a href="reuse.html">Reuse & Recycle</a></li>
+        <li><a href="login.html">Login</a></li>
+    </ul>
+
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+
+    <span>💚 Make a Difference</span>
+
+    <h1>Support a Cause You Care About</h1>
+
+    <p>
+        Choose a verified NGO from our directory and contribute
+        through money or reusable items. Every contribution can
+        create a meaningful impact.
+    </p>
+
+</section>
+
+
+<div class="container">
+
+    <!-- SELECT NGO -->
+    <div class="card">
+
+        <h2>1. Choose an NGO</h2>
+
+        <p class="card-subtitle">
+            Select the organisation you would like to support.
+        </p>
+
+        <label for="ngoSelect">Select NGO</label>
+
+        <select id="ngoSelect">
+
+            <option value="">
+                -- Select an NGO --
+            </option>
+
+        </select>
+
+        <div class="ngo-info" id="ngoInfo">
+
+            <h3 id="ngoName"></h3>
+
+            <p>
+                <strong>Area of Work:</strong>
+                <span id="ngoArea"></span>
+            </p>
+
+            <p>
+                <strong>Address:</strong>
+                <span id="ngoAddress"></span>
+            </p>
+
+            <p>
+                <strong>Contact:</strong>
+                <span id="ngoContact"></span>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- DONATION TYPE -->
+    <div class="card">
+
+        <h2>2. Choose Donation Type</h2>
+
+        <p class="card-subtitle">
+            Choose how you would like to contribute.
+        </p>
+
+        <div class="type-buttons">
+
+            <button
+                class="type-btn"
+                id="moneyBtn"
+                onclick="showDonationType('money')">
+
+                💰 Donate Money
+
+            </button>
+
+            <button
+                class="type-btn"
+                id="itemsBtn"
+                onclick="showDonationType('items')">
+
+                📦 Donate Items
+
+            </button>
+
+        </div>
+
+
+        <!-- MONEY SECTION -->
+        <div
+            class="donation-section"
+            id="moneySection">
+
+            <h3>Money Donation</h3>
+
+            <p class="card-subtitle">
+                Select an amount or enter your own amount.
+            </p>
+
+            <label>Quick Amount</label>
+
+            <div class="amount-buttons">
+
+                <button
+                    class="amount-btn"
+                    onclick="selectAmount(500, this)">
+                    ₹500
+                </button>
+
+                <button
+                    class="amount-btn"
+                    onclick="selectAmount(1000, this)">
+                    ₹1,000
+                </button>
+
+                <button
+                    class="amount-btn"
+                    onclick="selectAmount(2000, this)">
+                    ₹2,000
+                </button>
+
+                <button
+                    class="amount-btn"
+                    onclick="selectAmount(5000, this)">
+                    ₹5,000
+                </button>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="amount">
+                    Custom Amount (₹)
+                </label>
+
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Enter amount"
+                    min="1">
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="moneyMessage">
+                    Message (Optional)
+                </label>
+
+                <textarea
+                    id="moneyMessage"
+                    placeholder="Add a message about your donation...">
+                </textarea>
+
+            </div>
+
+            <button
+                class="submit-btn"
+                onclick="submitMoneyDonation()">
+
+                Continue with Money Donation →
+
+            </button>
+
+        </div>
+
+
+        <!-- ITEM SECTION -->
+        <div
+            class="donation-section"
+            id="itemsSection">
+
+            <h3>Item Donation</h3>
+
+            <p class="card-subtitle">
+                Select the type of reusable item you would like to donate.
+            </p>
+
+
+            <label>Item Category</label>
+
+            <div class="item-grid">
+
+                <div
+                    class="item-option"
+                    onclick="selectItem('Clothes', this)">
+                    👕 Clothes
+                </div>
+
+                <div
+                    class="item-option"
+                    onclick="selectItem('Books', this)">
+                    📚 Books
+                </div>
+
+                <div
+                    class="item-option"
+                    onclick="selectItem('Food', this)">
+                    🍱 Food
+                </div>
+
+                <div
+                    class="item-option"
+                    onclick="selectItem('Stationery', this)">
+                    ✏️ Stationery
+                </div>
+
+                <div
+                    class="item-option"
+                    onclick="selectItem('Furniture', this)">
+                    🪑 Furniture
+                </div>
+
+                <div
+                    class="item-option"
+                    onclick="selectItem('Other', this)">
+                    📦 Other
+                </div>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="itemQuantity">
+                    Quantity
+                </label>
+
+                <input
+                    type="number"
+                    id="itemQuantity"
+                    placeholder="Example: 10"
+                    min="1">
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="itemCondition">
+                    Item Condition
+                </label>
+
+                <select id="itemCondition">
+
+                    <option value="">
+                        -- Select condition --
+                    </option>
+
+                    <option value="Excellent">
+                        Excellent
+                    </option>
+
+                    <option value="Good">
+                        Good
+                    </option>
+
+                    <option value="Usable">
+                        Usable
+                    </option>
+
+                    <option value="Damaged">
+                        Damaged
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="pickupAddress">
+                    Pickup / Collection Address
+                </label>
+
+                <textarea
+                    id="pickupAddress"
+                    placeholder="Enter the address where the items can be collected...">
+                </textarea>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="itemMessage">
+                    Additional Details
+                </label>
+
+                <textarea
+                    id="itemMessage"
+                    placeholder="Describe the items you want to donate...">
+                </textarea>
+
+            </div>
+
+
+            <button
+                class="submit-btn"
+                onclick="submitItemDonation()">
+
+                Submit Item Donation →
+
+            </button>
+
+        </div>
+
+
+        <!-- SUCCESS -->
+        <div
+            class="success"
+            id="successMessage">
+
+            <h2>✅ Donation Submitted!</h2>
+
+            <p id="successText"></p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <h3>ReConnect</h3>
+
+    <p>
+        Connecting people, organisations and communities
+        to create real social impact.
+    </p>
+
+    <br>
+
+    <p>
+        © 2026 ReConnect. All rights reserved.
+    </p>
+
+</footer>
+
+
+<script>
+
+    let ngos = [];
+
+    let selectedItem = "";
+
+    /* LOAD NGO DATA */
+
+    fetch("ngos.json")
+        .then(response => {
+
+            if (!response.ok) {
+                throw new Error("Could not load NGO data.");
+            }
+
+            return response.json();
+
+        })
+
+        .then(data => {
+
+            ngos = data;
+
+            const ngoSelect =
+                document.getElementById("ngoSelect");
+
+            ngos.forEach((ngo, index) => {
+
+                const option =
+                    document.createElement("option");
+
+                option.value = index;
+
+                option.textContent =
+                    ngo["Name of Institution"];
+
+                ngoSelect.appendChild(option);
+
+            });
+
+            /* CHECK IF NGO WAS PASSED IN URL */
+
+            const params =
+                new URLSearchParams(window.location.search);
+
+            const ngoIndex =
+                params.get("ngo");
+
+            if (
+                ngoIndex !== null &&
+                ngos[ngoIndex]
+            ) {
+
+                ngoSelect.value = ngoIndex;
+
+                showNGOInfo(ngoIndex);
+
+            }
+
+        })
+
+        .catch(error => {
+
+            console.error(error);
+
+            document.getElementById("ngoSelect").innerHTML =
+                `<option value="">
+                    Unable to load NGO data
+                </option>`;
+
+        });
+
+
+    /* NGO SELECTION */
+
+    document
+        .getElementById("ngoSelect")
+        .addEventListener("change", function () {
+
+            showNGOInfo(this.value);
+
+        });
+
+
+    function showNGOInfo(index) {
+
+        const info =
+            document.getElementById("ngoInfo");
+
+        if (
+            index === "" ||
+            !ngos[index]
+        ) {
+
+            info.style.display = "none";
+            return;
+
+        }
+
+        const ngo = ngos[index];
+
+        document.getElementById("ngoName").textContent =
+            ngo["Name of Institution"] || "Not available";
+
+        document.getElementById("ngoArea").textContent =
+            ngo["Area of Work"] || "Not available";
+
+        document.getElementById("ngoAddress").textContent =
+            ngo["Address"] || "Not available";
+
+        document.getElementById("ngoContact").textContent =
+            ngo["Contact No."] || "Not available";
+
+        info.style.display = "block";
+
+    }
+
+
+    /* DONATION TYPE */
+
+    function showDonationType(type) {
+
+        const moneyBtn =
+            document.getElementById("moneyBtn");
+
+        const itemsBtn =
+            document.getElementById("itemsBtn");
+
+        const moneySection =
+            document.getElementById("moneySection");
+
+        const itemsSection =
+            document.getElementById("itemsSection");
+
+
+        if (type === "money") {
+
+            moneyBtn.classList.add("active");
+            itemsBtn.classList.remove("active");
+
+            moneySection.classList.add("active");
+            itemsSection.classList.remove("active");
+
+        } else {
+
+            itemsBtn.classList.add("active");
+            moneyBtn.classList.remove("active");
+
+            itemsSection.classList.add("active");
+            moneySection.classList.remove("active");
+
+        }
+
+    }
+
+
+    /* MONEY AMOUNT */
+
+    function selectAmount(amount, button) {
+
+        document.getElementById("amount").value =
+            amount;
+
+        document
+            .querySelectorAll(".amount-btn")
+            .forEach(btn => {
+
+                btn.classList.remove("active");
+
+            });
+
+        button.classList.add("active");
+
+    }
+
+
+    /* ITEM */
+
+    function selectItem(item, element) {
+
+        selectedItem = item;
+
+        document
+            .querySelectorAll(".item-option")
+            .forEach(option => {
+
+                option.classList.remove("active");
+
+            });
+
+        element.classList.add("active");
+
+    }
+
+
+    /* MONEY SUBMISSION */
+
+    function submitMoneyDonation() {
+
+        const ngoSelect =
+            document.getElementById("ngoSelect");
+
+        const amount =
+            document.getElementById("amount").value;
+
+        if (ngoSelect.value === "") {
+
+            alert("Please select an NGO first.");
+            return;
+
+        }
+
+        if (
+            amount === "" ||
+            Number(amount) <= 0
+        ) {
+
+            alert("Please enter a valid donation amount.");
+            return;
+
+        }
+
+        const ngo =
+            ngos[ngoSelect.value];
+
+        document.getElementById("successText").textContent =
+            `Your donation of ₹${Number(amount).toLocaleString("en-IN")} to ${ngo["Name of Institution"]} has been recorded for this demo.`;
+
+        document.getElementById("successMessage").style.display =
+            "block";
+
+        document
+            .getElementById("successMessage")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    }
+
+
+    /* ITEM SUBMISSION */
+
+    function submitItemDonation() {
+
+        const ngoSelect =
+            document.getElementById("ngoSelect");
+
+        const quantity =
+            document.getElementById("itemQuantity").value;
+
+        const condition =
+            document.getElementById("itemCondition").value;
+
+
+        if (ngoSelect.value === "") {
+
+            alert("Please select an NGO first.");
+            return;
+
+        }
+
+        if (selectedItem === "") {
+
+            alert("Please select an item category.");
+            return;
+
+        }
+
+        if (
+            quantity === "" ||
+            Number(quantity) <= 0
+        ) {
+
+            alert("Please enter the item quantity.");
+            return;
+
+        }
+
+        if (condition === "") {
+
+            alert("Please select the item condition.");
+            return;
+
+        }
+
+        const ngo =
+            ngos[ngoSelect.value];
+
+
+        document.getElementById("successText").textContent =
+            `Your ${selectedItem} donation (${quantity} item(s)) for ${ngo["Name of Institution"]} has been submitted for this demo.`;
+
+        document.getElementById("successMessage").style.display =
+            "block";
+
+        document
+            .getElementById("successMessage")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    }
+
+</script>
+
+</body>
+</html>
