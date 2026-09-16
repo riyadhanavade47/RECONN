@@ -2,12 +2,23 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ReConnect | Connect. Donate. Create Real Impact.</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        ReConnect | Connect. Donate. Create Real Impact.
+    </title>
+
 
     <style>
+
+        /* ==========================================
+           RESET
+        ========================================== */
 
         * {
             margin: 0;
@@ -16,229 +27,419 @@
             font-family: Arial, Helvetica, sans-serif;
         }
 
+
         html {
             scroll-behavior: smooth;
         }
+
 
         body {
             background: #f8faf8;
             color: #183f38;
         }
 
-        /* ================= NAVBAR ================= */
+
+        /* ==========================================
+           NAVBAR
+        ========================================== */
 
         nav {
+
             height: 72px;
+
             background: white;
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
+
             padding: 0 5%;
+
             position: sticky;
+
             top: 0;
+
             z-index: 1000;
+
             border-bottom: 1px solid #edf2ef;
         }
 
+
         .logo {
+
             text-decoration: none;
+
             color: #176b4d;
+
             font-size: 29px;
+
             font-weight: 800;
+
             display: flex;
+
             align-items: center;
+
             gap: 10px;
         }
 
+
         .logo-mark {
+
             width: 43px;
+
             height: 43px;
+
             background: #176b4d;
+
             color: white;
+
             border-radius: 50%;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             font-size: 20px;
+
             font-weight: bold;
         }
 
+
         .nav-links {
+
             display: flex;
+
             align-items: center;
+
             gap: 30px;
         }
 
-        .nav-links a {
+
+        .nav-links > a {
+
             text-decoration: none;
+
             color: #3d5c56;
+
             font-size: 14px;
+
             font-weight: 600;
+
             transition: 0.3s;
         }
 
-        .nav-links a:hover {
+
+        .nav-links > a:hover {
+
             color: #176b4d;
         }
 
-        .nav-links a:first-child {
+
+        .nav-links > a:first-child {
+
             color: #176b4d;
+
             padding: 25px 0 21px;
+
             border-bottom: 3px solid #176b4d;
         }
 
+
+        /* ==========================================
+           LOGIN BUTTON
+        ========================================== */
+
         .login-btn {
+
             background: #176b4d;
+
             color: white !important;
+
             padding: 11px 22px !important;
+
             border-radius: 25px !important;
+
             border: 0 !important;
         }
 
-        /* ================= LOGGED-IN USER ================= */
+
+        .login-btn:hover {
+
+            background: #0e513b !important;
+
+            color: white !important;
+        }
+
+
+        /* ==========================================
+           USER DISPLAY
+        ========================================== */
 
         #userDisplay {
+
+            display: none;
+
             color: #176b4d;
+
             font-size: 14px;
+
             font-weight: 700;
+
             white-space: nowrap;
         }
 
+
+        /* ==========================================
+           LOGOUT BUTTON
+        ========================================== */
+
         .logout-btn {
+
+            display: none;
+
             background: #176b4d;
-            color: white !important;
-            padding: 11px 22px;
-            border-radius: 25px;
+
+            color: white;
+
             border: none;
+
+            padding: 11px 22px;
+
+            border-radius: 25px;
+
             font-size: 14px;
+
             font-weight: 700;
+
             cursor: pointer;
+
             transition: 0.3s;
         }
 
+
         .logout-btn:hover {
+
             background: #0e513b;
+
             transform: translateY(-2px);
         }
 
-        /* ================= HERO ================= */
+
+        /* ==========================================
+           HERO
+        ========================================== */
 
         .hero {
+
             min-height: 405px;
+
             padding: 0 5%;
+
             display: grid;
+
             grid-template-columns: 49% 51%;
+
             align-items: stretch;
+
             gap: 0;
+
             background:
-                radial-gradient(circle at 4% 85%, #eaf5df, transparent 28%),
-                linear-gradient(110deg, #f8fcfa 0%, #edf8f3 100%);
+
+                radial-gradient(
+                    circle at 4% 85%,
+                    #eaf5df,
+                    transparent 28%
+                ),
+
+                linear-gradient(
+                    110deg,
+                    #f8fcfa 0%,
+                    #edf8f3 100%
+                );
         }
 
+
         .hero-text {
+
             max-width: 610px;
+
             align-self: center;
+
             padding: 42px 25px 42px 5px;
+
             z-index: 2;
         }
 
+
         .hero-label {
+
             display: inline-block;
+
             background: #d9f4e7;
+
             color: #176b4d;
+
             padding: 8px 16px;
+
             border-radius: 22px;
+
             font-size: 13px;
+
             font-weight: bold;
+
             margin-bottom: 17px;
         }
 
+
         .hero h1 {
+
             font-size: 45px;
+
             line-height: 1.06;
+
             letter-spacing: -1px;
+
             color: #173e38;
+
             margin-bottom: 16px;
         }
 
+
         .hero h1 span {
+
             color: #168263;
         }
 
+
         .hero-description {
+
             color: #536f72;
+
             font-size: 16px;
+
             line-height: 1.55;
+
             max-width: 520px;
+
             margin-bottom: 22px;
         }
 
+
         .hero-buttons {
+
             display: flex;
+
             gap: 12px;
+
             flex-wrap: wrap;
         }
 
+
         .btn-primary,
         .btn-secondary {
+
             text-decoration: none;
+
             padding: 13px 23px;
+
             border-radius: 24px;
+
             font-weight: bold;
+
             transition: 0.3s;
+
             display: inline-block;
         }
 
+
         .btn-primary {
+
             background: #176b4d;
+
             color: white;
         }
 
+
         .btn-primary:hover {
+
             background: #0e513b;
+
             transform: translateY(-2px);
         }
 
+
         .btn-secondary {
+
             background: white;
+
             color: #176b4d;
+
             border: 1.5px solid #176b4d;
         }
 
+
         .btn-secondary:hover {
+
             background: #edf8f1;
+
             transform: translateY(-2px);
         }
 
-        /* ================= HERO IMAGE ================= */
+
+        /* ==========================================
+           HERO IMAGE
+        ========================================== */
 
         .hero-image-area {
+
             position: relative;
+
             width: 100%;
+
             height: 405px;
+
             overflow: hidden;
         }
 
+
         .hero-image {
+
             width: 100%;
+
             height: 100%;
+
             object-fit: cover;
+
             object-position: center center;
+
             display: block;
-            border-radius: 0;
-            box-shadow: none;
         }
 
+
         .hero-image-area::before {
+
             content: "";
+
             position: absolute;
+
             left: 0;
+
             top: 0;
+
             bottom: 0;
+
             width: 24%;
+
             z-index: 1;
+
             pointer-events: none;
+
             background:
+
                 linear-gradient(
                     90deg,
                     #edf8f3 0%,
@@ -247,473 +448,771 @@
                 );
         }
 
-        .image-caption {
-            display: none;
-        }
 
-        /* ================= STATS ================= */
+        /* ==========================================
+           STATS
+        ========================================== */
 
         .stats {
+
             width: 90%;
+
             max-width: 1120px;
+
             margin: 12px auto 30px;
+
             background: #eef8f1;
+
             display: grid;
+
             grid-template-columns: repeat(4, 1fr);
+
             border-radius: 12px;
+
             overflow: hidden;
+
             position: relative;
+
             z-index: 5;
-            box-shadow: 0 5px 18px rgba(25,83,64,.06);
+
+            box-shadow:
+                0 5px 18px rgba(25,83,64,.06);
         }
 
+
         .stat {
+
             text-align: center;
+
             padding: 20px 10px;
+
             border-right: 1px solid #c8ddd1;
         }
 
+
         .stat:last-child {
+
             border-right: none;
         }
 
+
         .stat strong {
+
             display: block;
+
             color: #176b4d;
+
             font-size: 25px;
+
             margin-bottom: 4px;
         }
 
+
         .stat span {
+
             color: #6b8079;
+
             font-size: 12px;
         }
 
-        /* ================= SECTIONS ================= */
+
+        /* ==========================================
+           SECTIONS
+        ========================================== */
 
         section {
+
             padding: 48px 5%;
         }
 
+
         .section-title {
+
             text-align: center;
+
             max-width: 720px;
+
             margin: 0 auto 28px;
         }
 
+
         .section-title h2 {
+
             font-size: 30px;
+
             color: #173e38;
+
             margin-bottom: 9px;
         }
 
+
         .section-title p {
+
             color: #687b76;
+
             line-height: 1.5;
+
             font-size: 14px;
         }
 
-        /* ================= FEATURES ================= */
+
+        /* ==========================================
+           FEATURES
+        ========================================== */
 
         .features-section {
+
             background: white;
         }
 
+
         .feature-grid {
+
             max-width: 1120px;
+
             margin: auto;
+
             display: grid;
+
             grid-template-columns: repeat(3, 1fr);
+
             gap: 16px;
         }
 
+
         .feature-card {
+
             padding: 22px;
+
             border-radius: 12px;
+
             min-height: 165px;
+
             border: 1px solid #edf0ee;
+
             transition: 0.3s;
         }
 
+
         .feature-card:hover {
+
             transform: translateY(-5px);
-            box-shadow: 0 12px 28px rgba(0,0,0,.07);
+
+            box-shadow:
+                0 12px 28px rgba(0,0,0,.07);
         }
+
 
         .feature-card:nth-child(1) {
             background: #eff9ed;
         }
 
+
         .feature-card:nth-child(2) {
             background: #fff1f3;
         }
+
 
         .feature-card:nth-child(3) {
             background: #eef7ff;
         }
 
+
         .feature-card:nth-child(4) {
             background: #f3efff;
         }
+
 
         .feature-card:nth-child(5) {
             background: #eff9f2;
         }
 
+
         .feature-card:nth-child(6) {
             background: #fff7e9;
         }
 
+
         .feature-icon {
+
             width: 46px;
+
             height: 46px;
+
             background: white;
+
             border-radius: 50%;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             font-size: 21px;
+
             margin-bottom: 12px;
         }
 
+
         .feature-card h3 {
+
             color: #173e38;
+
             margin-bottom: 7px;
+
             font-size: 16px;
         }
 
+
         .feature-card p {
+
             color: #687b76;
+
             font-size: 12px;
+
             line-height: 1.5;
+
             margin-bottom: 12px;
         }
 
+
         .feature-card a {
+
             color: #176b4d;
+
             text-decoration: none;
+
             font-size: 12px;
+
             font-weight: bold;
         }
 
-        /* ================= HOW IT WORKS ================= */
+
+        /* ==========================================
+           HOW IT WORKS
+        ========================================== */
 
         .how-section {
+
             background: #eef8f2;
         }
 
+
         .steps {
+
             max-width: 1100px;
+
             margin: auto;
+
             display: grid;
+
             grid-template-columns: repeat(4, 1fr);
+
             gap: 10px;
         }
 
+
         .step {
+
             text-align: center;
+
             padding: 12px;
+
             position: relative;
         }
 
+
         .step-number {
+
             width: 62px;
+
             height: 62px;
+
             margin: auto auto 14px;
+
             background: #176b4d;
+
             color: white;
+
             border-radius: 50%;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             font-size: 24px;
+
             font-weight: bold;
         }
+
 
         .step:nth-child(2) .step-number {
             background: #e65b7a;
         }
 
+
         .step:nth-child(3) .step-number {
             background: #3e76a5;
         }
+
 
         .step:nth-child(4) .step-number {
             background: #8464ce;
         }
 
+
         .step h3 {
+
             color: #173e38;
+
             margin-bottom: 7px;
+
             font-size: 16px;
         }
 
+
         .step p {
+
             color: #687b76;
+
             font-size: 12px;
+
             line-height: 1.5;
         }
 
+
         .arrow {
+
             position: absolute;
+
             top: 34px;
+
             right: -5px;
+
             color: #5b8d78;
+
             font-size: 21px;
         }
 
-        /* ================= ACHIEVEMENTS ================= */
+
+        /* ==========================================
+           ACHIEVEMENTS
+        ========================================== */
 
         .achievement-section {
+
             background: white;
         }
 
+
         .achievement-grid {
+
             max-width: 1100px;
+
             margin: auto;
+
             display: grid;
+
             grid-template-columns: 1fr 1fr;
+
             gap: 16px;
         }
 
+
         .achievement-card {
+
             background: #fafbf9;
+
             border: 1px solid #e6ece8;
+
             padding: 22px;
+
             border-radius: 12px;
+
             display: flex;
+
             gap: 16px;
+
             transition: .25s;
         }
 
+
         .achievement-card:hover {
+
             transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(0,0,0,.06);
+
+            box-shadow:
+                0 10px 25px rgba(0,0,0,.06);
         }
 
+
         .achievement-icon {
+
             font-size: 34px;
         }
 
+
         .achievement-card h3 {
+
             color: #176b4d;
+
             margin-bottom: 6px;
+
             font-size: 16px;
         }
 
+
         .achievement-card p {
+
             color: #687b76;
+
             font-size: 12px;
+
             line-height: 1.5;
         }
 
-        /* ================= CTA ================= */
+
+        /* ==========================================
+           CTA
+        ========================================== */
 
         .cta-section {
+
             padding: 42px 5%;
         }
 
+
         .cta-box {
+
             max-width: 1120px;
+
             margin: auto;
-            background: linear-gradient(135deg, #14543f, #238063);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #14543f,
+                    #238063
+                );
+
             border-radius: 14px;
+
             padding: 35px;
+
             text-align: center;
+
             color: white;
-            box-shadow: 0 12px 28px rgba(20,84,63,.16);
+
+            box-shadow:
+                0 12px 28px rgba(20,84,63,.16);
         }
 
+
         .cta-box h2 {
+
             font-size: 27px;
+
             margin-bottom: 9px;
         }
 
+
         .cta-box p {
+
             color: #d9eee5;
+
             font-size: 13px;
+
             margin-bottom: 17px;
         }
 
+
         .cta-box a {
+
             display: inline-block;
+
             background: white;
+
             color: #176b4d;
+
             text-decoration: none;
+
             padding: 11px 23px;
+
             border-radius: 23px;
+
             font-weight: bold;
         }
 
-        /* ================= FOOTER ================= */
+
+        /* ==========================================
+           FOOTER
+        ========================================== */
 
         footer {
+
             background: #123f35;
+
             color: white;
+
             padding: 30px 5%;
         }
 
+
         .footer-content {
+
             max-width: 1120px;
+
             margin: auto;
+
             display: flex;
+
             justify-content: space-between;
+
             gap: 25px;
+
             flex-wrap: wrap;
         }
 
+
         .footer-logo {
+
             font-size: 22px;
+
             font-weight: bold;
+
             margin-bottom: 7px;
         }
 
+
         footer p {
+
             color: #c7ddd5;
+
             font-size: 11px;
+
             line-height: 1.6;
         }
 
-        /* ================= RESPONSIVE ================= */
+
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
 
         @media (max-width: 950px) {
 
             .hero {
+
                 grid-template-columns: 1fr;
+
                 padding: 0;
             }
 
+
             .hero-text {
+
                 max-width: 700px;
+
                 margin: auto;
+
                 padding: 45px 5%;
+
                 text-align: center;
             }
 
+
             .hero-buttons {
+
                 justify-content: center;
             }
 
+
             .hero-image-area {
+
                 height: 360px;
             }
 
+
             .feature-grid {
+
                 grid-template-columns: 1fr 1fr;
             }
+
 
             .steps {
+
                 grid-template-columns: 1fr 1fr;
             }
 
+
             .arrow {
+
                 display: none;
             }
+
         }
+
 
         @media (max-width: 650px) {
 
             nav {
+
                 padding: 0 5%;
             }
 
+
             .nav-links {
+
                 display: none;
             }
 
+
             .hero-text {
+
                 padding: 40px 5%;
             }
 
+
             .hero h1 {
+
                 font-size: 38px;
             }
 
+
             .hero-description {
+
                 font-size: 15px;
             }
 
+
             .hero-image-area {
+
                 height: 285px;
             }
 
+
             .stats {
+
                 grid-template-columns: 1fr 1fr;
+
                 width: 92%;
             }
 
+
             .stat:nth-child(2) {
+
                 border-right: none;
             }
 
+
             .stat:nth-child(1),
             .stat:nth-child(2) {
-                border-bottom: 1px solid #c8ddd1;
+
+                border-bottom:
+                    1px solid #c8ddd1;
             }
+
 
             .feature-grid,
             .steps,
             .achievement-grid {
+
                 grid-template-columns: 1fr;
             }
 
+
             section {
+
                 padding: 42px 5%;
             }
 
+
             .cta-box {
+
                 padding: 30px 18px;
             }
+
         }
 
     </style>
 
 </head>
 
+
 <body>
 
-<!-- ================= NAVBAR ================= -->
+
+<!-- ==========================================
+     NAVBAR
+========================================== -->
 
 <nav>
 
-    <a href="index.html" class="logo">
-        <span class="logo-mark">R</span>
+    <a
+        href="index.html"
+        class="logo">
+
+        <span class="logo-mark">
+            R
+        </span>
+
         ReConnect
+
     </a>
+
 
     <div class="nav-links">
 
-        <a href="index.html">Home</a>
+        <a href="index.html">
+            Home
+        </a>
 
-        <a href="ngos.html">Find NGOs</a>
+        <a href="ngos.html">
+            Find NGOs
+        </a>
 
-        <a href="donate.html">Donate</a>
+        <a href="donate.html">
+            Donate
+        </a>
 
-        <a href="college.html">College/NSS</a>
+        <a href="college.html">
+            College/NSS
+        </a>
 
-        <a href="reuse.html">Reuse & Recycle</a>
+        <a href="reuse.html">
+            Reuse & Recycle
+        </a>
+
 
         <!-- LOGIN -->
+
         <a
             href="login.html"
             class="login-btn"
             id="loginLink">
+
             Login
+
         </a>
 
-        <!-- USER NAME -->
-        <span
-            id="userDisplay">
-        </span>
+
+        <!-- USER EMAIL -->
+
+        <span id="userDisplay"></span>
+
 
         <!-- LOGOUT -->
+
         <button
             type="button"
             id="logoutButton"
             class="logout-btn"
-            style="display:none;"
             onclick="logoutUser()">
+
             Logout
+
         </button>
 
     </div>
@@ -721,39 +1220,59 @@
 </nav>
 
 
-<!-- ================= HERO ================= -->
+<!-- ==========================================
+     HERO
+========================================== -->
 
 <section class="hero">
+
 
     <div class="hero-text">
 
         <div class="hero-label">
+
             Together for a better tomorrow
+
         </div>
 
+
         <h1>
+
             Connect. Donate.
-            <span>Create Real Impact.</span>
+
+            <span>
+                Create Real Impact.
+            </span>
+
         </h1>
 
+
         <p class="hero-description">
+
             ReConnect brings donors, NGOs and college/NSS
             communities together to make donations more
             transparent, organized and meaningful.
+
         </p>
+
 
         <div class="hero-buttons">
 
             <a
                 href="ngos.html"
                 class="btn-primary">
+
                 Find an NGO
+
             </a>
+
 
             <a
                 href="donate.html"
                 class="btn-secondary">
+
                 Start Donating
+
             </a>
 
         </div>
@@ -768,54 +1287,78 @@
             alt="Donation box and community giving"
             class="hero-image">
 
-        <div class="image-caption">
-
-            <strong>
-                Small Contributions. Real Impact.
-            </strong>
-
-            <span>
-                Connect with NGOs and turn unused resources
-                into meaningful support.
-            </span>
-
-        </div>
-
     </div>
 
 </section>
 
 
-<!-- ================= STATS ================= -->
+<!-- ==========================================
+     STATS
+========================================== -->
 
 <div class="stats">
 
-    <div class="stat">
-        <strong>311+</strong>
-        <span>NGOs Listed</span>
-    </div>
 
     <div class="stat">
-        <strong>4</strong>
-        <span>Core User Groups</span>
+
+        <strong>
+            311+
+        </strong>
+
+        <span>
+            NGOs Listed
+        </span>
+
     </div>
 
-    <div class="stat">
-        <strong>100%</strong>
-        <span>Transparency Focus</span>
-    </div>
 
     <div class="stat">
-        <strong>∞</strong>
-        <span>Ways to Help</span>
+
+        <strong>
+            4
+        </strong>
+
+        <span>
+            Core User Groups
+        </span>
+
+    </div>
+
+
+    <div class="stat">
+
+        <strong>
+            100%
+        </strong>
+
+        <span>
+            Transparency Focus
+        </span>
+
+    </div>
+
+
+    <div class="stat">
+
+        <strong>
+            ∞
+        </strong>
+
+        <span>
+            Ways to Help
+        </span>
+
     </div>
 
 </div>
 
 
-<!-- ================= FEATURES ================= -->
+<!-- ==========================================
+     FEATURES
+========================================== -->
 
 <section class="features-section">
+
 
     <div class="section-title">
 
@@ -970,9 +1513,12 @@
 </section>
 
 
-<!-- ================= HOW IT WORKS ================= -->
+<!-- ==========================================
+     HOW IT WORKS
+========================================== -->
 
 <section class="how-section">
+
 
     <div class="section-title">
 
@@ -1079,9 +1625,12 @@
 </section>
 
 
-<!-- ================= ACHIEVEMENTS ================= -->
+<!-- ==========================================
+     ACHIEVEMENTS
+========================================== -->
 
 <section class="achievement-section">
+
 
     <div class="section-title">
 
@@ -1149,9 +1698,12 @@
 </section>
 
 
-<!-- ================= CTA ================= -->
+<!-- ==========================================
+     CTA
+========================================== -->
 
 <section class="cta-section">
+
 
     <div class="cta-box">
 
@@ -1173,11 +1725,15 @@
 </section>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- ==========================================
+     FOOTER
+========================================== -->
 
 <footer>
 
+
     <div class="footer-content">
+
 
         <div>
 
@@ -1206,7 +1762,9 @@
 </footer>
 
 
-<!-- ================= FIREBASE AUTH ================= -->
+<!-- ==========================================
+     FIREBASE AUTH
+========================================== -->
 
 <script
     type="module"
