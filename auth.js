@@ -1,5 +1,5 @@
 // ==========================================
-// ReConnect - Firebase Authentication
+// ReConnect - Shared Firebase Authentication
 // ==========================================
 
 import {
@@ -8,121 +8,311 @@ import {
     signOut
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
+import {
+    getFirestore,
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
 import { app } from "./firebase-config.js";
 
 
 // ==========================================
-// INITIALIZE FIREBASE AUTH
+// INITIALIZE
 // ==========================================
 
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 
 // ==========================================
 // UPDATE NAVBAR
 // ==========================================
 
-function updateNavbar(user) {
+async function updateNavbar(user) {
 
-    const loginLink = document.getElementById("loginLink");
-    const logoutButton = document.getElementById("logoutButton");
-    const userDisplay = document.getElementById("userDisplay");
+    // Find Login link on ANY page
+    const loginLinks =
+        document.querySelectorAll(
+            'a[href="login.html"]'
+        );
 
-    console.log("Updating navbar. User:", user);
 
+    // Find existing user display
+    let userDisplay =
+        document.getElementById("userDisplay");
+
+
+    // Find existing logout button
+    let logoutButton =
+        document.getElementById("logoutButton");
+
+
+    // ======================================
+    // LOGGED IN
+    // ======================================
 
     if (user) {
 
-        // -------------------------------
-        // USER IS LOGGED IN
-        // -------------------------------
+        // Hide every Login link
+        loginLinks.forEach(link => {
 
-        if (loginLink) {
-            loginLink.style.display = "none";
+            link.style.display = "none";
+
+        });
+
+
+        // Create user display if page doesn't have it
+        if (!userDisplay) {
+
+            userDisplay =
+                document.createElement("span");
+
+            userDisplay.id =
+                "userDisplay";
+
+            userDisplay.style.cssText = `
+                color: #176b4d;
+                font-size: 14px;
+                font-weight: 700;
+                white-space: nowrap;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+            `;
+
+
+            // Put it where the Login link was
+            const firstLogin =
+                loginLinks[0];
+
+
+            if (firstLogin) {
+
+                firstLogin.parentNode.insertBefore(
+                    userDisplay,
+                    firstLogin
+                );
+
+            }
+
         }
 
-        if (userDisplay) {
 
-            userDisplay.textContent =
-                "👤 " + (user.email || "User");
+        // Create Logout button if page doesn't have it
+        if (!logoutButton) {
 
-            userDisplay.style.display = "inline-block";
+            logoutButton =
+                document.createElement("button");
+
+            logoutButton.id =
+                "logoutButton";
+
+            logoutButton.textContent =
+                "Logout";
+
+            logoutButton.type =
+                "button";
+
+            logoutButton.style.cssText = `
+                background: #176b4d;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 25px;
+                font-size: 14px;
+                font-weight: 700;
+                cursor: pointer;
+                white-space: nowrap;
+            `;
+
+
+            // Put Logout after user name
+            if (userDisplay) {
+
+                userDisplay.parentNode.insertBefore(
+                    logoutButton,
+                    userDisplay.nextSibling
+                );
+
+            }
+
         }
 
-        if (logoutButton) {
-            logoutButton.style.display = "inline-block";
+
+        // ==================================
+        // GET USER NAME FROM FIRESTORE
+        // ==================================
+
+        let displayName =
+            user.email || "User";
+
+
+        try {
+
+            const userRef =
+                doc(db, "users", user.uid);
+
+            const userSnap =
+                await getDoc(userRef);
+
+
+            if (userSnap.exists()) {
+
+                const data =
+                    userSnap.data();
+
+
+                displayName =
+                    data.fullName ||
+                    data.ngoName ||
+                    data.collegeName ||
+                    user.email ||
+                    "User";
+
+            }
+
         }
 
-    } else {
+        catch (error) {
 
-        // -------------------------------
-        // USER IS LOGGED OUT
-        // -------------------------------
+            console.log(
+                "Could not load profile name:",
+                error
+            );
 
-        if (loginLink) {
-            loginLink.style.display = "inline-block";
         }
 
-        if (userDisplay) {
 
-            userDisplay.textContent = "";
+        // Show user name
+        userDisplay.innerHTML =
+            "👤 " +
+            escapeHTML(displayName);
 
-            userDisplay.style.display = "none";
-        }
 
-        if (logoutButton) {
-            logoutButton.style.display = "none";
-        }
+        userDisplay.style.display =
+            "inline-flex";
+
+
+        // Show Logout
+        logoutButton.style.display =
+            "inline-block";
+
+
+        // Logout action
+        logoutButton.onclick =
+            logoutUser;
+
     }
+
+
+    // ======================================
+    // LOGGED OUT
+    // ======================================
+
+    else {
+
+        // Show Login links
+        loginLinks.forEach(link => {
+
+            link.style.display =
+                "inline-block";
+
+        });
+
+
+        // Hide user
+        if (userDisplay) {
+
+            userDisplay.style.display =
+                "none";
+
+        }
+
+
+        // Hide logout
+        if (logoutButton) {
+
+            logoutButton.style.display =
+                "none";
+
+        }
+
+    }
+
 }
-
-
-// ==========================================
-// CHECK FIREBASE LOGIN STATE
-// ==========================================
-
-onAuthStateChanged(auth, (user) => {
-
-    console.log("Firebase authentication state changed.");
-
-    updateNavbar(user);
-
-});
 
 
 // ==========================================
 // LOGOUT
 // ==========================================
 
-window.logoutUser = async function () {
+async function logoutUser() {
 
     try {
 
         await signOut(auth);
 
-        console.log("User logged out successfully.");
-
-        // Firebase will automatically update
-        // the navbar through onAuthStateChanged.
-
-        window.location.href = "index.html";
+        window.location.href =
+            "index.html";
 
     }
 
     catch (error) {
 
-        console.error("Logout error:", error);
+        console.error(
+            "Logout error:",
+            error
+        );
 
         alert(
             "Unable to log out. Please try again."
         );
 
     }
+
+}
+
+
+// Make available to HTML
+window.logoutUser =
+    logoutUser;
+
+
+// ==========================================
+// ESCAPE HTML
+// ==========================================
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+// ==========================================
+// CHECK AUTH STATE
+// ==========================================
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        await updateNavbar(user);
+
+    }
+);
+
+
+// ==========================================
+// EXPORT
+// ==========================================
+
+export {
+    auth
 };
-
-
-// ==========================================
-// EXPORT AUTH
-// ==========================================
-
-export { auth };
