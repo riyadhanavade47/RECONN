@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NGO Dashboard | ReConnect</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f5faf7;
+            color: #183f38;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            height: 72px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #e5eee9;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: #176b4d;
+            font-size: 27px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-mark {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #176b4d;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: #176b4d;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .logout-btn {
+            border: none;
+            background: #176b4d;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 22px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .logout-btn:hover {
+            background: #0e513b;
+        }
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .container {
+            width: 90%;
+            max-width: 1150px;
+            margin: 35px auto 60px;
+        }
+
+        .welcome {
+            background:
+                linear-gradient(
+                    135deg,
+                    #e9f8ef,
+                    #eef8ff
+                );
+
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        .welcome small {
+            color: #5c7770;
+            font-size: 13px;
+        }
+
+        .welcome h1 {
+            margin-top: 7px;
+            color: #173e38;
+            font-size: 31px;
+        }
+
+        .welcome p {
+            margin-top: 8px;
+            color: #627772;
+            font-size: 14px;
+        }
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status-card {
+            background: white;
+            border-radius: 15px;
+            padding: 22px;
+            margin-bottom: 25px;
+            border: 1px solid #e4eee9;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .status-info h3 {
+            margin-bottom: 6px;
+            color: #173e38;
+        }
+
+        .status-info p {
+            color: #687b76;
+            font-size: 13px;
+        }
+
+        .status-badge {
+            padding: 9px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            background: #fff4d6;
+            color: #8a6500;
+        }
+
+        /* =========================
+           GRID
+        ========================= */
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid #e4eee9;
+            box-shadow: 0 5px 20px rgba(20, 80, 55, 0.04);
+        }
+
+        .card h2 {
+            color: #176b4d;
+            font-size: 21px;
+            margin-bottom: 7px;
+        }
+
+        .card-description {
+            color: #71817c;
+            font-size: 13px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        label {
+            display: block;
+            margin-top: 13px;
+            margin-bottom: 6px;
+            color: #405d56;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 13px;
+            border: 1px solid #d8e5df;
+            border-radius: 9px;
+            outline: none;
+            background: #fbfdfc;
+            color: #294a42;
+            font-size: 13px;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #176b4d;
+            background: white;
+        }
+
+        textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .primary-btn {
+            width: 100%;
+            margin-top: 20px;
+            padding: 13px;
+            border: none;
+            border-radius: 10px;
+            background: #176b4d;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .primary-btn:hover {
+            background: #0e513b;
+        }
+
+        /* =========================
+           REQUIREMENTS
+        ========================= */
+
+        .requirement-item {
+            background: #f7fbf9;
+            border: 1px solid #e0ebe5;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+        }
+
+        .requirement-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .requirement-title {
+            font-weight: bold;
+            color: #176b4d;
+            font-size: 15px;
+        }
+
+        .requirement-type {
+            background: #e4f4eb;
+            color: #176b4d;
+            padding: 4px 9px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .requirement-item p {
+            color: #667873;
+            font-size: 12px;
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+
+        .requirement-amount {
+            margin-top: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #183f38;
+        }
+
+        .delete-btn {
+            margin-top: 10px;
+            border: none;
+            background: #ffe9e9;
+            color: #b33939;
+            padding: 7px 12px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .delete-btn:hover {
+            background: #ffd8d8;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 25px 10px;
+            color: #83938e;
+            font-size: 13px;
+        }
+
+        /* =========================
+           PROFILE
+        ========================= */
+
+        .profile-row {
+            padding: 12px 0;
+            border-bottom: 1px solid #edf2ef;
+        }
+
+        .profile-row:last-child {
+            border-bottom: none;
+        }
+
+        .profile-label {
+            display: block;
+            font-size: 11px;
+            color: #80918c;
+            margin-bottom: 4px;
+        }
+
+        .profile-value {
+            font-size: 13px;
+            color: #294a42;
+            font-weight: 600;
+        }
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        #message {
+            display: none;
+            padding: 12px 15px;
+            border-radius: 9px;
+            margin-bottom: 18px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .success {
+            background: #e6f7ed;
+            color: #176b4d;
+        }
+
+        .error {
+            background: #ffeaea;
+            color: #a33a3a;
+        }
+
+        /* =========================
+           LOADING
+        ========================= */
+
+        #loading {
+            text-align: center;
+            padding: 60px;
+            color: #6d8079;
+        }
+
+        #dashboardContent {
+            display: none;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .status-card {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .nav-right .back-btn {
+                display: none;
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .container {
+                width: 94%;
+            }
+
+            .welcome {
+                padding: 22px;
+            }
+
+            .welcome h1 {
+                font-size: 25px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                padding: 0 4%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav>
+
+    <a href="index.html" class="logo">
+
+        <span class="logo-mark">
+            R
+        </span>
+
+        ReConnect
+
+    </a>
+
+
+    <div class="nav-right">
+
+        <a
+            href="index.html"
+            class="back-btn">
+
+            ← Home
+
+        </a>
+
+
+        <button
+            class="logout-btn"
+            onclick="logoutUser()">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     LOADING
+========================= -->
+
+<div id="loading">
+
+    Checking your account...
+
+</div>
+
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+
+<div
+    class="container"
+    id="dashboardContent">
+
+
+    <!-- WELCOME -->
+
+    <div class="welcome">
+
+        <small>
+            NGO DASHBOARD
+        </small>
+
+        <h1 id="ngoName">
+            Welcome
+        </h1>
+
+        <p>
+            Manage your NGO information and tell donors
+            what your organization currently needs.
+        </p>
+
+    </div>
+
+
+    <!-- MESSAGE -->
+
+    <div id="message"></div>
+
+
+    <!-- STATUS -->
+
+    <div class="status-card">
+
+        <div class="status-info">
+
+            <h3>
+                Verification Status
+            </h3>
+
+            <p id="statusText">
+                Checking verification status...
+            </p>
+
+        </div>
+
+
+        <span
+            class="status-badge"
+            id="statusBadge">
+
+            Pending
+
+        </span>
+
+    </div>
+
+
+    <!-- DASHBOARD GRID -->
+
+    <div class="dashboard-grid">
+
+
+        <!-- =========================
+             NGO PROFILE
+        ========================= -->
+
+        <div class="card">
+
+            <h2>
+                🏢 NGO Information
+            </h2>
+
+            <p class="card-description">
+                Information submitted during NGO registration.
+            </p>
+
+
+            <div class="profile-row">
+
+                <span class="profile-label">
+                    NGO Name
+                </span>
+
+                <span
+                    class="profile-value"
+                    id="profileName">
+
+                    -
+
+                </span>
+
+            </div>
+
+
+            <div class="profile-row">
+
+                <span class="profile-label">
+                    Registration Number
+                </span>
+
+                <span
+                    class="profile-value"
+                    id="profileReg">
+
+                    -
+
+                </span>
+
+            </div>
+
+
+            <div class="profile-row">
+
+                <span class="profile-label">
+                    Chairman / CEO
+                </span>
+
+                <span
+                    class="profile-value"
+                    id="profileChairman">
+
+                    -
+
+                </span>
+
+            </div>
+
+
+            <div class="profile-row">
+
+                <span class="profile-label">
+                    Contact Person
+                </span>
+
+                <span
+                    class="profile-value"
+                    id="profileContact">
+
+                    -
+
+                </span>
+
+            </div>
+
+
+            <div class="profile-row">
+
+                <span class="profile-label">
+                    Email
+                </span>
+
+                <span
+                    class="profile-value"
+                    id="profileEmail">
+
+                    -
+
+                </span>
+
+            </div>
+
+
+            <div class="profile-row">
+
+                <span class="profile-label">
+                    Mobile Number
+                </span>
+
+                <span
+                    class="profile-value"
+                    id="profileMobile">
+
+                    -
+
+                </span>
+
+            </div>
+
+
+            <div class="profile-row">
+
+                <span class="profile-label">
+                    Area of Work
+                </span>
+
+                <span
+                    class="profile-value"
+                    id="profileArea">
+
+                    -
+
+                </span>
+
+            </div>
+
+
+            <div class="profile-row">
+
+                <span class="profile-label">
+                    Address
+                </span>
+
+                <span
+                    class="profile-value"
+                    id="profileAddress">
+
+                    -
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             ADD REQUIREMENT
+        ========================= -->
+
+        <div class="card">
+
+            <h2>
+                ➕ Add Requirement
+            </h2>
+
+            <p class="card-description">
+
+                Add what your NGO currently needs.
+                Donors will see these requirements on
+                the Donate page.
+
+            </p>
+
+
+            <form id="requirementForm">
+
+
+                <label>
+                    Requirement Type
+                </label>
+
+                <select id="requirementType" required>
+
+                    <option value="">
+                        Select type
+                    </option>
+
+                    <option value="Money">
+                        💰 Money
+                    </option>
+
+                    <option value="Item">
+                        📦 Item
+                    </option>
+
+                </select>
+
+
+                <label>
+                    Requirement Title
+                </label>
+
+                <input
+                    type="text"
+                    id="requirementTitle"
+                    placeholder="Example: School supplies"
+                    required>
+
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    id="requirementDescription"
+                    placeholder="Describe what your NGO needs..."
+                    required></textarea>
+
+
+                <div class="form-row">
+
+
+                    <div>
+
+                        <label>
+                            Amount / Quantity
+                        </label>
+
+                        <input
+                            type="text"
+                            id="requirementAmount"
+                            placeholder="Example: ₹50,000 or 100 notebooks"
+                            required>
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Priority
+                        </label>
+
+                        <select
+                            id="requirementPriority"
+                            required>
+
+                            <option value="">
+                                Select priority
+                            </option>
+
+                            <option value="High">
+                                🔴 High
+                            </option>
+
+                            <option value="Medium">
+                                🟡 Medium
+                            </option>
+
+                            <option value="Low">
+                                🟢 Low
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn">
+
+                    Add Requirement
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================
+         CURRENT REQUIREMENTS
+    ========================= -->
+
+    <div
+        class="card"
+        style="margin-top:22px;">
+
+        <h2>
+            📋 Current Requirements
+        </h2>
+
+        <p class="card-description">
+
+            These requirements will be displayed to donors.
+            You can remove them when the requirement is fulfilled.
+
+        </p>
+
+
+        <div id="requirementsList">
+
+            <div class="empty-message">
+
+                No requirements added yet.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- =========================
+     FIREBASE
+========================= -->
+
+<script type="module">
+
+    import {
+        getAuth,
+        onAuthStateChanged,
+        signOut
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+    import {
+        getFirestore,
+        doc,
+        getDoc,
+        collection,
+        addDoc,
+        query,
+        where,
+        getDocs,
+        deleteDoc,
+        serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+    import { app } from "./firebase-config.js";
+
+
+    /* =========================
+       INITIALIZE
+    ========================= */
+
+    const auth = getAuth(app);
+
+    const db = getFirestore(app);
+
+
+    let currentUser = null;
+
+
+    /* =========================
+       MESSAGE
+    ========================= */
+
+    function showMessage(text, type) {
+
+        const message =
+            document.getElementById("message");
+
+        message.textContent = text;
+
+        message.className = type;
+
+        message.style.display = "block";
+
+        setTimeout(() => {
+
+            message.style.display = "none";
+
+        }, 4000);
+
+    }
+
+
+    /* =========================
+       LOAD NGO PROFILE
+    ========================= */
+
+    async function loadNGOProfile(user) {
+
+        try {
+
+            const userRef =
+                doc(db, "users", user.uid);
+
+            const userSnap =
+                await getDoc(userRef);
+
+
+            if (!userSnap.exists()) {
+
+                showMessage(
+                    "Your account information could not be found.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            const data =
+                userSnap.data();
+
+
+            /* =========================
+               CHECK ROLE
+            ========================= */
+
+            if (data.role !== "ngo") {
+
+                showMessage(
+                    "This dashboard is only for NGO accounts.",
+                    "error"
+                );
+
+                setTimeout(() => {
+
+                    window.location.href =
+                        "index.html";
+
+                }, 2500);
+
+                return;
+
+            }
+
+
+            /* =========================
+               DISPLAY PROFILE
+            ========================= */
+
+            document.getElementById("ngoName")
+                .textContent =
+                data.ngoName || "NGO Dashboard";
+
+
+            document.getElementById("profileName")
+                .textContent =
+                data.ngoName || "-";
+
+
+            document.getElementById("profileReg")
+                .textContent =
+                data.registrationNumber || "-";
+
+
+            document.getElementById("profileChairman")
+                .textContent =
+                data.chairman || "-";
+
+
+            document.getElementById("profileContact")
+                .textContent =
+                data.contactPerson || "-";
+
+
+            document.getElementById("profileEmail")
+                .textContent =
+                data.email || user.email || "-";
+
+
+            document.getElementById("profileMobile")
+                .textContent =
+                data.mobile || "-";
+
+
+            document.getElementById("profileArea")
+                .textContent =
+                data.areaOfWork || "-";
+
+
+            document.getElementById("profileAddress")
+                .textContent =
+                data.address || "-";
+
+
+            /* =========================
+               STATUS
+            ========================= */
+
+            const status =
+                data.status || "pending";
+
+
+            const statusBadge =
+                document.getElementById("statusBadge");
+
+
+            const statusText =
+                document.getElementById("statusText");
+
+
+            if (status === "approved") {
+
+                statusBadge.textContent =
+                    "✓ Approved";
+
+                statusBadge.style.background =
+                    "#e4f7eb";
+
+                statusBadge.style.color =
+                    "#176b4d";
+
+                statusText.textContent =
+                    "Your NGO has been verified and approved by the administrator.";
+
+            }
+
+            else if (status === "rejected") {
+
+                statusBadge.textContent =
+                    "Rejected";
+
+                statusBadge.style.background =
+                    "#ffe8e8";
+
+                statusBadge.style.color =
+                    "#a33a3a";
+
+                statusText.textContent =
+                    "Your NGO registration has not been approved.";
+
+            }
+
+            else {
+
+                statusBadge.textContent =
+                    "Pending";
+
+                statusBadge.style.background =
+                    "#fff4d6";
+
+                statusBadge.style.color =
+                    "#8a6500";
+
+                statusText.textContent =
+                    "Your NGO registration is waiting for administrator verification.";
+
+            }
+
+
+            /* =========================
+               LOAD REQUIREMENTS
+            ========================= */
+
+            await loadRequirements(user.uid);
+
+
+            document.getElementById("loading")
+                .style.display = "none";
+
+
+            document.getElementById("dashboardContent")
+                .style.display = "block";
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "Unable to load your dashboard.",
+                "error"
+            );
+
+        }
+
+    }
+
+
+    /* =========================
+       LOAD REQUIREMENTS
+    ========================= */
+
+    async function loadRequirements(uid) {
+
+        const list =
+            document.getElementById("requirementsList");
+
+
+        try {
+
+            const requirementsRef =
+                collection(db, "requirements");
+
+
+            const q =
+                query(
+                    requirementsRef,
+                    where("ngoId", "==", uid)
+                );
+
+
+            const snapshot =
+                await getDocs(q);
+
+
+            if (snapshot.empty) {
+
+                list.innerHTML = `
+                    <div class="empty-message">
+                        No requirements added yet.
+                    </div>
+                `;
+
+                return;
+
+            }
+
+
+            list.innerHTML = "";
+
+
+            snapshot.forEach((documentSnapshot) => {
+
+                const requirement =
+                    documentSnapshot.data();
+
+
+                const id =
+                    documentSnapshot.id;
+
+
+                const item =
+                    document.createElement("div");
+
+
+                item.className =
+                    "requirement-item";
+
+
+                item.innerHTML = `
+
+                    <div class="requirement-top">
+
+                        <div class="requirement-title">
+                            ${escapeHTML(
+                                requirement.title || "Requirement"
+                            )}
+                        </div>
+
+                        <div class="requirement-type">
+                            ${escapeHTML(
+                                requirement.type || ""
+                            )}
+                        </div>
+
+                    </div>
+
+
+                    <p>
+                        ${escapeHTML(
+                            requirement.description || ""
+                        )}
+                    </p>
+
+
+                    <div class="requirement-amount">
+
+                        Amount / Quantity:
+                        ${escapeHTML(
+                            requirement.amount || "-"
+                        )}
+
+                    </div>
+
+
+                    <div
+                        style="
+                            margin-top:7px;
+                            font-size:11px;
+                            color:#71817c;
+                        ">
+
+                        Priority:
+                        ${escapeHTML(
+                            requirement.priority || "-"
+                        )}
+
+                    </div>
+
+
+                    <button
+                        class="delete-btn"
+                        data-id="${id}">
+
+                        Remove Requirement
+
+                    </button>
+
+                `;
+
+
+                list.appendChild(item);
+
+            });
+
+
+            document
+                .querySelectorAll(".delete-btn")
+                .forEach((button) => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            deleteRequirement(
+                                button.dataset.id
+                            );
+
+                        }
+                    );
+
+                });
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            list.innerHTML = `
+                <div class="empty-message">
+                    Unable to load requirements.
+                </div>
+            `;
+
+        }
+
+    }
+
+
+    /* =========================
+       ADD REQUIREMENT
+    ========================= */
+
+    document
+        .getElementById("requirementForm")
+        .addEventListener("submit", async (event) => {
+
+            event.preventDefault();
+
+
+            if (!currentUser) {
+
+                showMessage(
+                    "Please log in again.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            const type =
+                document.getElementById(
+                    "requirementType"
+                ).value;
+
+
+            const title =
+                document.getElementById(
+                    "requirementTitle"
+                ).value.trim();
+
+
+            const description =
+                document.getElementById(
+                    "requirementDescription"
+                ).value.trim();
+
+
+            const amount =
+                document.getElementById(
+                    "requirementAmount"
+                ).value.trim();
+
+
+            const priority =
+                document.getElementById(
+                    "requirementPriority"
+                ).value;
+
+
+            if (
+                !type ||
+                !title ||
+                !description ||
+                !amount ||
+                !priority
+            ) {
+
+                showMessage(
+                    "Please fill all requirement fields.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                await addDoc(
+                    collection(db, "requirements"),
+                    {
+
+                        ngoId:
+                            currentUser.uid,
+
+                        type:
+                            type,
+
+                        title:
+                            title,
+
+                        description:
+                            description,
+
+                        amount:
+                            amount,
+
+                        priority:
+                            priority,
+
+                        active:
+                            true,
+
+                        createdAt:
+                            serverTimestamp()
+
+                    }
+                );
+
+
+                showMessage(
+                    "Requirement added successfully!",
+                    "success"
+                );
+
+
+                document
+                    .getElementById("requirementForm")
+                    .reset();
+
+
+                await loadRequirements(
+                    currentUser.uid
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+                showMessage(
+                    "Unable to add requirement. Please try again.",
+                    "error"
+                );
+
+            }
+
+        });
+
+
+    /* =========================
+       DELETE REQUIREMENT
+    ========================= */
+
+    async function deleteRequirement(id) {
+
+        const confirmed =
+            confirm(
+                "Are you sure you want to remove this requirement?"
+            );
+
+
+        if (!confirmed) {
+
+            return;
+
+        }
+
+
+        try {
+
+            await deleteDoc(
+                doc(db, "requirements", id)
+            );
+
+
+            showMessage(
+                "Requirement removed successfully.",
+                "success"
+            );
+
+
+            await loadRequirements(
+                currentUser.uid
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "Unable to remove requirement.",
+                "error"
+            );
+
+        }
+
+    }
+
+
+    /* =========================
+       ESCAPE HTML
+    ========================= */
+
+    function escapeHTML(value) {
+
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* =========================
+       LOGOUT
+    ========================= */
+
+    window.logoutUser = async function () {
+
+        try {
+
+            await signOut(auth);
+
+            window.location.href =
+                "login.html";
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            alert(
+                "Unable to log out. Please try again."
+            );
+
+        }
+
+    };
+
+
+    /* =========================
+       AUTH STATE
+    ========================= */
+
+    onAuthStateChanged(
+        auth,
+        async (user) => {
+
+            if (!user) {
+
+                window.location.href =
+                    "login.html";
+
+                return;
+
+            }
+
+
+            currentUser = user;
+
+
+            await loadNGOProfile(user);
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>
