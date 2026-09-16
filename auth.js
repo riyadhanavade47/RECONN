@@ -11,60 +11,87 @@ import {
 import { app } from "./firebase-config.js";
 
 
-// Initialize Firebase Authentication
+// ==========================================
+// INITIALIZE FIREBASE AUTH
+// ==========================================
+
 const auth = getAuth(app);
 
 
 // ==========================================
-// CHECK LOGIN STATUS
+// UPDATE NAVBAR
 // ==========================================
 
-onAuthStateChanged(auth, (user) => {
+function updateNavbar(user) {
 
     const loginLink = document.getElementById("loginLink");
     const logoutButton = document.getElementById("logoutButton");
     const userDisplay = document.getElementById("userDisplay");
 
+    console.log("Updating navbar. User:", user);
+
+
     if (user) {
 
-        // User is logged in
+        // -------------------------------
+        // USER IS LOGGED IN
+        // -------------------------------
 
         if (loginLink) {
             loginLink.style.display = "none";
+        }
+
+        if (userDisplay) {
+
+            userDisplay.textContent =
+                "👤 " + (user.email || "User");
+
+            userDisplay.style.display = "inline-block";
         }
 
         if (logoutButton) {
             logoutButton.style.display = "inline-block";
         }
 
-        if (userDisplay) {
-            userDisplay.textContent =
-                user.email || "Logged in";
-        }
-
     } else {
 
-        // User is not logged in
+        // -------------------------------
+        // USER IS LOGGED OUT
+        // -------------------------------
 
         if (loginLink) {
             loginLink.style.display = "inline-block";
         }
 
+        if (userDisplay) {
+
+            userDisplay.textContent = "";
+
+            userDisplay.style.display = "none";
+        }
+
         if (logoutButton) {
             logoutButton.style.display = "none";
         }
-
-        if (userDisplay) {
-            userDisplay.textContent = "";
-        }
-
     }
+}
+
+
+// ==========================================
+// CHECK FIREBASE LOGIN STATE
+// ==========================================
+
+onAuthStateChanged(auth, (user) => {
+
+    console.log("Firebase authentication state changed.");
+
+    updateNavbar(user);
 
 });
 
 
 // ==========================================
-// LOGOUT FUNCTION
+// LOGOUT
 // ==========================================
 
 window.logoutUser = async function () {
@@ -73,18 +100,24 @@ window.logoutUser = async function () {
 
         await signOut(auth);
 
-        alert("You have been logged out.");
+        console.log("User logged out successfully.");
+
+        // Firebase will automatically update
+        // the navbar through onAuthStateChanged.
 
         window.location.href = "index.html";
 
-    } catch (error) {
+    }
+
+    catch (error) {
 
         console.error("Logout error:", error);
 
-        alert("Unable to log out. Please try again.");
+        alert(
+            "Unable to log out. Please try again."
+        );
 
     }
-
 };
 
 
