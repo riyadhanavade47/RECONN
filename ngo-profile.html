@@ -91,8 +91,6 @@
             margin: 40px auto 70px;
         }
 
-        /* BACK */
-
         .back-btn {
             display: inline-block;
             text-decoration: none;
@@ -106,103 +104,55 @@
             text-decoration: underline;
         }
 
-        /* LOADING */
+        /* EMPTY PROFILE */
 
-        .loading {
+        .empty-profile {
             background: white;
             border: 1px solid #e1eae5;
-            border-radius: 18px;
-            padding: 60px 20px;
+            border-radius: 22px;
+            padding: 70px 30px;
             text-align: center;
-            color: #687b76;
+            box-shadow: 0 10px 30px rgba(20,84,63,.06);
         }
 
-        .loading-icon {
-            font-size: 40px;
-            margin-bottom: 12px;
-        }
-
-        /* ERROR */
-
-        .error-box {
-            display: none;
-            background: #fff4f4;
-            border: 1px solid #f0caca;
-            color: #9b3939;
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-        }
-
-        /* PROFILE HEADER */
-
-        .profile-header {
-            display: none;
-            background:
-                radial-gradient(circle at 90% 20%, #dff3e8, transparent 30%),
-                linear-gradient(135deg, #ffffff, #f0f8f4);
-            border: 1px solid #dfeae4;
-            border-radius: 20px;
-            padding: 32px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 25px rgba(20,84,63,.06);
-        }
-
-        .profile-header-content {
-            display: grid;
-            grid-template-columns: 100px 1fr;
-            gap: 24px;
-            align-items: center;
-        }
-
-        .ngo-logo {
-            width: 100px;
-            height: 100px;
-            border-radius: 20px;
-            background: white;
-            border: 1px solid #dbe8e1;
+        .empty-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 22px;
+            border-radius: 50%;
+            background: #e7f7ee;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 45px;
-            box-shadow: 0 5px 15px rgba(0,0,0,.05);
+            font-size: 42px;
         }
 
-        .badge {
-            display: inline-block;
-            background: #d9f4e7;
-            color: #176b4d;
-            padding: 7px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .profile-header h1 {
+        .empty-profile h1 {
             color: #173e38;
-            font-size: 31px;
-            line-height: 1.25;
-            margin-bottom: 9px;
+            font-size: 28px;
+            margin-bottom: 12px;
         }
 
-        .profile-header .area {
+        .empty-profile p {
+            max-width: 650px;
+            margin: auto;
             color: #687b76;
             font-size: 14px;
+            line-height: 1.7;
         }
 
-        /* ACTIONS */
-
-        .actions {
+        .empty-actions {
+            margin-top: 25px;
             display: flex;
-            gap: 10px;
+            justify-content: center;
+            gap: 12px;
             flex-wrap: wrap;
-            margin-top: 22px;
         }
 
         .action-btn {
+            display: inline-block;
             text-decoration: none;
-            padding: 12px 18px;
+            padding: 12px 20px;
             border-radius: 9px;
             font-size: 12px;
             font-weight: bold;
@@ -229,106 +179,61 @@
             background: #edf8f2;
         }
 
-        /* CONTENT GRID */
+        /* FUTURE PROFILE PREVIEW */
 
-        .content-grid {
-            display: none;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
+        .future-section {
+            margin-top: 25px;
+            background: linear-gradient(
+                135deg,
+                #ffffff,
+                #f0f8f4
+            );
+            border: 1px solid #dfeae4;
+            border-radius: 20px;
+            padding: 30px;
         }
 
-        .card {
+        .future-section h2 {
+            color: #173e38;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .future-section > p {
+            color: #687b76;
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+
+        .future-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .future-card {
             background: white;
             border: 1px solid #e2eae6;
-            border-radius: 17px;
-            padding: 24px;
-            margin-bottom: 20px;
+            border-radius: 14px;
+            padding: 20px;
         }
 
-        .card h2 {
+        .future-card-icon {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .future-card h3 {
+            font-size: 14px;
             color: #173e38;
-            font-size: 19px;
-            margin-bottom: 18px;
+            margin-bottom: 6px;
         }
 
-        /* INFORMATION */
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .info-item {
-            background: #f7faf8;
-            border-radius: 11px;
-            padding: 14px;
-        }
-
-        .info-label {
-            color: #84928d;
-            font-size: 10px;
-            text-transform: uppercase;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .info-value {
-            color: #3e5851;
-            font-size: 13px;
-            line-height: 1.5;
-            word-break: break-word;
-        }
-
-        /* REQUIREMENTS */
-
-        .requirement-box {
-            background: #fff9ed;
-            border: 1px solid #f0dfb8;
-            border-radius: 12px;
-            padding: 17px;
-        }
-
-        .requirement-box h3 {
-            color: #8a641c;
-            font-size: 15px;
-            margin-bottom: 8px;
-        }
-
-        .requirement-box p {
-            color: #756548;
+        .future-card p {
+            color: #7a8984;
             font-size: 12px;
-            line-height: 1.6;
-        }
-
-        /* SIDEBAR */
-
-        .side-item {
-            padding: 14px 0;
-            border-bottom: 1px solid #edf1ef;
-        }
-
-        .side-item:last-child {
-            border-bottom: none;
-        }
-
-        .side-label {
-            color: #84928d;
-            font-size: 10px;
-            text-transform: uppercase;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .side-value {
-            color: #3e5851;
-            font-size: 13px;
             line-height: 1.5;
-        }
-
-        .email-link {
-            color: #176b4d;
-            text-decoration: none;
         }
 
         /* FOOTER */
@@ -368,28 +273,12 @@
                 display: none;
             }
 
-            .content-grid {
+            .future-grid {
                 grid-template-columns: 1fr;
             }
 
-            .profile-header-content {
-                grid-template-columns: 1fr;
-            }
-
-            .ngo-logo {
-                margin: auto;
-            }
-
-            .profile-header {
-                text-align: center;
-            }
-
-            .actions {
-                justify-content: center;
-            }
-
-            .info-grid {
-                grid-template-columns: 1fr;
+            .empty-profile {
+                padding: 50px 20px;
             }
 
         }
@@ -444,419 +333,182 @@
     </a>
 
 
-    <!-- LOADING -->
+    <!-- EMPTY PROFILE -->
 
-    <div class="loading" id="loading">
+    <div class="empty-profile">
 
-        <div class="loading-icon">
+        <div class="empty-icon">
             🌱
         </div>
 
-        Loading NGO profile...
+        <h1>
+            NGO Profile
+        </h1>
 
-    </div>
+        <p>
+            NGO profiles will appear here once verified
+            organizations register on ReConnect.
+        </p>
 
-
-    <!-- ERROR -->
-
-    <div class="error-box" id="errorBox">
-
-        <h3>Unable to load NGO profile</h3>
-
-        <br>
-
-        <p id="errorMessage"></p>
-
-        <br>
-
-        <a href="ngos.html" class="action-btn primary">
-            Back to NGO Directory
-        </a>
-
-    </div>
+        <p style="margin-top:10px;">
+            Verified NGOs will be able to provide their
+            organization details, contact information,
+            causes, current requirements and ways to
+            support them.
+        </p>
 
 
-    <!-- PROFILE HEADER -->
+        <div class="empty-actions">
 
-    <div class="profile-header" id="profileHeader">
+            <a
+                href="ngos.html"
+                class="action-btn primary"
+            >
+                🔎 Find NGOs
+            </a>
 
-        <div class="profile-header-content">
-
-            <div class="ngo-logo">
-                🌱
-            </div>
-
-
-            <div>
-
-                <div class="badge">
-                    ✓ Listed NGO
-                </div>
-
-                <h1 id="ngoName">
-                    NGO Name
-                </h1>
-
-                <div class="area" id="ngoArea">
-                    Area of Work
-                </div>
-
-
-                <div class="actions">
-
-                    <a
-                        href="#"
-                        id="donateMoneyBtn"
-                        class="action-btn primary"
-                    >
-                        ❤️ Donate Money
-                    </a>
-
-
-                    <a
-                        href="#"
-                        id="donateItemBtn"
-                        class="action-btn secondary"
-                    >
-                        📦 Donate Items
-                    </a>
-
-
-                    <a
-                        href="college.html"
-                        class="action-btn secondary"
-                    >
-                        🎓 College/NSS
-                    </a>
-
-                </div>
-
-            </div>
+            <a
+                href="login.html"
+                class="action-btn secondary"
+            >
+                🏢 Register as NGO
+            </a>
 
         </div>
 
     </div>
 
 
-    <!-- CONTENT -->
+    <!-- FUTURE PROFILE -->
 
-    <div class="content-grid" id="contentGrid">
+    <div class="future-section">
 
+        <h2>
+            What will an NGO profile contain?
+        </h2>
 
-        <!-- LEFT -->
-
-        <div>
-
-
-            <!-- ABOUT -->
-
-            <div class="card">
-
-                <h2>
-                    🏢 NGO Information
-                </h2>
+        <p>
+            Once the ReConnect backend is connected,
+            each verified NGO will have an interactive
+            profile containing its latest information.
+        </p>
 
 
-                <div class="info-grid">
+        <div class="future-grid">
 
 
-                    <div class="info-item">
+            <div class="future-card">
 
-                        <div class="info-label">
-                            NGO Name
-                        </div>
-
-                        <div
-                            class="info-value"
-                            id="infoName"
-                        ></div>
-
-                    </div>
-
-
-                    <div class="info-item">
-
-                        <div class="info-label">
-                            Area of Work
-                        </div>
-
-                        <div
-                            class="info-value"
-                            id="infoArea"
-                        ></div>
-
-                    </div>
-
-
-                    <div class="info-item">
-
-                        <div class="info-label">
-                            Chairman / CEO
-                        </div>
-
-                        <div
-                            class="info-value"
-                            id="infoChairman"
-                        ></div>
-
-                    </div>
-
-
-                    <div class="info-item">
-
-                        <div class="info-label">
-                            Local Contact Person
-                        </div>
-
-                        <div
-                            class="info-value"
-                            id="infoContactPerson"
-                        ></div>
-
-                    </div>
-
-
-                    <div class="info-item">
-
-                        <div class="info-label">
-                            Contact Number
-                        </div>
-
-                        <div
-                            class="info-value"
-                            id="infoPhone"
-                        ></div>
-
-                    </div>
-
-
-                    <div class="info-item">
-
-                        <div class="info-label">
-                            Email
-                        </div>
-
-                        <div
-                            class="info-value"
-                            id="infoEmail"
-                        ></div>
-
-                    </div>
-
-
-                    <div class="info-item">
-
-                        <div class="info-label">
-                            Working Since
-                        </div>
-
-                        <div
-                            class="info-value"
-                            id="infoSince"
-                        ></div>
-
-                    </div>
-
-
-                    <div class="info-item">
-
-                        <div class="info-label">
-                            Working with BMC
-                        </div>
-
-                        <div
-                            class="info-value"
-                            id="infoBMC"
-                        ></div>
-
-                    </div>
-
-
-                    <div class="info-item">
-
-                        <div class="info-label">
-                            FCRA
-                        </div>
-
-                        <div
-                            class="info-value"
-                            id="infoFCRA"
-                        ></div>
-
-                    </div>
-
-
-                    <div class="info-item">
-
-                        <div class="info-label">
-                            Ward / Department
-                        </div>
-
-                        <div
-                            class="info-value"
-                            id="infoWard"
-                        ></div>
-
-                    </div>
-
-
+                <div class="future-card-icon">
+                    🏢
                 </div>
 
-            </div>
+                <h3>
+                    NGO Information
+                </h3>
 
-
-            <!-- ADDRESS -->
-
-            <div class="card">
-
-                <h2>
-                    📍 Address
-                </h2>
-
-                <div
-                    class="info-value"
-                    id="infoAddress"
-                ></div>
-
-            </div>
-
-
-            <!-- REQUIREMENTS -->
-
-            <div class="card">
-
-                <h2>
-                    🎯 Current Requirements
-                </h2>
-
-
-                <div class="requirement-box">
-
-                    <h3>
-                        Information not available in dataset
-                    </h3>
-
-                    <p>
-                        The current NGO dataset contains information
-                        such as NGO name, contact details, address,
-                        area of work and other directory information.
-                        It does not contain live donation requirements.
-                    </p>
-
-                    <br>
-
-                    <p>
-                        Once an NGO registers on ReConnect and provides
-                        its current requirements, those requirements can
-                        be displayed here.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- RIGHT SIDEBAR -->
-
-        <div>
-
-
-            <div class="card">
-
-                <h2>
-                    📞 Contact
-                </h2>
-
-
-                <div class="side-item">
-
-                    <div class="side-label">
-                        Phone
-                    </div>
-
-                    <div
-                        class="side-value"
-                        id="sidePhone"
-                    ></div>
-
-                </div>
-
-
-                <div class="side-item">
-
-                    <div class="side-label">
-                        Email
-                    </div>
-
-                    <div
-                        class="side-value"
-                        id="sideEmail"
-                    ></div>
-
-                </div>
-
-
-                <div class="side-item">
-
-                    <div class="side-label">
-                        Location
-                    </div>
-
-                    <div
-                        class="side-value"
-                        id="sideAddress"
-                    ></div>
-
-                </div>
-
-
-            </div>
-
-
-            <div class="card">
-
-                <h2>
-                    🤝 Want to Help?
-                </h2>
-
-                <p
-                    style="
-                    color:#687b76;
-                    font-size:13px;
-                    line-height:1.6;
-                    "
-                >
-                    You can support this NGO through
-                    donations or connect through
-                    college/NSS activities.
+                <p>
+                    Organization name, registration details,
+                    area of work and establishment information.
                 </p>
 
+            </div>
 
-                <br>
+
+            <div class="future-card">
+
+                <div class="future-card-icon">
+                    📍
+                </div>
+
+                <h3>
+                    Contact & Location
+                </h3>
+
+                <p>
+                    Address, contact person, phone number
+                    and email information.
+                </p>
+
+            </div>
 
 
-                <a
-                    href="#"
-                    id="sideDonateBtn"
-                    class="action-btn primary"
-                    style="
-                    display:block;
-                    text-align:center;
-                    "
-                >
-                    ❤️ Support This NGO
-                </a>
+            <div class="future-card">
+
+                <div class="future-card-icon">
+                    🎯
+                </div>
+
+                <h3>
+                    Current Requirements
+                </h3>
+
+                <p>
+                    NGOs will be able to publish their
+                    current money, item and volunteer needs.
+                </p>
+
+            </div>
+
+
+            <div class="future-card">
+
+                <div class="future-card-icon">
+                    ❤️
+                </div>
+
+                <h3>
+                    Donate
+                </h3>
+
+                <p>
+                    Users will be able to support an NGO
+                    through available donation options.
+                </p>
+
+            </div>
+
+
+            <div class="future-card">
+
+                <div class="future-card-icon">
+                    🙋
+                </div>
+
+                <h3>
+                    Volunteer
+                </h3>
+
+                <p>
+                    Volunteers will be able to discover
+                    activities and opportunities.
+                </p>
+
+            </div>
+
+
+            <div class="future-card">
+
+                <div class="future-card-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Transparency
+                </h3>
+
+                <p>
+                    Donation updates and impact information
+                    can be displayed for transparency.
+                </p>
 
             </div>
 
 
         </div>
 
-
     </div>
+
 
 </div>
 
@@ -892,341 +544,6 @@
     </div>
 
 </footer>
-
-
-<script>
-
-
-/* GET NGO NUMBER FROM URL */
-
-const params =
-    new URLSearchParams(
-        window.location.search
-    );
-
-
-const ngoIndex =
-    params.get("ngo");
-
-
-/* LOAD NGO */
-
-function loadNGO() {
-
-
-    if (
-        ngoIndex === null ||
-        ngoIndex === ""
-    ) {
-
-        showError(
-            "No NGO was selected. Please return to the NGO Directory and select an NGO."
-        );
-
-        return;
-
-    }
-
-
-    fetch("ngos.json")
-
-        .then(response => {
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "ngos.json could not be loaded."
-                );
-
-            }
-
-            return response.json();
-
-        })
-
-        .then(data => {
-
-
-            if (!Array.isArray(data)) {
-
-                throw new Error(
-                    "ngos.json does not contain a valid NGO list."
-                );
-
-            }
-
-
-            const index =
-                Number(ngoIndex);
-
-
-            if (
-                Number.isNaN(index) ||
-                !data[index]
-            ) {
-
-                throw new Error(
-                    "The selected NGO could not be found."
-                );
-
-            }
-
-
-            displayNGO(
-                data[index],
-                index
-            );
-
-        })
-
-        .catch(error => {
-
-            console.error(error);
-
-            showError(
-                error.message
-            );
-
-        });
-
-}
-
-
-/* DISPLAY NGO */
-
-function displayNGO(ngo, index) {
-
-
-    document.getElementById("loading")
-        .style.display = "none";
-
-
-    document.getElementById("profileHeader")
-        .style.display = "block";
-
-
-    document.getElementById("contentGrid")
-        .style.display = "grid";
-
-
-    const name =
-        ngo["Name of Institution"] ||
-        "Information not available";
-
-
-    const area =
-        ngo["Area of Work"] ||
-        "Information not available";
-
-
-    const chairman =
-        ngo["Chairman/CEO"] ||
-        "Information not available";
-
-
-    const contactPerson =
-        ngo["Local Contact Person"] ||
-        "Information not available";
-
-
-    const phone =
-        ngo["Contact No."] ||
-        "Information not available";
-
-
-    const email =
-        ngo["Email ID"] ||
-        "Information not available";
-
-
-    const address =
-        ngo["Address"] ||
-        "Information not available";
-
-
-    const workingSince =
-        ngo["Working Since"] ||
-        "Information not available";
-
-
-    const bmc =
-        ngo["Working with BMC"] ||
-        "Information not available";
-
-
-    const fcra =
-        ngo["FCRA"] ||
-        "Information not available";
-
-
-    const ward =
-        ngo["Ward/Department"] ||
-        "Information not available";
-
-
-    /* HEADER */
-
-    document.getElementById("ngoName")
-        .textContent = name;
-
-
-    document.getElementById("ngoArea")
-        .textContent = area;
-
-
-    /* INFORMATION */
-
-    document.getElementById("infoName")
-        .textContent = name;
-
-
-    document.getElementById("infoArea")
-        .textContent = area;
-
-
-    document.getElementById("infoChairman")
-        .textContent = chairman;
-
-
-    document.getElementById("infoContactPerson")
-        .textContent = contactPerson;
-
-
-    document.getElementById("infoPhone")
-        .textContent = phone;
-
-
-    document.getElementById("infoEmail")
-        .textContent = email;
-
-
-    document.getElementById("infoSince")
-        .textContent = workingSince;
-
-
-    document.getElementById("infoBMC")
-        .textContent = bmc;
-
-
-    document.getElementById("infoFCRA")
-        .textContent = fcra;
-
-
-    document.getElementById("infoWard")
-        .textContent = ward;
-
-
-    document.getElementById("infoAddress")
-        .textContent = address;
-
-
-    /* SIDEBAR */
-
-    document.getElementById("sidePhone")
-        .textContent = phone;
-
-
-    document.getElementById("sideAddress")
-        .textContent = address;
-
-
-    const sideEmail =
-        document.getElementById("sideEmail");
-
-
-    if (
-        email !== "Information not available"
-    ) {
-
-        sideEmail.innerHTML =
-            `<a
-                class="email-link"
-                href="mailto:${escapeAttribute(email)}"
-            >
-                ${escapeHTML(email)}
-            </a>`;
-
-    } else {
-
-        sideEmail.textContent =
-            email;
-
-    }
-
-
-    /* DONATION LINKS */
-
-    const donationURL =
-        "donate.html?ngo=" +
-        encodeURIComponent(index);
-
-
-    document.getElementById("donateMoneyBtn")
-        .href = donationURL;
-
-
-    document.getElementById("donateItemBtn")
-        .href = donationURL;
-
-
-    document.getElementById("sideDonateBtn")
-        .href = donationURL;
-
-}
-
-
-/* ERROR */
-
-function showError(message) {
-
-    document.getElementById("loading")
-        .style.display = "none";
-
-
-    document.getElementById("errorBox")
-        .style.display = "block";
-
-
-    document.getElementById("errorMessage")
-        .textContent = message;
-
-}
-
-
-/* SECURITY */
-
-function escapeHTML(value) {
-
-    return String(value)
-
-        .replace(/&/g, "&amp;")
-
-        .replace(/</g, "&lt;")
-
-        .replace(/>/g, "&gt;")
-
-        .replace(/"/g, "&quot;")
-
-        .replace(/'/g, "&#039;");
-
-}
-
-
-function escapeAttribute(value) {
-
-    return String(value)
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-}
-
-
-/* START */
-
-loadNGO();
-
-
-</script>
 
 
 </body>
