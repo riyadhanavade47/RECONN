@@ -1,15 +1,19 @@
-// ReConnect Firebase Configuration
+// ==========================================
+// ReConnect - Firebase Configuration
+// ==========================================
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDd8vouJPcPY4didR5mAuFrFcLd7wowyTc",
-    authDomain: "reconnect-4caba.firebaseapp.com",
-    projectId: "reconnect-4caba",
-    storageBucket: "reconnect-4caba.firebasestorage.app",
-    messagingSenderId: "246775765171",
-    appId: "1:246775765171:web:a276d37975ae888ad678c6",
-    measurementId: "G-QH1MH2BHGY"
+    apiKey: "AIzaSyBenWnZJHPp-4aBqNoGKfXZrZU9sMJwocA",
+    authDomain: "reconn-dd697.firebaseapp.com",
+    projectId: "reconn-dd697",
+    storageBucket: "reconn-dd697.firebasestorage.app",
+    messagingSenderId: "948055569162",
+    appId: "1:948055569162:web:37dc21c34c4a70423180f3",
+    measurementId: "G-H4VT58ZZP1"
 };
 
 const app = initializeApp(firebaseConfig);
