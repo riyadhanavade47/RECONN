@@ -8,7 +8,6 @@
     <title>ReConnect | Find NGOs</title>
 
     <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -92,6 +91,26 @@
             color: white !important;
             padding: 11px 22px !important;
             border-radius: 25px !important;
+        }
+
+        .logout-btn {
+            border: none;
+            background: #176b4d;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 22px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background: #0e513b;
+        }
+
+        #userDisplay {
+            color: #176b4d;
+            font-size: 13px;
+            font-weight: bold;
         }
 
         /* HERO */
@@ -186,7 +205,7 @@
             border-radius: 15px;
             padding: 22px;
             margin-bottom: 25px;
-            box-shadow: 0 5px 18px rgba(0,0,0,.04);
+            box-shadow: 0 5px 18px rgba(0, 0, 0, .04);
         }
 
         .search-title {
@@ -212,7 +231,7 @@
 
         .search-input:focus {
             border-color: #176b4d;
-            box-shadow: 0 0 0 3px rgba(23,107,77,.08);
+            box-shadow: 0 0 0 3px rgba(23, 107, 77, .08);
         }
 
         .clear-btn {
@@ -269,7 +288,7 @@
 
         .ngo-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 14px 30px rgba(23,107,77,.10);
+            box-shadow: 0 14px 30px rgba(23, 107, 77, .10);
             border-color: #cfe1d8;
         }
 
@@ -296,6 +315,17 @@
             color: #173e38;
             font-size: 17px;
             line-height: 1.35;
+        }
+
+        .verified {
+            display: inline-block;
+            margin-top: 7px;
+            background: #dff5e9;
+            color: #176b4d;
+            padding: 5px 9px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: bold;
         }
 
         .ngo-body {
@@ -368,20 +398,20 @@
             margin-bottom: 10px;
         }
 
-        /* NO RESULTS */
+        /* EMPTY / NO RESULTS */
 
         .no-results {
             display: none;
             background: white;
             border: 1px solid #e4ebe7;
             border-radius: 14px;
-            padding: 45px 20px;
+            padding: 55px 20px;
             text-align: center;
             margin-bottom: 50px;
         }
 
         .no-results-icon {
-            font-size: 40px;
+            font-size: 45px;
             margin-bottom: 12px;
         }
 
@@ -393,6 +423,17 @@
         .no-results p {
             color: #71827d;
             font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .error-box {
+            background: #fff6f6;
+            border: 1px solid #f0cccc;
+            color: #9b3434;
+            border-radius: 14px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 50px;
         }
 
         /* FOOTER */
@@ -435,7 +476,6 @@
             .ngo-grid {
                 grid-template-columns: 1fr 1fr;
             }
-
         }
 
         @media (max-width: 700px) {
@@ -478,505 +518,642 @@
                 gap: 8px;
                 flex-direction: column;
             }
-
         }
-
     </style>
 </head>
 
-
 <body>
 
-<!-- NAVBAR -->
+    <!-- NAVBAR -->
 
-<nav>
+    <nav>
 
-    <a href="index.html" class="logo">
-        <span class="logo-mark">R</span>
-        ReConnect
-    </a>
+        <a href="index.html" class="logo">
+            <span class="logo-mark">R</span>
+            ReConnect
+        </a>
 
-    <div class="nav-links">
+        <div class="nav-links">
 
-        <a href="index.html">Home</a>
+            <a href="index.html">Home</a>
 
-        <a href="ngos.html" class="active">Find NGOs</a>
+            <a href="ngos.html" class="active">Find NGOs</a>
 
-        <a href="donate.html">Donate</a>
+            <a href="donate.html">Donate</a>
 
-        <a href="college.html">College/NSS</a>
+            <a href="college.html">College/NSS</a>
 
-        <a href="reuse.html">Reuse & Recycle</a>
+            <a href="reuse.html">Reuse & Recycle</a>
 
-        <a href="login.html" class="login-btn">Login</a>
+            <a href="login.html" class="login-btn" id="loginLink">
+                Login
+            </a>
 
-    </div>
-
-</nav>
-
-
-<!-- HERO -->
-
-<section class="hero">
-
-    <div class="hero-label">
-        🤝 Connect with organizations
-    </div>
-
-    <h1>
-        Find the Right <span>NGO</span>
-    </h1>
-
-    <p>
-        Explore NGOs listed on ReConnect and discover organizations
-        working across different social causes and communities.
-    </p>
-
-</section>
-
-
-<!-- STATS -->
-
-<div class="stats">
-
-    <div class="stat">
-        <strong id="totalNGOs">311+</strong>
-        <span>NGOs Listed</span>
-    </div>
-
-    <div class="stat">
-        <strong id="causeCount">—</strong>
-        <span>Areas of Work</span>
-    </div>
-
-    <div class="stat">
-        <strong>100%</strong>
-        <span>Dataset Based</span>
-    </div>
-
-</div>
-
-
-<!-- MAIN -->
-
-<div class="main">
-
-
-    <!-- SEARCH -->
-
-    <div class="search-box">
-
-        <div class="search-title">
-            🔎 Search NGOs
-        </div>
-
-        <div class="search-row">
-
-            <input
-                type="text"
-                id="searchInput"
-                class="search-input"
-                placeholder="Search by NGO name, location, cause, contact person..."
-            >
+            <span id="userDisplay"></span>
 
             <button
-                class="clear-btn"
-                onclick="clearSearch()"
-            >
-                Clear
+                type="button"
+                id="logoutButton"
+                class="logout-btn"
+                style="display:none;"
+                onclick="logoutUser()">
+                Logout
             </button>
 
         </div>
 
-    </div>
+    </nav>
 
 
-    <!-- RESULTS HEADER -->
+    <!-- HERO -->
 
-    <div class="results-header">
+    <section class="hero">
 
-        <h2>NGO Directory</h2>
-
-        <div class="results-count" id="resultsCount">
-            Loading NGOs...
+        <div class="hero-label">
+            🤝 Connect with organizations
         </div>
 
-    </div>
-
-
-    <!-- LOADING -->
-
-    <div class="loading" id="loading">
-
-        <div class="loading-icon">
-            🌱
-        </div>
-
-        Loading NGO directory...
-
-    </div>
-
-
-    <!-- NGO CARDS -->
-
-    <div class="ngo-grid" id="ngoContainer"></div>
-
-
-    <!-- NO RESULTS -->
-
-    <div class="no-results" id="noResults">
-
-        <div class="no-results-icon">
-            🔍
-        </div>
-
-        <h3>No NGOs Found</h3>
+        <h1>
+            Find the Right <span>NGO</span>
+        </h1>
 
         <p>
-            Try searching with another NGO name, location, cause or contact person.
+            Discover verified NGOs registered on ReConnect and explore
+            organizations working across different social causes and communities.
         </p>
 
-    </div>
+    </section>
 
 
-</div>
+    <!-- STATS -->
 
+    <div class="stats">
 
-<!-- FOOTER -->
+        <div class="stat">
 
-<footer>
+            <strong id="totalNGOs">0</strong>
 
-    <div class="footer-content">
-
-        <div>
-
-            <div class="footer-logo">
-                ReConnect
-            </div>
-
-            <p>
-                Transparent Donations • Community Engagement • Item Reuse
-            </p>
+            <span>Verified NGOs</span>
 
         </div>
 
-        <div>
+        <div class="stat">
 
-            <p>
-                Connecting people, NGOs and student communities
-                for meaningful social impact.
-            </p>
+            <strong id="causeCount">0</strong>
+
+            <span>Areas of Work</span>
+
+        </div>
+
+        <div class="stat">
+
+            <strong>100%</strong>
+
+            <span>Firebase Based</span>
 
         </div>
 
     </div>
 
-</footer>
 
+    <!-- MAIN -->
 
-<script>
+    <div class="main">
 
-let ngoData = [];
+        <!-- SEARCH -->
 
+        <div class="search-box">
 
-/* LOAD NGO DATA */
-
-fetch("ngos.json")
-
-    .then(response => {
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Could not load ngos.json"
-            );
-
-        }
-
-        return response.json();
-
-    })
-
-    .then(data => {
-
-        if (!Array.isArray(data)) {
-
-            throw new Error(
-                "ngos.json must contain an array of NGOs."
-            );
-
-        }
-
-        ngoData = data;
-
-        document.getElementById("loading").style.display = "none";
-
-        document.getElementById("totalNGOs").textContent =
-            data.length + "+";
-
-        calculateCauses(data);
-
-        displayNGOs(data);
-
-    })
-
-    .catch(error => {
-
-        document.getElementById("loading").innerHTML = `
-
-            <div class="loading-icon">⚠️</div>
-
-            <strong>Unable to load NGO data.</strong>
-
-            <br><br>
-
-            <span style="font-size:12px;">
-                Make sure <b>ngos.json</b> is in the same folder
-                as <b>ngos.html</b>.
-            </span>
-
-        `;
-
-        console.error(error);
-
-    });
-
-
-/* COUNT AREAS OF WORK */
-
-function calculateCauses(data) {
-
-    const causes = new Set();
-
-    data.forEach(ngo => {
-
-        if (ngo["Area of Work"]) {
-
-            causes.add(
-                ngo["Area of Work"].trim().toLowerCase()
-            );
-
-        }
-
-    });
-
-    document.getElementById("causeCount").textContent =
-        causes.size;
-
-}
-
-
-/* DISPLAY NGO CARDS */
-
-function displayNGOs(data) {
-
-    const container =
-        document.getElementById("ngoContainer");
-
-    const noResults =
-        document.getElementById("noResults");
-
-    const resultsCount =
-        document.getElementById("resultsCount");
-
-
-    container.innerHTML = "";
-
-
-    if (data.length === 0) {
-
-        noResults.style.display = "block";
-
-        resultsCount.textContent = "0 NGOs found";
-
-        return;
-
-    }
-
-
-    noResults.style.display = "none";
-
-    resultsCount.textContent =
-        data.length + " NGOs found";
-
-
-    data.forEach((ngo, index) => {
-
-        const originalIndex =
-            ngoData.indexOf(ngo);
-
-
-        const name =
-            ngo["Name of Institution"] ||
-            "NGO Name Not Available";
-
-
-        const address =
-            ngo["Address"] ||
-            "Address not available";
-
-
-        const area =
-            ngo["Area of Work"] ||
-            "Area of work not specified";
-
-
-        const contact =
-            ngo["Local Contact Person"] ||
-            ngo["Chairman/CEO"] ||
-            "Contact person not available";
-
-
-        const card = document.createElement("div");
-
-        card.className = "ngo-card";
-
-
-        card.innerHTML = `
-
-            <div class="ngo-top">
-
-                <div class="ngo-icon">
-                    🌱
-                </div>
-
-                <div class="ngo-name">
-                    ${escapeHTML(name)}
-                </div>
-
+            <div class="search-title">
+                🔎 Search NGOs
             </div>
 
+            <div class="search-row">
 
-            <div class="ngo-body">
-
-                <div class="ngo-info">
-
-                    <div class="info-label">
-                        Area of Work
-                    </div>
-
-                    <div class="cause">
-                        ${escapeHTML(area)}
-                    </div>
-
-                </div>
-
-
-                <div class="ngo-info">
-
-                    <div class="info-label">
-                        Location
-                    </div>
-
-                    <div class="info-value">
-                        ${escapeHTML(address)}
-                    </div>
-
-                </div>
-
-
-                <div class="ngo-info">
-
-                    <div class="info-label">
-                        Contact Person
-                    </div>
-
-                    <div class="info-value">
-                        ${escapeHTML(contact)}
-                    </div>
-
-                </div>
-
-
-                <a
-                    href="ngo-profile.html?ngo=${originalIndex}"
-                    class="profile-btn"
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="Search by NGO name, location, cause, contact person..."
                 >
-                    View NGO Profile →
-                </a>
+
+                <button
+                    class="clear-btn"
+                    onclick="clearSearch()">
+                    Clear
+                </button>
 
             </div>
 
-        `;
+        </div>
 
 
-        container.appendChild(card);
+        <!-- RESULTS HEADER -->
 
-    });
+        <div class="results-header">
 
-}
+            <h2>NGO Directory</h2>
 
+            <div class="results-count" id="resultsCount">
+                Loading NGOs...
+            </div>
 
-/* SEARCH */
-
-document
-    .getElementById("searchInput")
-    .addEventListener("input", function () {
-
-        const searchText =
-            this.value
-                .trim()
-                .toLowerCase();
+        </div>
 
 
-        if (searchText === "") {
+        <!-- LOADING -->
 
-            displayNGOs(ngoData);
+        <div class="loading" id="loading">
 
-            return;
+            <div class="loading-icon">
+                🌱
+            </div>
 
-        }
+            Loading verified NGOs...
+
+        </div>
 
 
-        const filtered =
-            ngoData.filter(ngo => {
+        <!-- NGO CARDS -->
 
-                return Object.values(ngo)
-                    .some(value =>
-                        String(value)
+        <div class="ngo-grid" id="ngoContainer"></div>
+
+
+        <!-- NO RESULTS -->
+
+        <div class="no-results" id="noResults">
+
+            <div class="no-results-icon">
+                🌱
+            </div>
+
+            <h3 id="emptyTitle">
+                No NGOs Registered Yet
+            </h3>
+
+            <p id="emptyMessage">
+                There are currently no verified NGOs on ReConnect.
+                Once an NGO registers and is approved by the Admin,
+                it will appear here automatically.
+            </p>
+
+        </div>
+
+
+        <!-- ERROR -->
+
+        <div class="error-box" id="errorBox" style="display:none;">
+
+            <div style="font-size:35px; margin-bottom:10px;">
+                ⚠️
+            </div>
+
+            <strong>Unable to load NGOs</strong>
+
+            <p id="errorMessage" style="margin-top:8px;">
+                Please try again later.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div>
+
+                <div class="footer-logo">
+                    ReConnect
+                </div>
+
+                <p>
+                    Transparent Donations • Community Engagement • Item Reuse
+                </p>
+
+            </div>
+
+            <div>
+
+                <p>
+                    Connecting people, NGOs and student communities
+                    for meaningful social impact.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- FIREBASE NGO DIRECTORY -->
+
+    <script type="module">
+
+        import {
+            getFirestore,
+            collection,
+            query,
+            where,
+            onSnapshot
+        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+        import { app } from "./firebase-config.js";
+
+
+        const db = getFirestore(app);
+
+        let ngoData = [];
+
+
+        /*
+        ==========================================
+        LOAD APPROVED NGOS FROM FIREBASE
+        ==========================================
+        */
+
+        const usersRef = collection(db, "users");
+
+        const approvedNGOsQuery = query(
+            usersRef,
+            where("role", "==", "ngo"),
+            where("status", "==", "approved")
+        );
+
+
+        onSnapshot(
+            approvedNGOsQuery,
+
+            (snapshot) => {
+
+                ngoData = [];
+
+                snapshot.forEach((doc) => {
+
+                    ngoData.push({
+                        id: doc.id,
+                        ...doc.data()
+                    });
+
+                });
+
+
+                document.getElementById("loading").style.display = "none";
+
+                document.getElementById("errorBox").style.display = "none";
+
+
+                updateStats(ngoData);
+
+                displayNGOs(ngoData);
+
+            },
+
+            (error) => {
+
+                console.error(
+                    "Firebase NGO loading error:",
+                    error
+                );
+
+
+                document.getElementById("loading").style.display = "none";
+
+                document.getElementById("errorBox").style.display = "block";
+
+                document.getElementById("errorMessage").textContent =
+                    "Firebase could not load the NGO directory. Please check your Firestore rules.";
+
+                document.getElementById("resultsCount").textContent =
+                    "Unable to load NGOs";
+
+            }
+        );
+
+
+        /*
+        ==========================================
+        UPDATE STATS
+        ==========================================
+        */
+
+        function updateStats(data) {
+
+            document.getElementById("totalNGOs").textContent =
+                data.length;
+
+
+            const causes = new Set();
+
+
+            data.forEach((ngo) => {
+
+                const area =
+                    ngo.areaOfWork ||
+                    ngo.area ||
+                    ngo.cause ||
+                    "";
+
+
+                if (area.trim() !== "") {
+
+                    causes.add(
+                        area
+                            .trim()
                             .toLowerCase()
-                            .includes(searchText)
                     );
+
+                }
 
             });
 
 
-        displayNGOs(filtered);
+            document.getElementById("causeCount").textContent =
+                causes.size;
 
-    });
-
-
-/* CLEAR SEARCH */
-
-function clearSearch() {
-
-    document.getElementById("searchInput").value = "";
-
-    displayNGOs(ngoData);
-
-}
+        }
 
 
-/* SECURITY */
+        /*
+        ==========================================
+        DISPLAY NGO CARDS
+        ==========================================
+        */
 
-function escapeHTML(value) {
+        function displayNGOs(data) {
 
-    return String(value)
+            const container =
+                document.getElementById("ngoContainer");
 
-        .replace(/&/g, "&amp;")
+            const noResults =
+                document.getElementById("noResults");
 
-        .replace(/</g, "&lt;")
+            const resultsCount =
+                document.getElementById("resultsCount");
 
-        .replace(/>/g, "&gt;")
 
-        .replace(/"/g, "&quot;")
+            container.innerHTML = "";
 
-        .replace(/'/g, "&#039;");
 
-}
+            if (data.length === 0) {
 
-</script>
+                noResults.style.display = "block";
 
+                resultsCount.textContent =
+                    "0 NGOs found";
+
+                return;
+
+            }
+
+
+            noResults.style.display = "none";
+
+
+            resultsCount.textContent =
+                data.length + " NGOs found";
+
+
+            data.forEach((ngo) => {
+
+                const name =
+                    ngo.ngoName ||
+                    ngo.name ||
+                    "NGO Name Not Available";
+
+
+                const address =
+                    ngo.address ||
+                    "Address not available";
+
+
+                const area =
+                    ngo.areaOfWork ||
+                    ngo.area ||
+                    ngo.cause ||
+                    "Area of work not specified";
+
+
+                const contact =
+                    ngo.contactPerson ||
+                    ngo.localContactPerson ||
+                    ngo.chairmanCEO ||
+                    ngo.chairman ||
+                    "Contact person not available";
+
+
+                const card =
+                    document.createElement("div");
+
+
+                card.className =
+                    "ngo-card";
+
+
+                card.innerHTML = `
+
+                    <div class="ngo-top">
+
+                        <div class="ngo-icon">
+                            🌱
+                        </div>
+
+                        <div class="ngo-name">
+                            ${escapeHTML(name)}
+                        </div>
+
+                        <div class="verified">
+                            ✓ Verified NGO
+                        </div>
+
+                    </div>
+
+
+                    <div class="ngo-body">
+
+                        <div class="ngo-info">
+
+                            <div class="info-label">
+                                Area of Work
+                            </div>
+
+                            <div class="cause">
+                                ${escapeHTML(area)}
+                            </div>
+
+                        </div>
+
+
+                        <div class="ngo-info">
+
+                            <div class="info-label">
+                                Location
+                            </div>
+
+                            <div class="info-value">
+                                ${escapeHTML(address)}
+                            </div>
+
+                        </div>
+
+
+                        <div class="ngo-info">
+
+                            <div class="info-label">
+                                Contact Person
+                            </div>
+
+                            <div class="info-value">
+                                ${escapeHTML(contact)}
+                            </div>
+
+                        </div>
+
+
+                        <a
+                            href="ngo-profile.html?ngo=${encodeURIComponent(ngo.id)}"
+                            class="profile-btn">
+                            View NGO Profile →
+                        </a>
+
+                    </div>
+
+                `;
+
+
+                container.appendChild(card);
+
+            });
+
+        }
+
+
+        /*
+        ==========================================
+        SEARCH
+        ==========================================
+        */
+
+        document
+            .getElementById("searchInput")
+            .addEventListener(
+                "input",
+                function () {
+
+                    const searchText =
+                        this.value
+                            .trim()
+                            .toLowerCase();
+
+
+                    if (searchText === "") {
+
+                        displayNGOs(ngoData);
+
+                        return;
+
+                    }
+
+
+                    const filtered =
+                        ngoData.filter((ngo) => {
+
+                            const searchableText = [
+
+                                ngo.ngoName,
+
+                                ngo.name,
+
+                                ngo.address,
+
+                                ngo.areaOfWork,
+
+                                ngo.area,
+
+                                ngo.cause,
+
+                                ngo.contactPerson,
+
+                                ngo.localContactPerson,
+
+                                ngo.chairmanCEO,
+
+                                ngo.chairman,
+
+                                ngo.email,
+
+                                ngo.emailId,
+
+                                ngo.contactNumber,
+
+                                ngo.mobile
+
+                            ]
+                                .filter(Boolean)
+                                .join(" ")
+                                .toLowerCase();
+
+
+                            return searchableText
+                                .includes(searchText);
+
+                        });
+
+
+                    displayNGOs(filtered);
+
+                }
+            );
+
+
+        /*
+        ==========================================
+        CLEAR SEARCH
+        ==========================================
+        */
+
+        window.clearSearch = function () {
+
+            document.getElementById("searchInput").value = "";
+
+            displayNGOs(ngoData);
+
+        };
+
+
+        /*
+        ==========================================
+        SECURITY
+        ==========================================
+        */
+
+        function escapeHTML(value) {
+
+            return String(value)
+
+                .replace(/&/g, "&amp;")
+
+                .replace(/</g, "&lt;")
+
+                .replace(/>/g, "&gt;")
+
+                .replace(/"/g, "&quot;")
+
+                .replace(/'/g, "&#039;");
+
+        }
+
+    </script>
+
+
+    <!-- COMMON AUTHENTICATION -->
+
+    <script type="module" src="auth.js"></script>
 
 </body>
 
