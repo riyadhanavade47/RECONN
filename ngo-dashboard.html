@@ -920,7 +920,7 @@
 
 
     let currentUser = null;
-
+    let currentNGOName = "";
 
     /* =========================
        MESSAGE
@@ -975,6 +975,7 @@
 
             const data =
                 userSnap.data();
+            currentNGOName = data.ngoName || "";
 
 
             /* =========================
@@ -1379,33 +1380,40 @@
 
             try {
 
-                await addDoc(
-                    collection(db, "requirements"),
-                    {
+               await addDoc(
+    collection(db, "requirements"),
+    {
+        ngoId:
+            currentUser.uid,
 
-                        ngoId:
-                            currentUser.uid,
+        ngoName:
+            currentNGOName,
 
-                        type:
-                            type,
+        type:
+            type,
 
-                        title:
-                            title,
+        title:
+            title,
 
-                        description:
-                            description,
+        description:
+            description,
 
-                        amount:
-                            amount,
+        amount:
+            amount,
 
-                        priority:
-                            priority,
+        priority:
+            priority,
 
-                        active:
-                            true,
+        received:
+            0,
 
-                        createdAt:
-                            serverTimestamp()
+        active:
+            true,
+
+        createdAt:
+            serverTimestamp()
+    }
+);
 
                     }
                 );
