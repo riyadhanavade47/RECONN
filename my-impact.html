@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Impact | ReConnect</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f5faf7;
+    color: #17352a;
+}
+
+/* ================= NAVBAR ================= */
+
+nav {
+    height: 72px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #159957;
+}
+
+.logo-circle {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #159957;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #35564a;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nav-links a:hover {
+    color: #159957;
+}
+
+.login-btn {
+    background: #159957;
+    color: white !important;
+    padding: 10px 18px;
+    border-radius: 22px;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    padding: 65px 6%;
+    text-align: center;
+    background: linear-gradient(
+        135deg,
+        #e9fff3,
+        #eef8ff,
+        #fffbea
+    );
+}
+
+.hero-badge {
+    display: inline-block;
+    background: white;
+    color: #159957;
+    padding: 8px 17px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    max-width: 720px;
+    margin: auto;
+    color: #60766c;
+    line-height: 1.7;
+}
+
+/* ================= CONTAINER ================= */
+
+.container {
+    width: 88%;
+    max-width: 1100px;
+    margin: 45px auto 70px;
+}
+
+/* ================= IMPACT STATS ================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 45px;
+}
+
+.stat {
+    background: white;
+    border: 1px solid #e2eee7;
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 7px 22px rgba(0,0,0,0.05);
+}
+
+.stat-icon {
+    font-size: 27px;
+    margin-bottom: 10px;
+}
+
+.stat h2 {
+    color: #159957;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.stat p {
+    color: #718078;
+    font-size: 12px;
+}
+
+/* ================= SECTION ================= */
+
+.section {
+    margin-bottom: 45px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 23px;
+}
+
+.section-title h2 {
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+.section-title p {
+    color: #718078;
+    line-height: 1.6;
+}
+
+/* ================= CARDS ================= */
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border: 1px solid #e2eee7;
+    border-radius: 20px;
+    padding: 27px;
+    box-shadow: 0 7px 22px rgba(0,0,0,0.05);
+    transition: 0.25s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+.card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: #eaf8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 17px;
+}
+
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 9px;
+}
+
+.card p {
+    color: #718078;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* ================= EMPTY ================= */
+
+.empty {
+    background: white;
+    border: 1px solid #e2eee7;
+    border-radius: 22px;
+    padding: 50px 30px;
+    text-align: center;
+    box-shadow: 0 7px 22px rgba(0,0,0,0.05);
+}
+
+.empty-icon {
+    font-size: 48px;
+    margin-bottom: 13px;
+}
+
+.empty h3 {
+    font-size: 21px;
+    margin-bottom: 9px;
+}
+
+.empty p {
+    max-width: 620px;
+    margin: auto;
+    color: #718078;
+    line-height: 1.7;
+    font-size: 13px;
+}
+
+.empty-note {
+    display: inline-block;
+    margin-top: 17px;
+    background: #eaf8f0;
+    color: #159957;
+    padding: 8px 15px;
+    border-radius: 18px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* ================= ACHIEVEMENTS ================= */
+
+.achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.achievement {
+    background: white;
+    border: 1px solid #e2eee7;
+    border-radius: 20px;
+    padding: 30px 22px;
+    text-align: center;
+    position: relative;
+}
+
+.badge-circle {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: #eef8f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    margin: 0 auto 16px;
+    filter: grayscale(1);
+    opacity: 0.65;
+}
+
+.achievement h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.achievement p {
+    color: #718078;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.locked {
+    display: inline-block;
+    margin-top: 13px;
+    background: #f1f3f2;
+    color: #78857f;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+/* ================= CTA ================= */
+
+.cta {
+    background: #159957;
+    color: white;
+    padding: 45px 30px;
+    border-radius: 24px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.cta h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.cta p {
+    max-width: 650px;
+    margin: auto auto 22px;
+    line-height: 1.6;
+}
+
+.cta a {
+    display: inline-block;
+    background: white;
+    color: #159957;
+    padding: 12px 24px;
+    border-radius: 24px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #17352a;
+    color: white;
+    text-align: center;
+    padding: 28px;
+    font-size: 13px;
+}
+
+footer span {
+    color: #69d69c;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .card-grid,
+    .achievement-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    nav {
+        height: auto;
+        padding: 15px 5%;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .stats,
+    .card-grid,
+    .achievement-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+    <div class="logo">
+
+        <div class="logo-circle">
+            R
+        </div>
+
+        ReConnect
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="ngos.html">
+            Find NGOs
+        </a>
+
+        <a href="donate.html">
+            Donate
+        </a>
+
+        <a href="activities.html">
+            Activities
+        </a>
+
+        <a href="college.html">
+            College/NSS
+        </a>
+
+        <a href="reuse.html">
+            Reuse & Recycle
+        </a>
+
+        <a href="login.html" class="login-btn">
+            Login
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-badge">
+        🌱 Your Journey of Impact
+    </div>
+
+    <h1>
+        My Impact
+    </h1>
+
+    <p>
+        See the difference you make through donations,
+        volunteering, environmental activities and community
+        participation.
+    </p>
+
+</section>
+
+
+<div class="container">
+
+
+    <!-- ================= STATS ================= -->
+
+    <div class="stats">
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                💚
+            </div>
+
+            <h2>
+                0
+            </h2>
+
+            <p>
+                Donations Made
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                🤝
+            </div>
+
+            <h2>
+                0
+            </h2>
+
+            <p>
+                Activities Joined
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                🌱
+            </div>
+
+            <h2>
+                0
+            </h2>
+
+            <p>
+                Contributions Completed
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                🏆
+            </div>
+
+            <h2>
+                0
+            </h2>
+
+            <p>
+                Achievements Earned
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ================= DONATIONS ================= -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>
+                💚 My Donations
+            </h2>
+
+            <p>
+                Your money and item donations will be displayed
+                here with their progress and impact updates.
+            </p>
+
+        </div>
+
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                💚
+            </div>
+
+            <h3>
+                No Donations Yet
+            </h3>
+
+            <p>
+                Once you make a donation through ReConnect,
+                your contribution history and donation status
+                will appear here.
+            </p>
+
+            <div class="empty-note">
+                Donation records will be connected through Firebase
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ACTIVITIES ================= -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>
+                🤝 My Activities
+            </h2>
+
+            <p>
+                Activities you register for and complete will
+                become part of your community contribution history.
+            </p>
+
+        </div>
+
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                🌍
+            </div>
+
+            <h3>
+                No Activities Joined Yet
+            </h3>
+
+            <p>
+                Beach cleaning, tree plantation, teaching,
+                food distribution, animal welfare and other
+                verified activities will appear here after
+                you participate.
+            </p>
+
+            <div class="empty-note">
+                Activity participation will be connected through Firebase
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONTRIBUTIONS ================= -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>
+                🌱 My Contributions
+            </h2>
+
+            <p>
+                Your completed social and environmental contributions
+                will be recorded here.
+            </p>
+
+        </div>
+
+
+        <div class="card-grid">
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    ♻️
+                </div>
+
+                <h3>
+                    Reuse & Recycle
+                </h3>
+
+                <p>
+                    Items you contribute for reuse, upcycling
+                    or recycling will be tracked here.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🌳
+                </div>
+
+                <h3>
+                    Environmental Work
+                </h3>
+
+                <p>
+                    Environmental activities such as tree
+                    plantation and clean-up drives can be recorded.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🤝
+                </div>
+
+                <h3>
+                    Community Service
+                </h3>
+
+                <p>
+                    Your verified community service and volunteer
+                    participation can be displayed here.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ACHIEVEMENTS ================= -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>
+                🏆 Achievements & Badges
+            </h2>
+
+            <p>
+                Achievements are earned through verified
+                participation and contributions.
+            </p>
+
+        </div>
+
+
+        <div class="achievement-grid">
+
+
+            <div class="achievement">
+
+                <div class="badge-circle">
+                    🌱
+                </div>
+
+                <h3>
+                    Green Contributor
+                </h3>
+
+                <p>
+                    Earned through verified environmental
+                    activities and contributions.
+                </p>
+
+                <span class="locked">
+                    🔒 Not Earned Yet
+                </span>
+
+            </div>
+
+
+            <div class="achievement">
+
+                <div class="badge-circle">
+                    🤝
+                </div>
+
+                <h3>
+                    Community Volunteer
+                </h3>
+
+                <p>
+                    Earned through meaningful participation
+                    in community activities.
+                </p>
+
+                <span class="locked">
+                    🔒 Not Earned Yet
+                </span>
+
+            </div>
+
+
+            <div class="achievement">
+
+                <div class="badge-circle">
+                    🏆
+                </div>
+
+                <h3>
+                    Impact Champion
+                </h3>
+
+                <p>
+                    Earned after completing multiple verified
+                    contributions and activities.
+                </p>
+
+                <span class="locked">
+                    🔒 Not Earned Yet
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CTA ================= -->
+
+    <section class="cta">
+
+        <h2>
+            Ready to Create Your Impact?
+        </h2>
+
+        <p>
+            Find an NGO, donate an item, join an activity or
+            participate in an environmental initiative.
+        </p>
+
+        <a href="ngos.html">
+            Find an NGO
+        </a>
+
+    </section>
+
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        © 2026 <span>ReConnect</span> —
+        Connecting People With Meaningful Impact
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
