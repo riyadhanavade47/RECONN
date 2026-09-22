@@ -9,6 +9,10 @@
 
 <style>
 
+/* =========================
+   GLOBAL
+========================= */
+
 *{
     margin:0;
     padding:0;
@@ -21,43 +25,104 @@ body{
     color:#17352a;
 }
 
-/* NAVBAR */
+
+/* =========================
+   NAVBAR
+========================= */
 
 nav{
-    background:white;
-    padding:17px 6%;
+    background:#ffffff;
+    padding:14px 5%;
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
+    gap:25px;
     box-shadow:0 2px 12px rgba(0,0,0,.07);
     position:sticky;
     top:0;
-    z-index:100;
+    z-index:1000;
 }
 
+/* LOGO */
+
 .logo{
-    font-size:25px;
-    font-weight:bold;
-    color:#159957;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:#176b4d;
+    font-size:23px;
+    font-weight:700;
+    white-space:nowrap;
 }
+
+.logo-mark{
+    width:38px;
+    height:38px;
+    border-radius:11px;
+    background:#159957;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+    font-weight:800;
+    box-shadow:0 4px 10px rgba(21,153,87,.22);
+}
+
+/* NAVIGATION */
 
 .nav-links{
     display:flex;
-    gap:20px;
-    flex-wrap:wrap;
+    align-items:center;
+    justify-content:flex-end;
+    gap:5px;
+    flex-wrap:nowrap;
 }
 
 .nav-links a{
     text-decoration:none;
     color:#29463b;
+    font-size:14px;
     font-weight:600;
+    padding:9px 11px;
+    border-radius:8px;
+    white-space:nowrap;
+    transition:.2s ease;
 }
 
 .nav-links a:hover{
     color:#159957;
+    background:#f0faf4;
 }
 
-/* HERO */
+/* CURRENT PAGE */
+
+.nav-links a.active{
+    color:#159957;
+    background:#eaf8f0;
+    font-weight:700;
+}
+
+/* LOGIN BUTTON */
+
+.login-btn{
+    background:#159957 !important;
+    color:white !important;
+    padding:9px 17px !important;
+    margin-left:4px;
+    border-radius:9px !important;
+}
+
+.login-btn:hover{
+    background:#117a45 !important;
+    color:white !important;
+}
+
+
+/* =========================
+   HERO
+========================= */
 
 .hero{
     background:linear-gradient(135deg,#dff8e9,#eaf6ff,#fff7d7);
@@ -79,7 +144,10 @@ nav{
     color:#536a60;
 }
 
-/* CONTAINER */
+
+/* =========================
+   CONTAINER
+========================= */
 
 .container{
     width:88%;
@@ -103,7 +171,10 @@ nav{
     line-height:1.6;
 }
 
-/* ORGANIZER BANNER */
+
+/* =========================
+   ORGANIZER BANNER
+========================= */
 
 .organizer{
     background:white;
@@ -131,7 +202,10 @@ nav{
     line-height:1.6;
 }
 
-/* ACTIVITY FLOW */
+
+/* =========================
+   ACTIVITY FLOW
+========================= */
 
 .flow{
     display:grid;
@@ -146,6 +220,12 @@ nav{
     border-radius:17px;
     text-align:center;
     border:1px solid #dfede6;
+    transition:.25s ease;
+}
+
+.flow-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 8px 22px rgba(30,90,60,.08);
 }
 
 .flow-number{
@@ -172,7 +252,10 @@ nav{
     line-height:1.5;
 }
 
-/* ACTION CARDS */
+
+/* =========================
+   ACTION CARDS
+========================= */
 
 .action-grid{
     display:grid;
@@ -191,6 +274,7 @@ nav{
 
 .action-card:hover{
     transform:translateY(-5px);
+    box-shadow:0 10px 25px rgba(30,90,60,.1);
 }
 
 .action-icon{
@@ -208,7 +292,10 @@ nav{
     line-height:1.6;
 }
 
-/* ACTIVITY SECTION */
+
+/* =========================
+   ACTIVITY SECTION
+========================= */
 
 .activity-section{
     margin-top:65px;
@@ -249,7 +336,10 @@ nav{
     font-size:14px;
 }
 
-/* REGISTRATION */
+
+/* =========================
+   REGISTRATION
+========================= */
 
 .register-box{
     background:linear-gradient(135deg,#176b4d,#159957);
@@ -281,13 +371,17 @@ nav{
     text-decoration:none;
     border-radius:9px;
     font-weight:bold;
+    transition:.2s;
 }
 
 .btn:hover{
     background:#e9f8ef;
 }
 
-/* FOOTER */
+
+/* =========================
+   FOOTER
+========================= */
 
 footer{
     background:#17352a;
@@ -301,9 +395,65 @@ footer p{
     opacity:.8;
 }
 
-/* MOBILE */
+
+/* =========================
+   TABLET
+========================= */
+
+@media(max-width:1100px){
+
+    nav{
+        padding:14px 3%;
+    }
+
+    .nav-links{
+        gap:2px;
+    }
+
+    .nav-links a{
+        font-size:13px;
+        padding:8px 8px;
+    }
+
+    .logo{
+        font-size:21px;
+    }
+
+    .logo-mark{
+        width:36px;
+        height:36px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE NAVBAR
+========================= */
 
 @media(max-width:850px){
+
+    nav{
+        flex-direction:column;
+        padding:15px 4%;
+        gap:12px;
+    }
+
+    .nav-links{
+        width:100%;
+        justify-content:center;
+        flex-wrap:wrap;
+        gap:4px;
+    }
+
+    .nav-links a{
+        font-size:13px;
+        padding:8px 10px;
+    }
+
+    .login-btn{
+        margin-left:0;
+    }
 
     .flow{
         grid-template-columns:repeat(2,1fr);
@@ -320,24 +470,72 @@ footer p{
 
 }
 
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
 @media(max-width:600px){
 
     nav{
-        flex-direction:column;
-        gap:12px;
+        padding:13px 4%;
+    }
+
+    .logo{
+        font-size:22px;
+    }
+
+    .logo-mark{
+        width:37px;
+        height:37px;
     }
 
     .nav-links{
-        justify-content:center;
+        gap:5px;
+    }
+
+    .nav-links a{
+        font-size:12px;
+        padding:7px 8px;
+    }
+
+    .hero{
+        padding:55px 6%;
     }
 
     .hero h1{
         font-size:36px;
     }
 
+    .hero p{
+        font-size:16px;
+    }
+
     .flow,
     .action-grid{
         grid-template-columns:1fr;
+    }
+
+    .container{
+        width:90%;
+    }
+
+}
+
+
+/* =========================
+   VERY SMALL SCREENS
+========================= */
+
+@media(max-width:420px){
+
+    .nav-links a{
+        font-size:11px;
+        padding:6px 7px;
+    }
+
+    .hero h1{
+        font-size:30px;
     }
 
 }
@@ -349,11 +547,20 @@ footer p{
 <body>
 
 
-<!-- NAVBAR -->
+<!-- =========================
+     NAVBAR
+========================= -->
 
 <nav>
 
-    <div class="logo">🌱 ReConnect</div>
+    <a href="index.html" class="logo">
+
+        <span class="logo-mark">R</span>
+
+        <span>ReConnect</span>
+
+    </a>
+
 
     <div class="nav-links">
 
@@ -365,24 +572,26 @@ footer p{
 
         <a href="activities.html">Activities</a>
 
-        <a href="college.html">College/NSS</a>
+        <a href="college.html" class="active">College &amp; NSS</a>
 
-        <a href="reuse.html">Reuse & Recycle</a>
+        <a href="reuse.html">Reuse &amp; Recycle</a>
 
         <a href="my-impact.html">My Impact</a>
 
-        <a href="login.html">Login</a>
+        <a href="login.html" class="login-btn">Login</a>
 
     </div>
 
 </nav>
 
 
-<!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero">
 
-    <h1>🎓 College & NSS Community</h1>
+    <h1>🎓 College &amp; NSS Community</h1>
 
     <p>
         Connect students and NSS groups with verified community,
@@ -396,7 +605,9 @@ footer p{
 <div class="container">
 
 
-    <!-- WHO CREATES ACTIVITIES -->
+    <!-- =========================
+         WHO CREATES ACTIVITIES
+    ========================= -->
 
     <div class="organizer">
 
@@ -418,11 +629,13 @@ footer p{
     </div>
 
 
-    <!-- HOW IT WORKS -->
+    <!-- =========================
+         HOW IT WORKS
+    ========================= -->
 
     <div class="section-title">
 
-        <h2>How College & NSS Participation Works</h2>
+        <h2>How College &amp; NSS Participation Works</h2>
 
         <p>
             A simple journey from discovering an activity to recording
@@ -491,11 +704,13 @@ footer p{
     </div>
 
 
-    <!-- WHAT THEY CAN DO -->
+    <!-- =========================
+         WHAT THEY CAN DO
+    ========================= -->
 
     <div class="section-title">
 
-        <h2>What College & NSS Groups Can Do</h2>
+        <h2>What College &amp; NSS Groups Can Do</h2>
 
         <p>
             Students and college groups can participate in different
@@ -540,7 +755,7 @@ footer p{
 
             <div class="action-icon">📚</div>
 
-            <h3>Teaching & Education</h3>
+            <h3>Teaching &amp; Education</h3>
 
             <p>
                 Participate in teaching children, educational support
@@ -594,13 +809,15 @@ footer p{
     </div>
 
 
-    <!-- ACTIVITIES -->
+    <!-- =========================
+         OFFICIAL ACTIVITIES
+    ========================= -->
 
     <div class="activity-section">
 
         <div class="section-title">
 
-            <h2>Government & Community Activities</h2>
+            <h2>Government &amp; Community Activities</h2>
 
             <p>
                 Official activities will appear here once ReConnect
@@ -625,8 +842,10 @@ footer p{
             </p>
 
             <div class="note">
+
                 Activities shown here will be connected to the
                 official ReConnect activity system in the Firebase stage.
+
             </div>
 
         </div>
@@ -634,7 +853,9 @@ footer p{
     </div>
 
 
-    <!-- REGISTER COLLEGE/NSS -->
+    <!-- =========================
+         REGISTER COLLEGE/NSS
+    ========================= -->
 
     <div class="register-box">
 
@@ -656,6 +877,10 @@ footer p{
 </div>
 
 
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
 
     <p>
@@ -664,6 +889,10 @@ footer p{
 
 </footer>
 
+
+<!-- FIREBASE NAVBAR AUTH -->
+
 <script type="module" src="auth.js"></script>
+
 </body>
 </html>
