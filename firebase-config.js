@@ -1,10 +1,4 @@
-// ==========================================
-// ReConnect - Firebase Configuration
-// ==========================================
-
-import {
-    initializeApp
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBenWnZJHPp-4aBqNoGKfXZrZU9sMJwocA",
