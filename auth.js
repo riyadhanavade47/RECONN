@@ -1,7 +1,3 @@
-// ==========================================
-// ReConnect - Shared Firebase Authentication
-// ==========================================
-
 import {
     getAuth,
     onAuthStateChanged,
@@ -17,302 +13,292 @@ import {
 import { app } from "./firebase-config.js";
 
 
-// ==========================================
-// INITIALIZE
-// ==========================================
-
 const auth = getAuth(app);
 const db = getFirestore(app);
 
 
-// ==========================================
-// UPDATE NAVBAR
-// ==========================================
+/* =====================================================
+   UPDATE NAVBAR LOGIN STATE
+===================================================== */
 
-async function updateNavbar(user) {
+function updateNavbar(user, userData = null) {
 
-    // Find Login link on ANY page
+    /*
+       Login button
+    */
+
     const loginLinks =
         document.querySelectorAll(
             'a[href="login.html"]'
         );
 
 
-    // Find existing user display
-    let userDisplay =
-        document.getElementById("userDisplay");
+    /*
+       Existing user menu
+    */
 
+    const existingUserMenus =
+        document.querySelectorAll(
+            ".firebase-user-menu"
+        );
 
-    // Find existing logout button
-    let logoutButton =
-        document.getElementById("logoutButton");
-
-
-    // ======================================
-    // LOGGED IN
-    // ======================================
 
     if (user) {
 
-        // Hide every Login link
-        loginLinks.forEach(link => {
+        /* ---------------------------------------------
+           USER IS LOGGED IN
+        --------------------------------------------- */
+
+        loginLinks.forEach(function(link) {
 
             link.style.display = "none";
 
         });
 
 
-        // Create user display if page doesn't have it
-        if (!userDisplay) {
+        existingUserMenus.forEach(function(menu) {
 
-            userDisplay =
-                document.createElement("span");
+            menu.remove();
 
-            userDisplay.id =
-                "userDisplay";
-
-            userDisplay.style.cssText = `
-                color: #176b4d;
-                font-size: 14px;
-                font-weight: 700;
-                white-space: nowrap;
-                display: inline-flex;
-                align-items: center;
-                gap: 6px;
-            `;
+        });
 
 
-            // Put it where the Login link was
-            const firstLogin =
-                loginLinks[0];
+        const nav =
+            document.querySelector("nav");
+
+        if (!nav) return;
 
 
-            if (firstLogin) {
+        /*
+           Find the navigation container.
+        */
 
-                firstLogin.parentNode.insertBefore(
-                    userDisplay,
-                    firstLogin
-                );
+        const navContainer =
+            nav.querySelector(
+                ".nav-links"
+            ) ||
+            nav.querySelector(
+                ".nav-menu"
+            ) ||
+            nav;
 
-            }
+
+        /*
+           Create logged-in user menu.
+        */
+
+        const userMenu =
+            document.createElement("div");
+
+        userMenu.className =
+            "firebase-user-menu";
+
+
+        userMenu.style.display =
+            "flex";
+
+        userMenu.style.alignItems =
+            "center";
+
+        userMenu.style.gap =
+            "20px";
+
+        userMenu.style.marginLeft =
+            "10px";
+
+
+        /*
+           User name
+        */
+
+        const userName =
+            document.createElement("span");
+
+        userName.style.fontWeight =
+            "bold";
+
+        userName.style.color =
+            "#176b4d";
+
+        userName.style.whiteSpace =
+            "nowrap";
+
+
+        const displayName =
+            userData?.fullName ||
+            user.displayName ||
+            user.email?.split("@")[0] ||
+            "User";
+
+
+        userName.innerHTML =
+            "👤 " +
+            displayName;
+
+
+        /*
+           Logout button
+        */
+
+        const logoutButton =
+            document.createElement("button");
+
+        logoutButton.textContent =
+            "Logout";
+
+
+        logoutButton.style.border =
+            "none";
+
+        logoutButton.style.borderRadius =
+            "25px";
+
+        logoutButton.style.padding =
+            "12px 25px";
+
+        logoutButton.style.background =
+            "#176b4d";
+
+        logoutButton.style.color =
+            "white";
+
+        logoutButton.style.fontSize =
+            "16px";
+
+        logoutButton.style.fontWeight =
+            "bold";
+
+        logoutButton.style.cursor =
+            "pointer";
+
+
+        logoutButton.onclick =
+            async function() {
+
+                try {
+
+                    await signOut(auth);
+
+                    window.location.href =
+                        "index.html";
+
+                }
+
+                catch(error) {
+
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
+
+                }
+
+            };
+
+
+        userMenu.appendChild(
+            userName
+        );
+
+        userMenu.appendChild(
+            logoutButton
+        );
+
+
+        navContainer.appendChild(
+            userMenu
+        );
+
+    }
+
+    else {
+
+        /* ---------------------------------------------
+           USER IS LOGGED OUT
+        --------------------------------------------- */
+
+        loginLinks.forEach(function(link) {
+
+            link.style.display =
+                "inline-flex";
+
+        });
+
+
+        existingUserMenus.forEach(function(menu) {
+
+            menu.remove();
+
+        });
+
+    }
+
+}
+
+
+/* =====================================================
+   FIREBASE AUTH STATE
+===================================================== */
+
+onAuthStateChanged(
+    auth,
+    async function(user) {
+
+        if (!user) {
+
+            updateNavbar(
+                null
+            );
+
+            return;
 
         }
 
 
-        // Create Logout button if page doesn't have it
-        if (!logoutButton) {
-
-            logoutButton =
-                document.createElement("button");
-
-            logoutButton.id =
-                "logoutButton";
-
-            logoutButton.textContent =
-                "Logout";
-
-            logoutButton.type =
-                "button";
-
-            logoutButton.style.cssText = `
-                background: #176b4d;
-                color: white;
-                border: none;
-                padding: 10px 20px;
-                border-radius: 25px;
-                font-size: 14px;
-                font-weight: 700;
-                cursor: pointer;
-                white-space: nowrap;
-            `;
+        console.log(
+            "Logged-in ReConnect user:",
+            user.email
+        );
 
 
-            // Put Logout after user name
-            if (userDisplay) {
-
-                userDisplay.parentNode.insertBefore(
-                    logoutButton,
-                    userDisplay.nextSibling
-                );
-
-            }
-
-        }
-
-
-        // ==================================
-        // GET USER NAME FROM FIRESTORE
-        // ==================================
-
-        let displayName =
-            user.email || "User";
+        let userData = null;
 
 
         try {
 
-            const userRef =
-                doc(db, "users", user.uid);
-
-            const userSnap =
-                await getDoc(userRef);
-
-
-            if (userSnap.exists()) {
-
-                const data =
-                    userSnap.data();
+            const userDoc =
+                await getDoc(
+                    doc(
+                        db,
+                        "users",
+                        user.uid
+                    )
+                );
 
 
-                displayName =
-                    data.fullName ||
-                    data.ngoName ||
-                    data.collegeName ||
-                    user.email ||
-                    "User";
+            if (userDoc.exists()) {
+
+                userData =
+                    userDoc.data();
 
             }
 
         }
 
-        catch (error) {
+        catch(error) {
 
-            console.log(
-                "Could not load profile name:",
+            console.error(
+                "Unable to load user profile:",
                 error
             );
 
         }
 
 
-        // Show user name
-        userDisplay.innerHTML =
-            "👤 " +
-            escapeHTML(displayName);
-
-
-        userDisplay.style.display =
-            "inline-flex";
-
-
-        // Show Logout
-        logoutButton.style.display =
-            "inline-block";
-
-
-        // Logout action
-        logoutButton.onclick =
-            logoutUser;
-
-    }
-
-
-    // ======================================
-    // LOGGED OUT
-    // ======================================
-
-    else {
-
-        // Show Login links
-        loginLinks.forEach(link => {
-
-            link.style.display =
-                "inline-block";
-
-        });
-
-
-        // Hide user
-        if (userDisplay) {
-
-            userDisplay.style.display =
-                "none";
-
-        }
-
-
-        // Hide logout
-        if (logoutButton) {
-
-            logoutButton.style.display =
-                "none";
-
-        }
-
-    }
-
-}
-
-
-// ==========================================
-// LOGOUT
-// ==========================================
-
-async function logoutUser() {
-
-    try {
-
-        await signOut(auth);
-
-        window.location.href =
-            "index.html";
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "Logout error:",
-            error
+        updateNavbar(
+            user,
+            userData
         );
-
-        alert(
-            "Unable to log out. Please try again."
-        );
-
-    }
-
-}
-
-
-// Make available to HTML
-window.logoutUser =
-    logoutUser;
-
-
-// ==========================================
-// ESCAPE HTML
-// ==========================================
-
-function escapeHTML(value) {
-
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-}
-
-
-// ==========================================
-// CHECK AUTH STATE
-// ==========================================
-
-onAuthStateChanged(
-    auth,
-    async (user) => {
-
-        await updateNavbar(user);
 
     }
 );
-
-
-// ==========================================
-// EXPORT
-// ==========================================
-
-export {
-    auth
-};
