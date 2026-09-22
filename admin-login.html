@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
@@ -134,18 +135,15 @@
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.2s;
         }
 
         button:hover {
             background: #117c47;
-            transform: translateY(-1px);
         }
 
         button:disabled {
             background: #9ab9aa;
             cursor: not-allowed;
-            transform: none;
         }
 
         .message {
@@ -197,7 +195,9 @@
 
 </head>
 
+
 <body>
+
 
 <nav>
 
@@ -211,11 +211,13 @@
 
     </div>
 
+
     <a href="index.html">
         ← Back to Website
     </a>
 
 </nav>
+
 
 
 <div class="container">
@@ -226,9 +228,11 @@
             🔐
         </div>
 
+
         <h1>
             Admin Login
         </h1>
+
 
         <p class="subtitle">
             Secure access to the ReConnect administration panel.
@@ -237,9 +241,11 @@
 
         <form id="adminLoginForm">
 
+
             <label for="email">
                 Admin Email
             </label>
+
 
             <input
                 type="email"
@@ -252,6 +258,7 @@
             <label for="password">
                 Password
             </label>
+
 
             <input
                 type="password"
@@ -268,6 +275,7 @@
                 Login as Admin
 
             </button>
+
 
         </form>
 
@@ -286,9 +294,11 @@
 
         </div>
 
+
     </div>
 
 </div>
+
 
 
 <footer>
@@ -298,327 +308,415 @@
 </footer>
 
 
+
 <script type="module">
 
-    import {
-        getAuth,
-        signInWithEmailAndPassword,
-        signOut
-    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+/* =========================
+   FIREBASE
+   ========================= */
 
 
-    import {
-        getFirestore,
-        doc,
-        getDoc
-    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+import {
+
+    getAuth,
+    signInWithEmailAndPassword,
+    signOut
+
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 
-    import {
-        app
-    } from "./firebase-config.js";
+import {
+
+    getFirestore,
+    collection,
+    query,
+    where,
+    getDocs
+
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-    const auth =
-        getAuth(app);
+import {
 
-    const db =
-        getFirestore(app);
+    app
 
-
-    const form =
-        document.getElementById(
-            "adminLoginForm"
-        );
-
-    const button =
-        document.getElementById(
-            "loginButton"
-        );
-
-    const message =
-        document.getElementById(
-            "message"
-        );
+} from "./firebase-config.js";
 
 
-    function showMessage(
-        text,
-        type
-    ) {
+const auth =
+    getAuth(app);
 
-        message.textContent =
-            text;
 
-        message.className =
-            "message " + type;
+const db =
+    getFirestore(app);
+
+
+
+/* =========================
+   ELEMENTS
+   ========================= */
+
+
+const form =
+    document.getElementById(
+        "adminLoginForm"
+    );
+
+
+const button =
+    document.getElementById(
+        "loginButton"
+    );
+
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+
+
+/* =========================
+   MESSAGE
+   ========================= */
+
+
+function showMessage(
+    text,
+    type
+) {
+
+    message.textContent =
+        text;
+
+    message.className =
+        "message " + type;
+
+    message.style.display =
+        "block";
+
+}
+
+
+
+/* =========================
+   ADMIN LOGIN
+   ========================= */
+
+
+form.addEventListener(
+    "submit",
+    async (event) => {
+
+        event.preventDefault();
+
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
+
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        button.disabled =
+            true;
+
+
+        button.textContent =
+            "Checking...";
+
 
         message.style.display =
-            "block";
-
-    }
+            "none";
 
 
-    form.addEventListener(
-        "submit",
-        async (event) => {
-
-            event.preventDefault();
+        try {
 
 
-            const email =
-                document
-                    .getElementById("email")
-                    .value
-                    .trim();
+            /* =========================
+               1. FIREBASE AUTH LOGIN
+               ========================= */
 
 
-            const password =
-                document
-                    .getElementById("password")
-                    .value;
+            const credential =
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
 
 
-            button.disabled =
-                true;
-
-            button.textContent =
-                "Checking...";
-
-            message.style.display =
-                "none";
+            const user =
+                credential.user;
 
 
-            try {
 
-                /* =========================
-                   STEP 1
-                   FIREBASE AUTHENTICATION
-                   ========================= */
-
-                const credential =
-                    await signInWithEmailAndPassword(
-                        auth,
-                        email,
-                        password
-                    );
+            /* =========================
+               2. FIND USER IN FIRESTORE
+               ========================= */
 
 
-                const user =
-                    credential.user;
+            const usersQuery =
+                query(
 
-
-                /* =========================
-                   STEP 2
-                   GET USER PROFILE
-                   ========================= */
-
-                const userRef =
-                    doc(
+                    collection(
                         db,
-                        "users",
+                        "users"
+                    ),
+
+                    where(
+                        "uid",
+                        "==",
                         user.uid
-                    );
+                    )
 
-
-                const userSnap =
-                    await getDoc(
-                        userRef
-                    );
-
-
-                if (
-                    !userSnap.exists()
-                ) {
-
-                    await signOut(auth);
-
-
-                    showMessage(
-                        "Admin profile was not found in Firestore. Please check the users document UID.",
-                        "error"
-                    );
-
-
-                    button.disabled =
-                        false;
-
-                    button.textContent =
-                        "Login as Admin";
-
-                    return;
-
-                }
-
-
-                /* =========================
-                   STEP 3
-                   READ USER DATA
-                   ========================= */
-
-                const userData =
-                    userSnap.data();
-
-
-                /* =========================
-                   STEP 4
-                   CHECK ADMIN ROLE
-                   ========================= */
-
-                if (
-                    userData.role !==
-                    "admin"
-                ) {
-
-                    await signOut(auth);
-
-
-                    showMessage(
-                        "This account is not authorized as an administrator.",
-                        "error"
-                    );
-
-
-                    button.disabled =
-                        false;
-
-                    button.textContent =
-                        "Login as Admin";
-
-                    return;
-
-                }
-
-
-                /* =========================
-                   STEP 5
-                   CHECK STATUS
-                   ========================= */
-
-                if (
-                    userData.status &&
-                    userData.status !==
-                    "active"
-                ) {
-
-                    await signOut(auth);
-
-
-                    showMessage(
-                        "This administrator account is not active.",
-                        "error"
-                    );
-
-
-                    button.disabled =
-                        false;
-
-                    button.textContent =
-                        "Login as Admin";
-
-                    return;
-
-                }
-
-
-                /* =========================
-                   ADMIN VERIFIED
-                   ========================= */
-
-                showMessage(
-                    "Admin verified. Opening dashboard...",
-                    "success"
                 );
 
 
-                setTimeout(
-                    () => {
-
-                        window.location.href =
-                            "admin-dashboard.html";
-
-                    },
-                    800
+            const usersSnapshot =
+                await getDocs(
+                    usersQuery
                 );
 
 
-            }
 
-            catch (error) {
-
-                console.error(
-                    "Admin login error:",
-                    error
-                );
+            /* =========================
+               3. ADMIN PROFILE CHECK
+               ========================= */
 
 
-                let errorMessage =
-                    "Unable to login. Please check your email and password.";
+            if (
+                usersSnapshot.empty
+            ) {
 
-
-                if (
-                    error.code ===
-                    "auth/invalid-credential"
-                ) {
-
-                    errorMessage =
-                        "Incorrect email or password.";
-
-                }
-
-
-                if (
-                    error.code ===
-                    "auth/user-not-found"
-                ) {
-
-                    errorMessage =
-                        "No account exists with this email.";
-
-                }
-
-
-                if (
-                    error.code ===
-                    "auth/wrong-password"
-                ) {
-
-                    errorMessage =
-                        "Incorrect password.";
-
-                }
-
-
-                if (
-                    error.code ===
-                    "auth/too-many-requests"
-                ) {
-
-                    errorMessage =
-                        "Too many login attempts. Please try again later.";
-
-                }
+                await signOut(auth);
 
 
                 showMessage(
-                    errorMessage,
+
+                    "Admin profile was not found in Firestore. Please check the uid field.",
+
                     "error"
+
                 );
 
 
                 button.disabled =
                     false;
 
+
                 button.textContent =
                     "Login as Admin";
 
+
+                return;
+
             }
 
+
+
+            /* =========================
+               4. GET USER DATA
+               ========================= */
+
+
+            const userData =
+                usersSnapshot
+                    .docs[0]
+                    .data();
+
+
+
+            /* =========================
+               5. CHECK ROLE
+               ========================= */
+
+
+            if (
+                userData.role !==
+                "admin"
+            ) {
+
+                await signOut(auth);
+
+
+                showMessage(
+
+                    "This account is not authorized as an administrator.",
+
+                    "error"
+
+                );
+
+
+                button.disabled =
+                    false;
+
+
+                button.textContent =
+                    "Login as Admin";
+
+
+                return;
+
+            }
+
+
+
+            /* =========================
+               6. CHECK STATUS
+               ========================= */
+
+
+            if (
+
+                userData.status &&
+                userData.status !==
+                "active"
+
+            ) {
+
+                await signOut(auth);
+
+
+                showMessage(
+
+                    "This administrator account is not active.",
+
+                    "error"
+
+                );
+
+
+                button.disabled =
+                    false;
+
+
+                button.textContent =
+                    "Login as Admin";
+
+
+                return;
+
+            }
+
+
+
+            /* =========================
+               7. SUCCESS
+               ========================= */
+
+
+            showMessage(
+
+                "Admin verified. Opening dashboard...",
+
+                "success"
+
+            );
+
+
+            setTimeout(
+                () => {
+
+                    window.location.href =
+                        "admin-dashboard.html";
+
+                },
+
+                800
+            );
+
+
         }
-    );
+
+
+        catch (error) {
+
+
+            console.error(
+                "Admin login error:",
+                error
+            );
+
+
+            let errorMessage =
+                "Unable to login. Please check your email and password.";
+
+
+            if (
+                error.code ===
+                "auth/invalid-credential"
+            ) {
+
+                errorMessage =
+                    "Incorrect email or password.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/user-not-found"
+            ) {
+
+                errorMessage =
+                    "No account exists with this email.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/wrong-password"
+            ) {
+
+                errorMessage =
+                    "Incorrect password.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/too-many-requests"
+            ) {
+
+                errorMessage =
+                    "Too many login attempts. Please try again later.";
+
+            }
+
+
+            showMessage(
+                errorMessage,
+                "error"
+            );
+
+
+            button.disabled =
+                false;
+
+
+            button.textContent =
+                "Login as Admin";
+
+        }
+
+    }
+
+);
 
 </script>
 
 
 </body>
+
 </html>
