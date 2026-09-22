@@ -37,7 +37,7 @@ body {
     grid-template-columns: 1fr 1fr;
 }
 
-/* LEFT */
+/* LEFT SIDE */
 
 .left {
     background: linear-gradient(145deg, #159957, #116b45);
@@ -74,7 +74,7 @@ body {
     font-size: 16px;
 }
 
-/* RIGHT */
+/* RIGHT SIDE */
 
 .right {
     padding: 45px;
@@ -226,11 +226,9 @@ button:hover {
 
 <body>
 
-
 <div class="container">
 
-
-<!-- LEFT SIDE -->
+<!-- LEFT -->
 
 <div class="left">
 
@@ -267,12 +265,9 @@ button:hover {
 </div>
 
 
-<!-- RIGHT SIDE -->
+<!-- RIGHT -->
 
 <div class="right">
-
-
-<!-- TABS -->
 
 <div class="tabs">
 
@@ -280,24 +275,20 @@ button:hover {
         class="tab active"
         id="loginTab"
         onclick="showLogin()">
-
         Login
-
     </div>
 
     <div
         class="tab"
         id="registerTab"
         onclick="showRegister()">
-
         Create Account
-
     </div>
 
 </div>
 
 
-<!-- LOGIN FORM -->
+<!-- LOGIN -->
 
 <div
     class="form active"
@@ -309,14 +300,12 @@ button:hover {
         Login to your ReConnect account.
     </p>
 
-
     <label>Email Address</label>
 
     <input
         type="email"
         id="loginEmail"
         placeholder="Enter your email">
-
 
     <label>Password</label>
 
@@ -325,11 +314,9 @@ button:hover {
         id="loginPassword"
         placeholder="Enter your password">
 
-
     <button onclick="loginUser()">
         Login
     </button>
-
 
     <div
         id="loginMessage"
@@ -339,7 +326,7 @@ button:hover {
 </div>
 
 
-<!-- REGISTER FORM -->
+<!-- REGISTER -->
 
 <div
     class="form"
@@ -350,7 +337,6 @@ button:hover {
     <p class="subtitle">
         Join ReConnect and start making an impact.
     </p>
-
 
     <label>Account Type</label>
 
@@ -376,8 +362,6 @@ button:hover {
 
     </select>
 
-
-    <!-- COMMON -->
 
     <label>Full Name</label>
 
@@ -432,7 +416,6 @@ button:hover {
             id="collegeName"
             placeholder="Enter college name">
 
-
         <label>NSS Unit / Club Name</label>
 
         <input
@@ -446,7 +429,6 @@ button:hover {
     <button onclick="registerUser()">
         Create Account
     </button>
-
 
     <div
         id="registerMessage"
@@ -477,11 +459,12 @@ button:hover {
 
 </div>
 
-
 </div>
 
 </div>
 
+
+<!-- FIREBASE -->
 
 <script type="module">
 
@@ -506,9 +489,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
-/* -----------------------------
-   SHOW LOGIN
------------------------------ */
+/* LOGIN TAB */
 
 window.showLogin = function() {
 
@@ -531,9 +512,7 @@ window.showLogin = function() {
 };
 
 
-/* -----------------------------
-   SHOW REGISTER
------------------------------ */
+/* REGISTER TAB */
 
 window.showRegister = function() {
 
@@ -556,9 +535,7 @@ window.showRegister = function() {
 };
 
 
-/* -----------------------------
-   SHOW ROLE FIELDS
------------------------------ */
+/* ROLE FIELDS */
 
 window.showRoleFields = function() {
 
@@ -594,9 +571,7 @@ window.showRoleFields = function() {
 };
 
 
-/* -----------------------------
-   MESSAGE FUNCTION
------------------------------ */
+/* MESSAGE */
 
 function showMessage(id, message, type) {
 
@@ -613,9 +588,7 @@ function showMessage(id, message, type) {
 }
 
 
-/* -----------------------------
-   REGISTER USER
------------------------------ */
+/* REGISTER */
 
 window.registerUser = async function() {
 
@@ -630,7 +603,6 @@ window.registerUser = async function() {
 
     const password =
         document.getElementById("registerPassword").value;
-
 
     const ngoName =
         document.getElementById("ngoName").value.trim();
@@ -743,8 +715,6 @@ window.registerUser = async function() {
         };
 
 
-        /* NGO */
-
         if (role === "ngo") {
 
             userData.ngoName = ngoName;
@@ -754,18 +724,16 @@ window.registerUser = async function() {
         }
 
 
-        /* COLLEGE */
-
         if (role === "college") {
 
             userData.collegeName = collegeName;
 
             userData.clubName = clubName;
 
+            userData.status = "active";
+
         }
 
-
-        /* DONOR */
 
         if (role === "donor") {
 
@@ -794,9 +762,7 @@ window.registerUser = async function() {
                 window.location.href =
                     "ngo-dashboard.html";
 
-            }
-
-            else {
+            } else {
 
                 window.location.href =
                     "index.html";
@@ -845,6 +811,16 @@ window.registerUser = async function() {
 
         }
 
+        else if (
+            error.code ===
+            "permission-denied"
+        ) {
+
+            message =
+                "Account created, but profile could not be saved. Firestore permissions need to be configured.";
+
+        }
+
 
         showMessage(
             "registerMessage",
@@ -857,9 +833,7 @@ window.registerUser = async function() {
 };
 
 
-/* -----------------------------
-   LOGIN USER
------------------------------ */
+/* LOGIN */
 
 window.loginUser = async function() {
 
@@ -892,16 +866,11 @@ window.loginUser = async function() {
         );
 
 
-        const userCredential =
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
-
-
-        const user =
-            userCredential.user;
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
 
 
         showMessage(
