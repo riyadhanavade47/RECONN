@@ -3,195 +3,196 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Admin Login | ReConnect</title>
+<title>Admin Login | ReConnect</title>
 
-    <style>
+<style>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
 
-        body {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #e8fff3, #eef7ff);
-            display: flex;
-            flex-direction: column;
-        }
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e8fff3, #eef7ff);
+    display: flex;
+    flex-direction: column;
+}
 
-        nav {
-            height: 70px;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 7%;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
-        }
+nav {
+    height: 70px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+}
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 24px;
-            font-weight: bold;
-            color: #159957;
-        }
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #159957;
+}
 
-        .logo-circle {
-            width: 42px;
-            height: 42px;
-            background: #159957;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
+.logo-circle {
+    width: 42px;
+    height: 42px;
+    background: #159957;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
 
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
-        }
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
 
-        .container {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-        }
+.container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
 
-        .login-card {
-            width: 100%;
-            max-width: 450px;
-            background: white;
-            padding: 40px;
-            border-radius: 22px;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.12);
-        }
+.login-card {
+    width: 100%;
+    max-width: 450px;
+    background: white;
+    padding: 40px;
+    border-radius: 22px;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.12);
+}
 
-        .admin-icon {
-            width: 75px;
-            height: 75px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            background: #e8fff3;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 35px;
-        }
+.admin-icon {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: #e8fff3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+}
 
-        h1 {
-            text-align: center;
-            color: #176b4d;
-            margin-bottom: 8px;
-        }
+h1 {
+    text-align: center;
+    color: #176b4d;
+    margin-bottom: 8px;
+}
 
-        .subtitle {
-            text-align: center;
-            color: #777;
-            margin-bottom: 30px;
-            line-height: 1.5;
-        }
+.subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #333;
-        }
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
 
-        input {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #d7e3dd;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            font-size: 15px;
-            outline: none;
-        }
+input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d7e3dd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    outline: none;
+}
 
-        input:focus {
-            border-color: #159957;
-            box-shadow: 0 0 0 3px rgba(21,153,87,0.1);
-        }
+input:focus {
+    border-color: #159957;
+    box-shadow: 0 0 0 3px rgba(21,153,87,0.1);
+}
 
-        button {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            background: #159957;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #159957;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        button:hover {
-            background: #117c47;
-        }
+button:hover {
+    background: #117c47;
+}
 
-        button:disabled {
-            background: #9ab9aa;
-            cursor: not-allowed;
-        }
+button:disabled {
+    background: #9ab9aa;
+    cursor: not-allowed;
+}
 
-        .message {
-            margin-top: 18px;
-            padding: 12px;
-            border-radius: 10px;
-            display: none;
-            text-align: center;
-            font-size: 14px;
-        }
+.message {
+    margin-top: 18px;
+    padding: 12px;
+    border-radius: 10px;
+    display: none;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.5;
+}
 
-        .error {
-            background: #fff0f0;
-            color: #c62828;
-        }
+.error {
+    background: #fff0f0;
+    color: #c62828;
+}
 
-        .success {
-            background: #edfff4;
-            color: #168044;
-        }
+.success {
+    background: #edfff4;
+    color: #168044;
+}
 
-        .back {
-            text-align: center;
-            margin-top: 22px;
-        }
+.back {
+    text-align: center;
+    margin-top: 22px;
+}
 
-        .back a {
-            color: #159957;
-            text-decoration: none;
-            font-weight: bold;
-        }
+.back a {
+    color: #159957;
+    text-decoration: none;
+    font-weight: bold;
+}
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #777;
-            font-size: 13px;
-        }
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+    font-size: 13px;
+}
 
-        @media (max-width: 500px) {
+@media (max-width: 500px) {
 
-            .login-card {
-                padding: 28px 22px;
-            }
+    .login-card {
+        padding: 28px 22px;
+    }
 
-        }
+}
 
-    </style>
+</style>
 
 </head>
 
@@ -211,7 +212,6 @@
 
     </div>
 
-
     <a href="index.html">
         ← Back to Website
     </a>
@@ -228,11 +228,9 @@
             🔐
         </div>
 
-
         <h1>
             Admin Login
         </h1>
-
 
         <p class="subtitle">
             Secure access to the ReConnect administration panel.
@@ -241,11 +239,9 @@
 
         <form id="adminLoginForm">
 
-
             <label for="email">
                 Admin Email
             </label>
-
 
             <input
                 type="email"
@@ -258,7 +254,6 @@
             <label for="password">
                 Password
             </label>
-
 
             <input
                 type="password"
@@ -275,7 +270,6 @@
                 Login as Admin
 
             </button>
-
 
         </form>
 
@@ -294,7 +288,6 @@
 
         </div>
 
-
     </div>
 
 </div>
@@ -303,7 +296,7 @@
 
 <footer>
 
-    © 2026 ReConnect | Admin Portal
+© 2026 ReConnect | Admin Portal
 
 </footer>
 
@@ -311,37 +304,63 @@
 
 <script type="module">
 
-
-/* =========================
+/* ==========================================
    FIREBASE
-   ========================= */
+   ========================================== */
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
 
 import {
-
     getAuth,
     signInWithEmailAndPassword,
     signOut
-
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 
 import {
-
     getFirestore,
     collection,
     query,
     where,
     getDocs
-
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-import {
+/* ==========================================
+   YOUR CORRECT RECONNECT FIREBASE PROJECT
+   ========================================== */
 
-    app
+const firebaseConfig = {
 
-} from "./firebase-config.js";
+    apiKey:
+        "AIzaSyBenWnZJHPp-4aBqNoGKfXZrZU9sMJwocA",
+
+    authDomain:
+        "reconn-dd697.firebaseapp.com",
+
+    projectId:
+        "reconn-dd697",
+
+    storageBucket:
+        "reconn-dd697.firebasestorage.app",
+
+    messagingSenderId:
+        "948055569162",
+
+    appId:
+        "1:948055569162:web:37dc21c34c4a70423180f3",
+
+    measurementId:
+        "G-H4VT58ZZP1"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
 
 
 const auth =
@@ -353,10 +372,9 @@ const db =
 
 
 
-/* =========================
+/* ==========================================
    ELEMENTS
-   ========================= */
-
+   ========================================== */
 
 const form =
     document.getElementById(
@@ -377,18 +395,13 @@ const message =
 
 
 
-/* =========================
+/* ==========================================
    MESSAGE
-   ========================= */
+   ========================================== */
 
+function showMessage(text, type) {
 
-function showMessage(
-    text,
-    type
-) {
-
-    message.textContent =
-        text;
+    message.textContent = text;
 
     message.className =
         "message " + type;
@@ -400,10 +413,9 @@ function showMessage(
 
 
 
-/* =========================
+/* ==========================================
    ADMIN LOGIN
-   ========================= */
-
+   ========================================== */
 
 form.addEventListener(
     "submit",
@@ -425,13 +437,10 @@ form.addEventListener(
                 .value;
 
 
-        button.disabled =
-            true;
-
+        button.disabled = true;
 
         button.textContent =
             "Checking...";
-
 
         message.style.display =
             "none";
@@ -439,11 +448,9 @@ form.addEventListener(
 
         try {
 
-
-            /* =========================
-               1. FIREBASE AUTH LOGIN
-               ========================= */
-
+            /* ==================================
+               STEP 1 — FIREBASE AUTHENTICATION
+               ================================== */
 
             const credential =
                 await signInWithEmailAndPassword(
@@ -457,11 +464,20 @@ form.addEventListener(
                 credential.user;
 
 
+            console.log(
+                "Firebase login successful."
+            );
 
-            /* =========================
-               2. FIND USER IN FIRESTORE
-               ========================= */
+            console.log(
+                "Admin UID:",
+                user.uid
+            );
 
+
+
+            /* ==================================
+               STEP 2 — FIND ADMIN IN USERS
+               ================================== */
 
             const usersQuery =
                 query(
@@ -487,10 +503,9 @@ form.addEventListener(
 
 
 
-            /* =========================
-               3. ADMIN PROFILE CHECK
-               ========================= */
-
+            /* ==================================
+               STEP 3 — CHECK PROFILE
+               ================================== */
 
             if (
                 usersSnapshot.empty
@@ -500,21 +515,16 @@ form.addEventListener(
 
 
                 showMessage(
-
-                    "Admin profile was not found in Firestore. Please check the uid field.",
-
+                    "Firebase login worked, but no matching admin profile was found in Firestore. Check the uid field in users.",
                     "error"
-
                 );
 
 
                 button.disabled =
                     false;
 
-
                 button.textContent =
                     "Login as Admin";
-
 
                 return;
 
@@ -522,10 +532,9 @@ form.addEventListener(
 
 
 
-            /* =========================
-               4. GET USER DATA
-               ========================= */
-
+            /* ==================================
+               STEP 4 — GET USER DATA
+               ================================== */
 
             const userData =
                 usersSnapshot
@@ -533,11 +542,16 @@ form.addEventListener(
                     .data();
 
 
+            console.log(
+                "Firestore admin profile:",
+                userData
+            );
 
-            /* =========================
-               5. CHECK ROLE
-               ========================= */
 
+
+            /* ==================================
+               STEP 5 — CHECK ROLE
+               ================================== */
 
             if (
                 userData.role !==
@@ -548,21 +562,16 @@ form.addEventListener(
 
 
                 showMessage(
-
-                    "This account is not authorized as an administrator.",
-
+                    "This Firebase account exists, but its Firestore role is not admin.",
                     "error"
-
                 );
 
 
                 button.disabled =
                     false;
 
-
                 button.textContent =
                     "Login as Admin";
-
 
                 return;
 
@@ -570,38 +579,30 @@ form.addEventListener(
 
 
 
-            /* =========================
-               6. CHECK STATUS
-               ========================= */
-
+            /* ==================================
+               STEP 6 — CHECK STATUS
+               ================================== */
 
             if (
-
                 userData.status &&
                 userData.status !==
                 "active"
-
             ) {
 
                 await signOut(auth);
 
 
                 showMessage(
-
                     "This administrator account is not active.",
-
                     "error"
-
                 );
 
 
                 button.disabled =
                     false;
 
-
                 button.textContent =
                     "Login as Admin";
-
 
                 return;
 
@@ -609,17 +610,13 @@ form.addEventListener(
 
 
 
-            /* =========================
-               7. SUCCESS
-               ========================= */
-
+            /* ==================================
+               STEP 7 — SUCCESS
+               ================================== */
 
             showMessage(
-
                 "Admin verified. Opening dashboard...",
-
                 "success"
-
             );
 
 
@@ -630,26 +627,39 @@ form.addEventListener(
                         "admin-dashboard.html";
 
                 },
-
                 800
             );
-
 
         }
 
 
         catch (error) {
 
-
             console.error(
-                "Admin login error:",
+                "FULL FIREBASE ERROR:",
                 error
             );
 
 
-            let errorMessage =
-                "Unable to login. Please check your email and password.";
+            console.error(
+                "ERROR CODE:",
+                error.code
+            );
 
+
+            console.error(
+                "ERROR MESSAGE:",
+                error.message
+            );
+
+
+            let errorMessage =
+                "Login failed.";
+
+
+            /* ================================
+               AUTH ERRORS
+               ================================ */
 
             if (
                 error.code ===
@@ -658,17 +668,6 @@ form.addEventListener(
 
                 errorMessage =
                     "Incorrect email or password.";
-
-            }
-
-
-            else if (
-                error.code ===
-                "auth/user-not-found"
-            ) {
-
-                errorMessage =
-                    "No account exists with this email.";
 
             }
 
@@ -686,11 +685,64 @@ form.addEventListener(
 
             else if (
                 error.code ===
+                "auth/user-not-found"
+            ) {
+
+                errorMessage =
+                    "This email does not have a Firebase Authentication account.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
+
+                errorMessage =
+                    "Please enter a valid email address.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/user-disabled"
+            ) {
+
+                errorMessage =
+                    "This Firebase account has been disabled.";
+
+            }
+
+
+            else if (
+                error.code ===
                 "auth/too-many-requests"
             ) {
 
                 errorMessage =
-                    "Too many login attempts. Please try again later.";
+                    "Too many login attempts. Please wait and try again.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/network-request-failed"
+            ) {
+
+                errorMessage =
+                    "Network error. Please check your internet connection.";
+
+            }
+
+
+            else {
+
+                errorMessage =
+                    "Firebase error: " +
+                    error.code;
 
             }
 
@@ -703,7 +755,6 @@ form.addEventListener(
 
             button.disabled =
                 false;
-
 
             button.textContent =
                 "Login as Admin";
