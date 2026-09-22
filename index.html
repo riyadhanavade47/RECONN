@@ -30,180 +30,87 @@
         }
 
 
-/* ==========================================
-   NAVBAR
-========================================== */
+        /* ==========================================
+           NAVBAR
+        ========================================== */
 
-nav {
-    min-height: 72px;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 4%;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid #edf2ef;
-    gap: 25px;
-}
+        nav {
+            min-height: 72px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 4%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #edf2ef;
+            gap: 25px;
+        }
 
-.logo {
-    text-decoration: none;
-    color: #176b4d;
-    font-size: 27px;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    flex-shrink: 0;
-}
+        .logo {
+            text-decoration: none;
+            color: #176b4d;
+            font-size: 27px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            flex-shrink: 0;
+        }
 
-.logo-mark {
-    width: 42px;
-    height: 42px;
-    background: #176b4d;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 19px;
-    font-weight: bold;
-}
+        .logo-mark {
+            width: 42px;
+            height: 42px;
+            background: #176b4d;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            font-weight: bold;
+        }
 
-.nav-links {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 18px;
-    flex-wrap: nowrap;
-}
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 18px;
+            flex-wrap: nowrap;
+        }
 
-.nav-links > a {
-    text-decoration: none;
-    color: #3d5c56;
-    font-size: 13px;
-    font-weight: 600;
-    white-space: nowrap;
-    transition: 0.3s;
-}
+        .nav-links > a {
+            text-decoration: none;
+            color: #3d5c56;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: 0.3s;
+        }
 
-.nav-links > a:hover {
-    color: #176b4d;
-}
+        .nav-links > a:hover {
+            color: #176b4d;
+        }
 
-.nav-links > a:first-child {
-    color: #176b4d;
-    padding: 26px 0 22px;
-    border-bottom: 3px solid #176b4d;
-}
+        .nav-links > a:first-child {
+            color: #176b4d;
+            padding: 26px 0 22px;
+            border-bottom: 3px solid #176b4d;
+        }
 
-.login-btn {
-    background: #176b4d;
-    color: white !important;
-    padding: 10px 19px !important;
-    border-radius: 25px !important;
-    border: 0 !important;
-}
+        .login-btn {
+            background: #176b4d;
+            color: white !important;
+            padding: 10px 19px !important;
+            border-radius: 25px !important;
+            border: 0 !important;
+        }
 
-.login-btn:hover {
-    background: #0e513b !important;
-    color: white !important;
-}
-
-
-/* ==========================================
-   NAVBAR RESPONSIVE
-========================================== */
-
-@media (max-width: 1200px) {
-
-    nav {
-        padding: 0 3%;
-    }
-
-    .nav-links {
-        gap: 14px;
-    }
-
-    .nav-links > a {
-        font-size: 12px;
-    }
-
-    .logo {
-        font-size: 25px;
-    }
-}
-
-
-@media (max-width: 1050px) {
-
-    nav {
-        padding: 0 2.5%;
-    }
-
-    .nav-links {
-        gap: 11px;
-    }
-
-    .nav-links > a {
-        font-size: 11.5px;
-    }
-
-    .login-btn {
-        padding: 9px 15px !important;
-    }
-}
-
-
-@media (max-width: 900px) {
-
-    nav {
-        padding: 12px 5%;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .nav-links {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 10px 18px;
-    }
-
-    .nav-links > a:first-child {
-        padding: 5px 0;
-        border-bottom: 2px solid #176b4d;
-    }
-
-    .login-btn {
-        padding: 9px 17px !important;
-    }
-}
-
-
-@media (max-width: 650px) {
-
-    nav {
-        min-height: 65px;
-        padding: 10px 5%;
-    }
-
-    .logo {
-        font-size: 24px;
-    }
-
-    .logo-mark {
-        width: 38px;
-        height: 38px;
-        font-size: 17px;
-    }
-
-    .nav-links {
-        display: none;
-    }
-}
+        .login-btn:hover {
+            background: #0e513b !important;
+            color: white !important;
+        }
 
 
         /* ==========================================
@@ -712,19 +619,67 @@ nav {
            RESPONSIVE
         ========================================== */
 
-        @media (max-width: 1100px) {
+        @media (max-width: 1200px) {
+
+            nav {
+                padding: 0 3%;
+            }
 
             .nav-links {
-                gap: 15px;
+                gap: 14px;
             }
 
             .nav-links > a {
-                font-size: 13px;
+                font-size: 12px;
+            }
+
+            .logo {
+                font-size: 25px;
+            }
+        }
+
+
+        @media (max-width: 1050px) {
+
+            nav {
+                padding: 0 2.5%;
+            }
+
+            .nav-links {
+                gap: 11px;
+            }
+
+            .nav-links > a {
+                font-size: 11.5px;
+            }
+
+            .login-btn {
+                padding: 9px 15px !important;
             }
         }
 
 
         @media (max-width: 950px) {
+
+            nav {
+                min-height: 72px;
+                padding: 12px 4%;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px 18px;
+            }
+
+            .nav-links > a:first-child {
+                padding: 5px 0;
+                border-bottom: 2px solid #176b4d;
+            }
+
 
             .hero {
                 grid-template-columns: 1fr;
@@ -763,7 +718,19 @@ nav {
         @media (max-width: 650px) {
 
             nav {
-                padding: 0 5%;
+                min-height: 65px;
+                padding: 10px 5%;
+                flex-direction: row;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .logo-mark {
+                width: 38px;
+                height: 38px;
+                font-size: 17px;
             }
 
             .nav-links {
@@ -1457,7 +1424,13 @@ nav {
 
 </footer>
 
+
+<!-- ==========================================
+     FIREBASE AUTH NAVBAR
+========================================== -->
+
 <script type="module" src="auth.js"></script>
+
 </body>
 
 </html>
