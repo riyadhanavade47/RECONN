@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Admin Login | ReConnect</title>
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -184,39 +186,61 @@
         }
 
         @media (max-width: 500px) {
+
             .login-card {
                 padding: 28px 22px;
             }
+
         }
+
     </style>
+
 </head>
 
 <body>
 
 <nav>
+
     <div class="logo">
-        <div class="logo-circle">R</div>
+
+        <div class="logo-circle">
+            R
+        </div>
+
         ReConnect
+
     </div>
 
-    <a href="index.html">← Back to Website</a>
+    <a href="index.html">
+        ← Back to Website
+    </a>
+
 </nav>
+
 
 <div class="container">
 
     <div class="login-card">
 
-        <div class="admin-icon">🔐</div>
+        <div class="admin-icon">
+            🔐
+        </div>
 
-        <h1>Admin Login</h1>
+        <h1>
+            Admin Login
+        </h1>
 
         <p class="subtitle">
             Secure access to the ReConnect administration panel.
         </p>
 
+
         <form id="adminLoginForm">
 
-            <label for="email">Admin Email</label>
+            <label for="email">
+                Admin Email
+            </label>
+
             <input
                 type="email"
                 id="email"
@@ -224,7 +248,11 @@
                 required
             >
 
-            <label for="password">Password</label>
+
+            <label for="password">
+                Password
+            </label>
+
             <input
                 type="password"
                 id="password"
@@ -232,24 +260,41 @@
                 required
             >
 
-            <button type="submit" id="loginButton">
+
+            <button
+                type="submit"
+                id="loginButton">
+
                 Login as Admin
+
             </button>
 
         </form>
 
-        <div id="message" class="message"></div>
+
+        <div
+            id="message"
+            class="message">
+        </div>
+
 
         <div class="back">
-            <a href="login.html">← Go to User Login</a>
+
+            <a href="login.html">
+                ← Go to User Login
+            </a>
+
         </div>
 
     </div>
 
 </div>
 
+
 <footer>
+
     © 2026 ReConnect | Admin Portal
+
 </footer>
 
 
@@ -257,8 +302,10 @@
 
     import {
         getAuth,
-        signInWithEmailAndPassword
+        signInWithEmailAndPassword,
+        signOut
     } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
 
     import {
         getFirestore,
@@ -266,144 +313,312 @@
         getDoc
     } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
-    import { app } from "./firebase-config.js";
+
+    import {
+        app
+    } from "./firebase-config.js";
 
 
-    const auth = getAuth(app);
-    const db = getFirestore(app);
+    const auth =
+        getAuth(app);
+
+    const db =
+        getFirestore(app);
 
 
-    const form = document.getElementById("adminLoginForm");
-    const button = document.getElementById("loginButton");
-    const message = document.getElementById("message");
+    const form =
+        document.getElementById(
+            "adminLoginForm"
+        );
+
+    const button =
+        document.getElementById(
+            "loginButton"
+        );
+
+    const message =
+        document.getElementById(
+            "message"
+        );
 
 
-    function showMessage(text, type) {
+    function showMessage(
+        text,
+        type
+    ) {
 
-        message.textContent = text;
+        message.textContent =
+            text;
 
-        message.className = "message " + type;
+        message.className =
+            "message " + type;
 
-        message.style.display = "block";
+        message.style.display =
+            "block";
+
     }
 
 
-    form.addEventListener("submit", async (event) => {
+    form.addEventListener(
+        "submit",
+        async (event) => {
 
-        event.preventDefault();
-
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
-
-
-        button.disabled = true;
-        button.textContent = "Checking...";
-
-        message.style.display = "none";
+            event.preventDefault();
 
 
-        try {
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim();
 
-            // Login using Firebase Authentication
-            const credential =
-                await signInWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
+
+
+            button.disabled =
+                true;
+
+            button.textContent =
+                "Checking...";
+
+            message.style.display =
+                "none";
+
+
+            try {
+
+                /* =========================
+                   STEP 1
+                   FIREBASE AUTHENTICATION
+                   ========================= */
+
+                const credential =
+                    await signInWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+
+
+                const user =
+                    credential.user;
+
+
+                /* =========================
+                   STEP 2
+                   GET USER PROFILE
+                   ========================= */
+
+                const userRef =
+                    doc(
+                        db,
+                        "users",
+                        user.uid
+                    );
+
+
+                const userSnap =
+                    await getDoc(
+                        userRef
+                    );
+
+
+                if (
+                    !userSnap.exists()
+                ) {
+
+                    await signOut(auth);
+
+
+                    showMessage(
+                        "Admin profile was not found in Firestore. Please check the users document UID.",
+                        "error"
+                    );
+
+
+                    button.disabled =
+                        false;
+
+                    button.textContent =
+                        "Login as Admin";
+
+                    return;
+
+                }
+
+
+                /* =========================
+                   STEP 3
+                   READ USER DATA
+                   ========================= */
+
+                const userData =
+                    userSnap.data();
+
+
+                /* =========================
+                   STEP 4
+                   CHECK ADMIN ROLE
+                   ========================= */
+
+                if (
+                    userData.role !==
+                    "admin"
+                ) {
+
+                    await signOut(auth);
+
+
+                    showMessage(
+                        "This account is not authorized as an administrator.",
+                        "error"
+                    );
+
+
+                    button.disabled =
+                        false;
+
+                    button.textContent =
+                        "Login as Admin";
+
+                    return;
+
+                }
+
+
+                /* =========================
+                   STEP 5
+                   CHECK STATUS
+                   ========================= */
+
+                if (
+                    userData.status &&
+                    userData.status !==
+                    "active"
+                ) {
+
+                    await signOut(auth);
+
+
+                    showMessage(
+                        "This administrator account is not active.",
+                        "error"
+                    );
+
+
+                    button.disabled =
+                        false;
+
+                    button.textContent =
+                        "Login as Admin";
+
+                    return;
+
+                }
+
+
+                /* =========================
+                   ADMIN VERIFIED
+                   ========================= */
+
+                showMessage(
+                    "Admin verified. Opening dashboard...",
+                    "success"
                 );
 
 
-            const user = credential.user;
+                setTimeout(
+                    () => {
+
+                        window.location.href =
+                            "admin-dashboard.html";
+
+                    },
+                    800
+                );
 
 
-            // Check whether this user exists
-            // inside the admins collection
-            const adminRef =
-                doc(db, "admins", user.uid);
+            }
 
-            const adminSnap =
-                await getDoc(adminRef);
+            catch (error) {
+
+                console.error(
+                    "Admin login error:",
+                    error
+                );
 
 
-            if (!adminSnap.exists()) {
+                let errorMessage =
+                    "Unable to login. Please check your email and password.";
 
-                await auth.signOut();
+
+                if (
+                    error.code ===
+                    "auth/invalid-credential"
+                ) {
+
+                    errorMessage =
+                        "Incorrect email or password.";
+
+                }
+
+
+                if (
+                    error.code ===
+                    "auth/user-not-found"
+                ) {
+
+                    errorMessage =
+                        "No account exists with this email.";
+
+                }
+
+
+                if (
+                    error.code ===
+                    "auth/wrong-password"
+                ) {
+
+                    errorMessage =
+                        "Incorrect password.";
+
+                }
+
+
+                if (
+                    error.code ===
+                    "auth/too-many-requests"
+                ) {
+
+                    errorMessage =
+                        "Too many login attempts. Please try again later.";
+
+                }
+
 
                 showMessage(
-                    "This account is not authorized as an administrator.",
+                    errorMessage,
                     "error"
                 );
 
-                button.disabled = false;
-                button.textContent = "Login as Admin";
 
-                return;
-            }
+                button.disabled =
+                    false;
 
-
-            // Admin verified
-            showMessage(
-                "Admin verified. Opening dashboard...",
-                "success"
-            );
-
-
-            setTimeout(() => {
-
-                window.location.href =
-                    "admin-dashboard.html";
-
-            }, 800);
-
-
-        } catch (error) {
-
-            console.error("Admin login error:", error);
-
-
-            let errorMessage =
-                "Unable to login. Please check your email and password.";
-
-
-            if (error.code === "auth/invalid-credential") {
-
-                errorMessage =
-                    "Incorrect email or password.";
+                button.textContent =
+                    "Login as Admin";
 
             }
-
-            if (error.code === "auth/user-not-found") {
-
-                errorMessage =
-                    "No account exists with this email.";
-
-            }
-
-            if (error.code === "auth/wrong-password") {
-
-                errorMessage =
-                    "Incorrect password.";
-
-            }
-
-            if (error.code === "auth/too-many-requests") {
-
-                errorMessage =
-                    "Too many login attempts. Please try again later.";
-
-            }
-
-
-            showMessage(errorMessage, "error");
-
-            button.disabled = false;
-            button.textContent = "Login as Admin";
 
         }
-
-    });
+    );
 
 </script>
+
 
 </body>
 </html>
