@@ -3,1114 +3,1407 @@
 
 <head>
 
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Admin Dashboard | ReConnect</title>
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            background: #f5faf7;
-            color: #17352a;
-        }
-
-        /* ================= NAVBAR ================= */
-
-        nav {
-            height: 72px;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 5%;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 22px;
-            font-weight: bold;
-            color: #159957;
-        }
-
-        .logo-circle {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: #159957;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 20px;
-        }
-
-        .admin-label {
-            background: #eaf7f0;
-            color: #159957;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: bold;
-        }
-
-        .back-btn {
-            text-decoration: none;
-            color: #35564a;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .back-btn:hover {
-            color: #159957;
-        }
-
-        /* ================= HERO ================= */
-
-        .hero {
-            padding: 55px 6%;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #e9fff3,
-                    #eef8ff,
-                    #fffbea
-                );
-        }
-
-        .hero-content {
-            max-width: 1150px;
-            margin: auto;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: white;
-            color: #159957;
-            padding: 8px 16px;
-            border-radius: 25px;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 18px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .hero h1 {
-            font-size: 40px;
-            margin-bottom: 12px;
-        }
-
-        .hero p {
-            color: #60766c;
-            max-width: 650px;
-            line-height: 1.7;
-        }
-
-        /* ================= CONTAINER ================= */
-
-        .container {
-            width: 90%;
-            max-width: 1150px;
-            margin: 40px auto 70px;
-        }
-
-        /* ================= STATS ================= */
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-            margin-bottom: 42px;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 24px;
-            border-radius: 18px;
-            box-shadow: 0 7px 25px rgba(0,0,0,0.06);
-            border: 1px solid #e4eee8;
-        }
-
-        .stat-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 13px;
-            background: #eaf8f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            margin-bottom: 15px;
-        }
-
-        .stat-card h3 {
-            font-size: 27px;
-            margin-bottom: 5px;
-        }
-
-        .stat-card p {
-            color: #718078;
-            font-size: 13px;
-        }
-
-        /* ================= SECTION ================= */
-
-        .section {
-            background: white;
-            padding: 30px;
-            border-radius: 22px;
-            margin-bottom: 28px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-            border: 1px solid #e4eee8;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 24px;
-        }
-
-        .section-header h2 {
-            font-size: 23px;
-        }
-
-        .section-header p {
-            color: #718078;
-            font-size: 13px;
-            margin-top: 5px;
-        }
-
-        /* ================= EMPTY ================= */
-
-        .empty-state {
-            background: #f7faf8;
-            border: 1px dashed #cbdcd2;
-            border-radius: 16px;
-            padding: 45px 25px;
-            text-align: center;
-        }
-
-        .empty-icon {
-            font-size: 45px;
-            margin-bottom: 12px;
-        }
-
-        .empty-state h3 {
-            margin-bottom: 8px;
-        }
-
-        .empty-state p {
-            color: #718078;
-            font-size: 14px;
-            line-height: 1.6;
-            max-width: 550px;
-            margin: auto;
-        }
-
-        /* ================= ADMIN MODULES ================= */
-
-        .module-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-        }
-
-        .module-card {
-            text-decoration: none;
-            color: inherit;
-            border: 1px solid #e2eee7;
-            border-radius: 17px;
-            padding: 23px;
-            background: #fbfdfc;
-            transition: 0.25s;
-        }
-
-        .module-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 22px rgba(0,0,0,0.07);
-            border-color: #b9dfca;
-        }
-
-        .module-icon {
-            width: 48px;
-            height: 48px;
-            background: #eaf8f0;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 23px;
-            margin-bottom: 15px;
-        }
-
-        .module-card h3 {
-            font-size: 17px;
-            margin-bottom: 7px;
-        }
-
-        .module-card p {
-            color: #718078;
-            font-size: 13px;
-            line-height: 1.6;
-        }
-
-        /* ================= TABLE ================= */
-
-        .table-wrapper {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            padding: 14px;
-            text-align: left;
-            border-bottom: 1px solid #edf2ee;
-            font-size: 13px;
-        }
-
-        th {
-            color: #52675e;
-            background: #f7faf8;
-        }
-
-        td {
-            color: #61736b;
-        }
-
-        .status {
-            display: inline-block;
-            padding: 6px 11px;
-            border-radius: 15px;
-            font-size: 11px;
-            font-weight: bold;
-        }
-
-        .pending {
-            background: #fff5d9;
-            color: #a66d00;
-        }
-
-        .approved {
-            background: #e8f8ef;
-            color: #159957;
-        }
-
-        /* ================= QUICK ACTIONS ================= */
-
-        .actions {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .action-btn {
-            display: inline-block;
-            text-decoration: none;
-            padding: 11px 18px;
-            border-radius: 22px;
-            font-size: 13px;
-            font-weight: bold;
-            background: #159957;
-            color: white;
-        }
-
-        .action-btn.secondary {
-            background: #eaf7f0;
-            color: #159957;
-        }
-
-        .action-btn:hover {
-            opacity: 0.9;
-        }
-
-        /* ================= FOOTER ================= */
-
-        footer {
-            background: #17352a;
-            color: white;
-            text-align: center;
-            padding: 25px;
-            font-size: 13px;
-        }
-
-        footer span {
-            color: #69d69c;
-        }
-
-        /* ================= RESPONSIVE ================= */
-
-        @media (max-width: 900px) {
-
-            .stats {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .module-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-        }
-
-        @media (max-width: 600px) {
-
-            nav {
-                height: auto;
-                padding: 15px 5%;
-                flex-wrap: wrap;
-                gap: 12px;
-            }
-
-            .hero h1 {
-                font-size: 32px;
-            }
-
-            .stats {
-                grid-template-columns: 1fr;
-            }
-
-            .module-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section {
-                padding: 22px;
-            }
-
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard | ReConnect</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f5faf7;
+    color: #17352a;
+}
+
+/* NAVBAR */
+
+nav {
+    background: white;
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #159957;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.admin-badge {
+    background: #e8f7ee;
+    color: #159957;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.logout-btn {
+    border: none;
+    background: #159957;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.logout-btn:hover {
+    background: #117a46;
+}
+
+/* HERO */
+
+.hero {
+    background: linear-gradient(135deg, #dff8ea, #eaf7ff);
+    padding: 50px 7%;
+}
+
+.hero h1 {
+    color: #116b45;
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: #60756a;
+}
+
+/* CONTAINER */
+
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* STATS */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 35px;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+}
+
+.stat-card h3 {
+    color: #66766e;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.stat-card p {
+    color: #159957;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/* SECTION */
+
+.section {
+    background: white;
+    padding: 28px;
+    border-radius: 18px;
+    margin-bottom: 28px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.07);
+}
+
+.section h2 {
+    color: #176b4d;
+    margin-bottom: 8px;
+}
+
+.section-subtitle {
+    color: #718078;
+    margin-bottom: 25px;
+}
+
+/* VERIFICATION CARDS */
+
+.organization-card {
+    border: 1px solid #dbeae1;
+    background: #fbfefc;
+    border-radius: 15px;
+    padding: 22px;
+    margin-bottom: 18px;
+}
+
+.organization-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.organization-header h3 {
+    color: #176b4d;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.type {
+    color: #6a786f;
+    font-size: 14px;
+}
+
+.pending {
+    background: #fff2c9;
+    color: #8b6800;
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.approved {
+    background: #e2f7e9;
+    color: #157342;
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.rejected {
+    background: #ffe5e5;
+    color: #a52c2c;
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* DETAILS */
+
+.details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 25px;
+    margin-bottom: 20px;
+}
+
+.detail {
+    line-height: 1.5;
+}
+
+.detail strong {
+    color: #285943;
+}
+
+.detail span {
+    color: #64736b;
+}
+
+/* ACTIONS */
+
+.actions {
+    display: flex;
+    gap: 12px;
+    border-top: 1px solid #e4eee8;
+    padding-top: 18px;
+}
+
+.approve-btn,
+.reject-btn {
+    border: none;
+    padding: 11px 22px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.approve-btn {
+    background: #159957;
+    color: white;
+}
+
+.approve-btn:hover {
+    background: #117a46;
+}
+
+.reject-btn {
+    background: #ffe7e7;
+    color: #a52b2b;
+}
+
+.reject-btn:hover {
+    background: #ffd4d4;
+}
+
+/* EMPTY */
+
+.empty {
+    text-align: center;
+    padding: 40px 20px;
+    background: #f7faf8;
+    border-radius: 12px;
+    color: #6b786f;
+    line-height: 1.6;
+}
+
+/* MESSAGE */
+
+.message {
+    display: none;
+    padding: 13px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.message.success {
+    display: block;
+    background: #e4f8eb;
+    color: #176b4d;
+}
+
+.message.error {
+    display: block;
+    background: #ffe7e7;
+    color: #a52b2b;
+}
+
+/* LOADING */
+
+.loading {
+    text-align: center;
+    padding: 30px;
+    color: #65756c;
+}
+
+/* FOOTER */
+
+footer {
+    background: #123d2b;
+    color: white;
+    text-align: center;
+    padding: 30px;
+    margin-top: 50px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 850px) {
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .details {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media(max-width: 600px) {
+
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .organization-header {
+        flex-direction: column;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+}
+
+</style>
 
 </head>
-
 
 <body>
 
 
-<!-- ================= NAVBAR ================= -->
+<!-- NAVBAR -->
 
 <nav>
 
     <div class="logo">
-
-        <div class="logo-circle">
-            R
-        </div>
-
-        ReConnect
-
+        🌱 ReConnect
     </div>
 
+    <div class="nav-right">
 
-    <div style="display:flex;align-items:center;gap:22px;">
-
-        <span class="admin-label">
-            🛡️ Administrator
+        <span class="admin-badge">
+            Administrator
         </span>
 
-        <a
-            href="index.html"
-            class="back-btn">
+        <button
+            class="logout-btn"
+            onclick="logoutAdmin()">
 
-            ← Back to Website
+            Logout
 
-        </a>
+        </button>
 
     </div>
 
 </nav>
 
 
-<!-- ================= HERO ================= -->
+<!-- HERO -->
 
 <section class="hero">
 
-    <div class="hero-content">
+    <h1>Admin Dashboard</h1>
 
-        <div class="hero-badge">
-            🛡️ ReConnect Administration
-        </div>
-
-        <h1>
-            Admin Dashboard
-        </h1>
-
-        <p>
-            Manage NGO verification, users, donation activities,
-            requirements and platform transparency from one place.
-        </p>
-
-    </div>
+    <p>
+        Review organizations and manage ReConnect verification.
+    </p>
 
 </section>
 
 
-<!-- ================= MAIN ================= -->
-
 <div class="container">
 
 
-    <!-- ================= STATS ================= -->
+<!-- MESSAGE -->
 
-    <div class="stats">
-
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                👥
-            </div>
-
-            <h3>
-                —
-            </h3>
-
-            <p>
-                Total Users
-            </p>
-
-        </div>
+<div
+    id="message"
+    class="message">
+</div>
 
 
-        <div class="stat-card">
+<!-- STATS -->
 
-            <div class="stat-icon">
-                🏢
-            </div>
+<div class="stats">
 
-            <h3>
-                —
-            </h3>
+    <div class="stat-card">
 
-            <p>
-                Registered NGOs
-            </p>
+        <h3>Pending Verification</h3>
 
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                ⏳
-            </div>
-
-            <h3>
-                —
-            </h3>
-
-            <p>
-                Pending Approvals
-            </p>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                💚
-            </div>
-
-            <h3>
-                —
-            </h3>
-
-            <p>
-                Donations
-            </p>
-
-        </div>
+        <p id="pendingCount">0</p>
 
     </div>
 
 
-    <!-- ================= QUICK ACTIONS ================= -->
+    <div class="stat-card">
 
-    <div class="section">
+        <h3>Approved NGOs</h3>
 
-        <div class="section-header">
-
-            <div>
-
-                <h2>
-                    Quick Actions
-                </h2>
-
-                <p>
-                    Common administration tasks.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="actions">
-
-            <a
-                href="#ngoVerification"
-                class="action-btn">
-
-                🏢 Review NGOs
-
-            </a>
-
-
-            <a
-                href="#users"
-                class="action-btn secondary">
-
-                👥 View Users
-
-            </a>
-
-
-            <a
-                href="#donations"
-                class="action-btn secondary">
-
-                💚 View Donations
-
-            </a>
-
-
-            <a
-                href="#requirements"
-                class="action-btn secondary">
-
-                📦 View Requirements
-
-            </a>
-
-        </div>
+        <p id="approvedNGOCount">0</p>
 
     </div>
 
 
-    <!-- ================= MODULES ================= -->
+    <div class="stat-card">
 
-    <div class="section">
+        <h3>Approved Colleges</h3>
 
-        <div class="section-header">
-
-            <div>
-
-                <h2>
-                    Administration Modules
-                </h2>
-
-                <p>
-                    These sections will become fully connected
-                    to Firebase later.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="module-grid">
-
-
-            <a
-                href="#users"
-                class="module-card">
-
-                <div class="module-icon">
-                    👥
-                </div>
-
-                <h3>
-                    User Management
-                </h3>
-
-                <p>
-                    View and manage donors, volunteers,
-                    NGOs and college/NSS users.
-                </p>
-
-            </a>
-
-
-            <a
-                href="#ngoVerification"
-                class="module-card">
-
-                <div class="module-icon">
-                    🏢
-                </div>
-
-                <h3>
-                    NGO Verification
-                </h3>
-
-                <p>
-                    Review NGO registration details and
-                    approve verified organizations.
-                </p>
-
-            </a>
-
-
-            <a
-                href="#requirements"
-                class="module-card">
-
-                <div class="module-icon">
-                    📦
-                </div>
-
-                <h3>
-                    NGO Requirements
-                </h3>
-
-                <p>
-                    Monitor active donation requirements
-                    published by verified NGOs.
-                </p>
-
-            </a>
-
-
-            <a
-                href="#donations"
-                class="module-card">
-
-                <div class="module-icon">
-                    💚
-                </div>
-
-                <h3>
-                    Donation Management
-                </h3>
-
-                <p>
-                    View donation records and manage
-                    donation tracking information.
-                </p>
-
-            </a>
-
-
-            <a
-                href="#reports"
-                class="module-card">
-
-                <div class="module-icon">
-                    📊
-                </div>
-
-                <h3>
-                    Reports & Impact
-                </h3>
-
-                <p>
-                    Monitor platform activity and
-                    transparency information.
-                </p>
-
-            </a>
-
-
-            <a
-                href="#settings"
-                class="module-card">
-
-                <div class="module-icon">
-                    ⚙️
-                </div>
-
-                <h3>
-                    Platform Settings
-                </h3>
-
-                <p>
-                    Manage administrative settings and
-                    platform controls.
-                </p>
-
-            </a>
-
-
-        </div>
+        <p id="approvedCollegeCount">0</p>
 
     </div>
 
 
-    <!-- ================= NGO VERIFICATION ================= -->
+    <div class="stat-card">
 
-    <div
-        class="section"
-        id="ngoVerification">
+        <h3>Total Organizations</h3>
 
-        <div class="section-header">
+        <p id="totalCount">0</p>
 
-            <div>
+    </div>
 
-                <h2>
-                    🏢 NGO Verification
-                </h2>
-
-                <p>
-                    Review organizations before they appear
-                    publicly on ReConnect.
-                </p>
-
-            </div>
-
-        </div>
+</div>
 
 
-        <div class="empty-state">
+<!-- PENDING -->
 
-            <div class="empty-icon">
-                🏢
-            </div>
+<div class="section">
 
-            <h3>
-                No Pending NGO Registrations
-            </h3>
+    <h2>Pending Verification</h2>
 
-            <p>
-                NGO registrations will appear here after
-                organizations register on ReConnect.
-                Admin approval will be connected through
-                Firebase later.
-            </p>
+    <p class="section-subtitle">
 
+        Review NGO and College/NSS registrations
+        before approving them.
+
+    </p>
+
+
+    <div id="pendingContainer">
+
+        <div class="loading">
+            Loading registrations...
         </div>
 
     </div>
 
-
-    <!-- ================= USERS ================= -->
-
-    <div
-        class="section"
-        id="users">
-
-        <div class="section-header">
-
-            <div>
-
-                <h2>
-                    👥 Users
-                </h2>
-
-                <p>
-                    Registered ReConnect users.
-                </p>
-
-            </div>
-
-        </div>
+</div>
 
 
-        <div class="table-wrapper">
+<!-- APPROVED -->
 
-            <table>
+<div class="section">
 
-                <thead>
+    <h2>Approved Organizations</h2>
 
-                    <tr>
+    <p class="section-subtitle">
 
-                        <th>
-                            Name
-                        </th>
+        Organizations that have already been verified
+        by the ReConnect administrator.
 
-                        <th>
-                            Email
-                        </th>
-
-                        <th>
-                            Role
-                        </th>
-
-                        <th>
-                            Status
-                        </th>
-
-                    </tr>
-
-                </thead>
+    </p>
 
 
-                <tbody>
+    <div id="approvedContainer">
 
-                    <tr>
-
-                        <td colspan="4"
-                            style="text-align:center;padding:35px;color:#82918b;">
-
-                            No user data available yet.
-
-                        </td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
+        <div class="loading">
+            Loading approved organizations...
         </div>
 
     </div>
 
-
-    <!-- ================= REQUIREMENTS ================= -->
-
-    <div
-        class="section"
-        id="requirements">
-
-        <div class="section-header">
-
-            <div>
-
-                <h2>
-                    📦 NGO Requirements
-                </h2>
-
-                <p>
-                    Requirements published by approved NGOs.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="empty-state">
-
-            <div class="empty-icon">
-                📦
-            </div>
-
-            <h3>
-                No Requirements Available
-            </h3>
-
-            <p>
-                Once verified NGOs publish donation requirements,
-                they will appear here for administrative monitoring.
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <!-- ================= DONATIONS ================= -->
-
-    <div
-        class="section"
-        id="donations">
-
-        <div class="section-header">
-
-            <div>
-
-                <h2>
-                    💚 Donations
-                </h2>
-
-                <p>
-                    Monitor donation records and tracking status.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="empty-state">
-
-            <div class="empty-icon">
-                💚
-            </div>
-
-            <h3>
-                No Donations Available
-            </h3>
-
-            <p>
-                Donation records will appear here after users
-                make donations through ReConnect.
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <!-- ================= REPORTS ================= -->
-
-    <div
-        class="section"
-        id="reports">
-
-        <div class="section-header">
-
-            <div>
-
-                <h2>
-                    📊 Reports & Impact
-                </h2>
-
-                <p>
-                    Platform activity and impact overview.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="module-grid">
-
-
-            <div class="module-card">
-
-                <div class="module-icon">
-                    💰
-                </div>
-
-                <h3>
-                    Donation Impact
-                </h3>
-
-                <p>
-                    Track total money and item donations
-                    after Firebase integration.
-                </p>
-
-            </div>
-
-
-            <div class="module-card">
-
-                <div class="module-icon">
-                    🤝
-                </div>
-
-                <h3>
-                    Volunteer Activity
-                </h3>
-
-                <p>
-                    Monitor volunteer participation and
-                    activities.
-                </p>
-
-            </div>
-
-
-            <div class="module-card">
-
-                <div class="module-icon">
-                    ♻️
-                </div>
-
-                <h3>
-                    Reuse & Recycling
-                </h3>
-
-                <p>
-                    Monitor item reuse and recycling
-                    activities.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-
-    <!-- ================= SETTINGS ================= -->
-
-    <div
-        class="section"
-        id="settings">
-
-        <div class="section-header">
-
-            <div>
-
-                <h2>
-                    ⚙️ Platform Settings
-                </h2>
-
-                <p>
-                    Administrative controls will be connected
-                    during the Firebase stage.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="empty-state">
-
-            <div class="empty-icon">
-                ⚙️
-            </div>
-
-            <h3>
-                Settings Ready
-            </h3>
-
-            <p>
-                Authentication, administrator permissions,
-                verification controls and database settings
-                will be connected later.
-            </p>
-
-        </div>
-
-    </div>
+</div>
 
 
 </div>
 
 
-<!-- ================= FOOTER ================= -->
-
 <footer>
 
     <p>
-        © 2026 <span>ReConnect</span> —
-        Transparent Donations • Volunteer Engagement • Item Reuse
+        © 2026 ReConnect | Administration
     </p>
 
 </footer>
 
+
+<script type="module">
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    doc,
+    getDoc,
+    updateDoc
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+import { app } from "./firebase-config.js";
+
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+
+/* =========================
+   AUTHENTICATION
+========================= */
+
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+
+        window.location.href =
+            "admin-login.html";
+
+        return;
+
+    }
+
+
+    try {
+
+        const adminRef =
+            doc(
+                db,
+                "admins",
+                user.uid
+            );
+
+        const adminSnap =
+            await getDoc(adminRef);
+
+
+        if (!adminSnap.exists()) {
+
+            alert(
+                "You are not authorized to access the Admin Dashboard."
+            );
+
+            await signOut(auth);
+
+            window.location.href =
+                "admin-login.html";
+
+            return;
+
+        }
+
+
+        await loadOrganizations();
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        alert(
+            "Unable to verify administrator access."
+        );
+
+    }
+
+});
+
+
+/* =========================
+   LOAD ORGANIZATIONS
+========================= */
+
+async function loadOrganizations() {
+
+    const pendingContainer =
+        document.getElementById(
+            "pendingContainer"
+        );
+
+    const approvedContainer =
+        document.getElementById(
+            "approvedContainer"
+        );
+
+
+    pendingContainer.innerHTML =
+        `<div class="loading">
+            Loading registrations...
+        </div>`;
+
+
+    approvedContainer.innerHTML =
+        `<div class="loading">
+            Loading organizations...
+        </div>`;
+
+
+    try {
+
+        const snapshot =
+            await getDocs(
+                collection(db, "users")
+            );
+
+
+        let pending = [];
+
+        let approved = [];
+
+        let approvedNGOs = 0;
+
+        let approvedColleges = 0;
+
+
+        snapshot.forEach((docSnap) => {
+
+            const data =
+                docSnap.data();
+
+
+            if (
+                data.role !== "ngo" &&
+                data.role !== "college"
+            ) {
+
+                return;
+
+            }
+
+
+            const organization = {
+
+                id:
+                    docSnap.id,
+
+                ...data
+
+            };
+
+
+            if (
+                data.status ===
+                "pending"
+            ) {
+
+                pending.push(
+                    organization
+                );
+
+            }
+
+
+            if (
+                data.status ===
+                "approved"
+            ) {
+
+                approved.push(
+                    organization
+                );
+
+
+                if (
+                    data.role ===
+                    "ngo"
+                ) {
+
+                    approvedNGOs++;
+
+                }
+
+
+                if (
+                    data.role ===
+                    "college"
+                ) {
+
+                    approvedColleges++;
+
+                }
+
+            }
+
+        });
+
+
+        document.getElementById(
+            "pendingCount"
+        ).textContent =
+            pending.length;
+
+
+        document.getElementById(
+            "approvedNGOCount"
+        ).textContent =
+            approvedNGOs;
+
+
+        document.getElementById(
+            "approvedCollegeCount"
+        ).textContent =
+            approvedColleges;
+
+
+        document.getElementById(
+            "totalCount"
+        ).textContent =
+            pending.length +
+            approved.length;
+
+
+        displayPending(
+            pending
+        );
+
+
+        displayApproved(
+            approved
+        );
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        pendingContainer.innerHTML =
+            `<div class="empty">
+                Unable to load registrations.
+                Please check your Firestore permissions.
+            </div>`;
+
+        approvedContainer.innerHTML =
+            `<div class="empty">
+                Unable to load organizations.
+            </div>`;
+
+    }
+
+}
+
+
+/* =========================
+   DISPLAY PENDING
+========================= */
+
+function displayPending(
+    organizations
+) {
+
+    const container =
+        document.getElementById(
+            "pendingContainer"
+        );
+
+
+    if (
+        organizations.length === 0
+    ) {
+
+        container.innerHTML = `
+            <div class="empty">
+
+                ✓ No organizations are
+                waiting for verification.
+
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    organizations.forEach(
+        (organization) => {
+
+            container.innerHTML +=
+                createOrganizationCard(
+                    organization,
+                    true
+                );
+
+        }
+    );
+
+}
+
+
+/* =========================
+   DISPLAY APPROVED
+========================= */
+
+function displayApproved(
+    organizations
+) {
+
+    const container =
+        document.getElementById(
+            "approvedContainer"
+        );
+
+
+    if (
+        organizations.length === 0
+    ) {
+
+        container.innerHTML = `
+            <div class="empty">
+
+                No organizations have been
+                approved yet.
+
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    organizations.forEach(
+        (organization) => {
+
+            container.innerHTML +=
+                createOrganizationCard(
+                    organization,
+                    false
+                );
+
+        }
+    );
+
+}
+
+
+/* =========================
+   CREATE CARD
+========================= */
+
+function createOrganizationCard(
+    organization,
+    showActions
+) {
+
+    const isNGO =
+        organization.role === "ngo";
+
+
+    const name =
+        isNGO
+            ? organization.ngoName
+            : organization.collegeName;
+
+
+    const type =
+        isNGO
+            ? "NGO"
+            : "College / NSS";
+
+
+    let details = "";
+
+
+    if (isNGO) {
+
+        details = `
+
+            <div class="detail">
+                <strong>Contact Person:</strong>
+                <span>
+                    ${safe(
+                        organization.fullName
+                    )}
+                </span>
+            </div>
+
+            <div class="detail">
+                <strong>Email:</strong>
+                <span>
+                    ${safe(
+                        organization.email
+                    )}
+                </span>
+            </div>
+
+            <div class="detail">
+                <strong>Registration Number:</strong>
+                <span>
+                    ${safe(
+                        organization.registrationNumber
+                    )}
+                </span>
+            </div>
+
+            <div class="detail">
+                <strong>Registration Authority:</strong>
+                <span>
+                    ${safe(
+                        organization.registrationAuthority
+                    )}
+                </span>
+            </div>
+
+            <div class="detail">
+                <strong>PAN:</strong>
+                <span>
+                    ${safe(
+                        organization.pan
+                    )}
+                </span>
+            </div>
+
+            <div class="detail">
+                <strong>Contact Number:</strong>
+                <span>
+                    ${safe(
+                        organization.phone
+                    )}
+                </span>
+            </div>
+
+            <div class="detail">
+                <strong>Area of Work:</strong>
+                <span>
+                    ${safe(
+                        organization.areaOfWork
+                    )}
+                </span>
+            </div>
+
+            <div class="detail">
+                <strong>Working Since:</strong>
+                <span>
+                    ${safe(
+                        organization.workingSince
+                    )}
+                </span>
+            </div>
+
+            <div class="detail">
+                <strong>Address:</strong>
+                <span>
+                    ${safe(
+                        organization.address
+                    )}
+                </span>
+            </div>
+
+            <div class="detail">
+                <strong>Website:</strong>
+                <span>
+                    ${safe(
+                        organization.website ||
+                        "Not provided"
+                    )}
+                </span>
+            </div>
+
+        `;
+
+    }
+
+    else {
+
+        details = `
+
+            <div class="detail">
+                <strong>Contact Person:</strong>
+                <span>
+                    ${safe(
+                        organization.fullName
+                    )}
+                </span>
+            </div>
+
+            <div class="detail">
+                <strong>Login Email:</strong>
+                <span>
+                    ${safe(
+                        organization.email
+                    )}
+                </span>
+            </div>
+
+            <div class="detail">
+                <strong>University:</strong>
+                <span>
+                    ${safe(
+                        organization.universityName
+                    )}
+                </span>
+            </div>
+
+            <div class="detail">
+                <strong>Official College Email:</strong>
+                <span>
+                    ${safe(
+                        organization.collegeOfficialEmail
+                    )}
+                </span>
+            </div>
+
+            <div class="detail">
+                <strong>College Website:</strong>
+                <span>
+                    ${safe(
+                        organization.collegeWebsite ||
+                        "Not provided"
+                    )}
+                </span>
+            </div>
+
+            <div class="detail">
+                <strong>NSS / Club:</strong>
+                <span>
+                    ${safe(
+                        organization.clubName
+                    )}
+                </span>
+            </div>
+
+            <div class="detail">
+                <strong>Coordinator:</strong>
+                <span>
+                    ${safe(
+                        organization.coordinatorName
+                    )}
+                </span>
+            </div>
+
+            <div class="detail">
+                <strong>Coordinator Email:</strong>
+                <span>
+                    ${safe(
+                        organization.coordinatorEmail
+                    )}
+                </span>
+            </div>
+
+            <div class="detail">
+                <strong>Contact Number:</strong>
+                <span>
+                    ${safe(
+                        organization.collegePhone
+                    )}
+                </span>
+            </div>
+
+            <div class="detail">
+                <strong>Address:</strong>
+                <span>
+                    ${safe(
+                        organization.collegeAddress
+                    )}
+                </span>
+            </div>
+
+        `;
+
+    }
+
+
+    let actions = "";
+
+
+    if (showActions) {
+
+        actions = `
+
+            <div class="actions">
+
+                <button
+                    class="approve-btn"
+                    onclick="approveOrganization('${organization.id}')">
+
+                    ✓ Approve
+
+                </button>
+
+
+                <button
+                    class="reject-btn"
+                    onclick="rejectOrganization('${organization.id}')">
+
+                    ✕ Reject
+
+                </button>
+
+            </div>
+
+        `;
+
+    }
+
+
+    const statusClass =
+        organization.status === "approved"
+            ? "approved"
+            : organization.status === "rejected"
+                ? "rejected"
+                : "pending";
+
+
+    const statusText =
+        organization.status === "approved"
+            ? "Approved"
+            : organization.status === "rejected"
+                ? "Rejected"
+                : "Pending";
+
+
+    return `
+
+        <div
+            class="organization-card"
+            id="organization-${organization.id}">
+
+            <div class="organization-header">
+
+                <div>
+
+                    <h3>
+                        ${safe(
+                            name ||
+                            "Unnamed Organization"
+                        )}
+                    </h3>
+
+                    <div class="type">
+                        ${type}
+                    </div>
+
+                </div>
+
+
+                <span class="${statusClass}">
+                    ${statusText}
+                </span>
+
+            </div>
+
+
+            <div class="details">
+
+                ${details}
+
+            </div>
+
+
+            ${actions}
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
+   APPROVE
+========================= */
+
+window.approveOrganization =
+async function(id) {
+
+    const confirmApproval =
+        confirm(
+            "Are you sure you want to approve this organization?"
+        );
+
+
+    if (!confirmApproval) {
+
+        return;
+
+    }
+
+
+    try {
+
+        await updateDoc(
+            doc(
+                db,
+                "users",
+                id
+            ),
+            {
+
+                status:
+                    "approved",
+
+                verificationStatus:
+                    "approved",
+
+                verifiedAt:
+                    new Date(),
+
+                verifiedBy:
+                    auth.currentUser.uid
+
+            }
+        );
+
+
+        showMessage(
+            "Organization approved successfully.",
+            "success"
+        );
+
+
+        await loadOrganizations();
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        showMessage(
+            "Unable to approve organization.",
+            "error"
+        );
+
+    }
+
+};
+
+
+/* =========================
+   REJECT
+========================= */
+
+window.rejectOrganization =
+async function(id) {
+
+    const confirmReject =
+        confirm(
+            "Are you sure you want to reject this organization?"
+        );
+
+
+    if (!confirmReject) {
+
+        return;
+
+    }
+
+
+    try {
+
+        await updateDoc(
+            doc(
+                db,
+                "users",
+                id
+            ),
+            {
+
+                status:
+                    "rejected",
+
+                verificationStatus:
+                    "rejected",
+
+                rejectedAt:
+                    new Date(),
+
+                rejectedBy:
+                    auth.currentUser.uid
+
+            }
+        );
+
+
+        showMessage(
+            "Organization rejected.",
+            "success"
+        );
+
+
+        await loadOrganizations();
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        showMessage(
+            "Unable to reject organization.",
+            "error"
+        );
+
+    }
+
+};
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(
+    text,
+    type
+) {
+
+    const box =
+        document.getElementById(
+            "message"
+        );
+
+
+    box.textContent = text;
+
+    box.className =
+        "message " + type;
+
+}
+
+
+/* =========================
+   SAFE TEXT
+========================= */
+
+function safe(value) {
+
+    if (
+        value === undefined ||
+        value === null ||
+        value === ""
+    ) {
+
+        return "Not provided";
+
+    }
+
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+window.logoutAdmin =
+async function() {
+
+    try {
+
+        await signOut(auth);
+
+        window.location.href =
+            "admin-login.html";
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        alert(
+            "Unable to logout."
+        );
+
+    }
+
+};
+
+</script>
 
 </body>
 
