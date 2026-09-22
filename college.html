@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,15 +10,19 @@
 
 <style>
 
-/* =========================
-   GLOBAL
-========================= */
+/* ==========================================
+   RESET
+========================================== */
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial,sans-serif;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
@@ -26,276 +31,444 @@ body{
 }
 
 
-/* =========================
+/* ==========================================
    NAVBAR
-========================= */
+========================================== */
 
 nav{
-    background:#ffffff;
-    padding:14px 5%;
+    min-height:72px;
+
+    background:white;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:25px;
-    box-shadow:0 2px 12px rgba(0,0,0,.07);
+
+    padding:0 4%;
+
     position:sticky;
     top:0;
+
     z-index:1000;
+
+    border-bottom:1px solid #edf2ef;
+
+    gap:20px;
 }
 
-/* LOGO */
+
+/* ==========================================
+   LOGO
+========================================== */
 
 .logo{
+    text-decoration:none;
+
+    color:#176b4d;
+
+    font-size:27px;
+    font-weight:800;
+
     display:flex;
     align-items:center;
-    gap:10px;
-    text-decoration:none;
-    color:#176b4d;
-    font-size:23px;
-    font-weight:700;
+
+    gap:9px;
+
+    flex-shrink:0;
+
     white-space:nowrap;
 }
 
 .logo-mark{
-    width:38px;
-    height:38px;
-    border-radius:11px;
-    background:#159957;
+    width:42px;
+    height:42px;
+
+    background:#176b4d;
+
     color:white;
+
+    border-radius:50%;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:21px;
-    font-weight:800;
-    box-shadow:0 4px 10px rgba(21,153,87,.22);
+
+    font-size:19px;
+    font-weight:bold;
+
+    flex-shrink:0;
 }
 
-/* NAVIGATION */
+
+/* ==========================================
+   NAVIGATION LINKS
+========================================== */
 
 .nav-links{
     display:flex;
     align-items:center;
     justify-content:flex-end;
-    gap:5px;
+
+    gap:16px;
+
     flex-wrap:nowrap;
-}
 
-.nav-links a{
-    text-decoration:none;
-    color:#29463b;
-    font-size:14px;
-    font-weight:600;
-    padding:9px 11px;
-    border-radius:8px;
     white-space:nowrap;
-    transition:.2s ease;
 }
 
-.nav-links a:hover{
-    color:#159957;
-    background:#f0faf4;
+.nav-links > a{
+    text-decoration:none;
+
+    color:#3d5c56;
+
+    font-size:13px;
+    font-weight:600;
+
+    white-space:nowrap;
+
+    padding:25px 0 22px;
+
+    border-bottom:3px solid transparent;
+
+    transition:.3s;
 }
 
-/* CURRENT PAGE */
-
-.nav-links a.active{
-    color:#159957;
-    background:#eaf8f0;
-    font-weight:700;
+.nav-links > a:hover{
+    color:#176b4d;
 }
 
-/* LOGIN BUTTON */
+
+/* ACTIVE PAGE */
+
+.nav-links > a.active{
+    color:#176b4d;
+
+    border-bottom:3px solid #176b4d;
+}
+
+
+/* ==========================================
+   LOGIN BUTTON
+========================================== */
 
 .login-btn{
-    background:#159957 !important;
+    background:#176b4d;
+
     color:white !important;
-    padding:9px 17px !important;
-    margin-left:4px;
-    border-radius:9px !important;
+
+    padding:10px 19px !important;
+
+    border-radius:25px !important;
+
+    border:0 !important;
+
+    margin-left:3px;
 }
 
 .login-btn:hover{
-    background:#117a45 !important;
+    background:#0e513b !important;
+
     color:white !important;
+
+    border-bottom:0 !important;
 }
 
 
-/* =========================
+/* ==========================================
+   FIREBASE USER MENU
+========================================== */
+
+.firebase-user-menu{
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    flex-shrink:0;
+
+    white-space:nowrap;
+}
+
+.firebase-user-menu span{
+    color:#3d5c56;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+}
+
+.firebase-user-menu button{
+    border:none;
+
+    background:#176b4d;
+
+    color:white;
+
+    padding:9px 16px;
+
+    border-radius:25px;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    white-space:nowrap;
+
+    transition:.3s;
+}
+
+.firebase-user-menu button:hover{
+    background:#0e513b;
+}
+
+
+/* ==========================================
    HERO
-========================= */
+========================================== */
 
 .hero{
-    background:linear-gradient(135deg,#dff8e9,#eaf6ff,#fff7d7);
+    background:
+        linear-gradient(
+            135deg,
+            #dff8e9,
+            #eaf6ff,
+            #fff7d7
+        );
+
     padding:70px 7%;
+
     text-align:center;
 }
 
 .hero h1{
     font-size:46px;
+
     color:#176b4d;
+
     margin-bottom:15px;
 }
 
 .hero p{
     max-width:780px;
+
     margin:auto;
+
     font-size:18px;
+
     line-height:1.7;
+
     color:#536a60;
 }
 
 
-/* =========================
+/* ==========================================
    CONTAINER
-========================= */
+========================================== */
 
 .container{
     width:88%;
+
     max-width:1150px;
+
     margin:55px auto;
 }
 
 .section-title{
     text-align:center;
+
     margin-bottom:35px;
 }
 
 .section-title h2{
     color:#176b4d;
+
     font-size:32px;
+
     margin-bottom:10px;
 }
 
 .section-title p{
     color:#65776f;
+
     line-height:1.6;
 }
 
 
-/* =========================
+/* ==========================================
    ORGANIZER BANNER
-========================= */
+========================================== */
 
 .organizer{
     background:white;
+
     border:1px solid #dcece4;
+
     border-radius:20px;
+
     padding:30px;
+
     display:flex;
+
     align-items:center;
+
     gap:25px;
+
     margin-bottom:55px;
-    box-shadow:0 7px 25px rgba(30,90,60,.07);
+
+    box-shadow:
+        0 7px 25px rgba(30,90,60,.07);
 }
 
 .organizer-icon{
     font-size:50px;
+
+    flex-shrink:0;
 }
 
 .organizer h2{
     color:#176b4d;
+
     margin-bottom:8px;
 }
 
 .organizer p{
     color:#63766d;
+
     line-height:1.6;
 }
 
 
-/* =========================
+/* ==========================================
    ACTIVITY FLOW
-========================= */
+========================================== */
 
 .flow{
     display:grid;
+
     grid-template-columns:repeat(4,1fr);
+
     gap:18px;
+
     margin-bottom:60px;
 }
 
 .flow-card{
     background:white;
+
     padding:25px 18px;
+
     border-radius:17px;
+
     text-align:center;
+
     border:1px solid #dfede6;
+
     transition:.25s ease;
 }
 
 .flow-card:hover{
     transform:translateY(-4px);
-    box-shadow:0 8px 22px rgba(30,90,60,.08);
+
+    box-shadow:
+        0 8px 22px rgba(30,90,60,.08);
 }
 
 .flow-number{
     width:42px;
     height:42px;
+
     background:#159957;
+
     color:white;
+
     border-radius:50%;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     margin:0 auto 14px;
+
     font-weight:bold;
 }
 
 .flow-card h3{
     color:#176b4d;
+
     margin-bottom:8px;
 }
 
 .flow-card p{
     color:#687a72;
+
     font-size:14px;
+
     line-height:1.5;
 }
 
 
-/* =========================
+/* ==========================================
    ACTION CARDS
-========================= */
+========================================== */
 
 .action-grid{
     display:grid;
+
     grid-template-columns:repeat(3,1fr);
+
     gap:22px;
 }
 
 .action-card{
     background:white;
+
     padding:28px 22px;
+
     border-radius:18px;
+
     border:1px solid #dfede6;
-    box-shadow:0 6px 20px rgba(30,90,60,.06);
+
+    box-shadow:
+        0 6px 20px rgba(30,90,60,.06);
+
     transition:.25s;
 }
 
 .action-card:hover{
     transform:translateY(-5px);
-    box-shadow:0 10px 25px rgba(30,90,60,.1);
+
+    box-shadow:
+        0 10px 25px rgba(30,90,60,.1);
 }
 
 .action-icon{
     font-size:42px;
+
     margin-bottom:15px;
 }
 
 .action-card h3{
     color:#176b4d;
+
     margin-bottom:10px;
 }
 
 .action-card p{
     color:#65766e;
+
     line-height:1.6;
 }
 
 
-/* =========================
+/* ==========================================
    ACTIVITY SECTION
-========================= */
+========================================== */
 
 .activity-section{
     margin-top:65px;
@@ -303,91 +476,134 @@ nav{
 
 .empty-box{
     background:white;
+
     border:2px dashed #c8ded3;
+
     border-radius:20px;
+
     padding:50px 25px;
+
     text-align:center;
 }
 
 .empty-icon{
     font-size:55px;
+
     margin-bottom:15px;
 }
 
 .empty-box h3{
     color:#176b4d;
+
     font-size:25px;
+
     margin-bottom:10px;
 }
 
 .empty-box p{
     max-width:650px;
+
     margin:auto;
+
     color:#687970;
+
     line-height:1.7;
 }
 
 .note{
     margin-top:20px;
+
     background:#f1faf5;
+
     padding:15px;
+
     border-radius:10px;
+
     color:#507062;
+
     font-size:14px;
 }
 
 
-/* =========================
+/* ==========================================
    REGISTRATION
-========================= */
+========================================== */
 
 .register-box{
-    background:linear-gradient(135deg,#176b4d,#159957);
+    background:
+        linear-gradient(
+            135deg,
+            #176b4d,
+            #159957
+        );
+
     color:white;
+
     padding:45px 35px;
+
     border-radius:22px;
+
     text-align:center;
+
     margin-top:60px;
 }
 
 .register-box h2{
     font-size:30px;
+
     margin-bottom:12px;
 }
 
 .register-box p{
     max-width:700px;
+
     margin:auto;
+
     line-height:1.7;
+
     opacity:.95;
 }
 
 .btn{
     display:inline-block;
+
     margin-top:22px;
+
     padding:13px 24px;
+
     background:white;
+
     color:#176b4d;
+
     text-decoration:none;
+
     border-radius:9px;
+
     font-weight:bold;
+
     transition:.2s;
 }
 
 .btn:hover{
     background:#e9f8ef;
+
+    transform:translateY(-2px);
 }
 
 
-/* =========================
+/* ==========================================
    FOOTER
-========================= */
+========================================== */
 
 footer{
     background:#17352a;
+
     color:white;
+
     text-align:center;
+
     padding:30px 7%;
+
     margin-top:70px;
 }
 
@@ -396,63 +612,100 @@ footer p{
 }
 
 
-/* =========================
+/* ==========================================
    TABLET
-========================= */
+========================================== */
 
-@media(max-width:1100px){
+@media(max-width:1200px){
 
     nav{
-        padding:14px 3%;
+        padding:0 2.5%;
     }
 
     .nav-links{
-        gap:2px;
+        gap:12px;
     }
 
-    .nav-links a{
-        font-size:13px;
-        padding:8px 8px;
+    .nav-links > a{
+        font-size:12px;
     }
 
     .logo{
-        font-size:21px;
-    }
-
-    .logo-mark{
-        width:36px;
-        height:36px;
+        font-size:24px;
     }
 
 }
 
 
-/* =========================
-   MOBILE NAVBAR
-========================= */
+/* ==========================================
+   SMALL TABLET
+========================================== */
 
-@media(max-width:850px){
+@media(max-width:1000px){
 
     nav{
-        flex-direction:column;
-        padding:15px 4%;
         gap:12px;
     }
 
     .nav-links{
-        width:100%;
-        justify-content:center;
-        flex-wrap:wrap;
-        gap:4px;
+        gap:9px;
     }
 
-    .nav-links a{
-        font-size:13px;
-        padding:8px 10px;
+    .nav-links > a{
+        font-size:11px;
     }
 
     .login-btn{
-        margin-left:0;
+        padding:9px 15px !important;
+    }
+
+}
+
+
+/* ==========================================
+   TABLET / MOBILE NAVBAR
+========================================== */
+
+@media(max-width:900px){
+
+    nav{
+        min-height:auto;
+
+        padding:12px 4%;
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+        gap:10px;
+    }
+
+    .logo{
+        margin-right:auto;
+    }
+
+    .nav-links{
+        width:100%;
+
+        justify-content:center;
+
+        flex-wrap:wrap;
+
+        gap:7px 15px;
+    }
+
+    .nav-links > a{
+        padding:6px 0;
+
+        border-bottom:2px solid transparent;
+    }
+
+    .nav-links > a.active{
+        border-bottom:2px solid #176b4d;
+    }
+
+    .login-btn{
+        padding:9px 16px !important;
     }
 
     .flow{
@@ -465,38 +718,56 @@ footer p{
 
     .organizer{
         flex-direction:column;
+
         text-align:center;
     }
 
 }
 
 
-/* =========================
-   SMALL MOBILE
-========================= */
+/* ==========================================
+   MOBILE
+========================================== */
 
 @media(max-width:600px){
 
     nav{
+        flex-direction:column;
+
         padding:13px 4%;
+
+        gap:12px;
     }
 
     .logo{
-        font-size:22px;
+        margin:0;
     }
 
     .logo-mark{
-        width:37px;
-        height:37px;
+        width:39px;
+        height:39px;
+
+        font-size:17px;
+    }
+
+    .logo{
+        font-size:23px;
     }
 
     .nav-links{
-        gap:5px;
+        width:100%;
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+        gap:5px 12px;
     }
 
-    .nav-links a{
+    .nav-links > a{
         font-size:12px;
-        padding:7px 8px;
+
+        padding:6px 4px;
     }
 
     .hero{
@@ -523,15 +794,22 @@ footer p{
 }
 
 
-/* =========================
-   VERY SMALL SCREENS
-========================= */
+/* ==========================================
+   VERY SMALL MOBILE
+========================================== */
 
 @media(max-width:420px){
 
-    .nav-links a{
+    .logo{
+        font-size:21px;
+    }
+
+    .nav-links{
+        gap:4px 9px;
+    }
+
+    .nav-links > a{
         font-size:11px;
-        padding:6px 7px;
     }
 
     .hero h1{
@@ -541,57 +819,78 @@ footer p{
 }
 
 </style>
+
 </head>
 
 
 <body>
 
 
-<!-- =========================
+<!-- ==========================================
      NAVBAR
-========================= -->
+========================================== -->
 
 <nav>
 
     <a href="index.html" class="logo">
 
-        <span class="logo-mark">R</span>
+        <span class="logo-mark">
+            R
+        </span>
 
-        <span>ReConnect</span>
+        ReConnect
 
     </a>
 
 
     <div class="nav-links">
 
-        <a href="index.html">Home</a>
+        <a href="index.html">
+            Home
+        </a>
 
-        <a href="ngos.html">Find NGOs</a>
+        <a href="ngos.html">
+            Find NGOs
+        </a>
 
-        <a href="donate.html">Donate</a>
+        <a href="donate.html">
+            Donate
+        </a>
 
-        <a href="activities.html">Activities</a>
+        <a href="activities.html">
+            Activities
+        </a>
 
-        <a href="college.html" class="active">College &amp; NSS</a>
+        <a href="college.html" class="active">
+            College &amp; NSS
+        </a>
 
-        <a href="reuse.html">Reuse &amp; Recycle</a>
+        <a href="reuse.html">
+            Reuse &amp; Recycle
+        </a>
 
-        <a href="my-impact.html">My Impact</a>
+        <a href="my-impact.html">
+            My Impact
+        </a>
 
-        <a href="login.html" class="login-btn">Login</a>
+        <a href="login.html" class="login-btn">
+            Login
+        </a>
 
     </div>
 
 </nav>
 
 
-<!-- =========================
+<!-- ==========================================
      HERO
-========================= -->
+========================================== -->
 
 <section class="hero">
 
-    <h1>🎓 College &amp; NSS Community</h1>
+    <h1>
+        🎓 College &amp; NSS Community
+    </h1>
 
     <p>
         Connect students and NSS groups with verified community,
@@ -605,17 +904,21 @@ footer p{
 <div class="container">
 
 
-    <!-- =========================
+    <!-- ==========================================
          WHO CREATES ACTIVITIES
-    ========================= -->
+    ========================================== -->
 
     <div class="organizer">
 
-        <div class="organizer-icon">🏛️</div>
+        <div class="organizer-icon">
+            🏛️
+        </div>
 
         <div>
 
-            <h2>Who Creates the Activities?</h2>
+            <h2>
+                Who Creates the Activities?
+            </h2>
 
             <p>
                 Official activities can be published by government
@@ -629,13 +932,15 @@ footer p{
     </div>
 
 
-    <!-- =========================
+    <!-- ==========================================
          HOW IT WORKS
-    ========================= -->
+    ========================================== -->
 
     <div class="section-title">
 
-        <h2>How College &amp; NSS Participation Works</h2>
+        <h2>
+            How College &amp; NSS Participation Works
+        </h2>
 
         <p>
             A simple journey from discovering an activity to recording
@@ -650,9 +955,13 @@ footer p{
 
         <div class="flow-card">
 
-            <div class="flow-number">1</div>
+            <div class="flow-number">
+                1
+            </div>
 
-            <h3>Discover</h3>
+            <h3>
+                Discover
+            </h3>
 
             <p>
                 Find verified activities published by government,
@@ -664,9 +973,13 @@ footer p{
 
         <div class="flow-card">
 
-            <div class="flow-number">2</div>
+            <div class="flow-number">
+                2
+            </div>
 
-            <h3>Register</h3>
+            <h3>
+                Register
+            </h3>
 
             <p>
                 Students or NSS groups can register for an activity.
@@ -677,9 +990,13 @@ footer p{
 
         <div class="flow-card">
 
-            <div class="flow-number">3</div>
+            <div class="flow-number">
+                3
+            </div>
 
-            <h3>Participate</h3>
+            <h3>
+                Participate
+            </h3>
 
             <p>
                 Attend the activity and contribute your time and effort.
@@ -690,9 +1007,13 @@ footer p{
 
         <div class="flow-card">
 
-            <div class="flow-number">4</div>
+            <div class="flow-number">
+                4
+            </div>
 
-            <h3>Track Impact</h3>
+            <h3>
+                Track Impact
+            </h3>
 
             <p>
                 Verified participation can appear in your My Impact
@@ -701,16 +1022,19 @@ footer p{
 
         </div>
 
+
     </div>
 
 
-    <!-- =========================
-         WHAT THEY CAN DO
-    ========================= -->
+    <!-- ==========================================
+         WHAT COLLEGE & NSS CAN DO
+    ========================================== -->
 
     <div class="section-title">
 
-        <h2>What College &amp; NSS Groups Can Do</h2>
+        <h2>
+            What College &amp; NSS Groups Can Do
+        </h2>
 
         <p>
             Students and college groups can participate in different
@@ -725,9 +1049,13 @@ footer p{
 
         <div class="action-card">
 
-            <div class="action-icon">🤝</div>
+            <div class="action-icon">
+                🤝
+            </div>
 
-            <h3>NGO Collaboration</h3>
+            <h3>
+                NGO Collaboration
+            </h3>
 
             <p>
                 Connect with verified NGOs and participate in their
@@ -739,9 +1067,13 @@ footer p{
 
         <div class="action-card">
 
-            <div class="action-icon">🌱</div>
+            <div class="action-icon">
+                🌱
+            </div>
 
-            <h3>Environmental Drives</h3>
+            <h3>
+                Environmental Drives
+            </h3>
 
             <p>
                 Participate in tree plantation, beach cleaning,
@@ -753,9 +1085,13 @@ footer p{
 
         <div class="action-card">
 
-            <div class="action-icon">📚</div>
+            <div class="action-icon">
+                📚
+            </div>
 
-            <h3>Teaching &amp; Education</h3>
+            <h3>
+                Teaching &amp; Education
+            </h3>
 
             <p>
                 Participate in teaching children, educational support
@@ -767,9 +1103,13 @@ footer p{
 
         <div class="action-card">
 
-            <div class="action-icon">🎁</div>
+            <div class="action-icon">
+                🎁
+            </div>
 
-            <h3>Donation Drives</h3>
+            <h3>
+                Donation Drives
+            </h3>
 
             <p>
                 Participate in organized donation drives and help
@@ -781,9 +1121,13 @@ footer p{
 
         <div class="action-card">
 
-            <div class="action-icon">🩸</div>
+            <div class="action-icon">
+                🩸
+            </div>
 
-            <h3>Blood Donation</h3>
+            <h3>
+                Blood Donation
+            </h3>
 
             <p>
                 Discover and participate in authorized blood donation
@@ -795,9 +1139,13 @@ footer p{
 
         <div class="action-card">
 
-            <div class="action-icon">🐾</div>
+            <div class="action-icon">
+                🐾
+            </div>
 
-            <h3>Animal Welfare</h3>
+            <h3>
+                Animal Welfare
+            </h3>
 
             <p>
                 Participate in animal welfare, awareness and
@@ -806,18 +1154,22 @@ footer p{
 
         </div>
 
+
     </div>
 
 
-    <!-- =========================
+    <!-- ==========================================
          OFFICIAL ACTIVITIES
-    ========================= -->
+    ========================================== -->
 
     <div class="activity-section">
 
+
         <div class="section-title">
 
-            <h2>Government &amp; Community Activities</h2>
+            <h2>
+                Government &amp; Community Activities
+            </h2>
 
             <p>
                 Official activities will appear here once ReConnect
@@ -830,9 +1182,13 @@ footer p{
 
         <div class="empty-box">
 
-            <div class="empty-icon">🏛️</div>
+            <div class="empty-icon">
+                🏛️
+            </div>
 
-            <h3>No Official Activities Available Yet</h3>
+            <h3>
+                No Official Activities Available Yet
+            </h3>
 
             <p>
                 Government departments and authorized organizations
@@ -853,13 +1209,15 @@ footer p{
     </div>
 
 
-    <!-- =========================
-         REGISTER COLLEGE/NSS
-    ========================= -->
+    <!-- ==========================================
+         REGISTER COLLEGE / NSS
+    ========================================== -->
 
     <div class="register-box">
 
-        <h2>🎓 Register Your College / NSS Group</h2>
+        <h2>
+            🎓 Register Your College / NSS Group
+        </h2>
 
         <p>
             Create a College/NSS profile so your group can be identified
@@ -877,9 +1235,9 @@ footer p{
 </div>
 
 
-<!-- =========================
+<!-- ==========================================
      FOOTER
-========================= -->
+========================================== -->
 
 <footer>
 
@@ -890,9 +1248,12 @@ footer p{
 </footer>
 
 
-<!-- FIREBASE NAVBAR AUTH -->
+<!-- ==========================================
+     FIREBASE AUTH
+========================================== -->
 
 <script type="module" src="auth.js"></script>
 
 </body>
+
 </html>
