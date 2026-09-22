@@ -340,8 +340,12 @@ button:disabled {
         id="loginPassword"
         placeholder="Enter your password">
 
-    <button onclick="loginUser()">
+    <button
+        id="loginButton"
+        onclick="loginUser()">
+
         Login
+
     </button>
 
     <div
@@ -413,7 +417,7 @@ button:disabled {
         placeholder="Create a password">
 
 
-    <!-- NGO FIELDS -->
+    <!-- NGO -->
 
     <div
         class="role-fields"
@@ -429,11 +433,9 @@ button:disabled {
 
         </div>
 
-
         <div class="section-title">
             NGO Information
         </div>
-
 
         <label>NGO Name *</label>
 
@@ -442,14 +444,12 @@ button:disabled {
             id="ngoName"
             placeholder="Registered NGO name">
 
-
         <label>Registration Number *</label>
 
         <input
             type="text"
             id="ngoRegistrationNumber"
             placeholder="NGO registration number">
-
 
         <label>Registration Authority / Act *</label>
 
@@ -458,14 +458,12 @@ button:disabled {
             id="ngoRegistrationAuthority"
             placeholder="Example: Trust Act / Society Act">
 
-
         <label>PAN *</label>
 
         <input
             type="text"
             id="ngoPAN"
             placeholder="Enter NGO PAN number">
-
 
         <label>Official Contact Number *</label>
 
@@ -474,14 +472,11 @@ button:disabled {
             id="ngoPhone"
             placeholder="Enter official contact number">
 
-
         <label>Registered Address *</label>
 
         <textarea
             id="ngoAddress"
-            placeholder="Enter registered NGO address">
-        </textarea>
-
+            placeholder="Enter registered NGO address"></textarea>
 
         <label>Area of Work *</label>
 
@@ -489,7 +484,6 @@ button:disabled {
             type="text"
             id="ngoArea"
             placeholder="Example: Education, Women, Environment">
-
 
         <label>Working Since</label>
 
@@ -499,7 +493,6 @@ button:disabled {
             placeholder="Example: 2010"
             min="1800"
             max="2026">
-
 
         <label>Official Website</label>
 
@@ -511,7 +504,7 @@ button:disabled {
     </div>
 
 
-    <!-- COLLEGE FIELDS -->
+    <!-- COLLEGE -->
 
     <div
         class="role-fields"
@@ -527,11 +520,9 @@ button:disabled {
 
         </div>
 
-
         <div class="section-title">
             Institution Information
         </div>
-
 
         <label>College / Institute Name *</label>
 
@@ -540,14 +531,12 @@ button:disabled {
             id="collegeName"
             placeholder="Enter official college name">
 
-
         <label>University Name *</label>
 
         <input
             type="text"
             id="universityName"
             placeholder="Enter affiliated university">
-
 
         <label>Official College Email *</label>
 
@@ -556,14 +545,12 @@ button:disabled {
             id="collegeOfficialEmail"
             placeholder="Official institutional email">
 
-
         <label>College Website</label>
 
         <input
             type="url"
             id="collegeWebsite"
             placeholder="https://collegewebsite.edu">
-
 
         <label>NSS Unit / Club Name *</label>
 
@@ -572,14 +559,12 @@ button:disabled {
             id="clubName"
             placeholder="Example: NSS Unit 1">
 
-
         <label>NSS / Faculty Coordinator *</label>
 
         <input
             type="text"
             id="coordinatorName"
             placeholder="Coordinator full name">
-
 
         <label>Coordinator Official Email *</label>
 
@@ -588,7 +573,6 @@ button:disabled {
             id="coordinatorEmail"
             placeholder="Coordinator's official email">
 
-
         <label>College Contact Number *</label>
 
         <input
@@ -596,13 +580,11 @@ button:disabled {
             id="collegePhone"
             placeholder="Official college contact number">
 
-
         <label>College Address *</label>
 
         <textarea
             id="collegeAddress"
-            placeholder="Enter college address">
-        </textarea>
+            placeholder="Enter college address"></textarea>
 
     </div>
 
@@ -656,13 +638,15 @@ import {
     getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    sendEmailVerification
+    sendEmailVerification,
+    onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 import {
     getFirestore,
     doc,
     setDoc,
+    getDoc,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
@@ -674,9 +658,25 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
-/* =========================
+/* =====================================================
+   FIREBASE LOGIN PERSISTENCE
+   ===================================================== */
+
+/*
+   Firebase keeps the authentication session in the browser.
+
+   This means:
+   Tab 1  -> Login
+   Tab 2  -> ReConnect automatically knows the user
+   Tab 3  -> ReConnect automatically knows the user
+
+   All tabs use the same Firebase Authentication session.
+*/
+
+
+/* =====================================================
    TABS
-========================= */
+   ===================================================== */
 
 window.showLogin = function() {
 
@@ -720,9 +720,9 @@ window.showRegister = function() {
 };
 
 
-/* =========================
+/* =====================================================
    ROLE FIELDS
-========================= */
+   ===================================================== */
 
 window.showRoleFields = function() {
 
@@ -758,9 +758,9 @@ window.showRoleFields = function() {
 };
 
 
-/* =========================
+/* =====================================================
    MESSAGE
-========================= */
+   ===================================================== */
 
 function showMessage(id, message, type) {
 
@@ -777,9 +777,9 @@ function showMessage(id, message, type) {
 }
 
 
-/* =========================
+/* =====================================================
    REGISTER
-========================= */
+   ===================================================== */
 
 window.registerUser = async function() {
 
@@ -835,22 +835,16 @@ window.registerUser = async function() {
     }
 
 
-    /* =========================
-       NGO DATA
-    ========================= */
+    /* NGO */
 
     const ngoName =
         document.getElementById("ngoName").value.trim();
 
     const ngoRegistrationNumber =
-        document.getElementById(
-            "ngoRegistrationNumber"
-        ).value.trim();
+        document.getElementById("ngoRegistrationNumber").value.trim();
 
     const ngoRegistrationAuthority =
-        document.getElementById(
-            "ngoRegistrationAuthority"
-        ).value.trim();
+        document.getElementById("ngoRegistrationAuthority").value.trim();
 
     const ngoPAN =
         document.getElementById("ngoPAN").value.trim();
@@ -865,69 +859,43 @@ window.registerUser = async function() {
         document.getElementById("ngoArea").value.trim();
 
     const ngoWorkingSince =
-        document.getElementById(
-            "ngoWorkingSince"
-        ).value;
+        document.getElementById("ngoWorkingSince").value;
 
     const ngoWebsite =
-        document.getElementById(
-            "ngoWebsite"
-        ).value.trim();
+        document.getElementById("ngoWebsite").value.trim();
 
 
-    /* =========================
-       COLLEGE DATA
-    ========================= */
+    /* COLLEGE */
 
     const collegeName =
-        document.getElementById(
-            "collegeName"
-        ).value.trim();
+        document.getElementById("collegeName").value.trim();
 
     const universityName =
-        document.getElementById(
-            "universityName"
-        ).value.trim();
+        document.getElementById("universityName").value.trim();
 
     const collegeOfficialEmail =
-        document.getElementById(
-            "collegeOfficialEmail"
-        ).value.trim();
+        document.getElementById("collegeOfficialEmail").value.trim();
 
     const collegeWebsite =
-        document.getElementById(
-            "collegeWebsite"
-        ).value.trim();
+        document.getElementById("collegeWebsite").value.trim();
 
     const clubName =
-        document.getElementById(
-            "clubName"
-        ).value.trim();
+        document.getElementById("clubName").value.trim();
 
     const coordinatorName =
-        document.getElementById(
-            "coordinatorName"
-        ).value.trim();
+        document.getElementById("coordinatorName").value.trim();
 
     const coordinatorEmail =
-        document.getElementById(
-            "coordinatorEmail"
-        ).value.trim();
+        document.getElementById("coordinatorEmail").value.trim();
 
     const collegePhone =
-        document.getElementById(
-            "collegePhone"
-        ).value.trim();
+        document.getElementById("collegePhone").value.trim();
 
     const collegeAddress =
-        document.getElementById(
-            "collegeAddress"
-        ).value.trim();
+        document.getElementById("collegeAddress").value.trim();
 
 
-    /* =========================
-       NGO VALIDATION
-    ========================= */
+    /* NGO VALIDATION */
 
     if (role === "ngo") {
 
@@ -967,9 +935,7 @@ window.registerUser = async function() {
     }
 
 
-    /* =========================
-       COLLEGE VALIDATION
-    ========================= */
+    /* COLLEGE VALIDATION */
 
     if (role === "college") {
 
@@ -1006,8 +972,6 @@ window.registerUser = async function() {
         );
 
 
-        /* CREATE FIREBASE AUTH USER */
-
         const userCredential =
             await createUserWithEmailAndPassword(
                 auth,
@@ -1020,12 +984,8 @@ window.registerUser = async function() {
             userCredential.user;
 
 
-        /* EMAIL VERIFICATION */
-
         await sendEmailVerification(user);
 
-
-        /* COMMON DATA */
 
         const userData = {
 
@@ -1050,9 +1010,7 @@ window.registerUser = async function() {
         };
 
 
-        /* =========================
-           NGO
-        ========================= */
+        /* NGO */
 
         if (role === "ngo") {
 
@@ -1092,9 +1050,7 @@ window.registerUser = async function() {
         }
 
 
-        /* =========================
-           COLLEGE
-        ========================= */
+        /* COLLEGE */
 
         if (role === "college") {
 
@@ -1134,9 +1090,7 @@ window.registerUser = async function() {
         }
 
 
-        /* =========================
-           DONOR
-        ========================= */
+        /* DONOR */
 
         if (role === "donor") {
 
@@ -1146,8 +1100,6 @@ window.registerUser = async function() {
         }
 
 
-        /* SAVE FIRESTORE PROFILE */
-
         await setDoc(
             doc(db, "users", user.uid),
             userData
@@ -1156,7 +1108,7 @@ window.registerUser = async function() {
 
         showMessage(
             "registerMessage",
-            "Account created! Please check your email and verify your email address. Your organization will also need Admin verification.",
+            "Account created! Please verify your email. Your organization will also need Admin verification.",
             "success"
         );
 
@@ -1167,6 +1119,13 @@ window.registerUser = async function() {
 
                 window.location.href =
                     "ngo-dashboard.html";
+
+            }
+
+            else if (role === "college") {
+
+                window.location.href =
+                    "college.html";
 
             }
 
@@ -1190,40 +1149,28 @@ window.registerUser = async function() {
             "Unable to create account.";
 
 
-        if (
-            error.code ===
-            "auth/email-already-in-use"
-        ) {
+        if (error.code === "auth/email-already-in-use") {
 
             message =
                 "This email is already registered.";
 
         }
 
-        else if (
-            error.code ===
-            "auth/invalid-email"
-        ) {
+        else if (error.code === "auth/invalid-email") {
 
             message =
                 "Please enter a valid email address.";
 
         }
 
-        else if (
-            error.code ===
-            "auth/weak-password"
-        ) {
+        else if (error.code === "auth/weak-password") {
 
             message =
                 "Password is too weak. Use at least 6 characters.";
 
         }
 
-        else if (
-            error.code ===
-            "permission-denied"
-        ) {
+        else if (error.code === "permission-denied") {
 
             message =
                 "Account created, but the profile could not be saved because of Firestore permissions.";
@@ -1242,21 +1189,17 @@ window.registerUser = async function() {
 };
 
 
-/* =========================
+/* =====================================================
    LOGIN
-========================= */
+   ===================================================== */
 
 window.loginUser = async function() {
 
     const email =
-        document.getElementById(
-            "loginEmail"
-        ).value.trim();
+        document.getElementById("loginEmail").value.trim();
 
     const password =
-        document.getElementById(
-            "loginPassword"
-        ).value;
+        document.getElementById("loginPassword").value;
 
 
     if (!email || !password) {
@@ -1272,14 +1215,16 @@ window.loginUser = async function() {
     }
 
 
+    const loginButton =
+        document.getElementById("loginButton");
+
+    loginButton.disabled = true;
+
+    loginButton.textContent =
+        "Logging in...";
+
+
     try {
-
-        showMessage(
-            "loginMessage",
-            "Logging in...",
-            "success"
-        );
-
 
         const userCredential =
             await signInWithEmailAndPassword(
@@ -1293,19 +1238,80 @@ window.loginUser = async function() {
             userCredential.user;
 
 
+        /*
+           Get the user's role from Firestore.
+        */
+
+        const userDoc =
+            await getDoc(
+                doc(db, "users", user.uid)
+            );
+
+
+        if (!userDoc.exists()) {
+
+            showMessage(
+                "loginMessage",
+                "Login successful, but your ReConnect profile was not found.",
+                "error"
+            );
+
+            loginButton.disabled = false;
+
+            loginButton.textContent =
+                "Login";
+
+            return;
+
+        }
+
+
+        const userData =
+            userDoc.data();
+
+
         showMessage(
             "loginMessage",
-            "Login successful! Redirecting...",
+            "Login successful! Opening your ReConnect account...",
             "success"
         );
 
 
+        /*
+           Redirect according to account type.
+        */
+
         setTimeout(function() {
 
-            window.location.href =
-                "index.html";
+            if (userData.role === "ngo") {
 
-        }, 1000);
+                window.location.href =
+                    "ngo-dashboard.html";
+
+            }
+
+            else if (userData.role === "college") {
+
+                window.location.href =
+                    "college.html";
+
+            }
+
+            else if (userData.role === "donor") {
+
+                window.location.href =
+                    "index.html";
+
+            }
+
+            else {
+
+                window.location.href =
+                    "index.html";
+
+            }
+
+        }, 700);
 
     }
 
@@ -1314,37 +1320,41 @@ window.loginUser = async function() {
 
         console.error(error);
 
+        loginButton.disabled = false;
+
+        loginButton.textContent =
+            "Login";
+
+
         let message =
             "Unable to login.";
 
 
-        if (
-            error.code ===
-            "auth/invalid-credential"
-        ) {
+        if (error.code === "auth/invalid-credential") {
 
             message =
                 "Incorrect email or password.";
 
         }
 
-        else if (
-            error.code ===
-            "auth/user-not-found"
-        ) {
+        else if (error.code === "auth/user-not-found") {
 
             message =
                 "No account was found with this email.";
 
         }
 
-        else if (
-            error.code ===
-            "auth/wrong-password"
-        ) {
+        else if (error.code === "auth/wrong-password") {
 
             message =
                 "Incorrect password.";
+
+        }
+
+        else if (error.code === "auth/too-many-requests") {
+
+            message =
+                "Too many login attempts. Please try again later.";
 
         }
 
@@ -1358,6 +1368,39 @@ window.loginUser = async function() {
     }
 
 };
+
+
+/* =====================================================
+   CHECK EXISTING LOGIN
+   ===================================================== */
+
+/*
+   If the user is already logged in and opens
+   login.html in another tab, don't ask them to
+   login again.
+*/
+
+onAuthStateChanged(auth, async function(user) {
+
+    if (!user) {
+        return;
+    }
+
+
+    /*
+       Don't automatically redirect while the user
+       is typing/registering on this page.
+
+       We only use this to recognize an already
+       authenticated Firebase session.
+    */
+
+    console.log(
+        "ReConnect user already logged in:",
+        user.email
+    );
+
+});
 
 </script>
 
