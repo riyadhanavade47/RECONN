@@ -25,50 +25,59 @@ body {
 /* ================= NAVBAR ================= */
 
 nav {
-    height: 72px;
-    background: white;
+    min-height: 72px;
+    background: #ffffff;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 6%;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    gap: 24px;
+    padding: 0 4%;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
+    border-bottom: 1px solid #edf2ef;
 }
 
 .logo {
+    text-decoration: none;
+    color: #176b4d;
+    font-size: 27px;
+    font-weight: 800;
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 22px;
-    font-weight: bold;
-    color: #159957;
+    gap: 9px;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
-.logo-circle {
+.logo-mark {
     width: 42px;
     height: 42px;
-    border-radius: 50%;
-    background: #159957;
+    background: #176b4d;
     color: white;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 19px;
     font-weight: bold;
 }
 
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: flex-end;
+    gap: 14px;
+    flex-wrap: nowrap;
+    min-width: 0;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: #35564a;
-    font-size: 14px;
+    color: #31544a;
+    font-size: 13px;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -76,193 +85,431 @@ nav {
 }
 
 .login-btn {
-    background: #159957;
+    background: #176b4d;
     color: white !important;
-    padding: 10px 18px;
+    padding: 10px 17px;
     border-radius: 22px;
+}
+
+.firebase-user-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    margin-left: 4px;
+}
+
+.firebase-user-menu span {
+    color: #3d5c56;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.firebase-user-menu button {
+    border: 0;
+    background: #176b4d;
+    color: #fff;
+    padding: 9px 15px;
+    border-radius: 22px;
+    font-weight: 700;
+    cursor: pointer;
 }
 
 /* ================= HERO ================= */
 
 .hero {
-    padding: 65px 6%;
+    background:
+        linear-gradient(
+            135deg,
+            #e7fff1,
+            #eefaff,
+            #fff8df
+        );
+    padding: 75px 20px;
     text-align: center;
-    background: linear-gradient(
-        135deg,
-        #e9fff3,
-        #eef8ff,
-        #fffbea
-    );
-}
-
-.hero-badge {
-    display: inline-block;
-    background: white;
-    color: #159957;
-    padding: 8px 17px;
-    border-radius: 25px;
-    font-size: 13px;
-    font-weight: bold;
-    margin-bottom: 18px;
 }
 
 .hero h1 {
-    font-size: 42px;
+    font-size: 45px;
+    color: #176b4d;
     margin-bottom: 15px;
 }
 
 .hero p {
-    max-width: 720px;
+    font-size: 18px;
+    color: #557168;
+    max-width: 700px;
     margin: auto;
-    color: #60766c;
-    line-height: 1.7;
+    line-height: 1.6;
 }
 
-/* ================= CONTAINER ================= */
+/* ================= USER WELCOME ================= */
 
-.container {
-    width: 88%;
+.user-welcome {
     max-width: 1100px;
-    margin: 45px auto 70px;
+    margin: -30px auto 35px;
+    background: white;
+    border-radius: 18px;
+    padding: 25px 30px;
+    box-shadow: 0 8px 25px rgba(23,107,77,0.08);
+    position: relative;
+    z-index: 5;
 }
 
-/* ================= IMPACT STATS ================= */
+.user-welcome h2 {
+    color: #176b4d;
+    margin-bottom: 7px;
+}
+
+.user-welcome p {
+    color: #657b74;
+}
+
+/* ================= STATS ================= */
 
 .stats {
+    max-width: 1100px;
+    margin: 0 auto 55px;
+    padding: 0 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-    margin-bottom: 45px;
+    gap: 20px;
 }
 
-.stat {
+.stat-card {
     background: white;
-    border: 1px solid #e2eee7;
-    border-radius: 20px;
-    padding: 25px;
+    border-radius: 18px;
+    padding: 28px 20px;
     text-align: center;
-    box-shadow: 0 7px 22px rgba(0,0,0,0.05);
+    box-shadow: 0 8px 25px rgba(23,107,77,0.07);
+    border: 1px solid #edf4ef;
 }
 
 .stat-icon {
-    font-size: 27px;
+    font-size: 30px;
     margin-bottom: 10px;
 }
 
-.stat h2 {
+.stat-number {
+    font-size: 32px;
+    font-weight: 800;
     color: #159957;
-    font-size: 28px;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
 }
 
-.stat p {
-    color: #718078;
-    font-size: 12px;
+.stat-label {
+    color: #657b74;
+    font-size: 14px;
 }
 
-/* ================= SECTION ================= */
+/* ================= MAIN ================= */
 
 .section {
-    margin-bottom: 45px;
+    max-width: 1100px;
+    margin: 0 auto 65px;
+    padding: 0 20px;
 }
 
 .section-title {
     text-align: center;
-    margin-bottom: 23px;
+    margin-bottom: 30px;
 }
 
 .section-title h2 {
-    font-size: 27px;
+    font-size: 30px;
+    color: #176b4d;
     margin-bottom: 8px;
 }
 
 .section-title p {
-    color: #718078;
+    color: #71847d;
+}
+
+/* ================= DONATION CARDS ================= */
+
+.donations-container {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.donation-card {
+    background: white;
+    border-radius: 20px;
+    padding: 27px;
+    box-shadow: 0 8px 28px rgba(23,107,77,0.08);
+    border: 1px solid #e8f0eb;
+}
+
+.donation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.donation-header h3 {
+    color: #176b4d;
+    font-size: 21px;
+    margin-bottom: 6px;
+}
+
+.donation-id {
+    font-size: 13px;
+    color: #789088;
+}
+
+.status-badge {
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.status-submitted {
+    background: #fff5d8;
+    color: #996c00;
+}
+
+.status-received {
+    background: #e5f3ff;
+    color: #166a9a;
+}
+
+.status-impact_updated {
+    background: #e9f8ef;
+    color: #197346;
+}
+
+.status-completed {
+    background: #dff7e8;
+    color: #12643d;
+}
+
+.donation-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 25px;
+}
+
+.detail-box {
+    background: #f7fbf8;
+    border-radius: 12px;
+    padding: 13px 15px;
+}
+
+.detail-box strong {
+    display: block;
+    color: #557168;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.detail-box span {
+    color: #17352a;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* ================= TIMELINE ================= */
+
+.timeline {
+    position: relative;
+    padding-left: 32px;
+    margin: 25px 0;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 7px;
+    bottom: 7px;
+    width: 2px;
+    background: #d9e9df;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 22px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -30px;
+    top: 2px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #d5e4dc;
+    border: 3px solid white;
+    box-shadow: 0 0 0 1px #cbded3;
+}
+
+.timeline-item.active .timeline-dot {
+    background: #159957;
+    box-shadow: 0 0 0 1px #159957;
+}
+
+.timeline-item h4 {
+    color: #31544a;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.timeline-item p {
+    color: #84958f;
+    font-size: 12px;
+}
+
+.timeline-item.active h4 {
+    color: #176b4d;
+}
+
+/* ================= PROOF ================= */
+
+.proof-section {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.proof-box {
+    background: #f7fbf8;
+    border-radius: 15px;
+    padding: 18px;
+}
+
+.proof-box h4 {
+    color: #176b4d;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.proof-box p {
+    color: #667c74;
+    font-size: 13px;
     line-height: 1.6;
 }
 
-/* ================= CARDS ================= */
+.proof-image {
+    width: 100%;
+    max-height: 230px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-top: 12px;
+}
 
-.card-grid {
+/* ================= EMPTY STATE ================= */
+
+.empty-state {
+    background: white;
+    border-radius: 20px;
+    padding: 50px 25px;
+    text-align: center;
+    border: 1px dashed #cbded3;
+}
+
+.empty-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.empty-state h3 {
+    color: #31544a;
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    color: #7a8d86;
+    max-width: 500px;
+    margin: auto;
+    line-height: 1.6;
+}
+
+.empty-btn {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    background: #176b4d;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 25px;
+    font-weight: 700;
+}
+
+/* ================= ACTIVITIES ================= */
+
+.activity-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
-.card {
+.activity-card {
     background: white;
-    border: 1px solid #e2eee7;
-    border-radius: 20px;
-    padding: 27px;
-    box-shadow: 0 7px 22px rgba(0,0,0,0.05);
-    transition: 0.25s;
-}
-
-.card:hover {
-    transform: translateY(-4px);
-}
-
-.card-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 16px;
-    background: #eaf8f0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    margin-bottom: 17px;
-}
-
-.card h3 {
-    font-size: 18px;
-    margin-bottom: 9px;
-}
-
-.card p {
-    color: #718078;
-    font-size: 13px;
-    line-height: 1.7;
-}
-
-/* ================= EMPTY ================= */
-
-.empty {
-    background: white;
-    border: 1px solid #e2eee7;
-    border-radius: 22px;
-    padding: 50px 30px;
-    text-align: center;
-    box-shadow: 0 7px 22px rgba(0,0,0,0.05);
-}
-
-.empty-icon {
-    font-size: 48px;
-    margin-bottom: 13px;
-}
-
-.empty h3 {
-    font-size: 21px;
-    margin-bottom: 9px;
-}
-
-.empty p {
-    max-width: 620px;
-    margin: auto;
-    color: #718078;
-    line-height: 1.7;
-    font-size: 13px;
-}
-
-.empty-note {
-    display: inline-block;
-    margin-top: 17px;
-    background: #eaf8f0;
-    color: #159957;
-    padding: 8px 15px;
     border-radius: 18px;
-    font-size: 11px;
-    font-weight: bold;
+    padding: 28px 22px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(23,107,77,0.07);
+    border: 1px solid #edf2ef;
+}
+
+.activity-icon {
+    font-size: 38px;
+    margin-bottom: 14px;
+}
+
+.activity-card h3 {
+    color: #31544a;
+    margin-bottom: 8px;
+}
+
+.activity-card p {
+    color: #7a8d86;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* ================= CONTRIBUTIONS ================= */
+
+.contribution-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.contribution-card {
+    background: white;
+    border-radius: 18px;
+    padding: 28px 22px;
+    text-align: center;
+    border: 1px solid #edf2ef;
+}
+
+.contribution-card .icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+.contribution-card h3 {
+    color: #176b4d;
+    margin-bottom: 8px;
+}
+
+.contribution-card p {
+    color: #71847d;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 /* ================= ACHIEVEMENTS ================= */
@@ -273,135 +520,180 @@ nav {
     gap: 20px;
 }
 
-.achievement {
+.achievement-card {
     background: white;
-    border: 1px solid #e2eee7;
-    border-radius: 20px;
-    padding: 30px 22px;
+    border-radius: 18px;
+    padding: 28px 20px;
     text-align: center;
-    position: relative;
-}
-
-.badge-circle {
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-    background: #eef8f2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 36px;
-    margin: 0 auto 16px;
-    filter: grayscale(1);
+    border: 1px solid #edf2ef;
     opacity: 0.65;
 }
 
-.achievement h3 {
-    font-size: 17px;
-    margin-bottom: 8px;
+.achievement-icon {
+    font-size: 45px;
+    margin-bottom: 12px;
 }
 
-.achievement p {
-    color: #718078;
-    font-size: 12px;
-    line-height: 1.6;
+.achievement-card h3 {
+    color: #31544a;
+    margin-bottom: 7px;
 }
 
-.locked {
-    display: inline-block;
-    margin-top: 13px;
-    background: #f1f3f2;
-    color: #78857f;
-    padding: 6px 12px;
-    border-radius: 15px;
-    font-size: 10px;
-    font-weight: bold;
+.achievement-card p {
+    color: #7a8d86;
+    font-size: 13px;
 }
 
 /* ================= CTA ================= */
 
 .cta {
-    background: #159957;
-    color: white;
+    max-width: 1100px;
+    margin: 0 auto 70px;
+    padding: 0 20px;
+}
+
+.cta-box {
+    background: linear-gradient(135deg, #176b4d, #159957);
+    border-radius: 25px;
     padding: 45px 30px;
-    border-radius: 24px;
     text-align: center;
-    margin-top: 50px;
+    color: white;
 }
 
-.cta h2 {
-    font-size: 28px;
-    margin-bottom: 10px;
+.cta-box h2 {
+    font-size: 30px;
+    margin-bottom: 12px;
 }
 
-.cta p {
+.cta-box p {
     max-width: 650px;
-    margin: auto auto 22px;
+    margin: auto;
     line-height: 1.6;
+    opacity: 0.92;
 }
 
-.cta a {
+.cta-button {
     display: inline-block;
+    margin-top: 22px;
     background: white;
-    color: #159957;
-    padding: 12px 24px;
-    border-radius: 24px;
+    color: #176b4d;
     text-decoration: none;
-    font-weight: bold;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: 700;
 }
 
 /* ================= FOOTER ================= */
 
 footer {
     background: #17352a;
-    color: white;
+    color: #dcebe3;
+    padding: 35px 20px;
     text-align: center;
-    padding: 28px;
-    font-size: 13px;
 }
 
-footer span {
-    color: #69d69c;
+footer h3 {
+    color: white;
+    margin-bottom: 8px;
+}
+
+footer p {
+    font-size: 13px;
+    color: #b6ccc1;
+}
+
+/* ================= LOADING ================= */
+
+.loading {
+    text-align: center;
+    padding: 35px;
+    color: #71847d;
 }
 
 /* ================= RESPONSIVE ================= */
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
 
-    .stats {
-        grid-template-columns: 1fr 1fr;
+    .nav-links {
+        gap: 9px;
     }
 
-    .card-grid,
+    .nav-links a {
+        font-size: 12px;
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    nav {
+        flex-direction: column;
+        padding: 15px 20px;
+        gap: 15px;
+    }
+
+    .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .activity-grid,
+    .contribution-grid,
     .achievement-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
     }
 
 }
 
 @media (max-width: 650px) {
 
-    nav {
-        height: auto;
-        padding: 15px 5%;
-        flex-direction: column;
-        gap: 12px;
+    .logo {
+        font-size: 24px;
+    }
+
+    .logo-mark {
+        width: 38px;
+        height: 38px;
     }
 
     .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+        padding: 5px;
     }
 
     .hero h1 {
-        font-size: 32px;
+        font-size: 34px;
     }
 
-    .stats,
-    .card-grid,
-    .achievement-grid {
+    .hero p {
+        font-size: 15px;
+    }
+
+    .stats {
         grid-template-columns: 1fr;
+    }
+
+    .donation-header {
+        flex-direction: column;
+    }
+
+    .donation-details,
+    .proof-section {
+        grid-template-columns: 1fr;
+    }
+
+    .user-welcome {
+        margin: -20px 15px 30px;
+        padding: 22px;
     }
 
 }
@@ -410,53 +702,35 @@ footer span {
 
 </head>
 
-<body>
 
+<body>
 
 <!-- ================= NAVBAR ================= -->
 
 <nav>
 
-    <div class="logo">
-
-        <div class="logo-circle">
-            R
-        </div>
-
+    <a href="index.html" class="logo">
+        <span class="logo-mark">R</span>
         ReConnect
-
-    </div>
-
+    </a>
 
     <div class="nav-links">
 
-        <a href="index.html">
-            Home
-        </a>
+        <a href="index.html">Home</a>
 
-        <a href="ngos.html">
-            Find NGOs
-        </a>
+        <a href="ngos.html">Find NGOs</a>
 
-        <a href="donate.html">
-            Donate
-        </a>
+        <a href="donate.html">Donate</a>
 
-        <a href="activities.html">
-            Activities
-        </a>
+        <a href="activities.html">Activities</a>
 
-        <a href="college.html">
-            College/NSS
-        </a>
+        <a href="college.html">College/NSS</a>
 
-        <a href="reuse.html">
-            Reuse & Recycle
-        </a>
+        <a href="reuse.html">Reuse & Recycle</a>
 
-        <a href="login.html" class="login-btn">
-            Login
-        </a>
+        <a href="my-impact.html">My Impact</a>
+
+        <a href="login.html" class="login-btn">Login</a>
 
     </div>
 
@@ -467,396 +741,1080 @@ footer span {
 
 <section class="hero">
 
-    <div class="hero-badge">
-        🌱 Your Journey of Impact
-    </div>
-
-    <h1>
-        My Impact
-    </h1>
+    <h1>My Impact 🌱</h1>
 
     <p>
-        See the difference you make through donations,
-        volunteering, environmental activities and community
-        participation.
+        Track your contributions, donations and the difference
+        you are helping create through ReConnect.
     </p>
 
 </section>
 
 
-<div class="container">
+<!-- ================= USER WELCOME ================= -->
+
+<div class="user-welcome">
+
+    <h2 id="welcomeName">Welcome to your Impact Dashboard</h2>
+
+    <p id="welcomeEmail">
+        Your personal contribution history will appear here.
+    </p>
+
+</div>
 
 
-    <!-- ================= STATS ================= -->
+<!-- ================= STATS ================= -->
 
-    <div class="stats">
+<section class="stats">
 
+    <div class="stat-card">
 
-        <div class="stat">
+        <div class="stat-icon">💝</div>
 
-            <div class="stat-icon">
-                💚
-            </div>
-
-            <h2>
-                0
-            </h2>
-
-            <p>
-                Donations Made
-            </p>
-
+        <div class="stat-number" id="donationsCount">
+            0
         </div>
 
-
-        <div class="stat">
-
-            <div class="stat-icon">
-                🤝
-            </div>
-
-            <h2>
-                0
-            </h2>
-
-            <p>
-                Activities Joined
-            </p>
-
+        <div class="stat-label">
+            Donations Made
         </div>
-
-
-        <div class="stat">
-
-            <div class="stat-icon">
-                🌱
-            </div>
-
-            <h2>
-                0
-            </h2>
-
-            <p>
-                Contributions Completed
-            </p>
-
-        </div>
-
-
-        <div class="stat">
-
-            <div class="stat-icon">
-                🏆
-            </div>
-
-            <h2>
-                0
-            </h2>
-
-            <p>
-                Achievements Earned
-            </p>
-
-        </div>
-
 
     </div>
 
 
-    <!-- ================= DONATIONS ================= -->
+    <div class="stat-card">
 
-    <section class="section">
+        <div class="stat-icon">🤝</div>
 
-        <div class="section-title">
-
-            <h2>
-                💚 My Donations
-            </h2>
-
-            <p>
-                Your money and item donations will be displayed
-                here with their progress and impact updates.
-            </p>
-
+        <div class="stat-number" id="activitiesCount">
+            0
         </div>
 
+        <div class="stat-label">
+            Activities Joined
+        </div>
 
-        <div class="empty">
+    </div>
 
-            <div class="empty-icon">
-                💚
+
+    <div class="stat-card">
+
+        <div class="stat-icon">🌱</div>
+
+        <div class="stat-number" id="completedCount">
+            0
+        </div>
+
+        <div class="stat-label">
+            Contributions Completed
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">🏆</div>
+
+        <div class="stat-number" id="achievementsCount">
+            0
+        </div>
+
+        <div class="stat-label">
+            Achievements Earned
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MY DONATIONS ================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>My Donations</h2>
+
+        <p>
+            Follow what happens after you contribute.
+        </p>
+
+    </div>
+
+
+    <div id="donationsLoading" class="loading">
+        Loading your donations...
+    </div>
+
+
+    <div
+        id="donationsContainer"
+        class="donations-container"
+        style="display:none;"
+    >
+    </div>
+
+
+    <div
+        id="donationsEmpty"
+        class="empty-state"
+        style="display:none;"
+    >
+
+        <div class="empty-icon">
+            💝
+        </div>
+
+        <h3>No Donations Yet</h3>
+
+        <p>
+            You have not made any donations through ReConnect yet.
+            Explore NGO requirements and make your first contribution.
+        </p>
+
+        <a href="donate.html" class="empty-btn">
+            Explore Donation Opportunities
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MY ACTIVITIES ================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>My Activities</h2>
+
+        <p>
+            Your volunteer participation will appear here.
+        </p>
+
+    </div>
+
+
+    <div class="activity-grid">
+
+        <div class="activity-card">
+
+            <div class="activity-icon">
+                🤝
             </div>
 
-            <h3>
-                No Donations Yet
-            </h3>
+            <h3>Volunteer Activities</h3>
 
             <p>
-                Once you make a donation through ReConnect,
-                your contribution history and donation status
-                will appear here.
+                Join verified activities organised by NGOs
+                and authorised organisations.
             </p>
 
-            <div class="empty-note">
-                Donation records will be connected through Firebase
+        </div>
+
+
+        <div class="activity-card">
+
+            <div class="activity-icon">
+                🎓
             </div>
 
-        </div>
-
-    </section>
-
-
-    <!-- ================= ACTIVITIES ================= -->
-
-    <section class="section">
-
-        <div class="section-title">
-
-            <h2>
-                🤝 My Activities
-            </h2>
+            <h3>College Activities</h3>
 
             <p>
-                Activities you register for and complete will
-                become part of your community contribution history.
+                Participate in community activities
+                through your college or NSS group.
             </p>
 
         </div>
 
 
-        <div class="empty">
+        <div class="activity-card">
 
-            <div class="empty-icon">
+            <div class="activity-icon">
                 🌍
             </div>
 
-            <h3>
-                No Activities Joined Yet
-            </h3>
+            <h3>Community Impact</h3>
 
             <p>
-                Beach cleaning, tree plantation, teaching,
-                food distribution, animal welfare and other
-                verified activities will appear here after
-                you participate.
-            </p>
-
-            <div class="empty-note">
-                Activity participation will be connected through Firebase
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= CONTRIBUTIONS ================= -->
-
-    <section class="section">
-
-        <div class="section-title">
-
-            <h2>
-                🌱 My Contributions
-            </h2>
-
-            <p>
-                Your completed social and environmental contributions
-                will be recorded here.
+                Your participation can contribute to
+                meaningful community initiatives.
             </p>
 
         </div>
 
+    </div>
 
-        <div class="card-grid">
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    ♻️
-                </div>
-
-                <h3>
-                    Reuse & Recycle
-                </h3>
-
-                <p>
-                    Items you contribute for reuse, upcycling
-                    or recycling will be tracked here.
-                </p>
-
-            </div>
+</section>
 
 
-            <div class="card">
+<!-- ================= MY CONTRIBUTIONS ================= -->
 
-                <div class="card-icon">
-                    🌳
-                </div>
+<section class="section">
 
-                <h3>
-                    Environmental Work
-                </h3>
+    <div class="section-title">
 
-                <p>
-                    Environmental activities such as tree
-                    plantation and clean-up drives can be recorded.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    🤝
-                </div>
-
-                <h3>
-                    Community Service
-                </h3>
-
-                <p>
-                    Your verified community service and volunteer
-                    participation can be displayed here.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= ACHIEVEMENTS ================= -->
-
-    <section class="section">
-
-        <div class="section-title">
-
-            <h2>
-                🏆 Achievements & Badges
-            </h2>
-
-            <p>
-                Achievements are earned through verified
-                participation and contributions.
-            </p>
-
-        </div>
-
-
-        <div class="achievement-grid">
-
-
-            <div class="achievement">
-
-                <div class="badge-circle">
-                    🌱
-                </div>
-
-                <h3>
-                    Green Contributor
-                </h3>
-
-                <p>
-                    Earned through verified environmental
-                    activities and contributions.
-                </p>
-
-                <span class="locked">
-                    🔒 Not Earned Yet
-                </span>
-
-            </div>
-
-
-            <div class="achievement">
-
-                <div class="badge-circle">
-                    🤝
-                </div>
-
-                <h3>
-                    Community Volunteer
-                </h3>
-
-                <p>
-                    Earned through meaningful participation
-                    in community activities.
-                </p>
-
-                <span class="locked">
-                    🔒 Not Earned Yet
-                </span>
-
-            </div>
-
-
-            <div class="achievement">
-
-                <div class="badge-circle">
-                    🏆
-                </div>
-
-                <h3>
-                    Impact Champion
-                </h3>
-
-                <p>
-                    Earned after completing multiple verified
-                    contributions and activities.
-                </p>
-
-                <span class="locked">
-                    🔒 Not Earned Yet
-                </span>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= CTA ================= -->
-
-    <section class="cta">
-
-        <h2>
-            Ready to Create Your Impact?
-        </h2>
+        <h2>My Contributions</h2>
 
         <p>
-            Find an NGO, donate an item, join an activity or
-            participate in an environmental initiative.
+            Every contribution can create a meaningful impact.
         </p>
 
-        <a href="ngos.html">
-            Find an NGO
+    </div>
+
+
+    <div class="contribution-grid">
+
+        <div class="contribution-card">
+
+            <div class="icon">
+                👕
+            </div>
+
+            <h3>Item Reuse</h3>
+
+            <p>
+                Give useful items a second life through
+                responsible reuse and donation.
+            </p>
+
+        </div>
+
+
+        <div class="contribution-card">
+
+            <div class="icon">
+                💰
+            </div>
+
+            <h3>Donations</h3>
+
+            <p>
+                Support verified NGO requirements through
+                transparent contributions.
+            </p>
+
+        </div>
+
+
+        <div class="contribution-card">
+
+            <div class="icon">
+                🤝
+            </div>
+
+            <h3>Volunteering</h3>
+
+            <p>
+                Give your time and skills to verified
+                community activities.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ACHIEVEMENTS ================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>Achievements</h2>
+
+        <p>
+            Keep contributing to unlock your ReConnect milestones.
+        </p>
+
+    </div>
+
+
+    <div class="achievement-grid">
+
+        <div class="achievement-card">
+
+            <div class="achievement-icon">
+                🌱
+            </div>
+
+            <h3>First Contribution</h3>
+
+            <p>
+                Make your first verified contribution.
+            </p>
+
+        </div>
+
+
+        <div class="achievement-card">
+
+            <div class="achievement-icon">
+                💚
+            </div>
+
+            <h3>Community Supporter</h3>
+
+            <p>
+                Complete multiple contributions.
+            </p>
+
+        </div>
+
+
+        <div class="achievement-card">
+
+            <div class="achievement-icon">
+                🏆
+            </div>
+
+            <h3>Impact Champion</h3>
+
+            <p>
+                Build a strong record of completed contributions.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta">
+
+    <div class="cta-box">
+
+        <h2>Ready to Make More Impact?</h2>
+
+        <p>
+            Explore verified NGO requirements, volunteer
+            opportunities and responsible reuse options.
+        </p>
+
+        <a href="donate.html" class="cta-button">
+            Make a Contribution
         </a>
 
-    </section>
+    </div>
 
-
-</div>
+</section>
 
 
 <!-- ================= FOOTER ================= -->
 
 <footer>
 
+    <h3>ReConnect</h3>
+
     <p>
-        © 2026 <span>ReConnect</span> —
-        Connecting People With Meaningful Impact
+        Connecting people, organisations and communities
+        for meaningful social impact.
+    </p>
+
+    <br>
+
+    <p>
+        © 2026 ReConnect. All rights reserved.
     </p>
 
 </footer>
 
+
+<!-- ================= FIREBASE ================= -->
+
+<script type="module">
+
+import {
+    getAuth,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    query,
+    where,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+import { app } from "./firebase-config.js";
+
+
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+
+/* ================= SAFE HTML ================= */
+
+function escapeHTML(value) {
+
+    if (value === null || value === undefined) {
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+/* ================= SAFE IMAGE URL ================= */
+
+function safeImageURL(url) {
+
+    if (!url) {
+        return "";
+    }
+
+    try {
+
+        const parsed = new URL(url);
+
+        if (
+            parsed.protocol === "https:" ||
+            parsed.protocol === "http:"
+        ) {
+            return parsed.href;
+        }
+
+    } catch (error) {
+
+        return "";
+
+    }
+
+    return "";
+}
+
+
+/* ================= FORMAT DATE ================= */
+
+function formatDate(timestamp) {
+
+    if (!timestamp) {
+        return "";
+    }
+
+    try {
+
+        const date = timestamp.toDate
+            ? timestamp.toDate()
+            : new Date(timestamp);
+
+        if (isNaN(date.getTime())) {
+            return "";
+        }
+
+        return date.toLocaleDateString(
+            "en-IN",
+            {
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+            }
+        );
+
+    } catch (error) {
+
+        return "";
+
+    }
+}
+
+
+/* ================= STATUS ================= */
+
+function formatStatus(status) {
+
+    switch (status) {
+
+        case "submitted":
+            return "Donation Submitted";
+
+        case "received":
+            return "Received by NGO";
+
+        case "impact_updated":
+            return "Impact Update Added";
+
+        case "completed":
+            return "Completed";
+
+        default:
+            return "Donation Submitted";
+
+    }
+
+}
+
+
+/* ================= TIMELINE ================= */
+
+function createTimeline(donation) {
+
+    const status = donation.status || "submitted";
+
+    const steps = [
+        {
+            key: "submitted",
+            title: "Donation Submitted",
+            text: donation.createdAt
+                ? formatDate(donation.createdAt)
+                : "Donation recorded"
+        },
+        {
+            key: "received",
+            title: "Received by NGO",
+            text: donation.receivedAt
+                ? formatDate(donation.receivedAt)
+                : "Waiting for NGO confirmation"
+        },
+        {
+            key: "impact_updated",
+            title: "Impact Update",
+            text: donation.impactUpdate
+                ? "Impact information added"
+                : "Waiting for impact update"
+        },
+        {
+            key: "completed",
+            title: "Completed",
+            text: status === "completed"
+                ? "Contribution completed"
+                : "Contribution is still in progress"
+        }
+    ];
+
+
+    const order = [
+        "submitted",
+        "received",
+        "impact_updated",
+        "completed"
+    ];
+
+    const currentIndex = order.indexOf(status);
+
+
+    return steps.map((step, index) => {
+
+        const active = index <= currentIndex;
+
+        return `
+            <div class="timeline-item ${active ? "active" : ""}">
+
+                <div class="timeline-dot"></div>
+
+                <h4>${escapeHTML(step.title)}</h4>
+
+                <p>${escapeHTML(step.text)}</p>
+
+            </div>
+        `;
+
+    }).join("");
+
+}
+
+
+/* ================= DONATION CARD ================= */
+
+function createDonationCard(donation, docId) {
+
+    const donationCode =
+        donation.donationCode ||
+        `RC-DON-${docId.substring(0, 8).toUpperCase()}`;
+
+
+    const status =
+        donation.status || "submitted";
+
+
+    const type =
+        donation.donationType || "Contribution";
+
+
+    const amount =
+        donation.amount !== undefined &&
+        donation.amount !== null &&
+        donation.amount !== ""
+            ? donation.amount
+            : "—";
+
+
+    const purpose =
+        donation.purpose || "General support";
+
+
+    const ngoName =
+        donation.ngoName || "Verified NGO";
+
+
+    const receivedPhoto =
+        safeImageURL(donation.receivedPhotoUrl);
+
+
+    const impactPhoto =
+        safeImageURL(donation.impactPhotoUrl);
+
+
+    return `
+
+        <article class="donation-card">
+
+            <div class="donation-header">
+
+                <div>
+
+                    <h3>
+                        ${escapeHTML(ngoName)}
+                    </h3>
+
+                    <div class="donation-id">
+                        Donation ID:
+                        <strong>
+                            ${escapeHTML(donationCode)}
+                        </strong>
+                    </div>
+
+                </div>
+
+                <span class="status-badge status-${escapeHTML(status)}">
+
+                    ${escapeHTML(
+                        formatStatus(status)
+                    )}
+
+                </span>
+
+            </div>
+
+
+            <div class="donation-details">
+
+                <div class="detail-box">
+
+                    <strong>Donation Type</strong>
+
+                    <span>
+                        ${escapeHTML(type)}
+                    </span>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <strong>Amount / Quantity</strong>
+
+                    <span>
+                        ${escapeHTML(String(amount))}
+                    </span>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <strong>Purpose</strong>
+
+                    <span>
+                        ${escapeHTML(purpose)}
+                    </span>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <strong>Donation Date</strong>
+
+                    <span>
+                        ${
+                            donation.createdAt
+                                ? escapeHTML(
+                                    formatDate(
+                                        donation.createdAt
+                                    )
+                                  )
+                                : "—"
+                        }
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <h3 style="
+                    color:#176b4d;
+                    font-size:18px;
+                    margin-bottom:15px;
+                ">
+                    Donation Progress
+                </h3>
+
+
+                <div class="timeline">
+
+                    ${createTimeline(donation)}
+
+                </div>
+
+            </div>
+
+
+            <div class="proof-section">
+
+
+                <div class="proof-box">
+
+                    <h4>
+                        📸 Donation Received Proof
+                    </h4>
+
+                    ${
+                        receivedPhoto
+
+                        ?
+
+                        `
+                        <p>
+                            The NGO has added a photo as
+                            proof of receiving the contribution.
+                        </p>
+
+                        <img
+                            src="${escapeHTML(receivedPhoto)}"
+                            class="proof-image"
+                            alt="Donation received proof"
+                        >
+                        `
+
+                        :
+
+                        `
+                        <p>
+                            Photo proof has not been added by
+                            the NGO yet.
+                        </p>
+                        `
+                    }
+
+                </div>
+
+
+                <div class="proof-box">
+
+                    <h4>
+                        🌱 Impact Update
+                    </h4>
+
+                    ${
+                        donation.impactUpdate
+
+                        ?
+
+                        `
+                        <p>
+                            ${escapeHTML(
+                                donation.impactUpdate
+                            )}
+                        </p>
+                        `
+
+                        :
+
+                        `
+                        <p>
+                            The NGO has not added an impact
+                            update yet.
+                        </p>
+                        `
+                    }
+
+
+                    ${
+                        impactPhoto
+
+                        ?
+
+                        `
+                        <img
+                            src="${escapeHTML(impactPhoto)}"
+                            class="proof-image"
+                            alt="Donation impact update"
+                        >
+                        `
+
+                        :
+
+                        ""
+                    }
+
+                </div>
+
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* ================= LOAD DONATIONS ================= */
+
+async function loadDonations(user) {
+
+    const loading =
+        document.getElementById("donationsLoading");
+
+    const container =
+        document.getElementById("donationsContainer");
+
+    const empty =
+        document.getElementById("donationsEmpty");
+
+
+    loading.style.display = "block";
+    container.style.display = "none";
+    empty.style.display = "none";
+
+
+    try {
+
+        const donationsQuery = query(
+            collection(db, "donations"),
+            where("donorId", "==", user.uid)
+        );
+
+
+        const snapshot =
+            await getDocs(donationsQuery);
+
+
+        const donations = [];
+
+
+        snapshot.forEach(docSnap => {
+
+            donations.push({
+                id: docSnap.id,
+                ...docSnap.data()
+            });
+
+        });
+
+
+        /* newest first */
+
+        donations.sort((a, b) => {
+
+            const dateA =
+                a.createdAt?.toMillis
+                    ? a.createdAt.toMillis()
+                    : 0;
+
+            const dateB =
+                b.createdAt?.toMillis
+                    ? b.createdAt.toMillis()
+                    : 0;
+
+            return dateB - dateA;
+
+        });
+
+
+        /* donation count */
+
+        document.getElementById(
+            "donationsCount"
+        ).textContent = donations.length;
+
+
+        /* completed count */
+
+        const completed =
+            donations.filter(
+                donation =>
+                    donation.status === "completed"
+            ).length;
+
+
+        document.getElementById(
+            "completedCount"
+        ).textContent = completed;
+
+
+        /* achievements */
+
+        let achievements = 0;
+
+
+        if (donations.length >= 1) {
+            achievements++;
+        }
+
+        if (donations.length >= 5) {
+            achievements++;
+        }
+
+        if (completed >= 5) {
+            achievements++;
+        }
+
+
+        document.getElementById(
+            "achievementsCount"
+        ).textContent = achievements;
+
+
+        loading.style.display = "none";
+
+
+        if (donations.length === 0) {
+
+            empty.style.display = "block";
+
+            return;
+        }
+
+
+        container.innerHTML =
+            donations.map(
+                donation =>
+                    createDonationCard(
+                        donation,
+                        donation.id
+                    )
+            ).join("");
+
+
+        container.style.display = "flex";
+
+
+    } catch (error) {
+
+        console.error(
+            "Error loading donations:",
+            error
+        );
+
+
+        loading.style.display = "none";
+
+        container.style.display = "block";
+
+        container.innerHTML = `
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    ⚠️
+                </div>
+
+                <h3>
+                    Unable to Load Donations
+                </h3>
+
+                <p>
+                    We could not load your donation
+                    history right now. Please try again later.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* ================= AUTH ================= */
+
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+
+        document.getElementById(
+            "welcomeName"
+        ).textContent =
+            "Please Log In to View Your Impact";
+
+        document.getElementById(
+            "welcomeEmail"
+        ).innerHTML = `
+            Sign in to view your donations,
+            contribution history and impact.
+        `;
+
+
+        document.getElementById(
+            "donationsLoading"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "donationsEmpty"
+        ).style.display = "block";
+
+
+        return;
+    }
+
+
+    /* user information */
+
+    const displayName =
+        user.displayName ||
+        user.email?.split("@")[0] ||
+        "ReConnect User";
+
+
+    document.getElementById(
+        "welcomeName"
+    ).textContent =
+        `Welcome, ${displayName}`;
+
+
+    document.getElementById(
+        "welcomeEmail"
+    ).textContent =
+        user.email || "";
+
+
+    /* Load donation records */
+
+    await loadDonations(user);
+
+});
+
+
+</script>
+
+
+<!-- ================= SHARED AUTH NAVBAR ================= -->
+
 <script type="module" src="auth.js"></script>
+
 </body>
 
 </html>
