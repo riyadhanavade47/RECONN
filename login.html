@@ -390,6 +390,10 @@ button:disabled {
             College / NSS
         </option>
 
+        <option value="volunteer">
+            Volunteer
+        </option>
+
     </select>
 
 
@@ -589,6 +593,49 @@ button:disabled {
     </div>
 
 
+    <!-- VOLUNTEER -->
+
+    <div
+        class="role-fields"
+        id="volunteerFields">
+
+        <div class="verification-note">
+
+            <strong>Volunteer Registration</strong><br>
+
+            Register as a volunteer to view and participate
+            in community activities available for volunteers.
+
+        </div>
+
+        <div class="section-title">
+            Volunteer Information
+        </div>
+
+        <label>Mobile Number *</label>
+
+        <input
+            type="tel"
+            id="volunteerPhone"
+            placeholder="Enter your mobile number">
+
+        <label>Area of Interest *</label>
+
+        <input
+            type="text"
+            id="volunteerInterest"
+            placeholder="Example: Education, Environment, Children">
+
+        <label>Location *</label>
+
+        <input
+            type="text"
+            id="volunteerLocation"
+            placeholder="Enter your city / area">
+
+    </div>
+
+
     <button
         id="registerButton"
         onclick="registerUser()">
@@ -737,6 +784,10 @@ window.showRoleFields = function() {
         .getElementById("collegeFields")
         .classList.remove("active");
 
+    document
+        .getElementById("volunteerFields")
+        .classList.remove("active");
+
 
     if (role === "ngo") {
 
@@ -751,6 +802,14 @@ window.showRoleFields = function() {
 
         document
             .getElementById("collegeFields")
+            .classList.add("active");
+
+    }
+
+    if (role === "volunteer") {
+
+        document
+            .getElementById("volunteerFields")
             .classList.add("active");
 
     }
@@ -894,6 +953,17 @@ window.registerUser = async function() {
     const collegeAddress =
         document.getElementById("collegeAddress").value.trim();
 
+    /* VOLUNTEER */
+
+    const volunteerPhone =
+        document.getElementById("volunteerPhone").value.trim();
+
+    const volunteerInterest =
+        document.getElementById("volunteerInterest").value.trim();
+
+    const volunteerLocation =
+        document.getElementById("volunteerLocation").value.trim();
+
 
     /* NGO VALIDATION */
 
@@ -925,6 +995,29 @@ window.registerUser = async function() {
             showMessage(
                 "registerMessage",
                 "Please enter a valid PAN format.",
+                "error"
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    /* VOLUNTEER VALIDATION */
+
+    if (role === "volunteer") {
+
+        if (
+            !volunteerPhone ||
+            !volunteerInterest ||
+            !volunteerLocation
+        ) {
+
+            showMessage(
+                "registerMessage",
+                "Please complete all required Volunteer details.",
                 "error"
             );
 
@@ -1090,6 +1183,25 @@ window.registerUser = async function() {
         }
 
 
+        /* VOLUNTEER */
+
+        if (role === "volunteer") {
+
+            userData.phone =
+                volunteerPhone;
+
+            userData.areaOfInterest =
+                volunteerInterest;
+
+            userData.location =
+                volunteerLocation;
+
+            userData.status =
+                "active";
+
+        }
+
+
         /* DONOR */
 
         if (role === "donor") {
@@ -1126,6 +1238,13 @@ window.registerUser = async function() {
 
                 window.location.href =
                     "college.html";
+
+            }
+
+            else if (role === "volunteer") {
+
+                window.location.href =
+                    "activities.html";
 
             }
 
@@ -1301,6 +1420,13 @@ window.loginUser = async function() {
 
                 window.location.href =
                     "index.html";
+
+            }
+
+            else if (userData.role === "volunteer") {
+
+                window.location.href =
+                    "activities.html";
 
             }
 
