@@ -2,378 +2,358 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>College & NSS | ReConnect</title>
 
 <style>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
 }
 
-body {
-    background: #f6faf8;
-    color: #17352a;
+body{
+    background:#f5faf7;
+    color:#17352a;
 }
 
 /* NAVBAR */
 
-nav {
-    height: 72px;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 6%;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+nav{
+    background:white;
+    padding:17px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 2px 12px rgba(0,0,0,.07);
+    position:sticky;
+    top:0;
+    z-index:100;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 22px;
-    font-weight: bold;
-    color: #159957;
+.logo{
+    font-size:25px;
+    font-weight:bold;
+    color:#159957;
 }
 
-.logo-circle {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: #159957;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
+.nav-links{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
 }
 
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+.nav-links a{
+    text-decoration:none;
+    color:#29463b;
+    font-weight:600;
 }
 
-.nav-links a {
-    text-decoration: none;
-    color: #35564a;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.nav-links a:hover {
-    color: #159957;
-}
-
-.login-btn {
-    background: #159957;
-    color: white !important;
-    padding: 10px 18px;
-    border-radius: 22px;
+.nav-links a:hover{
+    color:#159957;
 }
 
 /* HERO */
 
-.hero {
-    padding: 65px 6%;
-    text-align: center;
-    background: linear-gradient(
-        135deg,
-        #e9fff3,
-        #eef8ff,
-        #fffbea
-    );
+.hero{
+    background:linear-gradient(135deg,#dff8e9,#eaf6ff,#fff7d7);
+    padding:70px 7%;
+    text-align:center;
 }
 
-.badge {
-    display: inline-block;
-    background: white;
-    color: #159957;
-    padding: 8px 17px;
-    border-radius: 25px;
-    font-size: 13px;
-    font-weight: bold;
-    margin-bottom: 18px;
+.hero h1{
+    font-size:46px;
+    color:#176b4d;
+    margin-bottom:15px;
 }
 
-.hero h1 {
-    font-size: 42px;
-    margin-bottom: 15px;
-}
-
-.hero p {
-    max-width: 720px;
-    margin: auto;
-    color: #60766c;
-    line-height: 1.7;
+.hero p{
+    max-width:780px;
+    margin:auto;
+    font-size:18px;
+    line-height:1.7;
+    color:#536a60;
 }
 
 /* CONTAINER */
 
-.container {
-    width: 88%;
-    max-width: 1100px;
-    margin: 45px auto 70px;
+.container{
+    width:88%;
+    max-width:1150px;
+    margin:55px auto;
 }
 
-.section {
-    margin-bottom: 50px;
+.section-title{
+    text-align:center;
+    margin-bottom:35px;
 }
 
-.section-title {
-    text-align: center;
-    margin-bottom: 25px;
+.section-title h2{
+    color:#176b4d;
+    font-size:32px;
+    margin-bottom:10px;
 }
 
-.section-title h2 {
-    font-size: 28px;
-    margin-bottom: 8px;
+.section-title p{
+    color:#65776f;
+    line-height:1.6;
 }
 
-.section-title p {
-    color: #718078;
-    line-height: 1.6;
+/* ORGANIZER BANNER */
+
+.organizer{
+    background:white;
+    border:1px solid #dcece4;
+    border-radius:20px;
+    padding:30px;
+    display:flex;
+    align-items:center;
+    gap:25px;
+    margin-bottom:55px;
+    box-shadow:0 7px 25px rgba(30,90,60,.07);
 }
 
-/* CARDS */
-
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
+.organizer-icon{
+    font-size:50px;
 }
 
-.card {
-    background: white;
-    padding: 28px;
-    border-radius: 20px;
-    border: 1px solid #e2eee7;
-    box-shadow: 0 7px 25px rgba(0,0,0,0.06);
-    transition: 0.25s;
+.organizer h2{
+    color:#176b4d;
+    margin-bottom:8px;
 }
 
-.card:hover {
-    transform: translateY(-5px);
+.organizer p{
+    color:#63766d;
+    line-height:1.6;
 }
 
-.icon {
-    width: 58px;
-    height: 58px;
-    border-radius: 17px;
-    background: #eaf8f0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 29px;
-    margin-bottom: 18px;
+/* ACTIVITY FLOW */
+
+.flow{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:60px;
 }
 
-.card h3 {
-    margin-bottom: 10px;
-    font-size: 19px;
+.flow-card{
+    background:white;
+    padding:25px 18px;
+    border-radius:17px;
+    text-align:center;
+    border:1px solid #dfede6;
 }
 
-.card p {
-    color: #718078;
-    font-size: 13px;
-    line-height: 1.7;
+.flow-number{
+    width:42px;
+    height:42px;
+    background:#159957;
+    color:white;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 14px;
+    font-weight:bold;
 }
 
-/* PROCESS */
-
-.process {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
+.flow-card h3{
+    color:#176b4d;
+    margin-bottom:8px;
 }
 
-.step {
-    background: white;
-    padding: 24px;
-    border-radius: 18px;
-    text-align: center;
-    border: 1px solid #e2eee7;
+.flow-card p{
+    color:#687a72;
+    font-size:14px;
+    line-height:1.5;
 }
 
-.number {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: #159957;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 14px;
-    font-weight: bold;
+/* ACTION CARDS */
+
+.action-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
 }
 
-.step h3 {
-    font-size: 16px;
-    margin-bottom: 8px;
+.action-card{
+    background:white;
+    padding:28px 22px;
+    border-radius:18px;
+    border:1px solid #dfede6;
+    box-shadow:0 6px 20px rgba(30,90,60,.06);
+    transition:.25s;
 }
 
-.step p {
-    color: #718078;
-    font-size: 12px;
-    line-height: 1.6;
+.action-card:hover{
+    transform:translateY(-5px);
 }
 
-/* EMPTY STATE */
-
-.empty {
-    background: white;
-    padding: 60px 30px;
-    text-align: center;
-    border-radius: 22px;
-    border: 1px solid #e2eee7;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+.action-icon{
+    font-size:42px;
+    margin-bottom:15px;
 }
 
-.empty-icon {
-    font-size: 58px;
-    margin-bottom: 15px;
+.action-card h3{
+    color:#176b4d;
+    margin-bottom:10px;
 }
 
-.empty h3 {
-    font-size: 23px;
-    margin-bottom: 10px;
+.action-card p{
+    color:#65766e;
+    line-height:1.6;
 }
 
-.empty p {
-    max-width: 650px;
-    margin: auto;
-    color: #718078;
-    line-height: 1.7;
+/* ACTIVITY SECTION */
+
+.activity-section{
+    margin-top:65px;
 }
 
-.note {
-    display: inline-block;
-    margin-top: 20px;
-    background: #eaf8f0;
-    color: #159957;
-    padding: 9px 16px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
+.empty-box{
+    background:white;
+    border:2px dashed #c8ded3;
+    border-radius:20px;
+    padding:50px 25px;
+    text-align:center;
 }
 
-/* CTA */
-
-.cta {
-    background: #159957;
-    color: white;
-    padding: 45px 30px;
-    border-radius: 24px;
-    text-align: center;
-    margin-top: 45px;
+.empty-icon{
+    font-size:55px;
+    margin-bottom:15px;
 }
 
-.cta h2 {
-    font-size: 28px;
-    margin-bottom: 10px;
+.empty-box h3{
+    color:#176b4d;
+    font-size:25px;
+    margin-bottom:10px;
 }
 
-.cta p {
-    max-width: 620px;
-    margin: auto auto 22px;
-    line-height: 1.6;
+.empty-box p{
+    max-width:650px;
+    margin:auto;
+    color:#687970;
+    line-height:1.7;
 }
 
-.cta-btn {
-    display: inline-block;
-    background: white;
-    color: #159957;
-    padding: 12px 24px;
-    border-radius: 24px;
-    text-decoration: none;
-    font-weight: bold;
+.note{
+    margin-top:20px;
+    background:#f1faf5;
+    padding:15px;
+    border-radius:10px;
+    color:#507062;
+    font-size:14px;
+}
+
+/* REGISTRATION */
+
+.register-box{
+    background:linear-gradient(135deg,#176b4d,#159957);
+    color:white;
+    padding:45px 35px;
+    border-radius:22px;
+    text-align:center;
+    margin-top:60px;
+}
+
+.register-box h2{
+    font-size:30px;
+    margin-bottom:12px;
+}
+
+.register-box p{
+    max-width:700px;
+    margin:auto;
+    line-height:1.7;
+    opacity:.95;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:22px;
+    padding:13px 24px;
+    background:white;
+    color:#176b4d;
+    text-decoration:none;
+    border-radius:9px;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:#e9f8ef;
 }
 
 /* FOOTER */
 
-footer {
-    background: #17352a;
-    color: white;
-    text-align: center;
-    padding: 28px;
-    font-size: 13px;
+footer{
+    background:#17352a;
+    color:white;
+    text-align:center;
+    padding:30px 7%;
+    margin-top:70px;
 }
 
-footer span {
-    color: #69d69c;
+footer p{
+    opacity:.8;
 }
 
-/* RESPONSIVE */
+/* MOBILE */
 
-@media (max-width: 900px) {
+@media(max-width:850px){
 
-    .card-grid {
-        grid-template-columns: 1fr 1fr;
+    .flow{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .process {
-        grid-template-columns: 1fr 1fr;
+    .action-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .organizer{
+        flex-direction:column;
+        text-align:center;
     }
 
 }
 
-@media (max-width: 650px) {
+@media(max-width:600px){
 
-    nav {
-        height: auto;
-        padding: 15px 5%;
-        flex-direction: column;
-        gap: 12px;
+    nav{
+        flex-direction:column;
+        gap:12px;
     }
 
-    .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px;
+    .nav-links{
+        justify-content:center;
     }
 
-    .hero h1 {
-        font-size: 32px;
+    .hero h1{
+        font-size:36px;
     }
 
-    .card-grid,
-    .process {
-        grid-template-columns: 1fr;
+    .flow,
+    .action-grid{
+        grid-template-columns:1fr;
     }
 
 }
 
 </style>
-
 </head>
 
+
 <body>
+
 
 <!-- NAVBAR -->
 
 <nav>
 
-    <div class="logo">
-
-        <div class="logo-circle">
-            R
-        </div>
-
-        ReConnect
-
-    </div>
+    <div class="logo">🌱 ReConnect</div>
 
     <div class="nav-links">
 
@@ -389,9 +369,9 @@ footer span {
 
         <a href="reuse.html">Reuse & Recycle</a>
 
-        <a href="login.html" class="login-btn">
-            Login
-        </a>
+        <a href="my-impact.html">My Impact</a>
+
+        <a href="login.html">Login</a>
 
     </div>
 
@@ -402,18 +382,12 @@ footer span {
 
 <section class="hero">
 
-    <div class="badge">
-        🎓 Students • Colleges • NSS • Clubs
-    </div>
-
-    <h1>
-        College & NSS Community
-    </h1>
+    <h1>🎓 College & NSS Community</h1>
 
     <p>
-        Connect college students, NSS units and student clubs
-        with NGOs and meaningful community activities.
-        Turn student participation into real social impact.
+        Connect students and NSS groups with verified community,
+        environmental and social activities published by government
+        departments, NGOs and authorized organizations.
     </p>
 
 </section>
@@ -422,451 +396,274 @@ footer span {
 <div class="container">
 
 
-    <!-- WHAT COLLEGES CAN DO -->
+    <!-- WHO CREATES ACTIVITIES -->
 
-    <section class="section">
+    <div class="organizer">
 
-        <div class="section-title">
+        <div class="organizer-icon">🏛️</div>
 
-            <h2>
-                What Can College & NSS Groups Do?
-            </h2>
+        <div>
+
+            <h2>Who Creates the Activities?</h2>
 
             <p>
-                ReConnect provides a platform for students and
-                college groups to participate in social initiatives.
+                Official activities can be published by government
+                departments and other authorized organizations.
+                Colleges, NSS groups and students can discover these
+                activities and participate in them.
             </p>
 
         </div>
 
-
-        <div class="card-grid">
-
-
-            <div class="card">
-
-                <div class="icon">
-                    🤝
-                </div>
-
-                <h3>
-                    NGO Collaboration
-                </h3>
-
-                <p>
-                    Connect with verified NGOs and participate
-                    in activities that match your interests.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="icon">
-                    🌱
-                </div>
-
-                <h3>
-                    Environmental Drives
-                </h3>
-
-                <p>
-                    Organize or participate in tree plantation,
-                    beach cleaning, plastic collection and
-                    awareness activities.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="icon">
-                    📚
-                </div>
-
-                <h3>
-                    Teaching & Education
-                </h3>
-
-                <p>
-                    Students can participate in teaching,
-                    mentoring and educational community programs.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="icon">
-                    🍱
-                </div>
-
-                <h3>
-                    Donation Drives
-                </h3>
-
-                <p>
-                    Organize collection drives for clothes,
-                    books, food and other useful items.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="icon">
-                    🩸
-                </div>
-
-                <h3>
-                    Blood Donation
-                </h3>
-
-                <p>
-                    Colleges and NSS units can participate
-                    in verified blood donation initiatives.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="icon">
-                    🐾
-                </div>
-
-                <h3>
-                    Animal Welfare
-                </h3>
-
-                <p>
-                    Students can join activities supporting
-                    animal welfare and community care.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </section>
+    </div>
 
 
     <!-- HOW IT WORKS -->
 
-    <section class="section">
+    <div class="section-title">
 
-        <div class="section-title">
+        <h2>How College & NSS Participation Works</h2>
 
-            <h2>
-                How College Participation Works
-            </h2>
+        <p>
+            A simple journey from discovering an activity to recording
+            your contribution.
+        </p>
+
+    </div>
+
+
+    <div class="flow">
+
+
+        <div class="flow-card">
+
+            <div class="flow-number">1</div>
+
+            <h3>Discover</h3>
 
             <p>
-                From discovering an opportunity to recording
-                your contribution.
+                Find verified activities published by government,
+                NGOs and authorized organizations.
             </p>
 
         </div>
 
 
-        <div class="process">
+        <div class="flow-card">
 
+            <div class="flow-number">2</div>
 
-            <div class="step">
-
-                <div class="number">
-                    1
-                </div>
-
-                <h3>
-                    Register Your Group
-                </h3>
-
-                <p>
-                    College clubs and NSS units can create
-                    their organization profile.
-                </p>
-
-            </div>
-
-
-            <div class="step">
-
-                <div class="number">
-                    2
-                </div>
-
-                <h3>
-                    Find Activities
-                </h3>
-
-                <p>
-                    Discover environmental, educational,
-                    community and NGO activities.
-                </p>
-
-            </div>
-
-
-            <div class="step">
-
-                <div class="number">
-                    3
-                </div>
-
-                <h3>
-                    Participate
-                </h3>
-
-                <p>
-                    Students can register and participate
-                    in selected activities.
-                </p>
-
-            </div>
-
-
-            <div class="step">
-
-                <div class="number">
-                    4
-                </div>
-
-                <h3>
-                    Track Impact
-                </h3>
-
-                <p>
-                    Participation and contributions can
-                    later be recorded through ReConnect.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- CURRENT COLLEGES -->
-
-    <section class="section">
-
-        <div class="section-title">
-
-            <h2>
-                College & NSS Directory
-            </h2>
+            <h3>Register</h3>
 
             <p>
-                Verified colleges and student groups will
-                appear here once they register.
+                Students or NSS groups can register for an activity.
             </p>
 
         </div>
 
 
-        <div class="empty">
+        <div class="flow-card">
 
-            <div class="empty-icon">
-                🎓
-            </div>
+            <div class="flow-number">3</div>
 
-            <h3>
-                No College Groups Registered Yet
-            </h3>
+            <h3>Participate</h3>
 
             <p>
-                The College & NSS directory is currently empty.
-                Once colleges, NSS units and student clubs register
-                with ReConnect, their profiles and activities
-                will appear here.
+                Attend the activity and contribute your time and effort.
             </p>
-
-            <div class="note">
-                Live college registration will be connected through Firebase
-            </div>
 
         </div>
 
-    </section>
+
+        <div class="flow-card">
+
+            <div class="flow-number">4</div>
+
+            <h3>Track Impact</h3>
+
+            <p>
+                Verified participation can appear in your My Impact
+                and contribution history.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- WHAT THEY CAN DO -->
+
+    <div class="section-title">
+
+        <h2>What College & NSS Groups Can Do</h2>
+
+        <p>
+            Students and college groups can participate in different
+            types of social and environmental initiatives.
+        </p>
+
+    </div>
+
+
+    <div class="action-grid">
+
+
+        <div class="action-card">
+
+            <div class="action-icon">🤝</div>
+
+            <h3>NGO Collaboration</h3>
+
+            <p>
+                Connect with verified NGOs and participate in their
+                volunteering and community initiatives.
+            </p>
+
+        </div>
+
+
+        <div class="action-card">
+
+            <div class="action-icon">🌱</div>
+
+            <h3>Environmental Drives</h3>
+
+            <p>
+                Participate in tree plantation, beach cleaning,
+                plastic collection and environmental awareness drives.
+            </p>
+
+        </div>
+
+
+        <div class="action-card">
+
+            <div class="action-icon">📚</div>
+
+            <h3>Teaching & Education</h3>
+
+            <p>
+                Participate in teaching children, educational support
+                and awareness activities.
+            </p>
+
+        </div>
+
+
+        <div class="action-card">
+
+            <div class="action-icon">🎁</div>
+
+            <h3>Donation Drives</h3>
+
+            <p>
+                Participate in organized donation drives and help
+                collect useful items for people and communities.
+            </p>
+
+        </div>
+
+
+        <div class="action-card">
+
+            <div class="action-icon">🩸</div>
+
+            <h3>Blood Donation</h3>
+
+            <p>
+                Discover and participate in authorized blood donation
+                camps and community health initiatives.
+            </p>
+
+        </div>
+
+
+        <div class="action-card">
+
+            <div class="action-icon">🐾</div>
+
+            <h3>Animal Welfare</h3>
+
+            <p>
+                Participate in animal welfare, awareness and
+                community support activities.
+            </p>
+
+        </div>
+
+    </div>
 
 
     <!-- ACTIVITIES -->
 
-    <section class="section">
+    <div class="activity-section">
 
         <div class="section-title">
 
-            <h2>
-                Student Activities
-            </h2>
+            <h2>Government & Community Activities</h2>
 
             <p>
-                Examples of activities that colleges and NSS
-                groups can organize or participate in.
+                Official activities will appear here once ReConnect
+                establishes partnerships with government departments
+                and authorized organizations.
             </p>
 
         </div>
 
 
-        <div class="card-grid">
+        <div class="empty-box">
 
+            <div class="empty-icon">🏛️</div>
 
-            <div class="card">
+            <h3>No Official Activities Available Yet</h3>
 
-                <div class="icon">
-                    🏖️
-                </div>
+            <p>
+                Government departments and authorized organizations
+                will be able to publish verified activities on
+                ReConnect. Students, colleges and NSS groups will
+                then be able to discover and participate in them.
+            </p>
 
-                <h3>
-                    Beach Cleaning
-                </h3>
-
-                <p>
-                    Students can participate in community
-                    beach and coastal clean-up initiatives.
-                </p>
-
+            <div class="note">
+                Activities shown here will be connected to the
+                official ReConnect activity system in the Firebase stage.
             </div>
-
-
-            <div class="card">
-
-                <div class="icon">
-                    🌳
-                </div>
-
-                <h3>
-                    Tree Plantation
-                </h3>
-
-                <p>
-                    Participate in plantation drives and
-                    environmental awareness activities.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="icon">
-                    🧹
-                </div>
-
-                <h3>
-                    Clean-up Campaign
-                </h3>
-
-                <p>
-                    Join community clean-up initiatives
-                    organized by verified groups.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="icon">
-                    👩‍🏫
-                </div>
-
-                <h3>
-                    Teaching Children
-                </h3>
-
-                <p>
-                    Support educational programs by
-                    volunteering time and skills.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="icon">
-                    🍲
-                </div>
-
-                <h3>
-                    Food Distribution
-                </h3>
-
-                <p>
-                    Participate in organized food distribution
-                    and community support activities.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="icon">
-                    📢
-                </div>
-
-                <h3>
-                    Awareness Campaign
-                </h3>
-
-                <p>
-                    Help spread awareness about environmental
-                    and social issues.
-                </p>
-
-            </div>
-
 
         </div>
 
-    </section>
+    </div>
 
 
-    <!-- CTA -->
+    <!-- REGISTER COLLEGE/NSS -->
 
-    <section class="cta">
+    <div class="register-box">
 
-        <h2>
-            Make Your College a Part of ReConnect
-        </h2>
+        <h2>🎓 Register Your College / NSS Group</h2>
 
         <p>
-            Bring students, NSS units and community
-            organizations together to create meaningful impact.
+            Create a College/NSS profile so your group can be identified
+            on ReConnect and participate in verified community,
+            environmental and social activities.
         </p>
 
-        <a href="login.html" class="cta-btn">
+        <a href="login.html" class="btn">
             Register College / NSS
         </a>
 
-    </section>
+    </div>
 
 
 </div>
 
 
-<!-- FOOTER -->
-
 <footer>
 
     <p>
-        © 2026 <span>ReConnect</span> —
-        Connecting Students With Social Impact
+        © 2026 ReConnect — Connecting People, NGOs and Sustainable Action.
     </p>
 
 </footer>
 
-</body>
 
+</body>
 </html>
