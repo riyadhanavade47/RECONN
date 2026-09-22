@@ -1,8 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Login | ReConnect</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e8fff3, #eef7ff);
+    display: flex;
+    flex-direction: column;
+}
+
+/* NAVBAR */
+
+nav {
+    height: 70px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #159957;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo-mark {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #159957;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.back-link {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-link:hover {
+    color: #159957;
+}
+
+/* MAIN */
+
+.container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 450px;
+    background: white;
+    padding: 40px;
+    border-radius: 22px;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.12);
+}
+
+.admin-icon {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: #e8fff3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+}
+
+h1 {
+    text-align: center;
+    color: #176b4d;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+/* FORM */
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d7e3dd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #159957;
+    box-shadow: 0 0 0 3px rgba(21,153,87,0.1);
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #159957;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #117c47;
+}
+
+button:disabled {
+    background: #9ab9aa;
+    cursor: not-allowed;
+}
+
+/* MESSAGE */
+
+.message {
+    display: none;
+    margin-top: 18px;
+    padding: 14px;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.error {
+    background: #fff0f0;
+    color: #c62828;
+}
+
+.success {
+    background: #edfff4;
+    color: #168044;
+}
+
+.back-user {
+    text-align: center;
+    margin-top: 22px;
+}
+
+.back-user a {
+    color: #159957;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+    font-size: 13px;
+}
+
+/* MOBILE */
+
+@media (max-width: 500px) {
+
+    nav {
+        padding: 0 20px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .back-link {
+        font-size: 13px;
+    }
+
+    .login-card {
+        padding: 28px 22px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+
+        <div class="logo-mark">
+            R
+        </div>
+
+        ReConnect
+
+    </div>
+
+
+    <a href="index.html" class="back-link">
+        ← Back to Website
+    </a>
+
+</nav>
+
+
+
+<!-- LOGIN -->
+
+<div class="container">
+
+    <div class="login-card">
+
+
+        <div class="admin-icon">
+            🔐
+        </div>
+
+
+        <h1>
+            Admin Login
+        </h1>
+
+
+        <p class="subtitle">
+            Login to manage the ReConnect platform.
+        </p>
+
+
+
+        <form id="adminLoginForm">
+
+
+            <label for="email">
+                Admin Email
+            </label>
+
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter admin email"
+                required
+            >
+
+
+
+            <label for="password">
+                Password
+            </label>
+
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+                required
+            >
+
+
+
+            <button
+                type="submit"
+                id="loginButton">
+
+                Login as Admin
+
+            </button>
+
+
+        </form>
+
+
+
+        <div
+            id="message"
+            class="message">
+        </div>
+
+
+
+        <div class="back-user">
+
+            <a href="login.html">
+                ← Go to User Login
+            </a>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<footer>
+
+    © 2026 ReConnect | Admin Portal
+
+</footer>
+
+
+
+<!-- FIREBASE -->
+
 <script type="module">
+
+
+/* =========================================
+   FIREBASE IMPORTS
+   ========================================= */
 
 import {
     initializeApp
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
 
 import {
     getAuth,
@@ -10,292 +368,499 @@ import {
     signOut
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
+
 import {
     getFirestore,
-    doc,
-    getDoc
+    collection,
+    query,
+    where,
+    getDocs
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
+
+/* =========================================
+   FIREBASE CONFIG
+   ========================================= */
+
 const firebaseConfig = {
 
-    apiKey: "AIzaSyBenWnZJHPp-4aBqNoGKfXZrZU9sMJwocA",
+    apiKey:
+        "AIzaSyBenWnZJHPp-4aBqNoGKfXZrZU9sMJwocA",
 
-    authDomain: "reconn-dd697.firebaseapp.com",
+    authDomain:
+        "reconn-dd697.firebaseapp.com",
 
-    projectId: "reconn-dd697",
+    projectId:
+        "reconn-dd697",
 
-    storageBucket: "reconn-dd697.firebasestorage.app",
+    storageBucket:
+        "reconn-dd697.firebasestorage.app",
 
-    messagingSenderId: "948055569162",
+    messagingSenderId:
+        "948055569162",
 
-    appId: "1:948055569162:web:37dc21c34c4a70423180f3",
+    appId:
+        "1:948055569162:web:37dc21c34c4a70423180f3",
 
-    measurementId: "G-H4VT58ZZP1"
+    measurementId:
+        "G-H4VT58ZZP1"
 
 };
 
 
-const app = initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+/* =========================================
+   INITIALIZE FIREBASE
+   ========================================= */
 
-const db = getFirestore(app);
+const app =
+    initializeApp(firebaseConfig);
 
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+
+/* =========================================
+   GET HTML ELEMENTS
+   ========================================= */
 
 const form =
-    document.getElementById("adminLoginForm");
+    document.getElementById(
+        "adminLoginForm"
+    );
 
-const button =
-    document.getElementById("loginButton");
+
+const loginButton =
+    document.getElementById(
+        "loginButton"
+    );
+
 
 const message =
-    document.getElementById("message");
+    document.getElementById(
+        "message"
+    );
 
 
-function showMessage(text, type) {
 
-    message.textContent = text;
+/* =========================================
+   SHOW MESSAGE
+   ========================================= */
+
+function showMessage(
+    text,
+    type
+) {
+
+    message.textContent =
+        text;
 
     message.className =
         "message " + type;
 
-    message.style.display = "block";
-
+    message.style.display =
+        "block";
 }
 
 
-form.addEventListener("submit", async (event) => {
 
-    event.preventDefault();
+/* =========================================
+   ADMIN LOGIN
+   ========================================= */
 
-    const email =
-        document.getElementById("email").value.trim();
+form.addEventListener(
+    "submit",
+    async function(event) {
 
-    const password =
-        document.getElementById("password").value;
-
-    button.disabled = true;
-
-    button.textContent = "Checking...";
-
-    message.style.display = "none";
+        event.preventDefault();
 
 
-    try {
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
 
-        /* ================================
-           1. LOGIN WITH FIREBASE
-           ================================ */
 
-        const result =
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        loginButton.disabled =
+            true;
+
+
+        loginButton.textContent =
+            "Checking...";
+
+
+        message.style.display =
+            "none";
+
+
+
+        try {
+
+
+            /* ---------------------------------
+               STEP 1
+               FIREBASE AUTHENTICATION
+               --------------------------------- */
+
+            const loginResult =
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+            const user =
+                loginResult.user;
+
+
+            console.log(
+                "Firebase login successful"
             );
 
-        const user = result.user;
 
-        console.log("LOGIN SUCCESS");
-        console.log("UID:", user.uid);
-        console.log("EMAIL:", user.email);
-
-
-        /* ================================
-           2. CHECK USERS COLLECTION
-           USING UID AS DOCUMENT ID
-           ================================ */
-
-        const userRef =
-            doc(
-                db,
-                "users",
+            console.log(
+                "User UID:",
                 user.uid
             );
 
-        const userSnap =
-            await getDoc(userRef);
+
+            console.log(
+                "User Email:",
+                user.email
+            );
 
 
-        console.log(
-            "Users document exists:",
-            userSnap.exists()
-        );
+
+            /* ---------------------------------
+               STEP 2
+               CHECK ADMINS COLLECTION
+               --------------------------------- */
+
+            const adminQuery =
+                query(
+
+                    collection(
+                        db,
+                        "admins"
+                    ),
+
+                    where(
+                        "email",
+                        "==",
+                        email
+                    )
+
+                );
 
 
-        if (!userSnap.exists()) {
+            const adminSnapshot =
+                await getDocs(
+                    adminQuery
+                );
 
-            await signOut(auth);
+
+
+            console.log(
+                "Admin documents found:",
+                adminSnapshot.size
+            );
+
+
+
+            /* ---------------------------------
+               ADMIN NOT FOUND
+               --------------------------------- */
+
+            if (
+                adminSnapshot.empty
+            ) {
+
+
+                await signOut(auth);
+
+
+                showMessage(
+                    "Firebase login worked, but this email was not found in the admins collection.",
+                    "error"
+                );
+
+
+                loginButton.disabled =
+                    false;
+
+
+                loginButton.textContent =
+                    "Login as Admin";
+
+
+                return;
+
+            }
+
+
+
+            /* ---------------------------------
+               GET ADMIN DATA
+               --------------------------------- */
+
+            const adminDocument =
+                adminSnapshot
+                    .docs[0];
+
+
+            const adminData =
+                adminDocument.data();
+
+
+            console.log(
+                "Admin data:",
+                adminData
+            );
+
+
+
+            /* ---------------------------------
+               CHECK ROLE
+               --------------------------------- */
+
+            if (
+                adminData.role !==
+                "admin"
+            ) {
+
+
+                await signOut(auth);
+
+
+                showMessage(
+                    "This account is not an admin account.",
+                    "error"
+                );
+
+
+                loginButton.disabled =
+                    false;
+
+
+                loginButton.textContent =
+                    "Login as Admin";
+
+
+                return;
+
+            }
+
+
+
+            /* ---------------------------------
+               CHECK STATUS
+               --------------------------------- */
+
+            if (
+                adminData.status &&
+                adminData.status !==
+                "active"
+            ) {
+
+
+                await signOut(auth);
+
+
+                showMessage(
+                    "This admin account is not active.",
+                    "error"
+                );
+
+
+                loginButton.disabled =
+                    false;
+
+
+                loginButton.textContent =
+                    "Login as Admin";
+
+
+                return;
+
+            }
+
+
+
+            /* ---------------------------------
+               SUCCESS
+               --------------------------------- */
 
             showMessage(
-                "Login worked, but the admin document was not found. Make sure the Firestore users Document ID is EXACTLY the same as the Firebase Authentication UID.",
+                "Admin login successful! Opening dashboard...",
+                "success"
+            );
+
+
+            setTimeout(
+                function() {
+
+                    window.location.href =
+                        "admin-dashboard.html";
+
+                },
+                800
+            );
+
+
+        }
+
+
+        catch(error) {
+
+
+            console.error(
+                "Firebase Error:",
+                error
+            );
+
+
+            console.error(
+                "Error Code:",
+                error.code
+            );
+
+
+            console.error(
+                "Error Message:",
+                error.message
+            );
+
+
+
+            let errorMessage =
+                "Login failed.";
+
+
+
+            if (
+                error.code ===
+                "auth/invalid-credential"
+            ) {
+
+                errorMessage =
+                    "Wrong email or password.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/user-not-found"
+            ) {
+
+                errorMessage =
+                    "This email is not registered in Firebase Authentication.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/wrong-password"
+            ) {
+
+                errorMessage =
+                    "Wrong password.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
+
+                errorMessage =
+                    "Please enter a valid email.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/user-disabled"
+            ) {
+
+                errorMessage =
+                    "This Firebase account has been disabled.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/too-many-requests"
+            ) {
+
+                errorMessage =
+                    "Too many attempts. Please wait and try again.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "permission-denied"
+            ) {
+
+                errorMessage =
+                    "Firestore permission denied.";
+
+            }
+
+
+            else {
+
+                errorMessage =
+                    "Firebase error: " +
+                    error.code;
+
+            }
+
+
+
+            showMessage(
+                errorMessage,
                 "error"
             );
 
-            button.disabled = false;
 
-            button.textContent =
+            loginButton.disabled =
+                false;
+
+
+            loginButton.textContent =
                 "Login as Admin";
 
-            return;
         }
-
-
-        const data =
-            userSnap.data();
-
-
-        console.log(
-            "Firestore data:",
-            data
-        );
-
-
-        /* ================================
-           3. CHECK ADMIN ROLE
-           ================================ */
-
-        if (data.role !== "admin") {
-
-            await signOut(auth);
-
-            showMessage(
-                "The account exists, but the role is not admin. Change the role field to admin.",
-                "error"
-            );
-
-            button.disabled = false;
-
-            button.textContent =
-                "Login as Admin";
-
-            return;
-        }
-
-
-        /* ================================
-           4. CHECK STATUS
-           ================================ */
-
-        if (
-            data.status &&
-            data.status !== "active"
-        ) {
-
-            await signOut(auth);
-
-            showMessage(
-                "The admin account is not active. Change status to active.",
-                "error"
-            );
-
-            button.disabled = false;
-
-            button.textContent =
-                "Login as Admin";
-
-            return;
-        }
-
-
-        /* ================================
-           5. SUCCESS
-           ================================ */
-
-        showMessage(
-            "Admin login successful! Opening dashboard...",
-            "success"
-        );
-
-
-        setTimeout(() => {
-
-            window.location.href =
-                "admin-dashboard.html";
-
-        }, 800);
-
-
-    } catch (error) {
-
-        console.error(
-            "Firebase error:",
-            error
-        );
-
-        console.error(
-            "Error code:",
-            error.code
-        );
-
-
-        let text =
-            "Login failed.";
-
-
-        if (
-            error.code ===
-            "auth/invalid-credential"
-        ) {
-
-            text =
-                "Wrong email or password.";
-
-        }
-
-        else if (
-            error.code ===
-            "auth/user-not-found"
-        ) {
-
-            text =
-                "This email is not registered in Firebase Authentication.";
-
-        }
-
-        else if (
-            error.code ===
-            "auth/wrong-password"
-        ) {
-
-            text =
-                "Wrong password.";
-
-        }
-
-        else if (
-            error.code ===
-            "permission-denied"
-        ) {
-
-            text =
-                "Firestore permission denied.";
-
-        }
-
-        else {
-
-            text =
-                "Firebase error: " +
-                error.code;
-
-        }
-
-
-        showMessage(
-            text,
-            "error"
-        );
-
-
-        button.disabled = false;
-
-        button.textContent =
-            "Login as Admin";
 
     }
 
-});
+);
 
 </script>
+
+
+</body>
+
+</html>
