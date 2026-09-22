@@ -28,7 +28,7 @@ body {
 
 .container {
     width: 100%;
-    max-width: 1050px;
+    max-width: 1100px;
     background: white;
     border-radius: 25px;
     overflow: hidden;
@@ -36,8 +36,6 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-
-/* LEFT SIDE */
 
 .left {
     background: linear-gradient(145deg, #159957, #116b45);
@@ -74,10 +72,10 @@ body {
     font-size: 16px;
 }
 
-/* RIGHT SIDE */
-
 .right {
     padding: 45px;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .tabs {
@@ -126,13 +124,28 @@ label {
 }
 
 input,
-select {
+select,
+textarea {
     width: 100%;
     padding: 13px;
     border: 1px solid #ccdcd3;
     border-radius: 10px;
     margin-bottom: 17px;
     font-size: 15px;
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.section-title {
+    color: #159957;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 20px 0 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e2eee7;
 }
 
 button {
@@ -149,6 +162,11 @@ button {
 
 button:hover {
     background: #117a46;
+}
+
+button:disabled {
+    background: #aaa;
+    cursor: not-allowed;
 }
 
 .message {
@@ -175,6 +193,17 @@ button:hover {
 
 .role-fields.active {
     display: block;
+}
+
+.verification-note {
+    background: #f0faf4;
+    border-left: 4px solid #159957;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    color: #496357;
+    font-size: 13px;
+    line-height: 1.5;
 }
 
 .admin-link {
@@ -216,6 +245,7 @@ button:hover {
 
     .right {
         padding: 30px;
+        max-height: none;
     }
 
 }
@@ -244,21 +274,13 @@ button:hover {
 
     <div class="features">
 
-        <div class="feature">
-            💚 Support verified NGOs
-        </div>
+        <div class="feature">💚 Support verified NGOs</div>
 
-        <div class="feature">
-            🤝 Participate in community activities
-        </div>
+        <div class="feature">🤝 Participate in community activities</div>
 
-        <div class="feature">
-            ♻️ Give items a second life
-        </div>
+        <div class="feature">♻️ Give items a second life</div>
 
-        <div class="feature">
-            📊 Track your contribution and impact
-        </div>
+        <div class="feature">📊 Track your contribution and impact</div>
 
     </div>
 
@@ -275,14 +297,18 @@ button:hover {
         class="tab active"
         id="loginTab"
         onclick="showLogin()">
+
         Login
+
     </div>
 
     <div
         class="tab"
         id="registerTab"
         onclick="showRegister()">
+
         Create Account
+
     </div>
 
 </div>
@@ -387,48 +413,208 @@ button:hover {
         placeholder="Create a password">
 
 
-    <!-- NGO -->
+    <!-- NGO FIELDS -->
 
     <div
         class="role-fields"
         id="ngoFields">
 
-        <label>NGO Name</label>
+        <div class="verification-note">
+
+            <strong>NGO Verification</strong><br>
+
+            These details will be reviewed by the
+            ReConnect administrator before your NGO
+            becomes publicly visible.
+
+        </div>
+
+
+        <div class="section-title">
+            NGO Information
+        </div>
+
+
+        <label>NGO Name *</label>
 
         <input
             type="text"
             id="ngoName"
-            placeholder="Enter NGO name">
+            placeholder="Registered NGO name">
+
+
+        <label>Registration Number *</label>
+
+        <input
+            type="text"
+            id="ngoRegistrationNumber"
+            placeholder="NGO registration number">
+
+
+        <label>Registration Authority / Act *</label>
+
+        <input
+            type="text"
+            id="ngoRegistrationAuthority"
+            placeholder="Example: Trust Act / Society Act">
+
+
+        <label>PAN *</label>
+
+        <input
+            type="text"
+            id="ngoPAN"
+            placeholder="Enter NGO PAN number">
+
+
+        <label>Official Contact Number *</label>
+
+        <input
+            type="tel"
+            id="ngoPhone"
+            placeholder="Enter official contact number">
+
+
+        <label>Registered Address *</label>
+
+        <textarea
+            id="ngoAddress"
+            placeholder="Enter registered NGO address">
+        </textarea>
+
+
+        <label>Area of Work *</label>
+
+        <input
+            type="text"
+            id="ngoArea"
+            placeholder="Example: Education, Women, Environment">
+
+
+        <label>Working Since</label>
+
+        <input
+            type="number"
+            id="ngoWorkingSince"
+            placeholder="Example: 2010"
+            min="1800"
+            max="2026">
+
+
+        <label>Official Website</label>
+
+        <input
+            type="url"
+            id="ngoWebsite"
+            placeholder="https://example.org">
 
     </div>
 
 
-    <!-- COLLEGE -->
+    <!-- COLLEGE FIELDS -->
 
     <div
         class="role-fields"
         id="collegeFields">
 
-        <label>College Name</label>
+        <div class="verification-note">
+
+            <strong>College / NSS Verification</strong><br>
+
+            These details will be reviewed before the
+            institution is treated as an official
+            ReConnect community organization.
+
+        </div>
+
+
+        <div class="section-title">
+            Institution Information
+        </div>
+
+
+        <label>College / Institute Name *</label>
 
         <input
             type="text"
             id="collegeName"
-            placeholder="Enter college name">
+            placeholder="Enter official college name">
 
-        <label>NSS Unit / Club Name</label>
+
+        <label>University Name *</label>
+
+        <input
+            type="text"
+            id="universityName"
+            placeholder="Enter affiliated university">
+
+
+        <label>Official College Email *</label>
+
+        <input
+            type="email"
+            id="collegeOfficialEmail"
+            placeholder="Official institutional email">
+
+
+        <label>College Website</label>
+
+        <input
+            type="url"
+            id="collegeWebsite"
+            placeholder="https://collegewebsite.edu">
+
+
+        <label>NSS Unit / Club Name *</label>
 
         <input
             type="text"
             id="clubName"
-            placeholder="Enter NSS or club name">
+            placeholder="Example: NSS Unit 1">
+
+
+        <label>NSS / Faculty Coordinator *</label>
+
+        <input
+            type="text"
+            id="coordinatorName"
+            placeholder="Coordinator full name">
+
+
+        <label>Coordinator Official Email *</label>
+
+        <input
+            type="email"
+            id="coordinatorEmail"
+            placeholder="Coordinator's official email">
+
+
+        <label>College Contact Number *</label>
+
+        <input
+            type="tel"
+            id="collegePhone"
+            placeholder="Official college contact number">
+
+
+        <label>College Address *</label>
+
+        <textarea
+            id="collegeAddress"
+            placeholder="Enter college address">
+        </textarea>
 
     </div>
 
 
-    <button onclick="registerUser()">
+    <button
+        id="registerButton"
+        onclick="registerUser()">
+
         Create Account
+
     </button>
+
 
     <div
         id="registerMessage"
@@ -464,14 +650,13 @@ button:hover {
 </div>
 
 
-<!-- FIREBASE -->
-
 <script type="module">
 
 import {
     getAuth,
     createUserWithEmailAndPassword,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    sendEmailVerification
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 import {
@@ -489,7 +674,9 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
-/* LOGIN TAB */
+/* =========================
+   TABS
+========================= */
 
 window.showLogin = function() {
 
@@ -512,8 +699,6 @@ window.showLogin = function() {
 };
 
 
-/* REGISTER TAB */
-
 window.showRegister = function() {
 
     document
@@ -535,7 +720,9 @@ window.showRegister = function() {
 };
 
 
-/* ROLE FIELDS */
+/* =========================
+   ROLE FIELDS
+========================= */
 
 window.showRoleFields = function() {
 
@@ -571,7 +758,9 @@ window.showRoleFields = function() {
 };
 
 
-/* MESSAGE */
+/* =========================
+   MESSAGE
+========================= */
 
 function showMessage(id, message, type) {
 
@@ -588,7 +777,9 @@ function showMessage(id, message, type) {
 }
 
 
-/* REGISTER */
+/* =========================
+   REGISTER
+========================= */
 
 window.registerUser = async function() {
 
@@ -603,15 +794,6 @@ window.registerUser = async function() {
 
     const password =
         document.getElementById("registerPassword").value;
-
-    const ngoName =
-        document.getElementById("ngoName").value.trim();
-
-    const collegeName =
-        document.getElementById("collegeName").value.trim();
-
-    const clubName =
-        document.getElementById("clubName").value.trim();
 
 
     if (!role) {
@@ -631,7 +813,7 @@ window.registerUser = async function() {
 
         showMessage(
             "registerMessage",
-            "Please fill in all required fields.",
+            "Please fill in all common required fields.",
             "error"
         );
 
@@ -653,28 +835,164 @@ window.registerUser = async function() {
     }
 
 
-    if (role === "ngo" && !ngoName) {
+    /* =========================
+       NGO DATA
+    ========================= */
 
-        showMessage(
-            "registerMessage",
-            "Please enter the NGO name.",
-            "error"
-        );
+    const ngoName =
+        document.getElementById("ngoName").value.trim();
 
-        return;
+    const ngoRegistrationNumber =
+        document.getElementById(
+            "ngoRegistrationNumber"
+        ).value.trim();
+
+    const ngoRegistrationAuthority =
+        document.getElementById(
+            "ngoRegistrationAuthority"
+        ).value.trim();
+
+    const ngoPAN =
+        document.getElementById("ngoPAN").value.trim();
+
+    const ngoPhone =
+        document.getElementById("ngoPhone").value.trim();
+
+    const ngoAddress =
+        document.getElementById("ngoAddress").value.trim();
+
+    const ngoArea =
+        document.getElementById("ngoArea").value.trim();
+
+    const ngoWorkingSince =
+        document.getElementById(
+            "ngoWorkingSince"
+        ).value;
+
+    const ngoWebsite =
+        document.getElementById(
+            "ngoWebsite"
+        ).value.trim();
+
+
+    /* =========================
+       COLLEGE DATA
+    ========================= */
+
+    const collegeName =
+        document.getElementById(
+            "collegeName"
+        ).value.trim();
+
+    const universityName =
+        document.getElementById(
+            "universityName"
+        ).value.trim();
+
+    const collegeOfficialEmail =
+        document.getElementById(
+            "collegeOfficialEmail"
+        ).value.trim();
+
+    const collegeWebsite =
+        document.getElementById(
+            "collegeWebsite"
+        ).value.trim();
+
+    const clubName =
+        document.getElementById(
+            "clubName"
+        ).value.trim();
+
+    const coordinatorName =
+        document.getElementById(
+            "coordinatorName"
+        ).value.trim();
+
+    const coordinatorEmail =
+        document.getElementById(
+            "coordinatorEmail"
+        ).value.trim();
+
+    const collegePhone =
+        document.getElementById(
+            "collegePhone"
+        ).value.trim();
+
+    const collegeAddress =
+        document.getElementById(
+            "collegeAddress"
+        ).value.trim();
+
+
+    /* =========================
+       NGO VALIDATION
+    ========================= */
+
+    if (role === "ngo") {
+
+        if (
+            !ngoName ||
+            !ngoRegistrationNumber ||
+            !ngoRegistrationAuthority ||
+            !ngoPAN ||
+            !ngoPhone ||
+            !ngoAddress ||
+            !ngoArea
+        ) {
+
+            showMessage(
+                "registerMessage",
+                "Please complete all required NGO verification details.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/i.test(ngoPAN)) {
+
+            showMessage(
+                "registerMessage",
+                "Please enter a valid PAN format.",
+                "error"
+            );
+
+            return;
+
+        }
 
     }
 
 
-    if (role === "college" && !collegeName) {
+    /* =========================
+       COLLEGE VALIDATION
+    ========================= */
 
-        showMessage(
-            "registerMessage",
-            "Please enter the college name.",
-            "error"
-        );
+    if (role === "college") {
 
-        return;
+        if (
+            !collegeName ||
+            !universityName ||
+            !collegeOfficialEmail ||
+            !clubName ||
+            !coordinatorName ||
+            !coordinatorEmail ||
+            !collegePhone ||
+            !collegeAddress
+        ) {
+
+            showMessage(
+                "registerMessage",
+                "Please complete all required College/NSS verification details.",
+                "error"
+            );
+
+            return;
+
+        }
 
     }
 
@@ -688,6 +1006,8 @@ window.registerUser = async function() {
         );
 
 
+        /* CREATE FIREBASE AUTH USER */
+
         const userCredential =
             await createUserWithEmailAndPassword(
                 auth,
@@ -700,47 +1020,133 @@ window.registerUser = async function() {
             userCredential.user;
 
 
+        /* EMAIL VERIFICATION */
+
+        await sendEmailVerification(user);
+
+
+        /* COMMON DATA */
+
         const userData = {
 
-            uid: user.uid,
+            uid:
+                user.uid,
 
-            fullName: fullName,
+            fullName:
+                fullName,
 
-            email: email,
+            email:
+                email,
 
-            role: role,
+            role:
+                role,
 
-            createdAt: serverTimestamp()
+            emailVerified:
+                false,
+
+            createdAt:
+                serverTimestamp()
 
         };
 
 
+        /* =========================
+           NGO
+        ========================= */
+
         if (role === "ngo") {
 
-            userData.ngoName = ngoName;
+            userData.ngoName =
+                ngoName;
 
-            userData.status = "pending";
+            userData.registrationNumber =
+                ngoRegistrationNumber;
+
+            userData.registrationAuthority =
+                ngoRegistrationAuthority;
+
+            userData.pan =
+                ngoPAN.toUpperCase();
+
+            userData.phone =
+                ngoPhone;
+
+            userData.address =
+                ngoAddress;
+
+            userData.areaOfWork =
+                ngoArea;
+
+            userData.workingSince =
+                ngoWorkingSince || "";
+
+            userData.website =
+                ngoWebsite;
+
+            userData.status =
+                "pending";
+
+            userData.verificationStatus =
+                "pending";
 
         }
 
+
+        /* =========================
+           COLLEGE
+        ========================= */
 
         if (role === "college") {
 
-            userData.collegeName = collegeName;
+            userData.collegeName =
+                collegeName;
 
-            userData.clubName = clubName;
+            userData.universityName =
+                universityName;
 
-            userData.status = "active";
+            userData.collegeOfficialEmail =
+                collegeOfficialEmail;
+
+            userData.collegeWebsite =
+                collegeWebsite;
+
+            userData.clubName =
+                clubName;
+
+            userData.coordinatorName =
+                coordinatorName;
+
+            userData.coordinatorEmail =
+                coordinatorEmail;
+
+            userData.collegePhone =
+                collegePhone;
+
+            userData.collegeAddress =
+                collegeAddress;
+
+            userData.status =
+                "pending";
+
+            userData.verificationStatus =
+                "pending";
 
         }
 
+
+        /* =========================
+           DONOR
+        ========================= */
 
         if (role === "donor") {
 
-            userData.status = "active";
+            userData.status =
+                "active";
 
         }
 
+
+        /* SAVE FIRESTORE PROFILE */
 
         await setDoc(
             doc(db, "users", user.uid),
@@ -750,7 +1156,7 @@ window.registerUser = async function() {
 
         showMessage(
             "registerMessage",
-            "Account created successfully! Redirecting...",
+            "Account created! Please check your email and verify your email address. Your organization will also need Admin verification.",
             "success"
         );
 
@@ -762,17 +1168,19 @@ window.registerUser = async function() {
                 window.location.href =
                     "ngo-dashboard.html";
 
-            } else {
+            }
+
+            else {
 
                 window.location.href =
                     "index.html";
 
             }
 
-        }, 1500);
-
+        }, 2500);
 
     }
+
 
     catch(error) {
 
@@ -780,6 +1188,7 @@ window.registerUser = async function() {
 
         let message =
             "Unable to create account.";
+
 
         if (
             error.code ===
@@ -817,7 +1226,7 @@ window.registerUser = async function() {
         ) {
 
             message =
-                "Account created, but profile could not be saved. Firestore permissions need to be configured.";
+                "Account created, but the profile could not be saved because of Firestore permissions.";
 
         }
 
@@ -833,15 +1242,21 @@ window.registerUser = async function() {
 };
 
 
-/* LOGIN */
+/* =========================
+   LOGIN
+========================= */
 
 window.loginUser = async function() {
 
     const email =
-        document.getElementById("loginEmail").value.trim();
+        document.getElementById(
+            "loginEmail"
+        ).value.trim();
 
     const password =
-        document.getElementById("loginPassword").value;
+        document.getElementById(
+            "loginPassword"
+        ).value;
 
 
     if (!email || !password) {
@@ -866,11 +1281,16 @@ window.loginUser = async function() {
         );
 
 
-        await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+        const userCredential =
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+
+        const user =
+            userCredential.user;
 
 
         showMessage(
@@ -887,8 +1307,8 @@ window.loginUser = async function() {
 
         }, 1000);
 
-
     }
+
 
     catch(error) {
 
@@ -896,6 +1316,7 @@ window.loginUser = async function() {
 
         let message =
             "Unable to login.";
+
 
         if (
             error.code ===
