@@ -27,12 +27,12 @@ body {
 /* ================= NAVBAR ================= */
 
 nav {
-    height: 72px;
+    min-height: 72px;
     background: white;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 6%;
+    padding: 12px 6%;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     position: sticky;
     top: 0;
@@ -46,6 +46,8 @@ nav {
     font-size: 22px;
     font-weight: bold;
     color: #159957;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
 .logo-circle {
@@ -64,7 +66,9 @@ nav {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 21px;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .nav-links a {
@@ -132,6 +136,24 @@ nav {
     margin: 45px auto 70px;
 }
 
+/* ================= USER MESSAGE ================= */
+
+.user-message {
+    display: none;
+    background: #fff8df;
+    border: 1px solid #f1df9a;
+    color: #765f14;
+    padding: 15px 18px;
+    border-radius: 14px;
+    margin-bottom: 25px;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.user-message.show {
+    display: block;
+}
+
 /* ================= SEARCH ================= */
 
 .search-box {
@@ -139,7 +161,7 @@ nav {
     padding: 20px;
     border-radius: 18px;
     box-shadow: 0 7px 25px rgba(0,0,0,0.06);
-    margin-bottom: 35px;
+    margin-bottom: 25px;
 }
 
 .search-box input {
@@ -196,6 +218,26 @@ nav {
     color: #718078;
 }
 
+/* ================= LOADING ================= */
+
+.loading {
+    background: white;
+    border-radius: 22px;
+    padding: 55px 25px;
+    text-align: center;
+    border: 1px solid #e3eee8;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+}
+
+.loading-icon {
+    font-size: 42px;
+    margin-bottom: 12px;
+}
+
+.loading p {
+    color: #718078;
+}
+
 /* ================= ACTIVITY GRID ================= */
 
 .activity-grid {
@@ -221,7 +263,7 @@ nav {
 }
 
 .activity-image {
-    height: 150px;
+    height: 160px;
     background:
         linear-gradient(
             135deg,
@@ -273,8 +315,15 @@ nav {
     font-size: 12px;
 }
 
+.activity-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 9px;
+}
+
 .activity-btn {
     display: block;
+    width: 100%;
     text-align: center;
     text-decoration: none;
     background: #159957;
@@ -283,6 +332,28 @@ nav {
     border-radius: 22px;
     font-size: 13px;
     font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.activity-btn:hover {
+    background: #117c47;
+}
+
+.details-btn {
+    background: white;
+    color: #159957;
+    border: 1px solid #159957;
+}
+
+.details-btn:hover {
+    background: #eaf8f0;
+}
+
+.joined-btn {
+    background: #dff5e8;
+    color: #159957;
+    cursor: default;
 }
 
 /* ================= EMPTY ================= */
@@ -408,6 +479,156 @@ nav {
     line-height: 1.6;
 }
 
+/* ================= MODAL ================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 45, 34, 0.55);
+    z-index: 500;
+    padding: 30px 15px;
+    overflow-y: auto;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-box {
+    background: white;
+    width: 100%;
+    max-width: 700px;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.modal-top {
+    padding: 30px;
+    background:
+        linear-gradient(
+            135deg,
+            #e9fff3,
+            #eef8ff
+        );
+}
+
+.modal-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.modal-top h2 {
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+.modal-top p {
+    color: #60766c;
+    line-height: 1.6;
+}
+
+.close-modal {
+    position: absolute;
+    top: 17px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    color: #35564a;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 28px;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.detail-box {
+    background: #f6faf8;
+    border: 1px solid #e0ebe5;
+    padding: 15px;
+    border-radius: 14px;
+}
+
+.detail-label {
+    color: #7a8a82;
+    font-size: 11px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.detail-value {
+    color: #244a3b;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.modal-description {
+    color: #60766c;
+    line-height: 1.7;
+    font-size: 14px;
+    margin-bottom: 22px;
+}
+
+.modal-join {
+    width: 100%;
+    border: none;
+    background: #159957;
+    color: white;
+    padding: 14px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-join:hover {
+    background: #117c47;
+}
+
+/* ================= TOAST ================= */
+
+.toast {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    background: #17352a;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    z-index: 1000;
+    display: none;
+    max-width: 350px;
+    font-size: 13px;
+}
+
+.toast.show {
+    display: block;
+}
+
 /* ================= FOOTER ================= */
 
 footer {
@@ -469,6 +690,10 @@ footer span {
         grid-template-columns: 1fr;
     }
 
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+
 }
 
 </style>
@@ -483,7 +708,7 @@ footer span {
 
 <nav>
 
-    <div class="logo">
+    <a href="index.html" class="logo">
 
         <div class="logo-circle">
             R
@@ -491,7 +716,7 @@ footer span {
 
         ReConnect
 
-    </div>
+    </a>
 
 
     <div class="nav-links">
@@ -520,12 +745,8 @@ footer span {
             Reuse & Recycle
         </a>
 
-        <a
-            href="login.html"
-            class="login-btn">
-
+        <a href="login.html" class="login-btn" id="loginLink">
             Login
-
         </a>
 
     </div>
@@ -546,9 +767,9 @@ footer span {
     </h1>
 
     <p>
-        Discover meaningful activities organized by NGOs,
-        colleges and NSS clubs. Participate, contribute your
-        time and create a positive impact in your community.
+        Discover meaningful activities organized by verified
+        organizations. Participate, contribute your time and
+        create a positive impact in your community.
     </p>
 
 </section>
@@ -559,53 +780,59 @@ footer span {
 <div class="container">
 
 
-    <!-- ================= SEARCH ================= -->
+    <!-- USER MESSAGE -->
+
+    <div class="user-message" id="userMessage"></div>
+
+
+    <!-- SEARCH -->
 
     <div class="search-box">
 
         <input
             type="text"
-            placeholder="Search activities by name, location or cause...">
+            id="searchInput"
+            placeholder="Search activities by name, location, cause or organizer...">
 
     </div>
 
 
-    <!-- ================= CATEGORIES ================= -->
+    <!-- CATEGORIES -->
 
     <div class="categories">
 
-        <button class="category active">
+        <button class="category active" data-category="all">
             All Activities
         </button>
 
-        <button class="category">
+        <button class="category" data-category="Environment">
             🌱 Environment
         </button>
 
-        <button class="category">
+        <button class="category" data-category="Clean-up">
             🧹 Clean-up
         </button>
 
-        <button class="category">
+        <button class="category" data-category="Education">
             📚 Education
         </button>
 
-        <button class="category">
+        <button class="category" data-category="Food">
             🍱 Food
         </button>
 
-        <button class="category">
+        <button class="category" data-category="Animal Welfare">
             🐾 Animal Welfare
         </button>
 
-        <button class="category">
+        <button class="category" data-category="Community">
             🤝 Community
         </button>
 
     </div>
 
 
-    <!-- ================= ACTIVITIES ================= -->
+    <!-- ACTIVITIES -->
 
     <div class="section-title">
 
@@ -613,33 +840,53 @@ footer span {
             Upcoming Activities
         </h2>
 
-        <p>
-            Join activities and contribute your time to causes
-            that matter to you.
+        <p id="activitySubtitle">
+            Activities available for volunteers will appear here.
         </p>
 
     </div>
 
 
-    <div class="empty-state">
+    <div id="loading" class="loading">
+
+        <div class="loading-icon">
+            🌱
+        </div>
+
+        <p>
+            Loading activities...
+        </p>
+
+    </div>
+
+
+    <div
+        class="activity-grid"
+        id="activityGrid"
+        style="display:none;">
+    </div>
+
+
+    <div
+        class="empty-state"
+        id="emptyState"
+        style="display:none;">
 
         <div class="empty-icon">
             🌱
         </div>
 
-        <h3>
+        <h3 id="emptyTitle">
             No Activities Available Yet
         </h3>
 
-        <p>
-            Activities organized by verified NGOs and
-            College/NSS Clubs will appear here. Once an
-            organization publishes an activity, you will be
-            able to view the details and register to participate.
+        <p id="emptyText">
+            Activities organized for volunteers will appear here
+            once they are published by verified organizations.
         </p>
 
         <div class="empty-note">
-            Activities will be connected through Firebase later
+            Activities are connected through Firebase
         </div>
 
     </div>
@@ -825,7 +1072,1362 @@ footer span {
 </div>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- ================= ACTIVITY DETAILS MODAL ================= -->
+
+<div class="modal" id="activityModal">
+
+    <div class="modal-box">
+
+        <button
+            type="button"
+            class="close-modal"
+            id="closeModal">
+            ×
+        </button>
+
+        <div class="modal-top">
+
+            <div class="modal-icon" id="modalIcon">
+                🤝
+            </div>
+
+            <h2 id="modalTitle">
+                Activity
+            </h2>
+
+            <p id="modalOrganizer">
+                Organized by ReConnect
+            </p>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <div class="detail-grid">
+
+                <div class="detail-box">
+
+                    <div class="detail-label">
+                        Category
+                    </div>
+
+                    <div class="detail-value" id="modalCategory">
+                        —
+                    </div>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <div class="detail-label">
+                        Location
+                    </div>
+
+                    <div class="detail-value" id="modalLocation">
+                        —
+                    </div>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <div class="detail-label">
+                        Date
+                    </div>
+
+                    <div class="detail-value" id="modalDate">
+                        —
+                    </div>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <div class="detail-label">
+                        Time
+                    </div>
+
+                    <div class="detail-value" id="modalTime">
+                        —
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <p
+                class="modal-description"
+                id="modalDescription">
+            </p>
+
+
+            <button
+                type="button"
+                class="modal-join"
+                id="modalJoinButton">
+                Join Activity
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div class="toast" id="toast"></div>
+
+
+<!-- ================= FIREBASE ================= -->
+
+<script type="module">
+
+import {
+    initializeApp,
+    getApps,
+    getApp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    query,
+    where,
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+/* ================= FIREBASE CONFIG ================= */
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBenWnZJHPp-4aBqNoGKfXZrZU9sMJwocA",
+    authDomain: "reconn-dd697.firebaseapp.com",
+    projectId: "reconn-dd697",
+    storageBucket: "reconn-dd697.firebasestorage.app",
+    messagingSenderId: "948055569162",
+    appId: "1:948055569162:web:37dc21c34c4a70423180f3",
+    measurementId: "G-H4VT58ZZP1"
+};
+
+
+/* ================= INITIALIZE FIREBASE ================= */
+
+const app = getApps().length
+    ? getApp()
+    : initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+
+/* ================= VARIABLES ================= */
+
+let currentUser = null;
+let currentUserData = null;
+
+let activities = [];
+let filteredActivities = [];
+
+let selectedCategory = "all";
+let selectedActivity = null;
+
+
+/* ================= ELEMENTS ================= */
+
+const loading = document.getElementById("loading");
+const activityGrid = document.getElementById("activityGrid");
+const emptyState = document.getElementById("emptyState");
+const emptyTitle = document.getElementById("emptyTitle");
+const emptyText = document.getElementById("emptyText");
+const searchInput = document.getElementById("searchInput");
+const userMessage = document.getElementById("userMessage");
+const activitySubtitle = document.getElementById("activitySubtitle");
+
+const modal = document.getElementById("activityModal");
+const closeModal = document.getElementById("closeModal");
+
+const modalTitle = document.getElementById("modalTitle");
+const modalOrganizer = document.getElementById("modalOrganizer");
+const modalCategory = document.getElementById("modalCategory");
+const modalLocation = document.getElementById("modalLocation");
+const modalDate = document.getElementById("modalDate");
+const modalTime = document.getElementById("modalTime");
+const modalDescription = document.getElementById("modalDescription");
+const modalIcon = document.getElementById("modalIcon");
+const modalJoinButton = document.getElementById("modalJoinButton");
+
+const toast = document.getElementById("toast");
+
+
+/* ================= SHOW MESSAGE ================= */
+
+function showMessage(message) {
+
+    userMessage.textContent = message;
+    userMessage.classList.add("show");
+
+}
+
+
+/* ================= HIDE MESSAGE ================= */
+
+function hideMessage() {
+
+    userMessage.textContent = "";
+    userMessage.classList.remove("show");
+
+}
+
+
+/* ================= TOAST ================= */
+
+function showToast(message) {
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3500);
+
+}
+
+
+/* ================= SAFE TEXT ================= */
+
+function safeText(value, fallback = "Not specified") {
+
+    if (
+        value === undefined ||
+        value === null ||
+        String(value).trim() === ""
+    ) {
+        return fallback;
+    }
+
+    return String(value);
+
+}
+
+
+/* ================= ACTIVITY ICON ================= */
+
+function getActivityIcon(category) {
+
+    const value = safeText(category, "").toLowerCase();
+
+    if (value.includes("environment")) return "🌱";
+    if (value.includes("clean")) return "🧹";
+    if (value.includes("education")) return "📚";
+    if (value.includes("food")) return "🍱";
+    if (value.includes("animal")) return "🐾";
+    if (value.includes("community")) return "🤝";
+
+    return "🤝";
+
+}
+
+
+/* ================= DATE FORMAT ================= */
+
+function formatDate(value) {
+
+    if (!value) {
+        return "Date not specified";
+    }
+
+    try {
+
+        if (
+            typeof value === "object" &&
+            typeof value.toDate === "function"
+        ) {
+            return value.toDate().toLocaleDateString(
+                "en-IN",
+                {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric"
+                }
+            );
+        }
+
+        const date = new Date(value);
+
+        if (!isNaN(date.getTime())) {
+
+            return date.toLocaleDateString(
+                "en-IN",
+                {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric"
+                }
+            );
+
+        }
+
+    } catch (error) {
+
+        console.log("Date formatting error:", error);
+
+    }
+
+    return safeText(value, "Date not specified");
+
+}
+
+
+/* ================= ACTIVITY AUDIENCE ================= */
+
+function isVolunteerActivity(data) {
+
+    const audience = safeText(
+        data.audience ||
+        data.targetAudience ||
+        data.activityAudience ||
+        data.participantType ||
+        data.forWhom,
+        ""
+    ).toLowerCase();
+
+    /*
+       Activities specifically for volunteers
+       OR activities open to both volunteers and colleges/NSS
+    */
+
+    if (
+        audience === "volunteer" ||
+        audience === "volunteers" ||
+        audience === "both" ||
+        audience === "volunteer,both" ||
+        audience.includes("volunteer")
+    ) {
+        return true;
+    }
+
+    /*
+       If an older activity does not have an audience field,
+       allow it only if it was created as an activity.
+    */
+
+    if (!audience) {
+        return true;
+    }
+
+    return false;
+
+}
+
+
+/* ================= ACTIVITY STATUS ================= */
+
+function isPublishedActivity(data) {
+
+    const status = safeText(
+        data.status ||
+        data.activityStatus ||
+        data.approvalStatus,
+        ""
+    ).toLowerCase();
+
+    /*
+       If there is no status field, keep the activity visible.
+       If a status exists, only show active/published/approved.
+    */
+
+    if (!status) {
+        return true;
+    }
+
+    return (
+        status === "active" ||
+        status === "published" ||
+        status === "approved" ||
+        status === "upcoming"
+    );
+
+}
+
+
+/* ================= LOAD ACTIVITIES ================= */
+
+async function loadActivities() {
+
+    loading.style.display = "block";
+    activityGrid.style.display = "none";
+    emptyState.style.display = "none";
+
+    try {
+
+        const activityCollection =
+            collection(db, "activities");
+
+        const snapshot =
+            await getDocs(activityCollection);
+
+        activities = [];
+
+        snapshot.forEach((activityDoc) => {
+
+            const data = activityDoc.data();
+
+            /*
+               Only published/approved activities
+               meant for volunteers are shown.
+            */
+
+            if (
+                isPublishedActivity(data) &&
+                isVolunteerActivity(data)
+            ) {
+
+                activities.push({
+
+                    id: activityDoc.id,
+
+                    ...data
+
+                });
+
+            }
+
+        });
+
+        /*
+           Newest activities first when createdAt exists.
+        */
+
+        activities.sort((a, b) => {
+
+            const aTime =
+                a.createdAt &&
+                typeof a.createdAt.toMillis === "function"
+                    ? a.createdAt.toMillis()
+                    : 0;
+
+            const bTime =
+                b.createdAt &&
+                typeof b.createdAt.toMillis === "function"
+                    ? b.createdAt.toMillis()
+                    : 0;
+
+            return bTime - aTime;
+
+        });
+
+
+        loading.style.display = "none";
+
+        applyFilters();
+
+    } catch (error) {
+
+        console.error(
+            "Error loading activities:",
+            error
+        );
+
+        loading.style.display = "none";
+
+        emptyState.style.display = "block";
+
+        emptyTitle.textContent =
+            "Unable to Load Activities";
+
+        emptyText.textContent =
+            "There was a problem connecting to Firebase. Please check your internet connection and Firestore permissions.";
+
+        showMessage(
+            "Activities could not be loaded from Firebase. Check the browser console for details."
+        );
+
+    }
+
+}
+
+
+/* ================= APPLY FILTERS ================= */
+
+function applyFilters() {
+
+    const searchTerm =
+        searchInput.value
+            .trim()
+            .toLowerCase();
+
+
+    filteredActivities =
+        activities.filter(activity => {
+
+            const name =
+                safeText(
+                    activity.activityName ||
+                    activity.name ||
+                    activity.title,
+                    ""
+                ).toLowerCase();
+
+            const description =
+                safeText(
+                    activity.description ||
+                    activity.details,
+                    ""
+                ).toLowerCase();
+
+            const location =
+                safeText(
+                    activity.location ||
+                    activity.address,
+                    ""
+                ).toLowerCase();
+
+            const category =
+                safeText(
+                    activity.category ||
+                    activity.cause ||
+                    activity.type,
+                    ""
+                ).toLowerCase();
+
+            const organizer =
+                safeText(
+                    activity.organizerName ||
+                    activity.organizer ||
+                    activity.ngoName,
+                    ""
+                ).toLowerCase();
+
+
+            const matchesSearch =
+                !searchTerm ||
+                name.includes(searchTerm) ||
+                description.includes(searchTerm) ||
+                location.includes(searchTerm) ||
+                category.includes(searchTerm) ||
+                organizer.includes(searchTerm);
+
+
+            const matchesCategory =
+                selectedCategory === "all" ||
+                category === selectedCategory.toLowerCase() ||
+                category.includes(
+                    selectedCategory.toLowerCase()
+                );
+
+
+            return (
+                matchesSearch &&
+                matchesCategory
+            );
+
+        });
+
+
+    renderActivities();
+
+}
+
+
+/* ================= RENDER ACTIVITIES ================= */
+
+async function renderActivities() {
+
+    activityGrid.innerHTML = "";
+
+    if (filteredActivities.length === 0) {
+
+        activityGrid.style.display = "none";
+
+        emptyState.style.display = "block";
+
+        if (activities.length === 0) {
+
+            emptyTitle.textContent =
+                "No Activities Available Yet";
+
+            emptyText.textContent =
+                "Activities organized for volunteers will appear here once they are published by verified organizations.";
+
+        } else {
+
+            emptyTitle.textContent =
+                "No Activities Match Your Search";
+
+            emptyText.textContent =
+                "Try another search term or choose a different category.";
+
+        }
+
+        return;
+
+    }
+
+
+    emptyState.style.display = "none";
+    activityGrid.style.display = "grid";
+
+
+    for (const activity of filteredActivities) {
+
+        const card =
+            await createActivityCard(activity);
+
+        activityGrid.appendChild(card);
+
+    }
+
+}
+
+
+/* ================= CHECK PARTICIPATION ================= */
+
+async function hasJoined(activityId) {
+
+    if (!currentUser) {
+        return false;
+    }
+
+    try {
+
+        const participationQuery =
+            query(
+                collection(db, "participations"),
+                where(
+                    "volunteerId",
+                    "==",
+                    currentUser.uid
+                ),
+                where(
+                    "activityId",
+                    "==",
+                    activityId
+                )
+            );
+
+        const snapshot =
+            await getDocs(participationQuery);
+
+        return !snapshot.empty;
+
+    } catch (error) {
+
+        console.error(
+            "Participation check error:",
+            error
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* ================= CREATE CARD ================= */
+
+async function createActivityCard(activity) {
+
+    const card =
+        document.createElement("div");
+
+    card.className =
+        "activity-card";
+
+
+    const name =
+        safeText(
+            activity.activityName ||
+            activity.name ||
+            activity.title,
+            "Community Activity"
+        );
+
+    const description =
+        safeText(
+            activity.description ||
+            activity.details,
+            "Join this activity and contribute your time to the community."
+        );
+
+    const category =
+        safeText(
+            activity.category ||
+            activity.cause ||
+            activity.type,
+            "Community"
+        );
+
+    const location =
+        safeText(
+            activity.location ||
+            activity.address,
+            "Location not specified"
+        );
+
+    const date =
+        formatDate(
+            activity.date ||
+            activity.activityDate
+        );
+
+    const time =
+        safeText(
+            activity.time ||
+            activity.activityTime,
+            "Time not specified"
+        );
+
+    const organizer =
+        safeText(
+            activity.organizerName ||
+            activity.organizer ||
+            activity.ngoName,
+            "ReConnect Organization"
+        );
+
+    const icon =
+        getActivityIcon(category);
+
+
+    const joined =
+        await hasJoined(activity.id);
+
+
+    card.innerHTML = `
+
+        <div class="activity-image">
+            ${icon}
+        </div>
+
+        <div class="activity-content">
+
+            <div class="activity-tag">
+                ${category}
+            </div>
+
+            <h3>
+                ${escapeHtml(name)}
+            </h3>
+
+            <p>
+                ${escapeHtml(
+                    description.length > 130
+                        ? description.substring(0, 130) + "..."
+                        : description
+                )}
+            </p>
+
+            <div class="activity-info">
+
+                <div>
+                    📍 ${escapeHtml(location)}
+                </div>
+
+                <div>
+                    📅 ${escapeHtml(date)}
+                </div>
+
+                <div>
+                    ⏰ ${escapeHtml(time)}
+                </div>
+
+                <div>
+                    🤝 ${escapeHtml(organizer)}
+                </div>
+
+            </div>
+
+            <div class="activity-buttons">
+
+                <button
+                    type="button"
+                    class="activity-btn details-btn"
+                    data-details="${activity.id}">
+                    View Details
+                </button>
+
+                ${
+                    joined
+                    ?
+                    `
+                    <button
+                        type="button"
+                        class="activity-btn joined-btn"
+                        disabled>
+                        ✓ Already Registered
+                    </button>
+                    `
+                    :
+                    `
+                    <button
+                        type="button"
+                        class="activity-btn join-card-btn"
+                        data-join="${activity.id}">
+                        Join Activity
+                    </button>
+                    `
+                }
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    const detailsButton =
+        card.querySelector(
+            "[data-details]"
+        );
+
+    detailsButton.addEventListener(
+        "click",
+        () => {
+
+            openActivityModal(activity);
+
+        }
+    );
+
+
+    const joinButton =
+        card.querySelector(
+            "[data-join]"
+        );
+
+    if (joinButton) {
+
+        joinButton.addEventListener(
+            "click",
+            () => {
+
+                joinActivity(activity);
+
+            }
+        );
+
+    }
+
+
+    return card;
+
+}
+
+
+/* ================= ESCAPE HTML ================= */
+
+function escapeHtml(value) {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+/* ================= OPEN MODAL ================= */
+
+function openActivityModal(activity) {
+
+    selectedActivity = activity;
+
+
+    const name =
+        safeText(
+            activity.activityName ||
+            activity.name ||
+            activity.title,
+            "Community Activity"
+        );
+
+    const description =
+        safeText(
+            activity.description ||
+            activity.details,
+            "No description available."
+        );
+
+    const category =
+        safeText(
+            activity.category ||
+            activity.cause ||
+            activity.type,
+            "Community"
+        );
+
+    const location =
+        safeText(
+            activity.location ||
+            activity.address,
+            "Location not specified"
+        );
+
+    const date =
+        formatDate(
+            activity.date ||
+            activity.activityDate
+        );
+
+    const time =
+        safeText(
+            activity.time ||
+            activity.activityTime,
+            "Time not specified"
+        );
+
+    const organizer =
+        safeText(
+            activity.organizerName ||
+            activity.organizer ||
+            activity.ngoName,
+            "ReConnect Organization"
+        );
+
+
+    modalIcon.textContent =
+        getActivityIcon(category);
+
+    modalTitle.textContent =
+        name;
+
+    modalOrganizer.textContent =
+        "Organized by " + organizer;
+
+    modalCategory.textContent =
+        category;
+
+    modalLocation.textContent =
+        location;
+
+    modalDate.textContent =
+        date;
+
+    modalTime.textContent =
+        time;
+
+    modalDescription.textContent =
+        description;
+
+
+    modalJoinButton.textContent =
+        "Join Activity";
+
+    modalJoinButton.disabled =
+        false;
+
+    modalJoinButton.style.background =
+        "#159957";
+
+
+    if (!currentUser) {
+
+        modalJoinButton.textContent =
+            "Login to Join";
+
+    }
+
+
+    modal.classList.add("show");
+
+}
+
+
+/* ================= CLOSE MODAL ================= */
+
+function closeActivityModal() {
+
+    modal.classList.remove("show");
+
+    selectedActivity = null;
+
+}
+
+
+/* ================= JOIN ACTIVITY ================= */
+
+async function joinActivity(activity) {
+
+    if (!currentUser) {
+
+        showToast(
+            "Please login as a volunteer before joining an activity."
+        );
+
+        setTimeout(() => {
+
+            window.location.href =
+                "login.html";
+
+        }, 1200);
+
+        return;
+
+    }
+
+
+    /*
+       Only volunteers should register.
+    */
+
+    if (
+        currentUserData &&
+        currentUserData.role &&
+        currentUserData.role !== "volunteer"
+    ) {
+
+        showToast(
+            "Please login using a Volunteer account to join activities."
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        /*
+           Prevent duplicate registrations.
+        */
+
+        const participationQuery =
+            query(
+                collection(db, "participations"),
+                where(
+                    "volunteerId",
+                    "==",
+                    currentUser.uid
+                ),
+                where(
+                    "activityId",
+                    "==",
+                    activity.id
+                )
+            );
+
+        const existing =
+            await getDocs(
+                participationQuery
+            );
+
+
+        if (!existing.empty) {
+
+            showToast(
+                "You have already registered for this activity."
+            );
+
+            closeActivityModal();
+
+            await renderActivities();
+
+            return;
+
+        }
+
+
+        const activityName =
+            safeText(
+                activity.activityName ||
+                activity.name ||
+                activity.title,
+                "Community Activity"
+            );
+
+
+        /*
+           Save volunteer participation.
+        */
+
+        await addDoc(
+            collection(
+                db,
+                "participations"
+            ),
+            {
+
+                volunteerId:
+                    currentUser.uid,
+
+                volunteerEmail:
+                    currentUser.email,
+
+                activityId:
+                    activity.id,
+
+                activityName:
+                    activityName,
+
+                activityCategory:
+                    safeText(
+                        activity.category ||
+                        activity.cause ||
+                        activity.type,
+                        "Community"
+                    ),
+
+                organizerName:
+                    safeText(
+                        activity.organizerName ||
+                        activity.organizer ||
+                        activity.ngoName,
+                        "ReConnect Organization"
+                    ),
+
+                status:
+                    "registered",
+
+                joinedAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+        showToast(
+            "Successfully registered for the activity! 🤝"
+        );
+
+
+        closeActivityModal();
+
+
+        /*
+           Refresh the cards so the button
+           becomes "Already Registered".
+        */
+
+        await renderActivities();
+
+
+    } catch (error) {
+
+        console.error(
+            "Error joining activity:",
+            error
+        );
+
+        showToast(
+            "Unable to register. Please try again."
+        );
+
+    }
+
+}
+
+
+/* ================= CATEGORY BUTTONS ================= */
+
+document
+    .querySelectorAll(".category")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                document
+                    .querySelectorAll(".category")
+                    .forEach(btn => {
+
+                        btn.classList.remove(
+                            "active"
+                        );
+
+                    });
+
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                selectedCategory =
+                    button.dataset.category;
+
+
+                applyFilters();
+
+            }
+        );
+
+    });
+
+
+/* ================= SEARCH ================= */
+
+searchInput.addEventListener(
+    "input",
+    () => {
+
+        applyFilters();
+
+    }
+);
+
+
+/* ================= MODAL EVENTS ================= */
+
+closeModal.addEventListener(
+    "click",
+    closeActivityModal
+);
+
+
+modal.addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target === modal
+        ) {
+
+            closeActivityModal();
+
+        }
+
+    }
+);
+
+
+modalJoinButton.addEventListener(
+    "click",
+    () => {
+
+        if (selectedActivity) {
+
+            joinActivity(
+                selectedActivity
+            );
+
+        }
+
+    }
+);
+
+
+/* ================= AUTH STATE ================= */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        currentUser =
+            user || null;
+
+
+        if (!user) {
+
+            currentUserData = null;
+
+            activitySubtitle.textContent =
+                "Browse volunteer activities. Login as a volunteer to register.";
+
+            await loadActivities();
+
+            return;
+
+        }
+
+
+        try {
+
+            /*
+               Get the user's role from users collection.
+            */
+
+            const userQuery =
+                query(
+                    collection(db, "users"),
+                    where(
+                        "uid",
+                        "==",
+                        user.uid
+                    )
+                );
+
+            const snapshot =
+                await getDocs(
+                    userQuery
+                );
+
+
+            if (!snapshot.empty) {
+
+                currentUserData =
+                    snapshot.docs[0].data();
+
+            } else {
+
+                currentUserData = null;
+
+            }
+
+
+            if (
+                currentUserData &&
+                currentUserData.role === "volunteer"
+            ) {
+
+                hideMessage();
+
+                activitySubtitle.textContent =
+                    "Welcome, Volunteer! Choose an activity and register to participate.";
+
+            } else {
+
+                showMessage(
+                    "You are logged in, but this page is designed for Volunteer accounts. Login as a Volunteer to register for activities."
+                );
+
+                activitySubtitle.textContent =
+                    "Volunteer activities are shown below. A Volunteer account is required to register.";
+
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "Error getting user profile:",
+                error
+            );
+
+        }
+
+
+        await loadActivities();
+
+    }
+);
+
+</script>
+
+
+<!-- AUTH NAVBAR SCRIPT -->
+
+<script type="module" src="auth.js"></script>
+
+
+<!-- FOOTER -->
 
 <footer>
 
@@ -836,7 +2438,6 @@ footer span {
 
 </footer>
 
-<script type="module" src="auth.js"></script>
 </body>
 
 </html>
