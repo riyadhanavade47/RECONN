@@ -8,7 +8,6 @@
 
 <title>Donate | ReConnect</title>
 
-
 <style>
 
 *{
@@ -27,61 +26,114 @@ body{
 /* ================= NAVBAR ================= */
 
 nav{
-    height:72px;
+    min-height:72px;
     background:white;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 6%;
+    gap:24px;
+    padding:0 4%;
     box-shadow:0 2px 12px rgba(0,0,0,.06);
     position:sticky;
     top:0;
-    z-index:100;
+    z-index:1000;
 }
 
 .logo{
+    text-decoration:none;
     display:flex;
     align-items:center;
-    gap:10px;
-    font-size:22px;
-    font-weight:bold;
-    color:#159957;
+    gap:9px;
+    font-size:27px;
+    font-weight:800;
+    color:#176b4d;
+    white-space:nowrap;
+    flex-shrink:0;
 }
 
 .logo-circle{
     width:42px;
     height:42px;
     border-radius:50%;
-    background:#159957;
+    background:#176b4d;
     color:white;
     display:flex;
     align-items:center;
     justify-content:center;
+    font-size:19px;
     font-weight:bold;
 }
 
 .nav-links{
     display:flex;
     align-items:center;
-    gap:23px;
+    justify-content:flex-end;
+    gap:14px;
+    flex-wrap:nowrap;
+    min-width:0;
 }
 
 .nav-links a{
     text-decoration:none;
     color:#35564a;
-    font-size:14px;
+    font-size:13px;
     font-weight:600;
+    white-space:nowrap;
+    padding:9px 0;
+    transition:.25s;
 }
 
 .nav-links a:hover{
-    color:#159957;
+    color:#176b4d;
+}
+
+.nav-links a.active{
+    color:#176b4d;
+    font-weight:700;
 }
 
 .login-btn{
-    background:#159957;
+    background:#176b4d;
     color:white !important;
-    padding:10px 18px;
+    padding:10px 18px !important;
     border-radius:22px;
+    margin-left:4px;
+}
+
+.login-btn:hover{
+    background:#0e513b !important;
+}
+
+
+/* Firebase user menu */
+
+.firebase-user-menu{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-left:4px;
+    white-space:nowrap;
+}
+
+.firebase-user-menu span{
+    color:#35564a;
+    font-size:13px;
+    font-weight:600;
+}
+
+.firebase-user-menu button{
+    border:none;
+    background:#176b4d;
+    color:white;
+    padding:9px 15px;
+    border-radius:22px;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.firebase-user-menu button:hover{
+    background:#0e513b;
 }
 
 
@@ -147,83 +199,207 @@ nav{
 }
 
 
-/* ================= EMPTY STATE ================= */
+/* ================= REQUIREMENT SECTION ================= */
 
-.empty{
-    text-align:center;
-    padding:65px 30px;
+.requirement-box{
+    background:white;
+    border:1px solid #e2eee7;
+    border-radius:22px;
+    padding:30px;
+    box-shadow:0 8px 30px rgba(0,0,0,.05);
+    margin-bottom:40px;
+}
+
+.requirement-box h3{
+    color:#176b4d;
+    margin-bottom:10px;
+}
+
+.requirement-box p{
+    color:#718078;
+    font-size:14px;
+    line-height:1.7;
+}
+
+
+/* ================= DONATION FORM ================= */
+
+.donation-card{
     background:white;
     border-radius:22px;
-    box-shadow:0 8px 30px rgba(0,0,0,.06);
+    padding:35px;
     border:1px solid #e2eee7;
+    box-shadow:0 8px 30px rgba(0,0,0,.06);
+    margin-top:35px;
 }
 
-.empty-icon{
-    width:90px;
-    height:90px;
-    margin:0 auto 20px;
-
-    border-radius:50%;
-
-    background:#e9f8f0;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:42px;
+.donation-card h2{
+    color:#176b4d;
+    font-size:27px;
+    margin-bottom:8px;
 }
 
-.empty h3{
-    font-size:23px;
-    margin-bottom:12px;
-    color:#17352a;
-}
-
-.empty p{
-    max-width:650px;
-    margin:auto;
+.donation-card > p{
     color:#718078;
-    line-height:1.7;
     font-size:14px;
+    margin-bottom:28px;
+    line-height:1.6;
 }
 
-.empty-actions{
-    display:flex;
-    justify-content:center;
-    gap:12px;
-    margin-top:25px;
-    flex-wrap:wrap;
+.form-group{
+    margin-bottom:20px;
 }
 
-.empty-btn{
-    display:inline-block;
-    text-decoration:none;
-    padding:12px 22px;
-    border-radius:24px;
+.form-group label{
+    display:block;
+    font-size:14px;
     font-weight:bold;
-    font-size:13px;
+    color:#35564a;
+    margin-bottom:7px;
 }
 
-.primary{
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    padding:13px 14px;
+    border:1px solid #d7e5de;
+    border-radius:12px;
+    font-size:14px;
+    font-family:Arial,sans-serif;
+    outline:none;
+    background:white;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:#159957;
+    box-shadow:0 0 0 3px rgba(21,153,87,.08);
+}
+
+.form-group textarea{
+    resize:vertical;
+    min-height:100px;
+}
+
+.form-note{
+    background:#f2fbf6;
+    border:1px solid #d6ecdf;
+    color:#58736a;
+    padding:14px;
+    border-radius:12px;
+    font-size:13px;
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+.submit-btn{
+    width:100%;
+    border:none;
     background:#159957;
     color:white;
+    padding:14px 20px;
+    border-radius:25px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.25s;
 }
 
-.primary:hover{
+.submit-btn:hover{
     background:#117c47;
 }
 
-.secondary{
-    background:#eaf7f0;
-    color:#159957;
+.submit-btn:disabled{
+    background:#9bbdad;
+    cursor:not-allowed;
+}
+
+
+/* ================= SUCCESS ================= */
+
+.success-box{
+    display:none;
+    margin-top:25px;
+    background:#effff5;
+    border:1px solid #bfe3ce;
+    border-radius:20px;
+    padding:28px;
+    text-align:center;
+}
+
+.success-box.show{
+    display:block;
+}
+
+.success-icon{
+    width:65px;
+    height:65px;
+    margin:0 auto 15px;
+    border-radius:50%;
+    background:#dff7e9;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+}
+
+.success-box h3{
+    color:#176b4d;
+    margin-bottom:8px;
+}
+
+.success-box p{
+    color:#62756d;
+    font-size:14px;
+    line-height:1.6;
+}
+
+.donation-id-box{
+    display:inline-block;
+    margin:18px auto;
+    padding:13px 20px;
+    background:white;
+    border:1px dashed #159957;
+    border-radius:12px;
+}
+
+.donation-id-label{
+    display:block;
+    color:#718078;
+    font-size:12px;
+    margin-bottom:4px;
+}
+
+.donation-id{
+    color:#176b4d;
+    font-size:20px;
+    font-weight:800;
+    letter-spacing:.5px;
+}
+
+.track-btn{
+    display:inline-block;
+    text-decoration:none;
+    background:#159957;
+    color:white;
+    padding:11px 22px;
+    border-radius:24px;
+    font-size:13px;
+    font-weight:bold;
+    margin-top:8px;
+}
+
+.track-btn:hover{
+    background:#117c47;
 }
 
 
 /* ================= HOW DONATION WORKS ================= */
 
 .how-section{
-    margin-top:45px;
+    margin-top:55px;
 }
 
 .how-section h2{
@@ -241,7 +417,7 @@ nav{
 
 .steps{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(4,1fr);
     gap:20px;
 }
 
@@ -288,7 +464,7 @@ nav{
 /* ================= DONATION TYPES ================= */
 
 .types-section{
-    margin-top:45px;
+    margin-top:55px;
 }
 
 .types-section h2{
@@ -327,7 +503,7 @@ nav{
 }
 
 
-/* ================= LOGIN / INFO BOX ================= */
+/* ================= TRANSPARENCY ================= */
 
 .info-box{
     margin-top:40px;
@@ -348,7 +524,7 @@ nav{
 
 .info-box p{
     color:#e0f4e9;
-    max-width:650px;
+    max-width:700px;
     margin:auto;
     line-height:1.7;
     font-size:14px;
@@ -388,19 +564,51 @@ footer p{
 
 /* ================= RESPONSIVE ================= */
 
+@media(max-width:1100px){
+
+    nav{
+        padding:12px 3%;
+        gap:16px;
+    }
+
+    .nav-links{
+        gap:10px;
+    }
+
+    .nav-links a{
+        font-size:12px;
+    }
+
+    .logo{
+        font-size:24px;
+    }
+
+    .logo-circle{
+        width:39px;
+        height:39px;
+    }
+
+    .steps{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+
 @media(max-width:850px){
 
     nav{
         height:auto;
-        padding:15px 5%;
-        flex-direction:column;
-        gap:12px;
+        flex-wrap:wrap;
+        padding:12px 5%;
+        row-gap:10px;
     }
 
     .nav-links{
+        width:100%;
         flex-wrap:wrap;
         justify-content:center;
-        gap:12px;
+        gap:8px 14px;
     }
 
     .steps{
@@ -416,6 +624,20 @@ footer p{
 
 @media(max-width:600px){
 
+    nav{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .nav-links{
+        justify-content:center;
+        gap:7px 11px;
+    }
+
+    .nav-links a{
+        font-size:12px;
+    }
+
     .hero h1{
         font-size:32px;
     }
@@ -424,8 +646,12 @@ footer p{
         width:92%;
     }
 
-    .empty{
-        padding:50px 20px;
+    .donation-card{
+        padding:25px 18px;
+    }
+
+    .success-box{
+        padding:22px 15px;
     }
 
 }
@@ -442,15 +668,20 @@ footer p{
 
 <nav>
 
-    <div class="logo">
+    <a
+        href="index.html"
+        class="logo"
+    >
 
-        <div class="logo-circle">
+        <span class="logo-circle">
             R
-        </div>
+        </span>
 
-        ReConnect
+        <span>
+            ReConnect
+        </span>
 
-    </div>
+    </a>
 
 
     <div class="nav-links">
@@ -463,8 +694,15 @@ footer p{
             Find NGOs
         </a>
 
-        <a href="donate.html">
+        <a
+            href="donate.html"
+            class="active"
+        >
             Donate
+        </a>
+
+        <a href="activities.html">
+            Activities
         </a>
 
         <a href="college.html">
@@ -472,7 +710,11 @@ footer p{
         </a>
 
         <a href="reuse.html">
-            Reuse & Recycle
+            Reuse &amp; Recycle
+        </a>
+
+        <a href="my-impact.html">
+            My Impact
         </a>
 
         <a
@@ -515,6 +757,8 @@ footer p{
 <div class="container">
 
 
+    <!-- ================= CURRENT REQUIREMENTS ================= -->
+
     <div class="section-heading">
 
         <h2>
@@ -522,35 +766,25 @@ footer p{
         </h2>
 
         <p>
-            NGOs will publish their current requirements
-            on ReConnect so donors can choose exactly
-            how they want to help.
+            Choose an NGO and record your contribution.
+            Your donation will receive a unique tracking ID
+            so you can follow its progress through ReConnect.
         </p>
 
     </div>
 
 
-    <!-- EMPTY STATE -->
-
-    <div class="empty">
-
-        <div class="empty-icon">
-            💚
-        </div>
-
+    <div class="requirement-box">
 
         <h3>
-            No Current Requirements
+            🔎 Looking for an NGO?
         </h3>
 
-
         <p>
-            There are no active NGO requirements available
-            right now. Once verified NGOs register and
-            publish their requirements, they will appear
-            here.
+            Browse verified NGOs first and choose the organization
+            you would like to support. The NGO name can then be
+            entered below when you record your donation.
         </p>
-
 
         <div class="empty-actions">
 
@@ -558,15 +792,209 @@ footer p{
                 href="ngos.html"
                 class="empty-btn primary"
             >
-                🔎 Find NGOs
+                🔎 Find Verified NGOs
             </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= DONATION FORM ================= -->
+
+    <div class="donation-card">
+
+        <h2>
+            Record Your Donation
+        </h2>
+
+        <p>
+            Enter the details of the contribution you are making.
+            ReConnect will create a unique Donation ID for tracking.
+        </p>
+
+
+        <form id="donationForm">
+
+
+            <!-- NGO -->
+
+            <div class="form-group">
+
+                <label for="ngoName">
+                    NGO Name
+                </label>
+
+                <input
+                    type="text"
+                    id="ngoName"
+                    placeholder="Enter the verified NGO name"
+                    required
+                >
+
+            </div>
+
+
+            <!-- TYPE -->
+
+            <div class="form-group">
+
+                <label for="donationType">
+                    Donation Type
+                </label>
+
+                <select
+                    id="donationType"
+                    required
+                >
+
+                    <option value="">
+                        Select donation type
+                    </option>
+
+                    <option value="Money">
+                        💰 Money
+                    </option>
+
+                    <option value="Clothes">
+                        👕 Clothes
+                    </option>
+
+                    <option value="Books">
+                        📚 Books
+                    </option>
+
+                    <option value="Food">
+                        🍱 Food
+                    </option>
+
+                    <option value="Furniture">
+                        🪑 Furniture
+                    </option>
+
+                    <option value="Educational Materials">
+                        🎓 Educational Materials
+                    </option>
+
+                    <option value="Other Items">
+                        📦 Other Items
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- AMOUNT / QUANTITY -->
+
+            <div class="form-group">
+
+                <label for="amount">
+                    Amount / Quantity
+                </label>
+
+                <input
+                    type="text"
+                    id="amount"
+                    placeholder="Example: ₹2,000 or 10 books"
+                    required
+                >
+
+            </div>
+
+
+            <!-- PURPOSE -->
+
+            <div class="form-group">
+
+                <label for="purpose">
+                    Purpose of Donation
+                </label>
+
+                <textarea
+                    id="purpose"
+                    placeholder="Example: Education support for students"
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-note">
+
+                🔐 Your donation is linked to your account so
+                you can view it later in <strong>My Impact</strong>.
+
+                <br><br>
+
+                After the NGO receives the contribution, the NGO
+                can update its status and add photo proof or an
+                impact update.
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-btn"
+                id="submitDonationBtn"
+            >
+                💚 Submit Donation
+            </button>
+
+        </form>
+
+
+        <!-- ================= SUCCESS ================= -->
+
+        <div
+            class="success-box"
+            id="successBox"
+        >
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+
+            <h3>
+                Donation Recorded Successfully
+            </h3>
+
+
+            <p>
+                Your donation has been recorded in ReConnect.
+            </p>
+
+
+            <div class="donation-id-box">
+
+                <span class="donation-id-label">
+                    Your Donation ID
+                </span>
+
+                <span
+                    class="donation-id"
+                    id="donationId"
+                >
+                    -
+                </span>
+
+            </div>
+
+
+            <p>
+                Keep this ID for your records.
+                You can view the donation journey from
+                your My Impact page.
+            </p>
 
 
             <a
-                href="login.html"
-                class="empty-btn secondary"
+                href="my-impact.html"
+                class="track-btn"
             >
-                🏢 Register as NGO
+                📊 Track My Donation
             </a>
 
         </div>
@@ -579,12 +1007,11 @@ footer p{
     <section class="how-section">
 
         <h2>
-            How Donations Will Work
+            How Donation Tracking Works
         </h2>
 
         <p class="how-subtitle">
-            ReConnect is designed to make the donation
-            process simple and transparent.
+            Your contribution can be followed through its journey.
         </p>
 
 
@@ -594,16 +1021,16 @@ footer p{
             <div class="step">
 
                 <div class="step-icon">
-                    🔎
+                    💚
                 </div>
 
                 <h3>
-                    1. Find an NGO
+                    1. Donation Submitted
                 </h3>
 
                 <p>
-                    Explore verified NGOs and understand
-                    their causes and current needs.
+                    Your donation details are recorded and
+                    a unique Donation ID is created.
                 </p>
 
             </div>
@@ -612,16 +1039,34 @@ footer p{
             <div class="step">
 
                 <div class="step-icon">
-                    ❤️
+                    🏢
                 </div>
 
                 <h3>
-                    2. Choose How to Help
+                    2. NGO Receives It
                 </h3>
 
                 <p>
-                    Donate money, reusable items or
-                    contribute through volunteer activities.
+                    The verified NGO can acknowledge that
+                    your donation has been received.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-icon">
+                    📸
+                </div>
+
+                <h3>
+                    3. Proof &amp; Update
+                </h3>
+
+                <p>
+                    The NGO can add photo proof and explain
+                    how the contribution was used.
                 </p>
 
             </div>
@@ -634,12 +1079,12 @@ footer p{
                 </div>
 
                 <h3>
-                    3. Track Your Contribution
+                    4. Track Your Impact
                 </h3>
 
                 <p>
-                    Your contribution will be recorded
-                    and its progress can be tracked.
+                    Donors can view the donation status,
+                    photos and impact updates in My Impact.
                 </p>
 
             </div>
@@ -673,11 +1118,9 @@ footer p{
                 </h3>
 
                 <p>
-                    Support an NGO financially according
-                    to its current requirements. Once the
-                    payment system is connected, donors
-                    will be able to make secure online
-                    contributions.
+                    Record a financial contribution according
+                    to an NGO's requirement. The donation can
+                    then be tracked through its Donation ID.
                 </p>
 
             </div>
@@ -694,10 +1137,10 @@ footer p{
                 </h3>
 
                 <p>
-                    Donate useful items such as clothing,
+                    Record useful items such as clothing,
                     books, educational materials and other
-                    reusable resources according to NGO
-                    requirements.
+                    reusable resources. The NGO can later
+                    acknowledge receipt and provide an update.
                 </p>
 
             </div>
@@ -717,10 +1160,10 @@ footer p{
         </h2>
 
         <p>
-            ReConnect is designed so donors can understand
-            where their contribution is going and follow
-            its progress. Live donation tracking will be
-            connected when the platform backend is added.
+            ReConnect records each donation with a unique
+            tracking ID. Once an NGO receives the donation,
+            it can update the status and provide photo proof
+            or an impact update for the donor to view.
         </p>
 
     </div>
@@ -763,7 +1206,249 @@ footer p{
 
 </footer>
 
-<script type="module" src="auth.js"></script>
+
+<!-- ================= FIREBASE DONATION SYSTEM ================= -->
+
+<script type="module">
+
+import {
+    getAuth,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+import { app } from "./firebase-config.js";
+
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+
+let currentUser = null;
+
+
+/* ================= CHECK LOGIN ================= */
+
+onAuthStateChanged(auth, (user) => {
+
+    currentUser = user;
+
+});
+
+
+/* ================= DONATION FORM ================= */
+
+const donationForm =
+    document.getElementById("donationForm");
+
+
+donationForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        /* User must be logged in */
+
+        if (!currentUser) {
+
+            alert(
+                "Please login before recording a donation."
+            );
+
+            window.location.href =
+                "login.html";
+
+            return;
+        }
+
+
+        const ngoName =
+            document
+                .getElementById("ngoName")
+                .value
+                .trim();
+
+
+        const donationType =
+            document
+                .getElementById("donationType")
+                .value;
+
+
+        const amount =
+            document
+                .getElementById("amount")
+                .value
+                .trim();
+
+
+        const purpose =
+            document
+                .getElementById("purpose")
+                .value
+                .trim();
+
+
+        const submitButton =
+            document.getElementById(
+                "submitDonationBtn"
+            );
+
+
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+            "Saving Donation...";
+
+
+        try {
+
+
+            /* =================
+               SAVE DONATION
+            ================= */
+
+            const donationRef =
+                await addDoc(
+                    collection(
+                        db,
+                        "donations"
+                    ),
+                    {
+
+                        donorId:
+                            currentUser.uid,
+
+                        donorEmail:
+                            currentUser.email || "",
+
+                        ngoName:
+                            ngoName,
+
+                        donationType:
+                            donationType,
+
+                        amount:
+                            amount,
+
+                        purpose:
+                            purpose,
+
+                        status:
+                            "submitted",
+
+                        receivedAt:
+                            null,
+
+                        receivedPhotoUrl:
+                            "",
+
+                        impactUpdate:
+                            "",
+
+                        impactPhotoUrl:
+                            "",
+
+                        createdAt:
+                            serverTimestamp(),
+
+                        updatedAt:
+                            serverTimestamp()
+
+                    }
+                );
+
+
+            /* =================
+               CREATE DISPLAY ID
+            ================= */
+
+            const donationId =
+                "RC-DON-" +
+                donationRef.id
+                    .substring(0, 8)
+                    .toUpperCase();
+
+
+            document.getElementById(
+                "donationId"
+            ).textContent =
+                donationId;
+
+
+            /* =================
+               SHOW SUCCESS
+            ================= */
+
+            document.getElementById(
+                "successBox"
+            ).classList.add("show");
+
+
+            donationForm.reset();
+
+
+            submitButton.disabled =
+                false;
+
+            submitButton.textContent =
+                "💚 Submit Donation";
+
+
+            /* Scroll to confirmation */
+
+            document
+                .getElementById("successBox")
+                .scrollIntoView({
+                    behavior:"smooth",
+                    block:"center"
+                });
+
+
+        } catch(error) {
+
+            console.error(
+                "Donation error:",
+                error
+            );
+
+
+            alert(
+                "Unable to record the donation. Please try again."
+            );
+
+
+            submitButton.disabled =
+                false;
+
+            submitButton.textContent =
+                "💚 Submit Donation";
+
+        }
+
+    }
+);
+
+</script>
+
+
+<!-- ================= DYNAMIC AUTH NAVBAR ================= -->
+
+<script
+    type="module"
+    src="auth.js">
+</script>
+
+
 </body>
 
 </html>
