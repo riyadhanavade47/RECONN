@@ -10,281 +10,615 @@
 
 <style>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
 }
 
-body {
-    background: #f5faf7;
-    color: #17352a;
+body{
+    background:#f5faf7;
+    color:#17352a;
 }
 
-/* NAVBAR */
 
-nav {
-    background: white;
-    padding: 18px 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+/* ================= NAVBAR ================= */
+
+nav{
+    min-height:72px;
+    background:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    padding:0 4%;
+    box-shadow:0 2px 12px rgba(0,0,0,.06);
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 
-.logo {
-    font-size: 25px;
-    font-weight: bold;
-    color: #159957;
+.logo{
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-size:27px;
+    font-weight:800;
+    color:#176b4d;
+    white-space:nowrap;
+    flex-shrink:0;
 }
 
-.nav-right {
-    display: flex;
-    gap: 15px;
-    align-items: center;
+.logo-circle{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#176b4d;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:19px;
+    font-weight:bold;
 }
 
-.logout {
-    background: #eaf7ef;
-    color: #159957;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 9px;
-    font-weight: bold;
-    cursor: pointer;
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    white-space:nowrap;
 }
 
-/* HERO */
-
-.hero {
-    padding: 55px 7%;
-    background: linear-gradient(135deg, #dff8ea, #eaf7ff);
+.user-email{
+    color:#4c665d;
+    font-size:13px;
+    font-weight:600;
 }
 
-.hero h1 {
-    color: #116b45;
-    font-size: 38px;
-    margin-bottom: 10px;
+.logout{
+    background:#176b4d;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:22px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.hero p {
-    color: #5c7066;
+.logout:hover{
+    background:#0e513b;
 }
 
-/* MAIN */
 
-.container {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 20px;
+/* ================= HERO ================= */
+
+.hero{
+    padding:55px 7%;
+    background:
+        linear-gradient(
+            135deg,
+            #e9fff3,
+            #eef8ff,
+            #fffbea
+        );
 }
 
-/* STATUS */
-
-.status-card {
-    background: white;
-    border-radius: 18px;
-    padding: 25px;
-    margin-bottom: 25px;
-    box-shadow: 0 6px 25px rgba(0,0,0,0.07);
+.hero h1{
+    color:#116b45;
+    font-size:38px;
+    margin-bottom:10px;
 }
 
-.status-card h2 {
-    color: #176b4d;
-    margin-bottom: 15px;
+.hero p{
+    color:#5c7066;
+    line-height:1.6;
 }
 
-.status {
-    display: inline-block;
-    padding: 9px 18px;
-    border-radius: 20px;
-    font-weight: bold;
+
+/* ================= MAIN ================= */
+
+.container{
+    max-width:1150px;
+    margin:40px auto 70px;
+    padding:0 20px;
 }
 
-.pending {
-    background: #fff4cf;
-    color: #936b00;
+
+/* ================= STATUS ================= */
+
+.status-card{
+    background:white;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:25px;
+    box-shadow:0 6px 25px rgba(0,0,0,.07);
 }
 
-.approved {
-    background: #e3f8eb;
-    color: #157342;
+.status-card h2{
+    color:#176b4d;
+    margin-bottom:15px;
 }
 
-.rejected {
-    background: #ffe6e6;
-    color: #a52828;
+.status{
+    display:inline-block;
+    padding:9px 18px;
+    border-radius:20px;
+    font-weight:bold;
 }
 
-/* PROFILE */
-
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
+.pending{
+    background:#fff4cf;
+    color:#936b00;
 }
 
-.card {
-    background: white;
-    padding: 28px;
-    border-radius: 18px;
-    box-shadow: 0 6px 25px rgba(0,0,0,0.07);
+.approved{
+    background:#e3f8eb;
+    color:#157342;
 }
 
-.card h2 {
-    color: #176b4d;
-    margin-bottom: 20px;
+.rejected{
+    background:#ffe6e6;
+    color:#a52828;
 }
 
-.info {
-    margin: 12px 0;
-    line-height: 1.6;
+
+/* ================= GRID ================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
 }
 
-.info strong {
-    color: #285943;
+
+/* ================= CARD ================= */
+
+.card{
+    background:white;
+    padding:28px;
+    border-radius:18px;
+    box-shadow:0 6px 25px rgba(0,0,0,.07);
 }
 
-/* FORM */
-
-.form-group {
-    margin-bottom: 16px;
+.card h2{
+    color:#176b4d;
+    margin-bottom:20px;
 }
 
-label {
-    display: block;
-    font-weight: bold;
-    color: #285943;
-    margin-bottom: 7px;
+.info{
+    margin:12px 0;
+    line-height:1.6;
+}
+
+.info strong{
+    color:#285943;
+}
+
+
+/* ================= FORM ================= */
+
+.form-group{
+    margin-bottom:16px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    color:#285943;
+    margin-bottom:7px;
 }
 
 input,
 select,
-textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccdcd3;
-    border-radius: 9px;
-    font-size: 15px;
+textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccdcd3;
+    border-radius:9px;
+    font-size:14px;
+    outline:none;
 }
 
-textarea {
-    min-height: 90px;
-    resize: vertical;
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#159957;
+    box-shadow:0 0 0 3px rgba(21,153,87,.08);
 }
 
-.btn {
-    width: 100%;
-    padding: 13px;
-    border: none;
-    border-radius: 9px;
-    background: #159957;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
+textarea{
+    min-height:90px;
+    resize:vertical;
 }
 
-.btn:hover {
-    background: #117a46;
+.btn{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:9px;
+    background:#159957;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.btn:disabled {
-    background: #aaa;
-    cursor: not-allowed;
+.btn:hover{
+    background:#117a46;
 }
 
-/* REQUIREMENTS */
-
-.requirements {
-    margin-top: 25px;
+.btn:disabled{
+    background:#aaa;
+    cursor:not-allowed;
 }
 
-.requirement {
-    background: #f5fff9;
-    border: 1px solid #d8eee0;
-    padding: 18px;
-    border-radius: 12px;
-    margin-bottom: 12px;
+
+/* ================= REQUIREMENTS ================= */
+
+.requirements{
+    margin-top:25px;
 }
 
-.requirement h3 {
-    color: #176b4d;
-    margin-bottom: 7px;
+.requirement{
+    background:#f5fff9;
+    border:1px solid #d8eee0;
+    padding:18px;
+    border-radius:12px;
+    margin-bottom:12px;
 }
 
-.requirement p {
-    color: #62736a;
-    line-height: 1.5;
+.requirement h3{
+    color:#176b4d;
+    margin-bottom:7px;
 }
 
-.priority {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 5px 10px;
-    border-radius: 15px;
-    background: #fff3cf;
-    color: #806000;
-    font-size: 12px;
-    font-weight: bold;
+.requirement p{
+    color:#62736a;
+    line-height:1.5;
 }
 
-.empty {
-    text-align: center;
-    padding: 30px;
-    background: #f7faf8;
-    border-radius: 12px;
-    color: #6b786f;
+.priority{
+    display:inline-block;
+    margin-top:8px;
+    padding:5px 10px;
+    border-radius:15px;
+    background:#fff3cf;
+    color:#806000;
+    font-size:12px;
+    font-weight:bold;
 }
 
-.message {
-    display: none;
-    margin-top: 15px;
-    padding: 12px;
-    border-radius: 9px;
+.empty{
+    text-align:center;
+    padding:30px;
+    background:#f7faf8;
+    border-radius:12px;
+    color:#6b786f;
 }
 
-.success {
-    display: block;
-    background: #e5f8eb;
-    color: #176b4d;
+
+/* ================= DONATIONS ================= */
+
+.donations-section{
+    margin-top:25px;
 }
 
-.error {
-    display: block;
-    background: #ffe7e7;
-    color: #a52828;
+.donation-card{
+    background:white;
+    border-radius:18px;
+    padding:28px;
+    margin-bottom:18px;
+    box-shadow:0 6px 25px rgba(0,0,0,.07);
+    border:1px solid #e1eee7;
 }
 
-.warning {
-    display: block;
-    background: #fff5d8;
-    color: #806000;
+.donation-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:15px;
+    margin-bottom:20px;
 }
 
-/* FOOTER */
-
-footer {
-    background: #123d2b;
-    color: white;
-    text-align: center;
-    padding: 30px;
-    margin-top: 50px;
+.donation-header h3{
+    color:#176b4d;
+    font-size:19px;
+    margin-bottom:6px;
 }
 
-@media(max-width: 750px) {
+.donation-id{
+    color:#73827b;
+    font-size:12px;
+}
 
-    nav {
-        flex-direction: column;
-        gap: 15px;
+.donation-status{
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.status-submitted{
+    background:#fff4cf;
+    color:#8a6800;
+}
+
+.status-received{
+    background:#e3f8eb;
+    color:#157342;
+}
+
+.status-impact{
+    background:#e4f3ff;
+    color:#17659a;
+}
+
+.status-completed{
+    background:#dff7ed;
+    color:#176b4d;
+}
+
+.donation-info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px 25px;
+    margin-bottom:22px;
+}
+
+.donation-info{
+    color:#62736a;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.donation-info strong{
+    color:#285943;
+}
+
+.donation-purpose{
+    background:#f5faf7;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:20px;
+}
+
+.donation-purpose strong{
+    color:#285943;
+    font-size:13px;
+}
+
+.donation-purpose p{
+    color:#62736a;
+    font-size:13px;
+    line-height:1.6;
+    margin-top:5px;
+}
+
+
+/* ================= TRACKING TIMELINE ================= */
+
+.timeline{
+    display:flex;
+    align-items:center;
+    margin:25px 0;
+    gap:0;
+}
+
+.timeline-step{
+    flex:1;
+    text-align:center;
+    position:relative;
+}
+
+.timeline-step:not(:last-child)::after{
+    content:"";
+    position:absolute;
+    top:15px;
+    left:50%;
+    width:100%;
+    height:2px;
+    background:#d9e8df;
+    z-index:0;
+}
+
+.timeline-dot{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    background:#d9e8df;
+    color:#6e8178;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 8px;
+    position:relative;
+    z-index:2;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.timeline-step.active .timeline-dot{
+    background:#159957;
+    color:white;
+}
+
+.timeline-step.active:not(:last-child)::after{
+    background:#159957;
+}
+
+.timeline-label{
+    font-size:11px;
+    color:#7a8982;
+    line-height:1.3;
+}
+
+.timeline-step.active .timeline-label{
+    color:#176b4d;
+    font-weight:bold;
+}
+
+
+/* ================= DONATION UPDATE ================= */
+
+.update-box{
+    background:#f7fcf9;
+    border:1px solid #dcece3;
+    border-radius:15px;
+    padding:22px;
+    margin-top:20px;
+}
+
+.update-box h4{
+    color:#176b4d;
+    margin-bottom:17px;
+}
+
+.update-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.update-full{
+    grid-column:1 / -1;
+}
+
+
+/* ================= PHOTO PREVIEW ================= */
+
+.photo-preview{
+    margin-top:10px;
+    display:none;
+}
+
+.photo-preview img{
+    width:100%;
+    max-width:260px;
+    max-height:180px;
+    object-fit:cover;
+    border-radius:12px;
+    border:1px solid #d8e7df;
+}
+
+.photo-preview.show{
+    display:block;
+}
+
+
+/* ================= MESSAGES ================= */
+
+.message{
+    display:none;
+    margin-top:15px;
+    padding:12px;
+    border-radius:9px;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.success{
+    display:block;
+    background:#e5f8eb;
+    color:#176b4d;
+}
+
+.error{
+    display:block;
+    background:#ffe7e7;
+    color:#a52828;
+}
+
+.warning{
+    display:block;
+    background:#fff5d8;
+    color:#806000;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#123d2b;
+    color:white;
+    text-align:center;
+    padding:30px;
+    margin-top:50px;
+}
+
+footer p{
+    color:#c7ddd5;
+    font-size:12px;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:850px){
+
+    nav{
+        padding:12px 5%;
     }
 
-    .grid {
-        grid-template-columns: 1fr;
+    .grid{
+        grid-template-columns:1fr;
     }
 
-    .hero h1 {
-        font-size: 30px;
+    .donation-info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .update-grid{
+        grid-template-columns:1fr;
+    }
+
+    .update-full{
+        grid-column:auto;
+    }
+
+}
+
+
+@media(max-width:650px){
+
+    nav{
+        flex-direction:column;
+        gap:12px;
+    }
+
+    .nav-right{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero h1{
+        font-size:30px;
+    }
+
+    .container{
+        padding:0 15px;
+    }
+
+    .card{
+        padding:22px 18px;
+    }
+
+    .donation-card{
+        padding:20px 17px;
+    }
+
+    .donation-header{
+        flex-direction:column;
+    }
+
+    .timeline-label{
+        font-size:9px;
+    }
+
+    .timeline-dot{
+        width:26px;
+        height:26px;
     }
 
 }
@@ -293,24 +627,40 @@ footer {
 
 </head>
 
+
 <body>
 
 
-<!-- NAVBAR -->
+<!-- ================= NAVBAR ================= -->
 
 <nav>
 
-    <div class="logo">
-        🌱 ReConnect
-    </div>
+    <a
+        href="index.html"
+        class="logo"
+    >
+
+        <span class="logo-circle">
+            R
+        </span>
+
+        <span>
+            ReConnect
+        </span>
+
+    </a>
+
 
     <div class="nav-right">
 
-        <span id="userEmail"></span>
+        <span
+            id="userEmail"
+            class="user-email">
+        </span>
 
         <button
             class="logout"
-            onclick="logoutUser()">
+            id="logoutButton">
 
             Logout
 
@@ -321,7 +671,7 @@ footer {
 </nav>
 
 
-<!-- HERO -->
+<!-- ================= HERO ================= -->
 
 <section class="hero">
 
@@ -336,16 +686,18 @@ footer {
 </section>
 
 
-<!-- CONTENT -->
+<!-- ================= CONTENT ================= -->
 
 <div class="container">
 
 
-<!-- VERIFICATION STATUS -->
+<!-- ================= VERIFICATION STATUS ================= -->
 
 <div class="status-card">
 
-    <h2>NGO Verification Status</h2>
+    <h2>
+        NGO Verification Status
+    </h2>
 
     <span
         id="statusBadge"
@@ -363,11 +715,13 @@ footer {
 <div class="grid">
 
 
-<!-- PROFILE -->
+<!-- ================= PROFILE ================= -->
 
 <div class="card">
 
-    <h2>NGO Profile</h2>
+    <h2>
+        NGO Profile
+    </h2>
 
     <div class="info">
         <strong>NGO Name:</strong>
@@ -392,21 +746,27 @@ footer {
 </div>
 
 
-<!-- ADD REQUIREMENT -->
+<!-- ================= ADD REQUIREMENT ================= -->
 
 <div class="card">
 
-    <h2>Add NGO Requirement</h2>
+    <h2>
+        Add NGO Requirement
+    </h2>
 
-    <p style="color:#697970; margin-bottom:20px; line-height:1.5;">
+    <p style="color:#697970;margin-bottom:20px;line-height:1.5;">
+
         Once your NGO is verified, you can publish genuine
         requirements that donors can see on the Donate page.
+
     </p>
 
 
     <div class="form-group">
 
-        <label>Requirement Type</label>
+        <label>
+            Requirement Type
+        </label>
 
         <select id="requirementType">
 
@@ -433,7 +793,9 @@ footer {
 
     <div class="form-group">
 
-        <label>Requirement Title</label>
+        <label>
+            Requirement Title
+        </label>
 
         <input
             type="text"
@@ -445,19 +807,22 @@ footer {
 
     <div class="form-group">
 
-        <label>Description</label>
+        <label>
+            Description
+        </label>
 
         <textarea
             id="requirementDescription"
-            placeholder="Explain what your NGO currently needs...">
-        </textarea>
+            placeholder="Explain what your NGO currently needs..."></textarea>
 
     </div>
 
 
     <div class="form-group">
 
-        <label>Amount / Quantity</label>
+        <label>
+            Amount / Quantity
+        </label>
 
         <input
             type="number"
@@ -470,7 +835,9 @@ footer {
 
     <div class="form-group">
 
-        <label>Priority</label>
+        <label>
+            Priority
+        </label>
 
         <select id="requirementPriority">
 
@@ -493,8 +860,7 @@ footer {
 
     <button
         id="addRequirementButton"
-        class="btn"
-        onclick="addRequirement()">
+        class="btn">
 
         Publish Requirement
 
@@ -511,11 +877,13 @@ footer {
 </div>
 
 
-<!-- REQUIREMENTS -->
+<!-- ================= REQUIREMENTS ================= -->
 
 <div class="card requirements">
 
-    <h2>My Published Requirements</h2>
+    <h2>
+        My Published Requirements
+    </h2>
 
     <div id="requirementsContainer">
 
@@ -527,10 +895,41 @@ footer {
 
 </div>
 
+
+<!-- ================= DONATION TRACKING ================= -->
+
+<div class="card donations-section">
+
+    <h2>
+        💚 Donations Received
+    </h2>
+
+    <p style="color:#697970;line-height:1.6;margin-bottom:22px;font-size:14px;">
+
+        View contributions made to your NGO and update their
+        progress after the donation has been received.
+
+        You can also provide photo proof and an impact update
+        for the donor.
+
+    </p>
+
+
+    <div id="donationsContainer">
+
+        <div class="empty">
+            Loading donations...
+        </div>
+
+    </div>
+
 </div>
 
 
-<!-- FOOTER -->
+</div>
+
+
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
@@ -549,6 +948,7 @@ import {
     signOut
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
+
 import {
     getFirestore,
     doc,
@@ -558,8 +958,10 @@ import {
     query,
     where,
     getDocs,
+    updateDoc,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
 
 import { app } from "./firebase-config.js";
 
@@ -567,6 +969,7 @@ import { app } from "./firebase-config.js";
 const auth = getAuth(app);
 
 const db = getFirestore(app);
+
 
 let currentUser = null;
 
@@ -583,7 +986,8 @@ onAuthStateChanged(auth, async (user) => {
 
     if (!user) {
 
-        window.location.href = "login.html";
+        window.location.href =
+            "login.html";
 
         return;
 
@@ -593,8 +997,10 @@ onAuthStateChanged(auth, async (user) => {
     currentUser = user;
 
 
-    document.getElementById("userEmail")
-        .textContent = user.email || "";
+    document.getElementById(
+        "userEmail"
+    ).textContent =
+        user.email || "";
 
 
     await loadNGOProfile(user);
@@ -611,7 +1017,12 @@ async function loadNGOProfile(user) {
     try {
 
         const userRef =
-            doc(db, "users", user.uid);
+            doc(
+                db,
+                "users",
+                user.uid
+            );
+
 
         const userSnap =
             await getDoc(userRef);
@@ -652,39 +1063,55 @@ async function loadNGOProfile(user) {
         currentNGOName =
             data.ngoName || "NGO";
 
+
         currentStatus =
             data.status || "pending";
 
 
-        document.getElementById("welcomeTitle")
-            .textContent =
-            "Welcome, " + currentNGOName;
-
-
-        document.getElementById("ngoName")
-            .textContent =
+        document.getElementById(
+            "welcomeTitle"
+        ).textContent =
+            "Welcome, " +
             currentNGOName;
 
 
-        document.getElementById("fullName")
-            .textContent =
+        document.getElementById(
+            "ngoName"
+        ).textContent =
+            currentNGOName;
+
+
+        document.getElementById(
+            "fullName"
+        ).textContent =
             data.fullName || "—";
 
 
-        document.getElementById("email")
-            .textContent =
-            data.email || user.email || "—";
+        document.getElementById(
+            "email"
+        ).textContent =
+            data.email ||
+            user.email ||
+            "—";
 
 
-        document.getElementById("accountStatus")
-            .textContent =
+        document.getElementById(
+            "accountStatus"
+        ).textContent =
             currentStatus;
 
 
         updateStatus();
 
 
-        await loadRequirements(user.uid);
+        await loadRequirements(
+            user.uid
+        );
+
+
+        await loadDonations(
+            user.uid
+        );
 
     }
 
@@ -702,16 +1129,22 @@ async function loadNGOProfile(user) {
 
 
 /* =========================
-   UPDATE STATUS
+   UPDATE VERIFICATION STATUS
 ========================= */
 
 function updateStatus() {
 
     const badge =
-        document.getElementById("statusBadge");
+        document.getElementById(
+            "statusBadge"
+        );
+
 
     const message =
-        document.getElementById("statusMessage");
+        document.getElementById(
+            "statusMessage"
+        );
+
 
     const button =
         document.getElementById(
@@ -725,52 +1158,73 @@ function updateStatus() {
 
     if (currentStatus === "approved") {
 
-        badge.classList.add("approved");
+        badge.classList.add(
+            "approved"
+        );
 
         badge.textContent =
             "✓ Approved";
 
+
         message.className =
             "message success";
+
 
         message.textContent =
             "Your NGO has been verified. You can publish requirements.";
 
-        button.disabled = false;
+
+        button.disabled =
+            false;
 
     }
 
-    else if (currentStatus === "rejected") {
+    else if (
+        currentStatus ===
+        "rejected"
+    ) {
 
-        badge.classList.add("rejected");
+        badge.classList.add(
+            "rejected"
+        );
 
         badge.textContent =
             "Rejected";
 
+
         message.className =
             "message error";
+
 
         message.textContent =
             "Your NGO registration has not been approved.";
 
-        button.disabled = true;
+
+        button.disabled =
+            true;
 
     }
 
     else {
 
-        badge.classList.add("pending");
+        badge.classList.add(
+            "pending"
+        );
 
         badge.textContent =
             "Pending Verification";
 
+
         message.className =
             "message warning";
+
 
         message.textContent =
             "Your NGO registration is waiting for Admin verification.";
 
-        button.disabled = true;
+
+        button.disabled =
+            true;
 
     }
 
@@ -793,8 +1247,15 @@ async function loadRequirements(uid) {
 
         const requirementsQuery =
             query(
-                collection(db, "requirements"),
-                where("ngoId", "==", uid)
+                collection(
+                    db,
+                    "requirements"
+                ),
+                where(
+                    "ngoId",
+                    "==",
+                    uid
+                )
             );
 
 
@@ -820,55 +1281,82 @@ async function loadRequirements(uid) {
         container.innerHTML = "";
 
 
-        snapshot.forEach((docSnap) => {
+        snapshot.forEach(
+            (docSnap) => {
 
-            const data =
-                docSnap.data();
-
-
-            const div =
-                document.createElement("div");
-
-            div.className =
-                "requirement";
+                const data =
+                    docSnap.data();
 
 
-            div.innerHTML = `
-
-                <h3>
-                    ${escapeHTML(data.title || "Untitled Requirement")}
-                </h3>
-
-                <p>
-                    ${escapeHTML(data.description || "No description provided.")}
-                </p>
-
-                <p style="margin-top:8px;">
-                    <strong>Type:</strong>
-                    ${escapeHTML(data.type || "—")}
-                </p>
-
-                <p style="margin-top:5px;">
-                    <strong>Amount / Quantity:</strong>
-                    ${data.amount || "—"}
-                </p>
-
-                <span class="priority">
-                    ${escapeHTML(data.priority || "Normal")}
-                </span>
-
-            `;
+                const div =
+                    document.createElement(
+                        "div"
+                    );
 
 
-            container.appendChild(div);
+                div.className =
+                    "requirement";
 
-        });
+
+                div.innerHTML = `
+
+                    <h3>
+                        ${escapeHTML(
+                            data.title ||
+                            "Untitled Requirement"
+                        )}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(
+                            data.description ||
+                            "No description provided."
+                        )}
+                    </p>
+
+                    <p style="margin-top:8px;">
+                        <strong>Type:</strong>
+                        ${escapeHTML(
+                            data.type ||
+                            "—"
+                        )}
+                    </p>
+
+                    <p style="margin-top:5px;">
+                        <strong>
+                            Amount / Quantity:
+                        </strong>
+                        ${escapeHTML(
+                            String(
+                                data.amount ||
+                                "—"
+                            )
+                        )}
+                    </p>
+
+                    <span class="priority">
+                        ${escapeHTML(
+                            data.priority ||
+                            "Normal"
+                        )}
+                    </span>
+
+                `;
+
+
+                container.appendChild(
+                    div
+                );
+
+            }
+        );
 
     }
 
     catch(error) {
 
         console.error(error);
+
 
         container.innerHTML = `
             <div class="empty">
@@ -885,7 +1373,17 @@ async function loadRequirements(uid) {
    ADD REQUIREMENT
 ========================= */
 
-window.addRequirement = async function() {
+document
+    .getElementById(
+        "addRequirementButton"
+    )
+    .addEventListener(
+        "click",
+        addRequirement
+    );
+
+
+async function addRequirement() {
 
     if (!currentUser) {
 
@@ -894,7 +1392,10 @@ window.addRequirement = async function() {
     }
 
 
-    if (currentStatus !== "approved") {
+    if (
+        currentStatus !==
+        "approved"
+    ) {
 
         showRequirementMessage(
             "Your NGO must be approved by Admin before publishing requirements.",
@@ -936,7 +1437,11 @@ window.addRequirement = async function() {
         ).value;
 
 
-    if (!type || !title || !description) {
+    if (
+        !type ||
+        !title ||
+        !description
+    ) {
 
         showRequirementMessage(
             "Please fill in the requirement type, title and description.",
@@ -951,7 +1456,10 @@ window.addRequirement = async function() {
     try {
 
         await addDoc(
-            collection(db, "requirements"),
+            collection(
+                db,
+                "requirements"
+            ),
             {
 
                 ngoId:
@@ -1016,7 +1524,8 @@ window.addRequirement = async function() {
 
         document.getElementById(
             "requirementPriority"
-        ).value = "Normal";
+        ).value =
+            "Normal";
 
 
         await loadRequirements(
@@ -1029,6 +1538,7 @@ window.addRequirement = async function() {
 
         console.error(error);
 
+
         showRequirementMessage(
             "Unable to publish requirement. Please check Firestore permissions.",
             "error"
@@ -1036,11 +1546,867 @@ window.addRequirement = async function() {
 
     }
 
-};
+}
 
 
 /* =========================
-   MESSAGE
+   LOAD DONATIONS
+========================= */
+
+async function loadDonations(uid) {
+
+    const container =
+        document.getElementById(
+            "donationsContainer"
+        );
+
+
+    try {
+
+        /*
+         * Current donate.html saves ngoName.
+         * Therefore this dashboard searches using
+         * the current NGO's name.
+         */
+
+        const donationsQuery =
+            query(
+                collection(
+                    db,
+                    "donations"
+                ),
+                where(
+                    "ngoName",
+                    "==",
+                    currentNGOName
+                )
+            );
+
+
+        const snapshot =
+            await getDocs(
+                donationsQuery
+            );
+
+
+        if (snapshot.empty) {
+
+            container.innerHTML = `
+                <div class="empty">
+
+                    <div style="font-size:35px;margin-bottom:10px;">
+                        💚
+                    </div>
+
+                    No donations have been recorded
+                    for your NGO yet.
+
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        container.innerHTML = "";
+
+
+        snapshot.forEach(
+            (docSnap) => {
+
+                const data =
+                    docSnap.data();
+
+
+                const donationId =
+                    "RC-DON-" +
+                    docSnap.id
+                        .substring(
+                            0,
+                            8
+                        )
+                        .toUpperCase();
+
+
+                const status =
+                    data.status ||
+                    "submitted";
+
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "donation-card";
+
+
+                card.innerHTML = `
+
+                    <div class="donation-header">
+
+                        <div>
+
+                            <h3>
+                                💚 Donation
+                            </h3>
+
+                            <div class="donation-id">
+                                ${donationId}
+                            </div>
+
+                        </div>
+
+                        <span
+                            class="donation-status
+                            ${getStatusClass(status)}">
+
+                            ${getStatusLabel(status)}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="donation-info-grid">
+
+                        <div class="donation-info">
+
+                            <strong>
+                                Donor:
+                            </strong>
+
+                            ${escapeHTML(
+                                data.donorEmail ||
+                                "Anonymous"
+                            )}
+
+                        </div>
+
+
+                        <div class="donation-info">
+
+                            <strong>
+                                Donation Type:
+                            </strong>
+
+                            ${escapeHTML(
+                                data.donationType ||
+                                "—"
+                            )}
+
+                        </div>
+
+
+                        <div class="donation-info">
+
+                            <strong>
+                                Amount / Quantity:
+                            </strong>
+
+                            ${escapeHTML(
+                                String(
+                                    data.amount ||
+                                    "—"
+                                )
+                            )}
+
+                        </div>
+
+
+                        <div class="donation-info">
+
+                            <strong>
+                                Submitted:
+                            </strong>
+
+                            ${formatDate(
+                                data.createdAt
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="donation-purpose">
+
+                        <strong>
+                            Purpose
+                        </strong>
+
+                        <p>
+                            ${escapeHTML(
+                                data.purpose ||
+                                "No purpose provided."
+                            )}
+                        </p>
+
+                    </div>
+
+
+                    <!-- TIMELINE -->
+
+                    <div class="timeline">
+
+                        <div
+                            class="timeline-step
+                            ${isTimelineActive(
+                                status,
+                                "submitted"
+                            )}">
+
+                            <div class="timeline-dot">
+                                1
+                            </div>
+
+                            <div class="timeline-label">
+                                Submitted
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="timeline-step
+                            ${isTimelineActive(
+                                status,
+                                "received"
+                            )}">
+
+                            <div class="timeline-dot">
+                                2
+                            </div>
+
+                            <div class="timeline-label">
+                                Received
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="timeline-step
+                            ${isTimelineActive(
+                                status,
+                                "impact_updated"
+                            )}">
+
+                            <div class="timeline-dot">
+                                3
+                            </div>
+
+                            <div class="timeline-label">
+                                Impact Updated
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="timeline-step
+                            ${isTimelineActive(
+                                status,
+                                "completed"
+                            )}">
+
+                            <div class="timeline-dot">
+                                4
+                            </div>
+
+                            <div class="timeline-label">
+                                Completed
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- UPDATE AREA -->
+
+                    <div class="update-box">
+
+                        <h4>
+                            Update Donation
+                        </h4>
+
+
+                        <div class="update-grid">
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Donation Status
+                                </label>
+
+                                <select
+                                    class="donation-status-select">
+
+                                    <option
+                                        value="submitted"
+                                        ${status === "submitted" ? "selected" : ""}>
+                                        Donation Submitted
+                                    </option>
+
+                                    <option
+                                        value="received"
+                                        ${status === "received" ? "selected" : ""}>
+                                        Received by NGO
+                                    </option>
+
+                                    <option
+                                        value="impact_updated"
+                                        ${status === "impact_updated" ? "selected" : ""}>
+                                        Impact Updated
+                                    </option>
+
+                                    <option
+                                        value="completed"
+                                        ${status === "completed" ? "selected" : ""}>
+                                        Completed
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Received Photo URL
+                                </label>
+
+                                <input
+                                    type="url"
+                                    class="received-photo"
+                                    value="${escapeAttribute(
+                                        data.receivedPhotoUrl || ""
+                                    )}"
+                                    placeholder="Paste photo URL">
+
+                            </div>
+
+
+                            <div class="form-group update-full">
+
+                                <label>
+                                    Impact Update
+                                </label>
+
+                                <textarea
+                                    class="impact-update"
+                                    placeholder="Explain how the donation was used...">${escapeHTML(
+                                        data.impactUpdate || ""
+                                    )}</textarea>
+
+                            </div>
+
+
+                            <div class="form-group update-full">
+
+                                <label>
+                                    Impact Photo URL
+                                </label>
+
+                                <input
+                                    type="url"
+                                    class="impact-photo"
+                                    value="${escapeAttribute(
+                                        data.impactPhotoUrl || ""
+                                    )}"
+                                    placeholder="Paste impact photo URL">
+
+                            </div>
+
+
+                            <div class="photo-preview">
+
+                                <img
+                                    class="preview-image"
+                                    alt="Donation proof">
+
+                            </div>
+
+
+                            <div class="form-group update-full">
+
+                                <button
+                                    class="btn save-donation">
+
+                                    💾 Save Donation Update
+
+                                </button>
+
+                            </div>
+
+
+                            <div class="message update-message update-full">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                container.appendChild(
+                    card
+                );
+
+
+                /* =========================
+                   SAVE BUTTON
+                ========================= */
+
+                const saveButton =
+                    card.querySelector(
+                        ".save-donation"
+                    );
+
+
+                saveButton.addEventListener(
+                    "click",
+                    async () => {
+
+                        await updateDonation(
+                            docSnap.id,
+                            card
+                        );
+
+                    }
+                );
+
+
+                /* =========================
+                   PHOTO PREVIEW
+                ========================= */
+
+                const receivedInput =
+                    card.querySelector(
+                        ".received-photo"
+                    );
+
+
+                receivedInput.addEventListener(
+                    "input",
+                    () => {
+
+                        updatePhotoPreview(
+                            card,
+                            receivedInput.value
+                        );
+
+                    }
+                );
+
+
+                if (
+                    data.receivedPhotoUrl
+                ) {
+
+                    updatePhotoPreview(
+                        card,
+                        data.receivedPhotoUrl
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+    catch(error) {
+
+        console.error(
+            "Donation loading error:",
+            error
+        );
+
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                Unable to load donations.
+
+                <br><br>
+
+                Please check your Firestore
+                permissions.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   UPDATE DONATION
+========================= */
+
+async function updateDonation(
+    donationId,
+    card
+) {
+
+    const status =
+        card.querySelector(
+            ".donation-status-select"
+        ).value;
+
+
+    const receivedPhotoUrl =
+        card.querySelector(
+            ".received-photo"
+        ).value.trim();
+
+
+    const impactUpdate =
+        card.querySelector(
+            ".impact-update"
+        ).value.trim();
+
+
+    const impactPhotoUrl =
+        card.querySelector(
+            ".impact-photo"
+        ).value.trim();
+
+
+    const saveButton =
+        card.querySelector(
+            ".save-donation"
+        );
+
+
+    const message =
+        card.querySelector(
+            ".update-message"
+        );
+
+
+    saveButton.disabled =
+        true;
+
+    saveButton.textContent =
+        "Saving...";
+
+
+    try {
+
+        const updateData = {
+
+            status:
+                status,
+
+            receivedPhotoUrl:
+                receivedPhotoUrl,
+
+            impactUpdate:
+                impactUpdate,
+
+            impactPhotoUrl:
+                impactPhotoUrl,
+
+            updatedAt:
+                serverTimestamp()
+
+        };
+
+
+        /*
+         * Store receivedAt when the NGO
+         * marks the donation as received.
+         */
+
+        if (
+            status === "received" ||
+            status === "impact_updated" ||
+            status === "completed"
+        ) {
+
+            updateData.receivedAt =
+                serverTimestamp();
+
+        }
+
+
+        await updateDoc(
+            doc(
+                db,
+                "donations",
+                donationId
+            ),
+            updateData
+        );
+
+
+        message.className =
+            "message success";
+
+
+        message.textContent =
+            "Donation update saved successfully.";
+
+
+        saveButton.disabled =
+            false;
+
+
+        saveButton.textContent =
+            "💾 Save Donation Update";
+
+
+        /*
+         * Reload after a short delay
+         * so the new status appears.
+         */
+
+        setTimeout(
+            () => {
+
+                loadDonations(
+                    currentUser.uid
+                );
+
+            },
+            800
+        );
+
+    }
+
+    catch(error) {
+
+        console.error(
+            "Donation update error:",
+            error
+        );
+
+
+        message.className =
+            "message error";
+
+
+        message.textContent =
+            "Unable to update donation. Please check Firestore permissions.";
+
+
+        saveButton.disabled =
+            false;
+
+
+        saveButton.textContent =
+            "💾 Save Donation Update";
+
+    }
+
+}
+
+
+/* =========================
+   STATUS CLASS
+========================= */
+
+function getStatusClass(status) {
+
+    if (
+        status === "received"
+    ) {
+
+        return "status-received";
+
+    }
+
+
+    if (
+        status === "impact_updated"
+    ) {
+
+        return "status-impact";
+
+    }
+
+
+    if (
+        status === "completed"
+    ) {
+
+        return "status-completed";
+
+    }
+
+
+    return "status-submitted";
+
+}
+
+
+/* =========================
+   STATUS LABEL
+========================= */
+
+function getStatusLabel(status) {
+
+    if (
+        status === "received"
+    ) {
+
+        return "✓ Received";
+
+    }
+
+
+    if (
+        status === "impact_updated"
+    ) {
+
+        return "📊 Impact Updated";
+
+    }
+
+
+    if (
+        status === "completed"
+    ) {
+
+        return "✓ Completed";
+
+    }
+
+
+    return "Pending";
+
+}
+
+
+/* =========================
+   TIMELINE
+========================= */
+
+function isTimelineActive(
+    status,
+    step
+) {
+
+    const order = {
+
+        submitted:1,
+
+        received:2,
+
+        impact_updated:3,
+
+        completed:4
+
+    };
+
+
+    return order[status] >=
+           order[step]
+        ? "active"
+        : "";
+
+}
+
+
+/* =========================
+   DATE
+========================= */
+
+function formatDate(timestamp) {
+
+    if (
+        !timestamp ||
+        !timestamp.toDate
+    ) {
+
+        return "—";
+
+    }
+
+
+    try {
+
+        return timestamp
+            .toDate()
+            .toLocaleDateString(
+                "en-IN",
+                {
+                    day:"2-digit",
+                    month:"short",
+                    year:"numeric"
+                }
+            );
+
+    }
+
+    catch {
+
+        return "—";
+
+    }
+
+}
+
+
+/* =========================
+   PHOTO PREVIEW
+========================= */
+
+function updatePhotoPreview(
+    card,
+    url
+) {
+
+    const preview =
+        card.querySelector(
+            ".photo-preview"
+        );
+
+
+    const image =
+        card.querySelector(
+            ".preview-image"
+        );
+
+
+    if (!url) {
+
+        preview.classList.remove(
+            "show"
+        );
+
+        image.removeAttribute(
+            "src"
+        );
+
+        return;
+
+    }
+
+
+    image.src = url;
+
+    preview.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================
+   REQUIREMENT MESSAGE
 ========================= */
 
 function showRequirementMessage(
@@ -1054,7 +2420,9 @@ function showRequirementMessage(
         );
 
 
-    box.textContent = text;
+    box.textContent =
+        text;
+
 
     box.className =
         "message " + type;
@@ -1069,11 +2437,33 @@ function showRequirementMessage(
 function escapeHTML(value) {
 
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+function escapeAttribute(value) {
+
+    return escapeHTML(value);
 
 }
 
@@ -1082,31 +2472,45 @@ function escapeHTML(value) {
    LOGOUT
 ========================= */
 
-window.logoutUser = async function() {
+document
+    .getElementById(
+        "logoutButton"
+    )
+    .addEventListener(
+        "click",
+        async () => {
 
-    try {
+            try {
 
-        await signOut(auth);
+                await signOut(auth);
 
-        window.location.href =
-            "index.html";
+                window.location.href =
+                    "index.html";
 
-    }
+            }
 
-    catch(error) {
+            catch(error) {
 
-        console.error(error);
+                console.error(error);
 
-        alert(
-            "Unable to logout."
-        );
+                alert(
+                    "Unable to logout."
+                );
 
-    }
+            }
 
-};
+        }
+    );
 
 </script>
-<script type="module" src="auth.js"></script>
+
+
+<script
+    type="module"
+    src="auth.js">
+</script>
+
+
 </body>
 
 </html>
