@@ -18,25 +18,46 @@
 }
 
 body {
-    background: #f5faf7;
+    background: #f4faf7;
     color: #17352a;
 }
 
-/* NAVBAR */
+/* =========================
+   NAVBAR
+========================= */
 
 nav {
     background: white;
-    padding: 18px 6%;
+    padding: 16px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .logo {
-    font-size: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
     font-weight: bold;
     color: #159957;
+}
+
+.logo-mark {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #159957;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+    font-weight: bold;
 }
 
 .nav-right {
@@ -51,6 +72,7 @@ nav {
     padding: 8px 14px;
     border-radius: 20px;
     font-weight: bold;
+    font-size: 14px;
 }
 
 .logout-btn {
@@ -67,45 +89,120 @@ nav {
     background: #117a46;
 }
 
-/* HERO */
+/* =========================
+   LAYOUT
+========================= */
+
+.layout {
+    display: flex;
+    min-height: calc(100vh - 70px);
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    width: 245px;
+    background: #123d2b;
+    padding: 25px 15px;
+    flex-shrink: 0;
+}
+
+.sidebar-title {
+    color: #a9d8be;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0 15px 15px;
+}
+
+.sidebar button {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: #dcefe4;
+    padding: 13px 15px;
+    text-align: left;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.sidebar button:hover {
+    background: rgba(255,255,255,0.10);
+}
+
+.sidebar button.active {
+    background: #159957;
+    color: white;
+    font-weight: bold;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main {
+    flex: 1;
+    min-width: 0;
+}
+
+/* =========================
+   HERO
+========================= */
 
 .hero {
     background: linear-gradient(135deg, #dff8ea, #eaf7ff);
-    padding: 50px 7%;
+    padding: 40px 5%;
 }
 
 .hero h1 {
     color: #116b45;
-    font-size: 38px;
-    margin-bottom: 10px;
+    font-size: 34px;
+    margin-bottom: 8px;
 }
 
 .hero p {
     color: #60756a;
 }
 
-/* CONTAINER */
+/* =========================
+   CONTENT
+========================= */
 
 .container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
+    max-width: 1250px;
+    margin: 35px auto;
+    padding: 0 25px;
 }
 
-/* STATS */
+.page-section {
+    display: none;
+}
+
+.page-section.active {
+    display: block;
+}
+
+/* =========================
+   STATS
+========================= */
 
 .stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 18px;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 
 .stat-card {
     background: white;
-    padding: 25px;
+    padding: 23px;
     border-radius: 16px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+    border-left: 4px solid #159957;
 }
 
 .stat-card h3 {
@@ -120,14 +217,16 @@ nav {
     font-weight: bold;
 }
 
-/* SECTION */
+/* =========================
+   SECTION
+========================= */
 
 .section {
     background: white;
     padding: 28px;
     border-radius: 18px;
     margin-bottom: 28px;
-    box-shadow: 0 6px 25px rgba(0,0,0,0.07);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.06);
 }
 
 .section h2 {
@@ -137,10 +236,50 @@ nav {
 
 .section-subtitle {
     color: #718078;
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 }
 
-/* VERIFICATION CARDS */
+/* =========================
+   QUICK CARDS
+========================= */
+
+.quick-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.quick-card {
+    border: 1px solid #dcebe2;
+    background: #fbfefc;
+    padding: 22px;
+    border-radius: 14px;
+}
+
+.quick-card h3 {
+    color: #176b4d;
+    margin-bottom: 8px;
+}
+
+.quick-card p {
+    color: #68776f;
+    line-height: 1.5;
+}
+
+.quick-card button {
+    margin-top: 15px;
+    border: none;
+    background: #159957;
+    color: white;
+    padding: 9px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* =========================
+   ORGANIZATION CARDS
+========================= */
 
 .organization-card {
     border: 1px solid #dbeae1;
@@ -196,7 +335,9 @@ nav {
     font-weight: bold;
 }
 
-/* DETAILS */
+/* =========================
+   DETAILS
+========================= */
 
 .details {
     display: grid;
@@ -217,7 +358,9 @@ nav {
     color: #64736b;
 }
 
-/* ACTIONS */
+/* =========================
+   ACTIONS
+========================= */
 
 .actions {
     display: flex;
@@ -249,11 +392,67 @@ nav {
     color: #a52b2b;
 }
 
-.reject-btn:hover {
-    background: #ffd4d4;
+/* =========================
+   TABLE
+========================= */
+
+.table-wrapper {
+    overflow-x: auto;
 }
 
-/* EMPTY */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+.data-table th {
+    background: #eaf7ef;
+    color: #176b4d;
+    padding: 14px;
+    text-align: left;
+}
+
+.data-table td {
+    padding: 14px;
+    border-bottom: 1px solid #e5eee9;
+    color: #53645b;
+}
+
+.data-table tr:hover {
+    background: #fafdfb;
+}
+
+/* =========================
+   BADGES
+========================= */
+
+.badge {
+    display: inline-block;
+    padding: 6px 11px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.badge-green {
+    background: #e2f7e9;
+    color: #157342;
+}
+
+.badge-yellow {
+    background: #fff2c9;
+    color: #8b6800;
+}
+
+.badge-red {
+    background: #ffe5e5;
+    color: #a52c2c;
+}
+
+/* =========================
+   EMPTY
+========================= */
 
 .empty {
     text-align: center;
@@ -264,14 +463,15 @@ nav {
     line-height: 1.6;
 }
 
-/* MESSAGE */
+/* =========================
+   MESSAGE
+========================= */
 
 .message {
     display: none;
     padding: 13px;
     border-radius: 10px;
     margin-bottom: 20px;
-    line-height: 1.5;
 }
 
 .message.success {
@@ -286,7 +486,9 @@ nav {
     color: #a52b2b;
 }
 
-/* LOADING */
+/* =========================
+   LOADING
+========================= */
 
 .loading {
     text-align: center;
@@ -294,38 +496,78 @@ nav {
     color: #65756c;
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer {
     background: #123d2b;
     color: white;
     text-align: center;
-    padding: 30px;
-    margin-top: 50px;
+    padding: 28px;
+    margin-top: 40px;
 }
 
-/* RESPONSIVE */
+/* =========================
+   RESPONSIVE
+========================= */
 
-@media(max-width: 850px) {
+@media(max-width: 950px) {
+
+    .sidebar {
+        width: 200px;
+    }
 
     .stats {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .details {
-        grid-template-columns: 1fr;
+    .quick-grid {
+        grid-template-columns: 1fr 1fr;
     }
 
 }
 
-@media(max-width: 600px) {
+@media(max-width: 700px) {
 
     nav {
+        padding: 14px 20px;
+    }
+
+    .admin-badge {
+        display: none;
+    }
+
+    .layout {
         flex-direction: column;
-        gap: 15px;
+    }
+
+    .sidebar {
+        width: 100%;
+        display: flex;
+        overflow-x: auto;
+        padding: 10px;
+        gap: 5px;
+    }
+
+    .sidebar-title {
+        display: none;
+    }
+
+    .sidebar button {
+        min-width: 145px;
+        margin: 0;
     }
 
     .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .quick-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .details {
         grid-template-columns: 1fr;
     }
 
@@ -333,8 +575,41 @@ footer {
         flex-direction: column;
     }
 
-    .actions {
-        flex-direction: column;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width: 500px) {
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .logo-mark {
+        width: 34px;
+        height: 34px;
+    }
+
+    .logout-btn {
+        padding: 8px 12px;
+    }
+
+    .hero {
+        padding: 30px 20px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .section {
+        padding: 20px;
     }
 
 }
@@ -346,13 +621,20 @@ footer {
 <body>
 
 
-<!-- NAVBAR -->
+<!-- =========================
+     NAVBAR
+========================= -->
 
 <nav>
 
     <div class="logo">
-        🌱 ReConnect
+
+        <span class="logo-mark">R</span>
+
+        ReConnect
+
     </div>
+
 
     <div class="nav-right">
 
@@ -360,9 +642,10 @@ footer {
             Administrator
         </span>
 
+
         <button
             class="logout-btn"
-            onclick="logoutAdmin()">
+            id="logoutBtn">
 
             Logout
 
@@ -373,14 +656,112 @@ footer {
 </nav>
 
 
+<div class="layout">
+
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<aside class="sidebar">
+
+    <div class="sidebar-title">
+        Admin Panel
+    </div>
+
+
+    <button
+        class="menu-btn active"
+        data-section="dashboard">
+
+        🏠 Dashboard
+
+    </button>
+
+
+    <button
+        class="menu-btn"
+        data-section="users">
+
+        👥 Users
+
+    </button>
+
+
+    <button
+        class="menu-btn"
+        data-section="verification">
+
+        🏢 NGO Verification
+
+    </button>
+
+
+    <button
+        class="menu-btn"
+        data-section="donations">
+
+        💰 Donations
+
+    </button>
+
+
+    <button
+        class="menu-btn"
+        data-section="activities">
+
+        🤝 Volunteer Activities
+
+    </button>
+
+
+    <button
+        class="menu-btn"
+        data-section="college">
+
+        🎓 College / NSS
+
+    </button>
+
+
+    <button
+        class="menu-btn"
+        data-section="reuse">
+
+        ♻️ Reuse & Recycle
+
+    </button>
+
+
+    <button
+        class="menu-btn"
+        data-section="reports">
+
+        📊 Reports
+
+    </button>
+
+</aside>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="main">
+
+
 <!-- HERO -->
 
 <section class="hero">
 
-    <h1>Admin Dashboard</h1>
+    <h1 id="pageTitle">
+        Admin Dashboard
+    </h1>
 
-    <p>
-        Review organizations and manage ReConnect verification.
+    <p id="pageDescription">
+        Manage users, organizations, donations,
+        activities and ReConnect operations.
     </p>
 
 </section>
@@ -389,61 +770,325 @@ footer {
 <div class="container">
 
 
-<!-- MESSAGE -->
-
 <div
     id="message"
     class="message">
 </div>
 
 
-<!-- STATS -->
+<!-- ==================================================
+     DASHBOARD
+================================================== -->
+
+<section
+    id="dashboard"
+    class="page-section active">
+
 
 <div class="stats">
 
+
     <div class="stat-card">
 
-        <h3>Pending Verification</h3>
+        <h3>Total Users</h3>
 
-        <p id="pendingCount">0</p>
+        <p id="totalUsers">
+            0
+        </p>
 
     </div>
 
 
     <div class="stat-card">
 
-        <h3>Approved NGOs</h3>
+        <h3>Total NGOs</h3>
 
-        <p id="approvedNGOCount">0</p>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <h3>Approved Colleges</h3>
-
-        <p id="approvedCollegeCount">0</p>
+        <p id="totalNGOs">
+            0
+        </p>
 
     </div>
 
 
     <div class="stat-card">
 
-        <h3>Total Organizations</h3>
+        <h3>Total Donations</h3>
 
-        <p id="totalCount">0</p>
+        <p id="totalDonations">
+            0
+        </p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <h3>Volunteer Activities</h3>
+
+        <p id="totalActivities">
+            0
+        </p>
 
     </div>
 
 </div>
 
 
-<!-- PENDING -->
+<div class="section">
+
+    <h2>
+        Welcome, Administrator
+    </h2>
+
+    <p class="section-subtitle">
+
+        Use the admin panel to manage the
+        ReConnect platform.
+
+    </p>
+
+
+    <div class="quick-grid">
+
+
+        <div class="quick-card">
+
+            <h3>
+                NGO Verification
+            </h3>
+
+            <p>
+                Review NGO registrations and
+                approve or reject organizations.
+            </p>
+
+            <button
+                onclick="openSection('verification')">
+
+                Review NGOs
+
+            </button>
+
+        </div>
+
+
+        <div class="quick-card">
+
+            <h3>
+                Donations
+            </h3>
+
+            <p>
+                View donations submitted through
+                the ReConnect platform.
+            </p>
+
+            <button
+                onclick="openSection('donations')">
+
+                View Donations
+
+            </button>
+
+        </div>
+
+
+        <div class="quick-card">
+
+            <h3>
+                Volunteer Activities
+            </h3>
+
+            <p>
+                View activities available for
+                volunteers and community members.
+            </p>
+
+            <button
+                onclick="openSection('activities')">
+
+                View Activities
+
+            </button>
+
+        </div>
+
+
+        <div class="quick-card">
+
+            <h3>
+                College / NSS
+            </h3>
+
+            <p>
+                View registered colleges and
+                NSS or student groups.
+            </p>
+
+            <button
+                onclick="openSection('college')">
+
+                View Colleges
+
+            </button>
+
+        </div>
+
+
+        <div class="quick-card">
+
+            <h3>
+                Reuse & Recycle
+            </h3>
+
+            <p>
+                View item reuse and recycling
+                submissions.
+            </p>
+
+            <button
+                onclick="openSection('reuse')">
+
+                View Reuse
+
+            </button>
+
+        </div>
+
+
+        <div class="quick-card">
+
+            <h3>
+                Reports
+            </h3>
+
+            <p>
+                View basic statistics and
+                platform activity information.
+            </p>
+
+            <button
+                onclick="openSection('reports')">
+
+                View Reports
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+</section>
+
+
+<!-- ==================================================
+     USERS
+================================================== -->
+
+<section
+    id="users"
+    class="page-section">
+
 
 <div class="section">
 
-    <h2>Pending Verification</h2>
+    <h2>
+        Registered Users
+    </h2>
+
+    <p class="section-subtitle">
+        Users registered on the ReConnect platform.
+    </p>
+
+
+    <div
+        id="usersContainer"
+        class="loading">
+
+        Loading users...
+
+    </div>
+
+</div>
+
+
+</section>
+
+
+<!-- ==================================================
+     NGO VERIFICATION
+================================================== -->
+
+<section
+    id="verification"
+    class="page-section">
+
+
+<div class="stats">
+
+    <div class="stat-card">
+
+        <h3>
+            Pending Verification
+        </h3>
+
+        <p id="pendingCount">
+            0
+        </p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <h3>
+            Approved NGOs
+        </h3>
+
+        <p id="approvedNGOCount">
+            0
+        </p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <h3>
+            Approved Colleges
+        </h3>
+
+        <p id="approvedCollegeCount">
+            0
+        </p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <h3>
+            Total Organizations
+        </h3>
+
+        <p id="totalOrganizations">
+            0
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="section">
+
+    <h2>
+        Pending Verification
+    </h2>
 
     <p class="section-subtitle">
 
@@ -464,16 +1109,16 @@ footer {
 </div>
 
 
-<!-- APPROVED -->
-
 <div class="section">
 
-    <h2>Approved Organizations</h2>
+    <h2>
+        Approved Organizations
+    </h2>
 
     <p class="section-subtitle">
 
-        Organizations that have already been verified
-        by the ReConnect administrator.
+        Organizations that have already been
+        verified.
 
     </p>
 
@@ -481,12 +1126,252 @@ footer {
     <div id="approvedContainer">
 
         <div class="loading">
-            Loading approved organizations...
+            Loading organizations...
         </div>
 
     </div>
 
 </div>
+
+
+</section>
+
+
+<!-- ==================================================
+     DONATIONS
+================================================== -->
+
+<section
+    id="donations"
+    class="page-section">
+
+
+<div class="section">
+
+    <h2>
+        Donations
+    </h2>
+
+    <p class="section-subtitle">
+
+        View donations submitted by users.
+
+    </p>
+
+
+    <div
+        id="donationsContainer"
+        class="loading">
+
+        Loading donations...
+
+    </div>
+
+</div>
+
+
+</section>
+
+
+<!-- ==================================================
+     ACTIVITIES
+================================================== -->
+
+<section
+    id="activities"
+    class="page-section">
+
+
+<div class="section">
+
+    <h2>
+        Volunteer Activities
+    </h2>
+
+    <p class="section-subtitle">
+
+        View activities available for volunteers.
+
+    </p>
+
+
+    <div
+        id="activitiesContainer"
+        class="loading">
+
+        Loading activities...
+
+    </div>
+
+</div>
+
+
+</section>
+
+
+<!-- ==================================================
+     COLLEGE
+================================================== -->
+
+<section
+    id="college"
+    class="page-section">
+
+
+<div class="section">
+
+    <h2>
+        College / NSS
+    </h2>
+
+    <p class="section-subtitle">
+
+        View registered colleges and NSS groups.
+
+    </p>
+
+
+    <div
+        id="collegeContainer"
+        class="loading">
+
+        Loading colleges...
+
+    </div>
+
+</div>
+
+
+</section>
+
+
+<!-- ==================================================
+     REUSE
+================================================== -->
+
+<section
+    id="reuse"
+    class="page-section">
+
+
+<div class="section">
+
+    <h2>
+        Reuse & Recycle
+    </h2>
+
+    <p class="section-subtitle">
+
+        View item reuse and recycling
+        submissions.
+
+    </p>
+
+
+    <div
+        id="reuseContainer"
+        class="loading">
+
+        Loading reuse information...
+
+    </div>
+
+</div>
+
+
+</section>
+
+
+<!-- ==================================================
+     REPORTS
+================================================== -->
+
+<section
+    id="reports"
+    class="page-section">
+
+
+<div class="stats">
+
+    <div class="stat-card">
+
+        <h3>
+            Users
+        </h3>
+
+        <p id="reportUsers">
+            0
+        </p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <h3>
+            NGOs
+        </h3>
+
+        <p id="reportNGOs">
+            0
+        </p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <h3>
+            Volunteers
+        </h3>
+
+        <p id="reportVolunteers">
+            0
+        </p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <h3>
+            College / NSS
+        </h3>
+
+        <p id="reportColleges">
+            0
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="section">
+
+    <h2>
+        Platform Report
+    </h2>
+
+    <p class="section-subtitle">
+
+        Current ReConnect system statistics.
+
+    </p>
+
+
+    <div
+        id="reportContainer"
+        class="loading">
+
+        Generating report...
+
+    </div>
+
+</div>
+
+
+</section>
 
 
 </div>
@@ -501,6 +1386,15 @@ footer {
 </footer>
 
 
+</main>
+
+</div>
+
+
+<!-- ==================================================
+     FIREBASE
+================================================== -->
+
 <script type="module">
 
 import {
@@ -508,6 +1402,7 @@ import {
     onAuthStateChanged,
     signOut
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
 
 import {
     getFirestore,
@@ -518,6 +1413,7 @@ import {
     updateDoc
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
+
 import { app } from "./firebase-config.js";
 
 
@@ -526,9 +1422,16 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
-/* =========================
+let allUsers = [];
+
+let allDonations = [];
+
+let allActivities = [];
+
+
+/* ==================================================
    AUTHENTICATION
-========================= */
+================================================== */
 
 onAuthStateChanged(auth, async (user) => {
 
@@ -544,22 +1447,48 @@ onAuthStateChanged(auth, async (user) => {
 
     try {
 
-        const adminRef =
-            doc(
-                db,
-                "admins",
-                user.uid
+        /*
+         * IMPORTANT:
+         * We check the admins collection by EMAIL.
+         * This matches the admin-login system.
+         */
+
+        const adminSnapshot =
+            await getDocs(
+                collection(db, "admins")
             );
 
-        const adminSnap =
-            await getDoc(adminRef);
+
+        let isAdmin = false;
 
 
-        if (!adminSnap.exists()) {
+        adminSnapshot.forEach(
+            (adminDoc) => {
+
+                const data =
+                    adminDoc.data();
+
+
+                if (
+                    data.email === user.email &&
+                    data.role === "admin" &&
+                    data.status === "active"
+                ) {
+
+                    isAdmin = true;
+
+                }
+
+            }
+        );
+
+
+        if (!isAdmin) {
 
             alert(
                 "You are not authorized to access the Admin Dashboard."
             );
+
 
             await signOut(auth);
 
@@ -571,13 +1500,17 @@ onAuthStateChanged(auth, async (user) => {
         }
 
 
-        await loadOrganizations();
+        await loadAllData();
 
     }
 
     catch(error) {
 
-        console.error(error);
+        console.error(
+            "Admin verification error:",
+            error
+        );
+
 
         alert(
             "Unable to verify administrator access."
@@ -588,34 +1521,30 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 
-/* =========================
-   LOAD ORGANIZATIONS
-========================= */
+/* ==================================================
+   LOAD ALL DATA
+================================================== */
 
-async function loadOrganizations() {
+async function loadAllData() {
 
-    const pendingContainer =
-        document.getElementById(
-            "pendingContainer"
-        );
+    await loadUsers();
 
-    const approvedContainer =
-        document.getElementById(
-            "approvedContainer"
-        );
+    await loadDonations();
 
+    await loadActivities();
 
-    pendingContainer.innerHTML =
-        `<div class="loading">
-            Loading registrations...
-        </div>`;
+    await loadOrganizations();
+
+    updateDashboard();
+
+}
 
 
-    approvedContainer.innerHTML =
-        `<div class="loading">
-            Loading organizations...
-        </div>`;
+/* ==================================================
+   USERS
+================================================== */
 
+async function loadUsers() {
 
     try {
 
@@ -624,6 +1553,604 @@ async function loadOrganizations() {
                 collection(db, "users")
             );
 
+
+        allUsers = [];
+
+
+        snapshot.forEach(
+            (docSnap) => {
+
+                allUsers.push({
+
+                    id:
+                        docSnap.id,
+
+                    ...docSnap.data()
+
+                });
+
+            }
+        );
+
+
+        document.getElementById(
+            "totalUsers"
+        ).textContent =
+            allUsers.length;
+
+
+        document.getElementById(
+            "reportUsers"
+        ).textContent =
+            allUsers.length;
+
+
+        displayUsers();
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        document.getElementById(
+            "usersContainer"
+        ).innerHTML = `
+            <div class="empty">
+                Unable to load users.
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* ==================================================
+   DISPLAY USERS
+================================================== */
+
+function displayUsers() {
+
+    const container =
+        document.getElementById(
+            "usersContainer"
+        );
+
+
+    if (
+        allUsers.length === 0
+    ) {
+
+        container.innerHTML = `
+            <div class="empty">
+                No registered users found.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    let html = `
+
+        <div class="table-wrapper">
+
+        <table class="data-table">
+
+        <thead>
+
+        <tr>
+
+            <th>Name</th>
+
+            <th>Email</th>
+
+            <th>Role</th>
+
+            <th>Status</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+    `;
+
+
+    allUsers.forEach(
+        (user) => {
+
+            const status =
+                user.status ||
+                "active";
+
+
+            html += `
+
+                <tr>
+
+                    <td>
+                        ${safe(
+                            user.fullName ||
+                            user.name ||
+                            "Not provided"
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            user.email
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            formatRole(
+                                user.role
+                            )
+                        )}
+                    </td>
+
+                    <td>
+
+                        <span class="badge ${
+                            status === "approved"
+                            ? "badge-green"
+                            : status === "pending"
+                            ? "badge-yellow"
+                            : status === "rejected"
+                            ? "badge-red"
+                            : "badge-green"
+                        }">
+
+                            ${safe(status)}
+
+                        </span>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+    );
+
+
+    html += `
+
+        </tbody>
+
+        </table>
+
+        </div>
+
+    `;
+
+
+    container.innerHTML =
+        html;
+
+}
+
+
+/* ==================================================
+   DONATIONS
+================================================== */
+
+async function loadDonations() {
+
+    try {
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "donations"
+                )
+            );
+
+
+        allDonations = [];
+
+
+        snapshot.forEach(
+            (docSnap) => {
+
+                allDonations.push({
+
+                    id:
+                        docSnap.id,
+
+                    ...docSnap.data()
+
+                });
+
+            }
+        );
+
+
+        document.getElementById(
+            "totalDonations"
+        ).textContent =
+            allDonations.length;
+
+
+        displayDonations();
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        document.getElementById(
+            "donationsContainer"
+        ).innerHTML = `
+            <div class="empty">
+
+                No donation records could
+                be loaded.
+
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* ==================================================
+   DISPLAY DONATIONS
+================================================== */
+
+function displayDonations() {
+
+    const container =
+        document.getElementById(
+            "donationsContainer"
+        );
+
+
+    if (
+        allDonations.length === 0
+    ) {
+
+        container.innerHTML = `
+            <div class="empty">
+
+                No donations have been
+                submitted yet.
+
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    let html = `
+
+        <div class="table-wrapper">
+
+        <table class="data-table">
+
+        <thead>
+
+        <tr>
+
+            <th>Donation ID</th>
+
+            <th>Donor</th>
+
+            <th>NGO</th>
+
+            <th>Type</th>
+
+            <th>Amount</th>
+
+            <th>Status</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+    `;
+
+
+    allDonations.forEach(
+        (donation) => {
+
+            html += `
+
+                <tr>
+
+                    <td>
+                        ${safe(
+                            donation.id
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            donation.donorEmail ||
+                            "Not provided"
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            donation.ngoName ||
+                            "Not provided"
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            donation.donationType ||
+                            "Not provided"
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            donation.amount ||
+                            "—"
+                        )}
+                    </td>
+
+                    <td>
+
+                        <span class="badge badge-green">
+
+                            ${safe(
+                                donation.status ||
+                                "submitted"
+                            )}
+
+                        </span>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+    );
+
+
+    html += `
+
+        </tbody>
+
+        </table>
+
+        </div>
+
+    `;
+
+
+    container.innerHTML =
+        html;
+
+}
+
+
+/* ==================================================
+   ACTIVITIES
+================================================== */
+
+async function loadActivities() {
+
+    try {
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "activities"
+                )
+            );
+
+
+        allActivities = [];
+
+
+        snapshot.forEach(
+            (docSnap) => {
+
+                allActivities.push({
+
+                    id:
+                        docSnap.id,
+
+                    ...docSnap.data()
+
+                });
+
+            }
+        );
+
+
+        document.getElementById(
+            "totalActivities"
+        ).textContent =
+            allActivities.length;
+
+
+        displayActivities();
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        document.getElementById(
+            "activitiesContainer"
+        ).innerHTML = `
+            <div class="empty">
+
+                No activities are available
+                yet.
+
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* ==================================================
+   DISPLAY ACTIVITIES
+================================================== */
+
+function displayActivities() {
+
+    const container =
+        document.getElementById(
+            "activitiesContainer"
+        );
+
+
+    if (
+        allActivities.length === 0
+    ) {
+
+        container.innerHTML = `
+            <div class="empty">
+
+                No volunteer activities
+                have been created yet.
+
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    let html = `
+
+        <div class="table-wrapper">
+
+        <table class="data-table">
+
+        <thead>
+
+        <tr>
+
+            <th>Activity</th>
+
+            <th>Organization</th>
+
+            <th>Location</th>
+
+            <th>Audience</th>
+
+            <th>Status</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+    `;
+
+
+    allActivities.forEach(
+        (activity) => {
+
+            html += `
+
+                <tr>
+
+                    <td>
+                        ${safe(
+                            activity.title ||
+                            activity.activityName ||
+                            "Not provided"
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            activity.organizationName ||
+                            activity.ngoName ||
+                            "Not provided"
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            activity.location ||
+                            "Not provided"
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            activity.audience ||
+                            activity.type ||
+                            "Volunteer"
+                        )}
+                    </td>
+
+                    <td>
+
+                        <span class="badge badge-green">
+
+                            ${safe(
+                                activity.status ||
+                                "active"
+                            )}
+
+                        </span>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+    );
+
+
+    html += `
+
+        </tbody>
+
+        </table>
+
+        </div>
+
+    `;
+
+
+    container.innerHTML =
+        html;
+
+}
+
+
+/* ==================================================
+   ORGANIZATIONS
+================================================== */
+
+async function loadOrganizations() {
+
+    try {
 
         let pending = [];
 
@@ -634,76 +2161,60 @@ async function loadOrganizations() {
         let approvedColleges = 0;
 
 
-        snapshot.forEach((docSnap) => {
-
-            const data =
-                docSnap.data();
-
-
-            if (
-                data.role !== "ngo" &&
-                data.role !== "college"
-            ) {
-
-                return;
-
-            }
-
-
-            const organization = {
-
-                id:
-                    docSnap.id,
-
-                ...data
-
-            };
-
-
-            if (
-                data.status ===
-                "pending"
-            ) {
-
-                pending.push(
-                    organization
-                );
-
-            }
-
-
-            if (
-                data.status ===
-                "approved"
-            ) {
-
-                approved.push(
-                    organization
-                );
-
+        allUsers.forEach(
+            (data) => {
 
                 if (
-                    data.role ===
-                    "ngo"
+                    data.role !== "ngo" &&
+                    data.role !== "college"
                 ) {
 
-                    approvedNGOs++;
+                    return;
 
                 }
 
 
                 if (
-                    data.role ===
-                    "college"
+                    data.status ===
+                    "pending"
                 ) {
 
-                    approvedColleges++;
+                    pending.push(data);
+
+                }
+
+
+                if (
+                    data.status ===
+                    "approved"
+                ) {
+
+                    approved.push(data);
+
+
+                    if (
+                        data.role ===
+                        "ngo"
+                    ) {
+
+                        approvedNGOs++;
+
+                    }
+
+
+                    if (
+                        data.role ===
+                        "college"
+                    ) {
+
+                        approvedColleges++;
+
+                    }
 
                 }
 
             }
-
-        });
+        );
 
 
         document.getElementById(
@@ -725,7 +2236,7 @@ async function loadOrganizations() {
 
 
         document.getElementById(
-            "totalCount"
+            "totalOrganizations"
         ).textContent =
             pending.length +
             approved.length;
@@ -740,31 +2251,24 @@ async function loadOrganizations() {
             approved
         );
 
+
+        displayCollegeUsers();
+
+
     }
 
     catch(error) {
 
         console.error(error);
 
-        pendingContainer.innerHTML =
-            `<div class="empty">
-                Unable to load registrations.
-                Please check your Firestore permissions.
-            </div>`;
-
-        approvedContainer.innerHTML =
-            `<div class="empty">
-                Unable to load organizations.
-            </div>`;
-
     }
 
 }
 
 
-/* =========================
-   DISPLAY PENDING
-========================= */
+/* ==================================================
+   PENDING
+================================================== */
 
 function displayPending(
     organizations
@@ -812,9 +2316,9 @@ function displayPending(
 }
 
 
-/* =========================
-   DISPLAY APPROVED
-========================= */
+/* ==================================================
+   APPROVED
+================================================== */
 
 function displayApproved(
     organizations
@@ -862,9 +2366,9 @@ function displayApproved(
 }
 
 
-/* =========================
-   CREATE CARD
-========================= */
+/* ==================================================
+   ORGANIZATION CARD
+================================================== */
 
 function createOrganizationCard(
     organization,
@@ -1003,7 +2507,7 @@ function createOrganizationCard(
             </div>
 
             <div class="detail">
-                <strong>Login Email:</strong>
+                <strong>Email:</strong>
                 <span>
                     ${safe(
                         organization.email
@@ -1185,9 +2689,458 @@ function createOrganizationCard(
 }
 
 
-/* =========================
+/* ==================================================
+   COLLEGE LIST
+================================================== */
+
+function displayCollegeUsers() {
+
+    const container =
+        document.getElementById(
+            "collegeContainer"
+        );
+
+
+    const colleges =
+        allUsers.filter(
+            user =>
+                user.role === "college"
+        );
+
+
+    if (
+        colleges.length === 0
+    ) {
+
+        container.innerHTML = `
+            <div class="empty">
+
+                No College / NSS registrations
+                found.
+
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    let html = `
+
+        <div class="table-wrapper">
+
+        <table class="data-table">
+
+        <thead>
+
+        <tr>
+
+            <th>College</th>
+
+            <th>Contact Person</th>
+
+            <th>Email</th>
+
+            <th>Status</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+    `;
+
+
+    colleges.forEach(
+        (college) => {
+
+            html += `
+
+                <tr>
+
+                    <td>
+                        ${safe(
+                            college.collegeName
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            college.fullName
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            college.email
+                        )}
+                    </td>
+
+                    <td>
+
+                        <span class="badge ${
+                            college.status === "approved"
+                            ? "badge-green"
+                            : college.status === "pending"
+                            ? "badge-yellow"
+                            : "badge-red"
+                        }">
+
+                            ${safe(
+                                college.status ||
+                                "pending"
+                            )}
+
+                        </span>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+    );
+
+
+    html += `
+
+        </tbody>
+
+        </table>
+
+        </div>
+
+    `;
+
+
+    container.innerHTML =
+        html;
+
+}
+
+
+/* ==================================================
+   REUSE
+================================================== */
+
+async function loadReuse() {
+
+    const container =
+        document.getElementById(
+            "reuseContainer"
+        );
+
+
+    try {
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "reuseRequests"
+                )
+            );
+
+
+        if (
+            snapshot.empty
+        ) {
+
+            container.innerHTML = `
+                <div class="empty">
+
+                    No reuse or recycling
+                    submissions found.
+
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        let html = `
+
+            <div class="table-wrapper">
+
+            <table class="data-table">
+
+            <thead>
+
+            <tr>
+
+                <th>Item</th>
+
+                <th>Condition</th>
+
+                <th>Destination</th>
+
+                <th>Status</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+        `;
+
+
+        snapshot.forEach(
+            (docSnap) => {
+
+                const data =
+                    docSnap.data();
+
+
+                html += `
+
+                    <tr>
+
+                        <td>
+                            ${safe(
+                                data.itemName ||
+                                data.item ||
+                                "Not provided"
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                data.condition ||
+                                "Not provided"
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                data.destination ||
+                                "Not provided"
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                data.status ||
+                                "submitted"
+                            )}
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+        );
+
+
+        html += `
+
+            </tbody>
+
+            </table>
+
+            </div>
+
+        `;
+
+
+        container.innerHTML =
+            html;
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        container.innerHTML = `
+            <div class="empty">
+
+                No reuse records are currently
+                available.
+
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* ==================================================
+   REPORT
+================================================== */
+
+function displayReport() {
+
+    const ngos =
+        allUsers.filter(
+            user =>
+                user.role === "ngo"
+        ).length;
+
+
+    const volunteers =
+        allUsers.filter(
+            user =>
+                user.role === "volunteer"
+        ).length;
+
+
+    const colleges =
+        allUsers.filter(
+            user =>
+                user.role === "college"
+        ).length;
+
+
+    document.getElementById(
+        "reportNGOs"
+    ).textContent =
+        ngos;
+
+
+    document.getElementById(
+        "reportVolunteers"
+    ).textContent =
+        volunteers;
+
+
+    document.getElementById(
+        "reportColleges"
+    ).textContent =
+        colleges;
+
+
+    document.getElementById(
+        "reportContainer"
+    ).innerHTML = `
+
+        <div class="quick-grid">
+
+            <div class="quick-card">
+
+                <h3>
+                    Registered Users
+                </h3>
+
+                <p>
+                    ${allUsers.length}
+                    users are registered on
+                    ReConnect.
+                </p>
+
+            </div>
+
+
+            <div class="quick-card">
+
+                <h3>
+                    NGOs
+                </h3>
+
+                <p>
+                    ${ngos}
+                    NGO accounts are registered.
+                </p>
+
+            </div>
+
+
+            <div class="quick-card">
+
+                <h3>
+                    Volunteers
+                </h3>
+
+                <p>
+                    ${volunteers}
+                    volunteer accounts are registered.
+                </p>
+
+            </div>
+
+
+            <div class="quick-card">
+
+                <h3>
+                    College / NSS
+                </h3>
+
+                <p>
+                    ${colleges}
+                    College/NSS accounts are registered.
+                </p>
+
+            </div>
+
+
+            <div class="quick-card">
+
+                <h3>
+                    Donations
+                </h3>
+
+                <p>
+                    ${allDonations.length}
+                    donation records are available.
+                </p>
+
+            </div>
+
+
+            <div class="quick-card">
+
+                <h3>
+                    Activities
+                </h3>
+
+                <p>
+                    ${allActivities.length}
+                    activities are currently recorded.
+                </p>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* ==================================================
+   DASHBOARD COUNTS
+================================================== */
+
+function updateDashboard() {
+
+    const ngos =
+        allUsers.filter(
+            user =>
+                user.role === "ngo"
+        ).length;
+
+
+    document.getElementById(
+        "totalNGOs"
+    ).textContent =
+        ngos;
+
+
+    displayReport();
+
+}
+
+
+/* ==================================================
    APPROVE
-========================= */
+================================================== */
 
 window.approveOrganization =
 async function(id) {
@@ -1237,7 +3190,7 @@ async function(id) {
         );
 
 
-        await loadOrganizations();
+        await loadAllData();
 
     }
 
@@ -1255,9 +3208,9 @@ async function(id) {
 };
 
 
-/* =========================
+/* ==================================================
    REJECT
-========================= */
+================================================== */
 
 window.rejectOrganization =
 async function(id) {
@@ -1307,7 +3260,7 @@ async function(id) {
         );
 
 
-        await loadOrganizations();
+        await loadAllData();
 
     }
 
@@ -1325,9 +3278,172 @@ async function(id) {
 };
 
 
-/* =========================
+/* ==================================================
+   NAVIGATION
+================================================== */
+
+const menuButtons =
+    document.querySelectorAll(
+        ".menu-btn"
+    );
+
+
+menuButtons.forEach(
+    (button) => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                openSection(
+                    button.dataset.section
+                );
+
+            }
+        );
+
+    }
+);
+
+
+window.openSection =
+function(sectionId) {
+
+    document
+        .querySelectorAll(
+            ".page-section"
+        )
+        .forEach(
+            section => {
+
+                section.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    document
+        .querySelectorAll(
+            ".menu-btn"
+        )
+        .forEach(
+            button => {
+
+                button.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    const section =
+        document.getElementById(
+            sectionId
+        );
+
+
+    if (section) {
+
+        section.classList.add(
+            "active"
+        );
+
+    }
+
+
+    const selectedButton =
+        document.querySelector(
+            `.menu-btn[data-section="${sectionId}"]`
+        );
+
+
+    if (selectedButton) {
+
+        selectedButton.classList.add(
+            "active"
+        );
+
+    }
+
+
+    const titles = {
+
+        dashboard: [
+            "Admin Dashboard",
+            "Manage users, organizations, donations, activities and ReConnect operations."
+        ],
+
+        users: [
+            "Registered Users",
+            "View users registered on the ReConnect platform."
+        ],
+
+        verification: [
+            "NGO Verification",
+            "Review NGO and College/NSS registrations."
+        ],
+
+        donations: [
+            "Donation Management",
+            "View donations submitted through ReConnect."
+        ],
+
+        activities: [
+            "Volunteer Activities",
+            "View activities available for volunteers."
+        ],
+
+        college: [
+            "College / NSS",
+            "Manage registered College and NSS groups."
+        ],
+
+        reuse: [
+            "Reuse & Recycle",
+            "View item reuse and recycling information."
+        ],
+
+        reports: [
+            "Reports",
+            "View basic ReConnect platform statistics."
+        ]
+
+    };
+
+
+    if (titles[sectionId]) {
+
+        document.getElementById(
+            "pageTitle"
+        ).textContent =
+            titles[sectionId][0];
+
+
+        document.getElementById(
+            "pageDescription"
+        ).textContent =
+            titles[sectionId][1];
+
+    }
+
+
+    if (
+        sectionId === "reuse"
+    ) {
+
+        loadReuse();
+
+    }
+
+};
+
+
+/* ==================================================
    MESSAGE
-========================= */
+================================================== */
 
 function showMessage(
     text,
@@ -1340,17 +3456,30 @@ function showMessage(
         );
 
 
-    box.textContent = text;
+    box.textContent =
+        text;
+
 
     box.className =
         "message " + type;
 
+
+    setTimeout(
+        () => {
+
+            box.className =
+                "message";
+
+        },
+        3500
+    );
+
 }
 
 
-/* =========================
+/* ==================================================
    SAFE TEXT
-========================= */
+================================================== */
 
 function safe(value) {
 
@@ -1366,42 +3495,102 @@ function safe(value) {
 
 
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
 
-/* =========================
+/* ==================================================
+   FORMAT ROLE
+================================================== */
+
+function formatRole(role) {
+
+    if (!role) {
+
+        return "User";
+
+    }
+
+
+    const roles = {
+
+        donor:
+            "Donor",
+
+        ngo:
+            "NGO",
+
+        volunteer:
+            "Volunteer",
+
+        college:
+            "College / NSS",
+
+        admin:
+            "Administrator"
+
+    };
+
+
+    return roles[role] ||
+        role;
+
+}
+
+
+/* ==================================================
    LOGOUT
-========================= */
+================================================== */
 
-window.logoutAdmin =
-async function() {
+document
+    .getElementById(
+        "logoutBtn"
+    )
+    .addEventListener(
+        "click",
+        async () => {
 
-    try {
+            try {
 
-        await signOut(auth);
+                await signOut(auth);
 
-        window.location.href =
-            "admin-login.html";
+                window.location.href =
+                    "admin-login.html";
 
-    }
+            }
 
-    catch(error) {
+            catch(error) {
 
-        console.error(error);
+                console.error(error);
 
-        alert(
-            "Unable to logout."
-        );
+                alert(
+                    "Unable to logout."
+                );
 
-    }
+            }
 
-};
+        }
+    );
 
 </script>
 
