@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Login / Register | ReConnect</title>
+<title>Login | ReConnect</title>
 
 <style>
 
@@ -19,174 +19,85 @@
 
 body {
     min-height: 100vh;
-    background: linear-gradient(135deg, #e9fff3, #eef8ff, #fffbea);
-    color: #17352a;
-}
-
-/* NAVBAR */
-
-nav {
-    height: 72px;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 6%;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #159957;
-    font-size: 22px;
-    font-weight: bold;
-}
-
-.logo-circle {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: #159957;
-    color: white;
+    background: linear-gradient(135deg, #dff8ea, #eaf7ff, #fff5cf);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
+    padding: 30px;
 }
 
-.back {
-    text-decoration: none;
-    color: #35564a;
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.back:hover {
-    color: #159957;
-}
-
-/* MAIN */
-
-.wrapper {
-    min-height: calc(100vh - 72px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 45px 20px;
-}
-
-.auth-box {
+.container {
     width: 100%;
-    max-width: 980px;
+    max-width: 1050px;
     background: white;
-    border-radius: 28px;
+    border-radius: 25px;
     overflow: hidden;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.12);
     display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    box-shadow: 0 18px 50px rgba(23,53,42,0.12);
+    grid-template-columns: 1fr 1fr;
 }
 
 /* LEFT */
 
-.info {
-    background: #159957;
+.left {
+    background: linear-gradient(145deg, #159957, #116b45);
     color: white;
-    padding: 55px 42px;
-    position: relative;
-    overflow: hidden;
-}
-
-.info::before {
-    content: "";
-    position: absolute;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.08);
-    top: -80px;
-    right: -80px;
-}
-
-.info::after {
-    content: "";
-    position: absolute;
-    width: 170px;
-    height: 170px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.06);
-    bottom: -70px;
-    left: -70px;
-}
-
-.info h1 {
-    font-size: 34px;
-    margin-bottom: 16px;
-    position: relative;
-    z-index: 2;
-}
-
-.info > p {
-    line-height: 1.7;
-    opacity: 0.92;
-    margin-bottom: 30px;
-    position: relative;
-    z-index: 2;
-}
-
-.info-item {
+    padding: 60px 45px;
     display: flex;
-    gap: 13px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 35px;
+}
+
+.left h1 {
+    font-size: 42px;
     margin-bottom: 20px;
-    position: relative;
-    z-index: 2;
 }
 
-.info-icon {
-    font-size: 22px;
+.left p {
+    line-height: 1.7;
+    opacity: 0.9;
+    font-size: 17px;
 }
 
-.info-item h3 {
-    font-size: 15px;
-    margin-bottom: 4px;
+.features {
+    margin-top: 35px;
 }
 
-.info-item p {
-    font-size: 12px;
-    opacity: 0.85;
-    line-height: 1.5;
+.feature {
+    margin: 16px 0;
+    font-size: 16px;
 }
 
 /* RIGHT */
 
-.form-area {
-    padding: 42px;
+.right {
+    padding: 45px;
 }
 
 .tabs {
     display: flex;
-    background: #f1f7f4;
-    padding: 5px;
-    border-radius: 14px;
-    margin-bottom: 28px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #ddd;
 }
 
 .tab {
     width: 50%;
-    border: none;
-    padding: 12px;
-    background: transparent;
-    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
     cursor: pointer;
     font-weight: bold;
-    color: #65776e;
+    color: #777;
 }
 
 .tab.active {
-    background: white;
     color: #159957;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    border-bottom: 3px solid #159957;
 }
 
 .form {
@@ -198,206 +109,112 @@ nav {
 }
 
 .form h2 {
-    font-size: 27px;
-    margin-bottom: 7px;
+    color: #176b4d;
+    margin-bottom: 8px;
 }
 
 .subtitle {
-    color: #718078;
-    font-size: 13px;
-    margin-bottom: 23px;
+    color: #777;
+    margin-bottom: 25px;
 }
 
-.role-title {
-    font-size: 13px;
-    font-weight: bold;
-    margin-bottom: 9px;
-}
-
-.roles {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 9px;
-    margin-bottom: 20px;
-}
-
-.role {
-    border: 1px solid #dce9e2;
-    background: #fbfdfc;
-    border-radius: 12px;
-    padding: 12px 7px;
-    text-align: center;
-    cursor: pointer;
-    font-size: 12px;
-    color: #456056;
-}
-
-.role:hover {
-    border-color: #159957;
-}
-
-.role.selected {
-    border-color: #159957;
-    background: #eaf8f0;
-    color: #159957;
-    font-weight: bold;
-}
-
-.role-icon {
+label {
     display: block;
-    font-size: 21px;
-    margin-bottom: 5px;
-}
-
-/* FORM GRID */
-
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-.field {
-    margin-bottom: 15px;
-}
-
-.field.full {
-    grid-column: 1 / -1;
-}
-
-.field label {
-    display: block;
-    font-size: 12px;
-    font-weight: bold;
     margin-bottom: 7px;
-    color: #40584d;
-}
-
-.field input,
-.field textarea,
-.field select {
-    width: 100%;
-    padding: 12px 13px;
-    border: 1px solid #dce9e2;
-    border-radius: 10px;
-    outline: none;
-    background: #fbfdfc;
-    font-size: 13px;
-}
-
-.field input:focus,
-.field textarea:focus,
-.field select:focus {
-    border-color: #159957;
-    background: white;
-}
-
-.field textarea {
-    resize: vertical;
-    min-height: 80px;
-}
-
-.submit-btn {
-    width: 100%;
-    border: none;
-    background: #159957;
-    color: white;
-    padding: 14px;
-    border-radius: 12px;
-    font-size: 15px;
     font-weight: bold;
-    cursor: pointer;
-    margin-top: 5px;
+    color: #285943;
 }
 
-.submit-btn:hover {
-    background: #117d47;
-}
-
-.small-note {
-    text-align: center;
-    color: #8a9991;
-    font-size: 11px;
-    margin-top: 12px;
-    line-height: 1.5;
-}
-
-/* MESSAGE */
-
-.message {
-    display: none;
+input,
+select {
+    width: 100%;
     padding: 13px;
+    border: 1px solid #ccdcd3;
     border-radius: 10px;
     margin-bottom: 17px;
-    font-size: 13px;
+    font-size: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #159957;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #117a46;
+}
+
+.message {
+    margin-top: 18px;
+    padding: 12px;
+    border-radius: 10px;
+    display: none;
     line-height: 1.5;
 }
 
-.message.show {
-    display: block;
-    background: #eaf8f0;
+.success {
+    background: #e7f8ed;
     color: #176b4d;
 }
 
-/* ADMIN */
+.error {
+    background: #ffe8e8;
+    color: #a52b2b;
+}
+
+.role-fields {
+    display: none;
+}
+
+.role-fields.active {
+    display: block;
+}
 
 .admin-link {
     text-align: center;
-    margin-top: 22px;
-    padding-top: 18px;
-    border-top: 1px solid #edf2ef;
-}
-
-.admin-link p {
-    font-size: 11px;
-    color: #8a9991;
-    margin-bottom: 6px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
 }
 
 .admin-link a {
     color: #159957;
-    font-size: 12px;
     font-weight: bold;
     text-decoration: none;
 }
 
-/* RESPONSIVE */
-
-@media (max-width: 800px) {
-
-    .auth-box {
-        grid-template-columns: 1fr;
-    }
-
-    .info {
-        padding: 35px;
-    }
-
+.back {
+    text-align: center;
+    margin-top: 18px;
 }
 
-@media (max-width: 550px) {
+.back a {
+    color: #555;
+    text-decoration: none;
+}
 
-    nav {
-        padding: 0 5%;
-    }
+@media(max-width: 800px) {
 
-    .form-area {
-        padding: 28px 22px;
-    }
-
-    .form-grid {
+    .container {
         grid-template-columns: 1fr;
     }
 
-    .field.full {
-        grid-column: auto;
+    .left {
+        padding: 40px 30px;
     }
 
-    .roles {
-        grid-template-columns: 1fr;
+    .left h1 {
+        font-size: 32px;
     }
 
-    .hero {
+    .right {
         padding: 30px;
     }
 
@@ -410,608 +227,39 @@ nav {
 <body>
 
 
-<!-- NAVBAR -->
+<div class="container">
 
-<nav>
 
-    <div class="logo">
+<!-- LEFT SIDE -->
 
-        <div class="logo-circle">
-            R
+<div class="left">
+
+    <div class="logo">🌱 ReConnect</div>
+
+    <h1>Connect. Donate. Make an Impact.</h1>
+
+    <p>
+        Join ReConnect and become part of a community
+        working together with NGOs, volunteers and
+        responsible organizations to create real impact.
+    </p>
+
+    <div class="features">
+
+        <div class="feature">
+            💚 Support verified NGOs
         </div>
 
-        ReConnect
-
-    </div>
-
-    <a href="index.html" class="back">
-        ← Back to Home
-    </a>
-
-</nav>
-
-
-<!-- MAIN -->
-
-<div class="wrapper">
-
-    <div class="auth-box">
-
-
-        <!-- LEFT SIDE -->
-
-        <div class="info">
-
-            <h1>
-                Welcome to ReConnect
-            </h1>
-
-            <p>
-                Be part of a community that connects people,
-                NGOs, students and organizations to create
-                meaningful social and environmental impact.
-            </p>
-
-
-            <div class="info-item">
-
-                <div class="info-icon">
-                    🤝
-                </div>
-
-                <div>
-
-                    <h3>
-                        Connect
-                    </h3>
-
-                    <p>
-                        Discover NGOs, activities and
-                        community opportunities.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="info-item">
-
-                <div class="info-icon">
-                    💚
-                </div>
-
-                <div>
-
-                    <h3>
-                        Contribute
-                    </h3>
-
-                    <p>
-                        Donate items, money or your
-                        valuable time.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="info-item">
-
-                <div class="info-icon">
-                    🌱
-                </div>
-
-                <div>
-
-                    <h3>
-                        Create Impact
-                    </h3>
-
-                    <p>
-                        Participate in activities and
-                        track your contributions.
-                    </p>
-
-                </div>
-
-            </div>
-
-
+        <div class="feature">
+            🤝 Participate in community activities
         </div>
 
-
-        <!-- RIGHT SIDE -->
-
-        <div class="form-area">
-
-
-            <!-- TABS -->
-
-            <div class="tabs">
-
-                <button
-                    class="tab active"
-                    onclick="showForm('login')">
-
-                    Login
-
-                </button>
-
-                <button
-                    class="tab"
-                    onclick="showForm('register')">
-
-                    Create Account
-
-                </button>
-
-            </div>
-
-
-            <!-- LOGIN FORM -->
-
-            <div
-                id="loginForm"
-                class="form active">
-
-                <h2>
-                    Welcome Back
-                </h2>
-
-                <p class="subtitle">
-                    Login to continue to your ReConnect account.
-                </p>
-
-
-                <div
-                    id="loginMessage"
-                    class="message">
-                </div>
-
-
-                <div class="field">
-
-                    <label>
-                        Email Address
-                    </label>
-
-                    <input
-                        type="email"
-                        id="loginEmail"
-                        placeholder="Enter your email">
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>
-                        Password
-                    </label>
-
-                    <input
-                        type="password"
-                        id="loginPassword"
-                        placeholder="Enter your password">
-
-                </div>
-
-
-                <button
-                    class="submit-btn"
-                    onclick="loginUser()">
-
-                    Login
-
-                </button>
-
-
-                <p class="small-note">
-                    Secure account authentication will be connected
-                    through Firebase in the next stage.
-                </p>
-
-
-                <div class="admin-link">
-
-                    <p>
-                        Administrator?
-                    </p>
-
-                    <a href="admin-login.html">
-                        Admin Login
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- REGISTER FORM -->
-
-            <div
-                id="registerForm"
-                class="form">
-
-                <h2>
-                    Create Account
-                </h2>
-
-                <p class="subtitle">
-                    Choose your role and join the ReConnect community.
-                </p>
-
-
-                <div
-                    id="registerMessage"
-                    class="message">
-                </div>
-
-
-                <p class="role-title">
-                    I want to join as:
-                </p>
-
-
-                <div class="roles">
-
-                    <div
-                        class="role selected"
-                        onclick="selectRole(this, 'donor')">
-
-                        <span class="role-icon">
-                            💚
-                        </span>
-
-                        Donor
-
-                    </div>
-
-
-                    <div
-                        class="role"
-                        onclick="selectRole(this, 'ngo')">
-
-                        <span class="role-icon">
-                            🏢
-                        </span>
-
-                        NGO
-
-                    </div>
-
-
-                    <div
-                        class="role"
-                        onclick="selectRole(this, 'college')">
-
-                        <span class="role-icon">
-                            🎓
-                        </span>
-
-                        College / NSS
-
-                    </div>
-
-                </div>
-
-
-                <!-- DONOR -->
-
-                <div id="donorFields">
-
-                    <div class="form-grid">
-
-                        <div class="field">
-
-                            <label>
-                                Full Name
-                            </label>
-
-                            <input
-                                type="text"
-                                placeholder="Your full name">
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                Mobile Number
-                            </label>
-
-                            <input
-                                type="tel"
-                                placeholder="Your mobile number">
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                Email Address
-                            </label>
-
-                            <input
-                                type="email"
-                                placeholder="Your email">
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                Password
-                            </label>
-
-                            <input
-                                type="password"
-                                placeholder="Create password">
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-
-                <!-- NGO -->
-
-                <div
-                    id="ngoFields"
-                    style="display:none;">
-
-                    <div class="form-grid">
-
-                        <div class="field">
-
-                            <label>
-                                NGO Name
-                            </label>
-
-                            <input
-                                type="text"
-                                placeholder="Registered NGO name">
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                Registration Number
-                            </label>
-
-                            <input
-                                type="text"
-                                placeholder="Registration number">
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                Chairman / CEO
-                            </label>
-
-                            <input
-                                type="text"
-                                placeholder="Name">
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                Contact Person
-                            </label>
-
-                            <input
-                                type="text"
-                                placeholder="Contact person">
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                Mobile Number
-                            </label>
-
-                            <input
-                                type="tel"
-                                placeholder="Mobile number">
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                Email Address
-                            </label>
-
-                            <input
-                                type="email"
-                                placeholder="NGO email">
-
-                        </div>
-
-
-                        <div class="field full">
-
-                            <label>
-                                Address
-                            </label>
-
-                            <textarea
-                                placeholder="Complete NGO address">
-                            </textarea>
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                Area of Work
-                            </label>
-
-                            <input
-                                type="text"
-                                placeholder="Education, Environment, etc.">
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                Working Since
-                            </label>
-
-                            <input
-                                type="number"
-                                placeholder="Year">
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-
-                <!-- COLLEGE -->
-
-                <div
-                    id="collegeFields"
-                    style="display:none;">
-
-                    <div class="form-grid">
-
-                        <div class="field">
-
-                            <label>
-                                College Name
-                            </label>
-
-                            <input
-                                type="text"
-                                placeholder="College name">
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                NSS / Club Name
-                            </label>
-
-                            <input
-                                type="text"
-                                placeholder="NSS unit or club">
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                Student Coordinator
-                            </label>
-
-                            <input
-                                type="text"
-                                placeholder="Coordinator name">
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                Faculty Coordinator
-                            </label>
-
-                            <input
-                                type="text"
-                                placeholder="Faculty coordinator">
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                Mobile Number
-                            </label>
-
-                            <input
-                                type="tel"
-                                placeholder="Mobile number">
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                Email Address
-                            </label>
-
-                            <input
-                                type="email"
-                                placeholder="College email">
-
-                        </div>
-
-
-                        <div class="field full">
-
-                            <label>
-                                College Address
-                            </label>
-
-                            <textarea
-                                placeholder="Complete college address">
-                            </textarea>
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-
-                <button
-                    class="submit-btn"
-                    onclick="registerUser()">
-
-                    Create Account
-
-                </button>
-
-
-                <p class="small-note">
-                    Account verification and secure registration
-                    will be connected through Firebase later.
-                </p>
-
-            </div>
-
-
+        <div class="feature">
+            ♻️ Give items a second life
+        </div>
+
+        <div class="feature">
+            📊 Track your contribution and impact
         </div>
 
     </div>
@@ -1019,107 +267,707 @@ nav {
 </div>
 
 
-<script>
+<!-- RIGHT SIDE -->
 
-/* SHOW LOGIN / REGISTER */
-
-function showForm(type) {
-
-    const loginForm =
-        document.getElementById("loginForm");
-
-    const registerForm =
-        document.getElementById("registerForm");
-
-    const tabs =
-        document.querySelectorAll(".tab");
-
-    if (type === "login") {
-
-        loginForm.classList.add("active");
-        registerForm.classList.remove("active");
-
-        tabs[0].classList.add("active");
-        tabs[1].classList.remove("active");
-
-    } else {
-
-        loginForm.classList.remove("active");
-        registerForm.classList.add("active");
-
-        tabs[0].classList.remove("active");
-        tabs[1].classList.add("active");
-
-    }
-
-}
+<div class="right">
 
 
-/* ROLE SELECTION */
+<!-- TABS -->
 
-function selectRole(element, role) {
+<div class="tabs">
+
+    <div
+        class="tab active"
+        id="loginTab"
+        onclick="showLogin()">
+
+        Login
+
+    </div>
+
+    <div
+        class="tab"
+        id="registerTab"
+        onclick="showRegister()">
+
+        Create Account
+
+    </div>
+
+</div>
+
+
+<!-- LOGIN FORM -->
+
+<div
+    class="form active"
+    id="loginForm">
+
+    <h2>Welcome Back 👋</h2>
+
+    <p class="subtitle">
+        Login to your ReConnect account.
+    </p>
+
+
+    <label>Email Address</label>
+
+    <input
+        type="email"
+        id="loginEmail"
+        placeholder="Enter your email">
+
+
+    <label>Password</label>
+
+    <input
+        type="password"
+        id="loginPassword"
+        placeholder="Enter your password">
+
+
+    <button onclick="loginUser()">
+        Login
+    </button>
+
+
+    <div
+        id="loginMessage"
+        class="message">
+    </div>
+
+</div>
+
+
+<!-- REGISTER FORM -->
+
+<div
+    class="form"
+    id="registerForm">
+
+    <h2>Create Your Account 🌱</h2>
+
+    <p class="subtitle">
+        Join ReConnect and start making an impact.
+    </p>
+
+
+    <label>Account Type</label>
+
+    <select
+        id="role"
+        onchange="showRoleFields()">
+
+        <option value="">
+            Select account type
+        </option>
+
+        <option value="donor">
+            Donor
+        </option>
+
+        <option value="ngo">
+            NGO
+        </option>
+
+        <option value="college">
+            College / NSS
+        </option>
+
+    </select>
+
+
+    <!-- COMMON -->
+
+    <label>Full Name</label>
+
+    <input
+        type="text"
+        id="fullName"
+        placeholder="Enter your full name">
+
+
+    <label>Email Address</label>
+
+    <input
+        type="email"
+        id="registerEmail"
+        placeholder="Enter your email">
+
+
+    <label>Password</label>
+
+    <input
+        type="password"
+        id="registerPassword"
+        placeholder="Create a password">
+
+
+    <!-- NGO -->
+
+    <div
+        class="role-fields"
+        id="ngoFields">
+
+        <label>NGO Name</label>
+
+        <input
+            type="text"
+            id="ngoName"
+            placeholder="Enter NGO name">
+
+    </div>
+
+
+    <!-- COLLEGE -->
+
+    <div
+        class="role-fields"
+        id="collegeFields">
+
+        <label>College Name</label>
+
+        <input
+            type="text"
+            id="collegeName"
+            placeholder="Enter college name">
+
+
+        <label>NSS Unit / Club Name</label>
+
+        <input
+            type="text"
+            id="clubName"
+            placeholder="Enter NSS or club name">
+
+    </div>
+
+
+    <button onclick="registerUser()">
+        Create Account
+    </button>
+
+
+    <div
+        id="registerMessage"
+        class="message">
+    </div>
+
+</div>
+
+
+<!-- ADMIN -->
+
+<div class="admin-link">
+
+    <span>Administrator?</span>
+
+    <a href="admin-login.html">
+        Admin Login
+    </a>
+
+</div>
+
+
+<div class="back">
+
+    <a href="index.html">
+        ← Back to Home
+    </a>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<script type="module">
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    doc,
+    setDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+import { app } from "./firebase-config.js";
+
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+
+/* -----------------------------
+   SHOW LOGIN
+----------------------------- */
+
+window.showLogin = function() {
 
     document
-        .querySelectorAll(".role")
-        .forEach(item => {
-            item.classList.remove("selected");
-        });
+        .getElementById("loginTab")
+        .classList.add("active");
 
-    element.classList.add("selected");
+    document
+        .getElementById("registerTab")
+        .classList.remove("active");
 
-    document.getElementById("donorFields").style.display = "none";
-    document.getElementById("ngoFields").style.display = "none";
-    document.getElementById("collegeFields").style.display = "none";
+    document
+        .getElementById("loginForm")
+        .classList.add("active");
 
-    if (role === "donor") {
+    document
+        .getElementById("registerForm")
+        .classList.remove("active");
 
-        document.getElementById("donorFields").style.display = "block";
+};
 
-    }
+
+/* -----------------------------
+   SHOW REGISTER
+----------------------------- */
+
+window.showRegister = function() {
+
+    document
+        .getElementById("registerTab")
+        .classList.add("active");
+
+    document
+        .getElementById("loginTab")
+        .classList.remove("active");
+
+    document
+        .getElementById("registerForm")
+        .classList.add("active");
+
+    document
+        .getElementById("loginForm")
+        .classList.remove("active");
+
+};
+
+
+/* -----------------------------
+   SHOW ROLE FIELDS
+----------------------------- */
+
+window.showRoleFields = function() {
+
+    const role =
+        document.getElementById("role").value;
+
+    document
+        .getElementById("ngoFields")
+        .classList.remove("active");
+
+    document
+        .getElementById("collegeFields")
+        .classList.remove("active");
+
 
     if (role === "ngo") {
 
-        document.getElementById("ngoFields").style.display = "block";
+        document
+            .getElementById("ngoFields")
+            .classList.add("active");
 
     }
+
 
     if (role === "college") {
 
-        document.getElementById("collegeFields").style.display = "block";
+        document
+            .getElementById("collegeFields")
+            .classList.add("active");
 
     }
 
-}
+};
 
 
-/* LOGIN */
+/* -----------------------------
+   MESSAGE FUNCTION
+----------------------------- */
 
-function loginUser() {
+function showMessage(id, message, type) {
 
-    const message =
-        document.getElementById("loginMessage");
+    const box =
+        document.getElementById(id);
 
-    message.innerHTML =
-        "Login will be connected to Firebase when the backend stage begins.";
+    box.textContent = message;
 
-    message.classList.add("show");
+    box.className =
+        "message " + type;
 
-}
-
-
-/* REGISTER */
-
-function registerUser() {
-
-    const message =
-        document.getElementById("registerMessage");
-
-    message.innerHTML =
-        "Registration form is ready. Account creation and verification will be connected to Firebase in the next stage.";
-
-    message.classList.add("show");
+    box.style.display = "block";
 
 }
+
+
+/* -----------------------------
+   REGISTER USER
+----------------------------- */
+
+window.registerUser = async function() {
+
+    const role =
+        document.getElementById("role").value;
+
+    const fullName =
+        document.getElementById("fullName").value.trim();
+
+    const email =
+        document.getElementById("registerEmail").value.trim();
+
+    const password =
+        document.getElementById("registerPassword").value;
+
+
+    const ngoName =
+        document.getElementById("ngoName").value.trim();
+
+    const collegeName =
+        document.getElementById("collegeName").value.trim();
+
+    const clubName =
+        document.getElementById("clubName").value.trim();
+
+
+    if (!role) {
+
+        showMessage(
+            "registerMessage",
+            "Please select an account type.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!fullName || !email || !password) {
+
+        showMessage(
+            "registerMessage",
+            "Please fill in all required fields.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (password.length < 6) {
+
+        showMessage(
+            "registerMessage",
+            "Password must contain at least 6 characters.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (role === "ngo" && !ngoName) {
+
+        showMessage(
+            "registerMessage",
+            "Please enter the NGO name.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (role === "college" && !collegeName) {
+
+        showMessage(
+            "registerMessage",
+            "Please enter the college name.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        showMessage(
+            "registerMessage",
+            "Creating your account...",
+            "success"
+        );
+
+
+        const userCredential =
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+
+        const user =
+            userCredential.user;
+
+
+        const userData = {
+
+            uid: user.uid,
+
+            fullName: fullName,
+
+            email: email,
+
+            role: role,
+
+            createdAt: serverTimestamp()
+
+        };
+
+
+        /* NGO */
+
+        if (role === "ngo") {
+
+            userData.ngoName = ngoName;
+
+            userData.status = "pending";
+
+        }
+
+
+        /* COLLEGE */
+
+        if (role === "college") {
+
+            userData.collegeName = collegeName;
+
+            userData.clubName = clubName;
+
+        }
+
+
+        /* DONOR */
+
+        if (role === "donor") {
+
+            userData.status = "active";
+
+        }
+
+
+        await setDoc(
+            doc(db, "users", user.uid),
+            userData
+        );
+
+
+        showMessage(
+            "registerMessage",
+            "Account created successfully! Redirecting...",
+            "success"
+        );
+
+
+        setTimeout(function() {
+
+            if (role === "ngo") {
+
+                window.location.href =
+                    "ngo-dashboard.html";
+
+            }
+
+            else {
+
+                window.location.href =
+                    "index.html";
+
+            }
+
+        }, 1500);
+
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        let message =
+            "Unable to create account.";
+
+        if (
+            error.code ===
+            "auth/email-already-in-use"
+        ) {
+
+            message =
+                "This email is already registered.";
+
+        }
+
+        else if (
+            error.code ===
+            "auth/invalid-email"
+        ) {
+
+            message =
+                "Please enter a valid email address.";
+
+        }
+
+        else if (
+            error.code ===
+            "auth/weak-password"
+        ) {
+
+            message =
+                "Password is too weak. Use at least 6 characters.";
+
+        }
+
+
+        showMessage(
+            "registerMessage",
+            message,
+            "error"
+        );
+
+    }
+
+};
+
+
+/* -----------------------------
+   LOGIN USER
+----------------------------- */
+
+window.loginUser = async function() {
+
+    const email =
+        document.getElementById("loginEmail").value.trim();
+
+    const password =
+        document.getElementById("loginPassword").value;
+
+
+    if (!email || !password) {
+
+        showMessage(
+            "loginMessage",
+            "Please enter your email and password.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        showMessage(
+            "loginMessage",
+            "Logging in...",
+            "success"
+        );
+
+
+        const userCredential =
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+
+        const user =
+            userCredential.user;
+
+
+        showMessage(
+            "loginMessage",
+            "Login successful! Redirecting...",
+            "success"
+        );
+
+
+        setTimeout(function() {
+
+            window.location.href =
+                "index.html";
+
+        }, 1000);
+
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        let message =
+            "Unable to login.";
+
+        if (
+            error.code ===
+            "auth/invalid-credential"
+        ) {
+
+            message =
+                "Incorrect email or password.";
+
+        }
+
+        else if (
+            error.code ===
+            "auth/user-not-found"
+        ) {
+
+            message =
+                "No account was found with this email.";
+
+        }
+
+        else if (
+            error.code ===
+            "auth/wrong-password"
+        ) {
+
+            message =
+                "Incorrect password.";
+
+        }
+
+
+        showMessage(
+            "loginMessage",
+            message,
+            "error"
+        );
+
+    }
+
+};
 
 </script>
 
