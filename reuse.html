@@ -2,9 +2,7 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Reuse & Recycle | ReConnect</title>
@@ -23,15 +21,14 @@ body {
     color: #17352a;
 }
 
-/* ================= NAVBAR ================= */
+/* NAVBAR */
 
 nav {
-    height: 72px;
     background: white;
+    padding: 18px 7%;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 0 6%;
+    align-items: center;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     position: sticky;
     top: 0;
@@ -39,562 +36,514 @@ nav {
 }
 
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: bold;
     color: #159957;
 }
 
-.logo-circle {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: #159957;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 21px;
-}
-
-.nav-links a {
+nav a {
     text-decoration: none;
-    color: #35564a;
-    font-size: 14px;
+    color: #29463b;
+    margin-left: 22px;
     font-weight: 600;
 }
 
-.nav-links a:hover {
+nav a:hover {
     color: #159957;
 }
 
-.login-btn {
-    background: #159957;
-    color: white !important;
-    padding: 10px 18px;
-    border-radius: 22px;
-}
-
-/* ================= HERO ================= */
+/* HERO */
 
 .hero {
-    padding: 65px 6%;
+    background: linear-gradient(135deg, #dff8ea, #eaf6ff, #fff8d9);
+    padding: 70px 7%;
     text-align: center;
-    background:
-        linear-gradient(
-            135deg,
-            #e9fff3,
-            #eef8ff,
-            #fffbea
-        );
-}
-
-.hero-badge {
-    display: inline-block;
-    background: white;
-    color: #159957;
-    padding: 8px 17px;
-    border-radius: 25px;
-    font-size: 13px;
-    font-weight: bold;
-    margin-bottom: 18px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
 .hero h1 {
-    font-size: 42px;
+    font-size: 48px;
+    color: #126b48;
     margin-bottom: 15px;
 }
 
 .hero p {
-    max-width: 700px;
+    max-width: 750px;
     margin: auto;
-    color: #60766c;
+    font-size: 18px;
     line-height: 1.7;
+    color: #49645a;
 }
 
-/* ================= CONTAINER ================= */
+/* CONTAINER */
 
 .container {
-    width: 88%;
-    max-width: 1100px;
-    margin: 45px auto 70px;
-}
-
-/* ================= SECTION ================= */
-
-.section {
-    margin-bottom: 45px;
+    width: 86%;
+    max-width: 1150px;
+    margin: 50px auto;
 }
 
 .section-title {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
 }
 
 .section-title h2 {
-    font-size: 28px;
-    margin-bottom: 8px;
+    font-size: 32px;
+    color: #176b4d;
+    margin-bottom: 10px;
 }
 
 .section-title p {
-    color: #718078;
-    line-height: 1.6;
+    color: #63776e;
 }
 
-/* ================= CARDS ================= */
+/* ITEM GRID */
 
-.card-grid {
+.item-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 22px;
 }
 
-.card {
+.item-card {
     background: white;
-    padding: 28px;
-    border-radius: 20px;
-    border: 1px solid #e2eee7;
-    box-shadow: 0 7px 25px rgba(0,0,0,0.06);
+    padding: 30px 25px;
+    border-radius: 18px;
+    text-align: center;
+    border: 1px solid #e1eee7;
+    box-shadow: 0 7px 22px rgba(30,90,60,0.07);
+    cursor: pointer;
     transition: 0.25s;
 }
 
-.card:hover {
+.item-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.09);
+    box-shadow: 0 12px 28px rgba(30,90,60,0.13);
 }
 
-.card-icon {
-    width: 58px;
-    height: 58px;
-    border-radius: 17px;
-    background: #eaf8f0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 29px;
-    margin-bottom: 18px;
+.item-icon {
+    font-size: 52px;
+    margin-bottom: 15px;
 }
 
-.card h3 {
-    font-size: 19px;
+.item-card h3 {
+    color: #176b4d;
+    margin-bottom: 8px;
+}
+
+.item-card p {
+    color: #687b73;
+    line-height: 1.5;
+}
+
+/* MODAL */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15,40,30,0.55);
+    z-index: 500;
+    padding: 30px 15px;
+    overflow-y: auto;
+}
+
+.modal-box {
+    background: white;
+    max-width: 650px;
+    margin: 40px auto;
+    border-radius: 22px;
+    padding: 35px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+.close {
+    position: absolute;
+    right: 22px;
+    top: 18px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #708078;
+}
+
+.close:hover {
+    color: #159957;
+}
+
+.modal-header {
+    margin-bottom: 25px;
+}
+
+.modal-header h2 {
+    color: #176b4d;
+    margin-bottom: 8px;
+}
+
+.modal-header p {
+    color: #65776f;
+}
+
+/* FORM */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #29463b;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #cbded4;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #159957;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+/* CONDITION BUTTONS */
+
+.condition-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.condition-option {
+    border: 2px solid #dcebe4;
+    padding: 16px 10px;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.condition-option:hover {
+    border-color: #159957;
+    background: #f3fff8;
+}
+
+.condition-option.selected {
+    border-color: #159957;
+    background: #e8f8ef;
+}
+
+.condition-option strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.condition-option span {
+    font-size: 13px;
+    color: #6a7d74;
+}
+
+/* RESULT */
+
+.result-box {
+    display: none;
+    margin-top: 25px;
+    padding: 22px;
+    border-radius: 15px;
+}
+
+.result-box.reuse {
+    background: #e9f8ef;
+    border: 1px solid #b9e5ca;
+}
+
+.result-box.recycle {
+    background: #fff5dc;
+    border: 1px solid #efd58d;
+}
+
+.result-box h3 {
     margin-bottom: 10px;
 }
 
-.card p {
-    color: #718078;
-    font-size: 13px;
-    line-height: 1.7;
+.result-box p {
+    line-height: 1.6;
+    color: #53675e;
 }
 
-/* ================= PROCESS ================= */
+.result-icon {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.action-button {
+    display: inline-block;
+    margin-top: 17px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 9px;
+    background: #159957;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.action-button:hover {
+    background: #117b45;
+}
+
+/* PROCESS */
 
 .process {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 18px;
+    margin-top: 50px;
 }
 
 .process-card {
     background: white;
-    padding: 24px;
-    border-radius: 18px;
+    padding: 25px 18px;
     text-align: center;
-    border: 1px solid #e2eee7;
+    border-radius: 16px;
+    border: 1px solid #e0eee7;
 }
 
-.number {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
+.process-number {
+    width: 40px;
+    height: 40px;
+    margin: auto auto 12px;
     background: #159957;
     color: white;
+    border-radius: 50%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    margin: 0 auto 14px;
+    align-items: center;
     font-weight: bold;
 }
 
 .process-card h3 {
-    font-size: 16px;
     margin-bottom: 8px;
+    color: #176b4d;
 }
 
 .process-card p {
-    color: #718078;
-    font-size: 12px;
-    line-height: 1.6;
+    color: #687b73;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
-/* ================= EMPTY ================= */
+/* RESPONSIBLE REUSE */
 
-.empty-state {
+.info-section {
+    margin-top: 65px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
+
+.info-card {
     background: white;
-    padding: 60px 30px;
-    border-radius: 22px;
-    text-align: center;
-    border: 1px solid #e2eee7;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid #e0eee7;
 }
 
-.empty-icon {
-    font-size: 58px;
-    margin-bottom: 15px;
-}
-
-.empty-state h3 {
-    font-size: 23px;
+.info-card h3 {
+    color: #176b4d;
     margin-bottom: 10px;
 }
 
-.empty-state p {
-    color: #718078;
-    max-width: 650px;
-    margin: auto;
-    line-height: 1.7;
-}
-
-.note {
-    display: inline-block;
-    margin-top: 20px;
-    background: #eaf8f0;
-    color: #159957;
-    padding: 9px 16px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-/* ================= CTA ================= */
-
-.cta {
-    background: #159957;
-    color: white;
-    padding: 45px 30px;
-    border-radius: 24px;
-    text-align: center;
-    margin-top: 50px;
-}
-
-.cta h2 {
-    font-size: 28px;
-    margin-bottom: 10px;
-}
-
-.cta p {
-    max-width: 600px;
-    margin: auto auto 22px;
+.info-card p {
+    color: #687b73;
     line-height: 1.6;
-    opacity: 0.9;
 }
 
-.cta-btn {
-    display: inline-block;
-    background: white;
-    color: #159957;
-    text-decoration: none;
-    padding: 12px 24px;
-    border-radius: 24px;
-    font-weight: bold;
-}
-
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 footer {
     background: #17352a;
     color: white;
+    padding: 30px 7%;
     text-align: center;
-    padding: 28px;
-    font-size: 13px;
+    margin-top: 70px;
 }
 
-footer span {
-    color: #69d69c;
+footer p {
+    opacity: 0.8;
 }
 
-/* ================= RESPONSIVE ================= */
+/* MOBILE */
 
-@media (max-width: 900px) {
+@media(max-width: 850px) {
 
-    .card-grid {
-        grid-template-columns: 1fr 1fr;
+    .item-grid,
+    .info-grid {
+        grid-template-columns: repeat(2,1fr);
     }
 
     .process {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2,1fr);
     }
 
-}
-
-@media (max-width: 650px) {
-
     nav {
-        height: auto;
-        padding: 15px 5%;
         flex-direction: column;
         gap: 12px;
     }
 
-    .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px;
+    nav a {
+        margin: 5px;
     }
+}
 
-    .hero h1 {
-        font-size: 32px;
-    }
+@media(max-width: 600px) {
 
-    .container {
-        width: 92%;
-    }
-
-    .card-grid,
+    .item-grid,
+    .info-grid,
     .process {
         grid-template-columns: 1fr;
     }
 
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .condition-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-box {
+        padding: 25px 20px;
+    }
 }
 
 </style>
-
 </head>
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- NAVBAR -->
 
 <nav>
 
-    <div class="logo">
+    <div class="logo">🌱 ReConnect</div>
 
-        <div class="logo-circle">
-            R
-        </div>
-
-        ReConnect
-
-    </div>
-
-    <div class="nav-links">
-
-        <a href="index.html">
-            Home
-        </a>
-
-        <a href="ngos.html">
-            Find NGOs
-        </a>
-
-        <a href="donate.html">
-            Donate
-        </a>
-
-        <a href="activities.html">
-            Activities
-        </a>
-
-        <a href="college.html">
-            College/NSS
-        </a>
-
-        <a href="reuse.html">
-            Reuse & Recycle
-        </a>
-
-        <a href="login.html"
-           class="login-btn">
-            Login
-        </a>
-
+    <div>
+        <a href="index.html">Home</a>
+        <a href="ngos.html">Find NGOs</a>
+        <a href="donate.html">Donate</a>
+        <a href="activities.html">Activities</a>
+        <a href="college.html">College/NSS</a>
+        <a href="reuse.html">Reuse & Recycle</a>
+        <a href="login.html">Login</a>
     </div>
 
 </nav>
 
 
-<!-- ================= HERO ================= -->
+<!-- HERO -->
 
 <section class="hero">
 
-    <div class="hero-badge">
-        ♻️ Give Items a Second Life
-    </div>
-
-    <h1>
-        Reuse & Recycle
-    </h1>
+    <h1>♻️ Reuse & Recycle</h1>
 
     <p>
-        Instead of throwing useful items away, connect them
-        with organizations that can reuse, upcycle or recycle
-        them responsibly.
+        Give your unused items a second life. Tell us what you have,
+        its condition and quantity. ReConnect will help decide whether
+        the item should be reused by an NGO or transformed through
+        upcycling and recycling.
     </p>
 
 </section>
 
 
-<!-- ================= MAIN ================= -->
+<!-- ITEM SELECTION -->
 
 <div class="container">
 
+    <div class="section-title">
 
-    <!-- ================= WHAT CAN YOU CONTRIBUTE ================= -->
+        <h2>What Would You Like to Reuse?</h2>
 
-    <section class="section">
+        <p>
+            Select an item to start the reuse or recycling process.
+        </p>
 
-        <div class="section-title">
+    </div>
 
-            <h2>
-                What Can You Reuse or Recycle?
-            </h2>
 
-            <p>
-                Many everyday items can find a second life
-                when they reach the right organization.
-            </p>
+    <div class="item-grid">
 
+        <div class="item-card" onclick="openItem('Clothes','👕')">
+            <div class="item-icon">👕</div>
+            <h3>Clothes</h3>
+            <p>Clothes, fabric, blankets and other textiles.</p>
         </div>
 
 
-        <div class="card-grid">
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    👕
-                </div>
-
-                <h3>
-                    Clothes
-                </h3>
-
-                <p>
-                    Donate usable clothes that can help
-                    people and communities in need.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    📚
-                </div>
-
-                <h3>
-                    Books
-                </h3>
-
-                <p>
-                    Give books a second life through
-                    schools, libraries and community programs.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    🪑
-                </div>
-
-                <h3>
-                    Furniture
-                </h3>
-
-                <p>
-                    Usable furniture can be redirected
-                    to organizations that need it.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    🧸
-                </div>
-
-                <h3>
-                    Toys
-                </h3>
-
-                <p>
-                    Safe and usable toys can be reused
-                    by children and community centers.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    💻
-                </div>
-
-                <h3>
-                    Electronics
-                </h3>
-
-                <p>
-                    Working electronics may be reused,
-                    while damaged devices can be responsibly recycled.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    📦
-                </div>
-
-                <h3>
-                    Other Items
-                </h3>
-
-                <p>
-                    Other reusable items can be submitted
-                    for appropriate routing and evaluation.
-                </p>
-
-            </div>
-
-
+        <div class="item-card" onclick="openItem('Books','📚')">
+            <div class="item-icon">📚</div>
+            <h3>Books</h3>
+            <p>School books, notebooks, story books and more.</p>
         </div>
 
-    </section>
+
+        <div class="item-card" onclick="openItem('Furniture','🪑')">
+            <div class="item-icon">🪑</div>
+            <h3>Furniture</h3>
+            <p>Chairs, tables, shelves and other furniture.</p>
+        </div>
 
 
-    <!-- ================= HOW IT WORKS ================= -->
+        <div class="item-card" onclick="openItem('Toys','🧸')">
+            <div class="item-icon">🧸</div>
+            <h3>Toys</h3>
+            <p>Children's toys, games and play materials.</p>
+        </div>
 
-    <section class="section">
+
+        <div class="item-card" onclick="openItem('Electronics','💻')">
+            <div class="item-icon">💻</div>
+            <h3>Electronics</h3>
+            <p>Working or damaged electronic devices.</p>
+        </div>
+
+
+        <div class="item-card" onclick="openItem('Other Items','📦')">
+            <div class="item-icon">📦</div>
+            <h3>Other Items</h3>
+            <p>Any other item you would like to reuse responsibly.</p>
+        </div>
+
+    </div>
+
+
+    <!-- PROCESS -->
+
+    <div class="info-section">
 
         <div class="section-title">
 
-            <h2>
-                How Reuse & Recycling Works
-            </h2>
+            <h2>How ReConnect Decides</h2>
 
             <p>
-                ReConnect helps route items toward their
-                most suitable destination.
+                Every item follows a simple condition-based process.
             </p>
 
         </div>
@@ -602,20 +551,14 @@ footer span {
 
         <div class="process">
 
-
             <div class="process-card">
 
-                <div class="number">
-                    1
-                </div>
+                <div class="process-number">1</div>
 
-                <h3>
-                    Submit Your Item
-                </h3>
+                <h3>Select Item</h3>
 
                 <p>
-                    Tell us what you want to donate,
-                    including its condition.
+                    Choose the type of item you want to contribute.
                 </p>
 
             </div>
@@ -623,17 +566,12 @@ footer span {
 
             <div class="process-card">
 
-                <div class="number">
-                    2
-                </div>
+                <div class="process-number">2</div>
 
-                <h3>
-                    Condition Check
-                </h3>
+                <h3>Tell Us About It</h3>
 
                 <p>
-                    The item can be evaluated to understand
-                    whether it is reusable or recyclable.
+                    Enter quantity and select its current condition.
                 </p>
 
             </div>
@@ -641,17 +579,13 @@ footer span {
 
             <div class="process-card">
 
-                <div class="number">
-                    3
-                </div>
+                <div class="process-number">3</div>
 
-                <h3>
-                    Smart Routing
-                </h3>
+                <h3>Smart Routing</h3>
 
                 <p>
-                    Suitable items can be routed toward
-                    NGOs or appropriate recycling partners.
+                    Usable items can go to suitable NGOs. Damaged items
+                    can be routed for upcycling or recycling.
                 </p>
 
             </div>
@@ -659,187 +593,499 @@ footer span {
 
             <div class="process-card">
 
-                <div class="number">
-                    4
-                </div>
+                <div class="process-number">4</div>
 
-                <h3>
-                    Track the Impact
-                </h3>
+                <h3>Track Impact</h3>
 
                 <p>
-                    Future ReConnect tracking can show
-                    what happened to your contribution.
+                    Your contribution can later be tracked through
+                    your ReConnect account.
                 </p>
 
             </div>
 
-
         </div>
 
-    </section>
-
-
-    <!-- ================= CURRENT SUBMISSIONS ================= -->
-
-    <section class="section">
-
-        <div class="section-title">
-
-            <h2>
-                Your Reuse Contributions
-            </h2>
-
-            <p>
-                Your submitted items will appear here once
-                the ReConnect system is connected.
-            </p>
-
-        </div>
-
-
-        <div class="empty-state">
-
-            <div class="empty-icon">
-                ♻️
-            </div>
-
-            <h3>
-                No Contributions Yet
-            </h3>
-
-            <p>
-                You have not submitted any reuse or recycling
-                items through ReConnect yet. Your future
-                submissions and their progress will appear here.
-            </p>
-
-            <div class="note">
-                Live tracking will be connected through Firebase
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= IMPORTANT ================= -->
-
-    <section class="section">
-
-        <div class="section-title">
-
-            <h2>
-                Responsible Reuse
-            </h2>
-
-            <p>
-                ReConnect aims to reduce unnecessary waste while
-                making sure usable items reach people or organizations
-                that can benefit from them.
-            </p>
-
-        </div>
-
-
-        <div class="card-grid">
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    🌱
-                </div>
-
-                <h3>
-                    Reuse First
-                </h3>
-
-                <p>
-                    Items that are still useful should be
-                    considered for reuse before recycling.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    🔄
-                </div>
-
-                <h3>
-                    Upcycle
-                </h3>
-
-                <p>
-                    Some materials may be transformed into
-                    useful products instead of becoming waste.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    ♻️
-                </div>
-
-                <h3>
-                    Recycle Responsibly
-                </h3>
-
-                <p>
-                    Items that cannot be reused can be directed
-                    toward appropriate recycling channels.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= CTA ================= -->
-
-    <section class="cta">
-
-        <h2>
-            Have Something Useful to Give?
-        </h2>
-
-        <p>
-            Every reusable item can become someone else's
-            useful resource instead of ending up as waste.
-        </p>
-
-        <a href="donate.html"
-           class="cta-btn">
-
-            Start Contributing
-
-        </a>
-
-    </section>
-
+    </div>
 
 </div>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- ITEM MODAL -->
+
+<div class="modal" id="itemModal">
+
+    <div class="modal-box">
+
+        <div class="close" onclick="closeModal()">×</div>
+
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">👕 Clothes</h2>
+
+            <p>
+                Tell us a little about the items you want to contribute.
+            </p>
+
+        </div>
+
+
+        <form id="itemForm">
+
+            <!-- QUANTITY -->
+
+            <div class="form-group">
+
+                <label>
+                    How many items do you have?
+                </label>
+
+                <input
+                    type="number"
+                    id="quantity"
+                    min="1"
+                    placeholder="Example: 5"
+                    required
+                >
+
+            </div>
+
+
+            <!-- CONDITION -->
+
+            <div class="form-group">
+
+                <label>
+                    What is the condition of the item?
+                </label>
+
+
+                <div class="condition-grid">
+
+                    <div
+                        class="condition-option"
+                        onclick="selectCondition(this,'Good / Usable')"
+                    >
+
+                        <strong>🟢 Good</strong>
+
+                        <span>
+                            Clean and usable
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="condition-option"
+                        onclick="selectCondition(this,'Slightly Damaged')"
+                    >
+
+                        <strong>🟡 Slightly Damaged</strong>
+
+                        <span>
+                            Can potentially be repaired
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="condition-option"
+                        onclick="selectCondition(this,'Not Usable')"
+                    >
+
+                        <strong>🔴 Not Usable</strong>
+
+                        <span>
+                            Damaged or unsuitable for direct reuse
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group">
+
+                <label>
+                    Additional details
+                </label>
+
+                <textarea
+                    id="description"
+                    placeholder="Tell us anything important about the items..."
+                ></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="action-button"
+            >
+                Check Reuse Options
+            </button>
+
+        </form>
+
+
+        <!-- REUSE RESULT -->
+
+        <div
+            class="result-box reuse"
+            id="reuseResult"
+        >
+
+            <div class="result-icon">💚</div>
+
+            <h3>These items may be suitable for reuse!</h3>
+
+            <p id="reuseText"></p>
+
+            <button
+                class="action-button"
+                onclick="goToNGOs()"
+            >
+                Find Suitable NGOs
+            </button>
+
+        </div>
+
+
+        <!-- RECYCLE RESULT -->
+
+        <div
+            class="result-box recycle"
+            id="recycleResult"
+        >
+
+            <div class="result-icon">🔧</div>
+
+            <h3>Let's give these items a second life!</h3>
+
+            <p id="recycleText"></p>
+
+            <button
+                class="action-button"
+                onclick="showReuseIdeas()"
+            >
+                See Reuse / Upcycling Ideas
+            </button>
+
+        </div>
+
+
+        <!-- IDEAS -->
+
+        <div
+            class="result-box recycle"
+            id="ideasResult"
+        >
+
+            <div class="result-icon">✨</div>
+
+            <h3>Possible Second-Life Ideas</h3>
+
+            <p id="ideasText"></p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- RESPONSIBLE REUSE -->
+
+<div class="container info-section">
+
+    <div class="section-title">
+
+        <h2>Our Reuse Philosophy</h2>
+
+        <p>
+            ReConnect follows a simple principle: reuse whenever possible,
+            recycle responsibly when direct reuse is not suitable.
+        </p>
+
+    </div>
+
+
+    <div class="info-grid">
+
+        <div class="info-card">
+
+            <h3>♻️ Reuse First</h3>
+
+            <p>
+                Items that are clean, usable and suitable can be directed
+                towards organizations that may be able to use them.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <h3>🔧 Give It a Second Life</h3>
+
+            <p>
+                Items that cannot be directly donated may be repaired,
+                transformed or upcycled into useful products.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <h3>🌍 Responsible Recycling</h3>
+
+            <p>
+                Items that cannot reasonably be reused can be directed
+                towards appropriate recycling processes.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
 
 <footer>
 
     <p>
-        © 2026 <span>ReConnect</span> —
-        Transparent Donations • Volunteer Engagement • Item Reuse
+        © 2026 ReConnect — Connecting People, NGOs and Sustainable Action.
     </p>
 
 </footer>
+
+
+<script>
+
+let selectedItem = "";
+let selectedCondition = "";
+
+
+/* OPEN ITEM */
+
+function openItem(item, icon) {
+
+    selectedItem = item;
+
+    selectedCondition = "";
+
+    document.getElementById("modalTitle").textContent =
+        icon + " " + item;
+
+    document.getElementById("itemModal").style.display = "block";
+
+    document.getElementById("itemForm").reset();
+
+    document.querySelectorAll(".condition-option")
+        .forEach(option => {
+            option.classList.remove("selected");
+        });
+
+    document.getElementById("reuseResult").style.display = "none";
+
+    document.getElementById("recycleResult").style.display = "none";
+
+    document.getElementById("ideasResult").style.display = "none";
+}
+
+
+/* CLOSE */
+
+function closeModal() {
+
+    document.getElementById("itemModal").style.display = "none";
+
+}
+
+
+/* CONDITION */
+
+function selectCondition(element, condition) {
+
+    selectedCondition = condition;
+
+    document.querySelectorAll(".condition-option")
+        .forEach(option => {
+            option.classList.remove("selected");
+        });
+
+    element.classList.add("selected");
+
+}
+
+
+/* FORM SUBMIT */
+
+document.getElementById("itemForm").addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        const quantity =
+            parseInt(document.getElementById("quantity").value);
+
+
+        if (!quantity || quantity < 1) {
+
+            alert("Please enter a valid quantity.");
+
+            return;
+
+        }
+
+
+        if (!selectedCondition) {
+
+            alert("Please select the condition of the item.");
+
+            return;
+
+        }
+
+
+        document.getElementById("reuseResult").style.display = "none";
+
+        document.getElementById("recycleResult").style.display = "none";
+
+        document.getElementById("ideasResult").style.display = "none";
+
+
+        /* GOOD ITEMS */
+
+        if (selectedCondition === "Good / Usable") {
+
+            document.getElementById("reuseText").textContent =
+                "You have " +
+                quantity +
+                " " +
+                selectedItem.toLowerCase() +
+                " item(s) in good/usable condition. These items may be suitable for direct reuse. You can now look for a verified NGO that accepts this type of contribution.";
+
+            document.getElementById("reuseResult").style.display =
+                "block";
+
+        }
+
+
+        /* DAMAGED ITEMS */
+
+        else {
+
+            document.getElementById("recycleText").textContent =
+                "You have " +
+                quantity +
+                " " +
+                selectedItem.toLowerCase() +
+                " item(s) that are " +
+                selectedCondition.toLowerCase() +
+                ". Instead of sending them directly to an NGO, ReConnect can explore repair, upcycling or responsible recycling options.";
+
+            document.getElementById("recycleResult").style.display =
+                "block";
+
+        }
+
+    }
+);
+
+
+/* NGO */
+
+function goToNGOs() {
+
+    window.location.href = "ngos.html";
+
+}
+
+
+/* UPCYCLING IDEAS */
+
+function showReuseIdeas() {
+
+    let ideas = "";
+
+
+    if (selectedItem === "Clothes") {
+
+        ideas =
+            "Old clothes can potentially be converted into blankets, bags, cleaning cloths, cushion covers or other useful textile products.";
+
+    }
+
+    else if (selectedItem === "Books") {
+
+        ideas =
+            "Damaged books can potentially be reused for crafts, notebooks, paper-based products or sent for responsible paper recycling.";
+
+    }
+
+    else if (selectedItem === "Furniture") {
+
+        ideas =
+            "Damaged furniture can potentially be repaired, refurbished, redesigned or its usable wood/materials can be reused.";
+
+    }
+
+    else if (selectedItem === "Toys") {
+
+        ideas =
+            "Damaged toys can potentially be repaired, creatively transformed into decorative or educational items, or separated for material recycling.";
+
+    }
+
+    else if (selectedItem === "Electronics") {
+
+        ideas =
+            "Damaged electronics should not be sent for ordinary donation. They can be repaired when possible or directed towards responsible e-waste recycling.";
+
+    }
+
+    else {
+
+        ideas =
+            "The item can be assessed for repair, reuse, upcycling or responsible recycling depending on its material and condition.";
+
+    }
+
+
+    document.getElementById("ideasText").textContent = ideas;
+
+    document.getElementById("ideasResult").style.display = "block";
+
+}
+
+
+/* CLOSE WHEN CLICKING OUTSIDE */
+
+window.onclick = function(event) {
+
+    const modal =
+        document.getElementById("itemModal");
+
+    if (event.target === modal) {
+
+        closeModal();
+
+    }
+
+};
+
+</script>
 
 </body>
 
