@@ -1373,6 +1373,91 @@ footer {
 
 </section>
 
+<!-- ==================================================
+     DATA ANALYSIS
+================================================== -->
+
+<section id="dataAnalysis" class="page-section">
+
+    <div class="section">
+        <h2>📊 Data Analysis</h2>
+
+        <p class="section-subtitle">
+            Analyze ReConnect users, donations and volunteer activities
+            using data from Firebase.
+        </p>
+
+        <div class="quick-grid">
+
+            <div class="quick-card">
+                <h3>👥 User Analysis</h3>
+                <p>
+                    Total registered users:
+                    <strong id="analysisUsers">0</strong>
+                </p>
+                <p>
+                    NGOs:
+                    <strong id="analysisNGOs">0</strong>
+                </p>
+                <p>
+                    Volunteers:
+                    <strong id="analysisVolunteers">0</strong>
+                </p>
+                <p>
+                    Colleges / NSS:
+                    <strong id="analysisColleges">0</strong>
+                </p>
+            </div>
+
+            <div class="quick-card">
+                <h3>💚 Donation Analysis</h3>
+                <p>
+                    Total donation records:
+                    <strong id="analysisDonations">0</strong>
+                </p>
+                <p>
+                    Monetary donation records:
+                    <strong id="analysisMoney">0</strong>
+                </p>
+                <p>
+                    Item donation records:
+                    <strong id="analysisItems">0</strong>
+                </p>
+            </div>
+
+            <div class="quick-card">
+                <h3>🤝 Volunteer Analysis</h3>
+                <p>
+                    Total activities:
+                    <strong id="analysisActivities">0</strong>
+                </p>
+                <p>
+                    Registered volunteers are counted from
+                    the user records.
+                </p>
+            </div>
+
+        </div>
+
+        <div style="margin-top: 24px;">
+            <button
+                class="approve-btn"
+                type="button"
+                onclick="refreshDataAnalysis()">
+                🔄 Refresh Analysis
+            </button>
+        </div>
+
+        <div
+            id="analysisMessage"
+            class="section-subtitle"
+            style="margin-top: 18px;">
+            Analysis will update after the dashboard data loads.
+        </div>
+    </div>
+
+</section>
+
 
 </div>
 
