@@ -3229,7 +3229,57 @@ function updateDashboard() {
     displayReport();
 
 }
+/* ==================================================
+   DATA ANALYSIS
+================================================== */
 
+window.refreshDataAnalysis = function () {
+
+    const count = (role) =>
+        allUsers.filter(user => user.role === role).length;
+
+    document.getElementById("analysisUsers").textContent =
+        allUsers.length;
+
+    document.getElementById("analysisNGOs").textContent =
+        count("ngo");
+
+    document.getElementById("analysisVolunteers").textContent =
+        count("volunteer");
+
+    document.getElementById("analysisColleges").textContent =
+        count("college");
+
+    document.getElementById("analysisDonations").textContent =
+        allDonations.length;
+
+    document.getElementById("analysisActivities").textContent =
+        allActivities.length;
+
+    const moneyTypes = ["money", "monetary", "cash"];
+    const itemTypes = ["item", "items", "clothes", "goods"];
+
+    const moneyCount = allDonations.filter(donation =>
+        moneyTypes.includes(
+            String(donation.donationType || "").toLowerCase()
+        )
+    ).length;
+
+    const itemCount = allDonations.filter(donation =>
+        itemTypes.includes(
+            String(donation.donationType || "").toLowerCase()
+        )
+    ).length;
+
+    document.getElementById("analysisMoney").textContent =
+        moneyCount;
+
+    document.getElementById("analysisItems").textContent =
+        itemCount;
+
+    document.getElementById("analysisMessage").textContent =
+        "Analysis updated using the records currently loaded from Firebase.";
+};
 
 /* ==================================================
    APPROVE
