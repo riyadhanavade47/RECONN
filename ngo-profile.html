@@ -1,551 +1,648 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NGO Profiles | ReConnect</title>
 
-    <title>ReConnect | NGO Profile</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-    <style>
+body {
+    background: #f5faf7;
+    color: #183f38;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+nav {
+    min-height: 72px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 5%;
+    gap: 20px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #e4eee8;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
 
-        body {
-            background: #f8faf8;
-            color: #183f38;
-        }
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #176b4d;
+    font-size: 26px;
+    font-weight: 800;
+}
 
-        /* NAVBAR */
+.logo-mark {
+    width: 42px;
+    height: 42px;
+    background: #176b4d;
+    color: white;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+}
 
-        nav {
-            height: 72px;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 5%;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #edf2ef;
-        }
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+}
 
-        .logo {
-            text-decoration: none;
-            color: #176b4d;
-            font-size: 29px;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+.nav-links a {
+    color: #3d5c56;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+}
 
-        .logo-mark {
-            width: 43px;
-            height: 43px;
-            background: #176b4d;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            font-weight: bold;
-        }
+.nav-links a:hover {
+    color: #159957;
+}
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-        }
+.login-btn {
+    background: #176b4d;
+    color: white !important;
+    padding: 11px 18px;
+    border-radius: 25px;
+}
 
-        .nav-links a {
-            text-decoration: none;
-            color: #3d5c56;
-            font-size: 14px;
-            font-weight: 600;
-        }
+.hero {
+    padding: 55px 20px 45px;
+    text-align: center;
+    background: linear-gradient(135deg, #e5f8ed, #eef7ff, #fff9df);
+}
 
-        .nav-links a:hover {
-            color: #176b4d;
-        }
+.hero-tag {
+    display: inline-block;
+    background: white;
+    color: #176b4d;
+    padding: 8px 15px;
+    border-radius: 25px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 17px;
+}
 
-        .login-btn {
-            background: #176b4d;
-            color: white !important;
-            padding: 11px 22px;
-            border-radius: 25px;
-        }
+.hero h1 {
+    font-size: clamp(30px, 5vw, 44px);
+    margin-bottom: 13px;
+    color: #173e38;
+}
 
-        /* PAGE */
+.hero p {
+    color: #627870;
+    max-width: 650px;
+    margin: auto;
+    line-height: 1.8;
+    font-size: 14px;
+}
 
-        .page {
-            width: 90%;
-            max-width: 1100px;
-            margin: 40px auto 70px;
-        }
+.page {
+    width: 90%;
+    max-width: 1100px;
+    margin: 35px auto 70px;
+}
 
-        .back-btn {
-            display: inline-block;
-            text-decoration: none;
-            color: #176b4d;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
+.back-btn {
+    display: inline-block;
+    margin-bottom: 24px;
+    color: #176b4d;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+}
 
-        .back-btn:hover {
-            text-decoration: underline;
-        }
+.back-btn:hover {
+    text-decoration: underline;
+}
 
-        /* EMPTY PROFILE */
+.section-heading {
+    margin-bottom: 22px;
+}
 
-        .empty-profile {
-            background: white;
-            border: 1px solid #e1eae5;
-            border-radius: 22px;
-            padding: 70px 30px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(20,84,63,.06);
-        }
+.section-heading h2 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
 
-        .empty-icon {
-            width: 90px;
-            height: 90px;
-            margin: 0 auto 22px;
-            border-radius: 50%;
-            background: #e7f7ee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 42px;
-        }
+.section-heading p {
+    color: #71817a;
+    font-size: 13px;
+    line-height: 1.7;
+}
 
-        .empty-profile h1 {
-            color: #173e38;
-            font-size: 28px;
-            margin-bottom: 12px;
-        }
+.status-message {
+    background: white;
+    border: 1px solid #dceae2;
+    border-radius: 18px;
+    padding: 35px 22px;
+    text-align: center;
+    line-height: 1.8;
+    color: #64776e;
+}
 
-        .empty-profile p {
-            max-width: 650px;
-            margin: auto;
-            color: #687b76;
-            font-size: 14px;
-            line-height: 1.7;
-        }
+.status-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
 
-        .empty-actions {
-            margin-top: 25px;
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
+.status-message h2 {
+    color: #183f38;
+    margin-bottom: 8px;
+    font-size: 21px;
+}
 
-        .action-btn {
-            display: inline-block;
-            text-decoration: none;
-            padding: 12px 20px;
-            border-radius: 9px;
-            font-size: 12px;
-            font-weight: bold;
-            transition: .25s;
-        }
+.ngo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
 
-        .primary {
-            background: #176b4d;
-            color: white;
-        }
+.ngo-card {
+    background: white;
+    border: 1px solid #e0ebe4;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 7px 22px rgba(20, 84, 63, 0.05);
+    transition: transform .2s, box-shadow .2s;
+    overflow-wrap: anywhere;
+}
 
-        .primary:hover {
-            background: #0e513b;
-            transform: translateY(-2px);
-        }
+.ngo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(20, 84, 63, 0.10);
+}
 
-        .secondary {
-            background: white;
-            color: #176b4d;
-            border: 1px solid #176b4d;
-        }
+.ngo-icon {
+    width: 55px;
+    height: 55px;
+    display: grid;
+    place-items: center;
+    background: #e6f7ed;
+    border-radius: 15px;
+    font-size: 27px;
+    margin-bottom: 17px;
+}
 
-        .secondary:hover {
-            background: #edf8f2;
-        }
+.verified {
+    display: inline-block;
+    background: #e5f7eb;
+    color: #167447;
+    border-radius: 20px;
+    padding: 6px 10px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
 
-        /* FUTURE PROFILE PREVIEW */
+.ngo-card h3 {
+    font-size: 21px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
 
-        .future-section {
-            margin-top: 25px;
-            background: linear-gradient(
-                135deg,
-                #ffffff,
-                #f0f8f4
-            );
-            border: 1px solid #dfeae4;
-            border-radius: 20px;
-            padding: 30px;
-        }
+.ngo-card p {
+    color: #687b73;
+    font-size: 13px;
+    line-height: 1.8;
+    margin-bottom: 7px;
+}
 
-        .future-section h2 {
-            color: #173e38;
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
+.view-btn {
+    display: inline-block;
+    margin-top: 15px;
+    background: #176b4d;
+    color: white;
+    text-decoration: none;
+    padding: 12px 18px;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: bold;
+}
 
-        .future-section > p {
-            color: #687b76;
-            font-size: 13px;
-            line-height: 1.7;
-            margin-bottom: 22px;
-        }
+.view-btn:hover {
+    background: #0e513b;
+}
 
-        .future-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-        }
+.profile-header {
+    background: linear-gradient(135deg, #e4f7eb, #eef7ff);
+    padding: 32px;
+    border-radius: 20px;
+    margin-bottom: 22px;
+    overflow-wrap: anywhere;
+}
 
-        .future-card {
-            background: white;
-            border: 1px solid #e2eae6;
-            border-radius: 14px;
-            padding: 20px;
-        }
+.profile-header h1 {
+    font-size: clamp(26px, 4vw, 36px);
+    margin: 13px 0 10px;
+}
 
-        .future-card-icon {
-            font-size: 25px;
-            margin-bottom: 10px;
-        }
+.profile-header p {
+    color: #5c7469;
+    line-height: 1.8;
+    font-size: 14px;
+}
 
-        .future-card h3 {
-            font-size: 14px;
-            color: #173e38;
-            margin-bottom: 6px;
-        }
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
 
-        .future-card p {
-            color: #7a8984;
-            font-size: 12px;
-            line-height: 1.5;
-        }
+.info-card {
+    background: white;
+    border: 1px solid #e1ebe5;
+    border-radius: 15px;
+    padding: 22px;
+    overflow-wrap: anywhere;
+}
 
-        /* FOOTER */
+.info-card h3 {
+    font-size: 15px;
+    margin-bottom: 13px;
+    color: #176b4d;
+}
 
-        footer {
-            background: #123f35;
-            color: white;
-            padding: 30px 5%;
-        }
+.info-row {
+    margin-top: 12px;
+}
 
-        .footer-content {
-            max-width: 1100px;
-            margin: auto;
-            display: flex;
-            justify-content: space-between;
-            gap: 25px;
-            flex-wrap: wrap;
-        }
+.info-label {
+    display: block;
+    color: #839188;
+    font-size: 11px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
 
-        .footer-logo {
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 7px;
-        }
+.info-value {
+    color: #29483e;
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
 
-        footer p {
-            color: #c7ddd5;
-            font-size: 11px;
-            line-height: 1.6;
-        }
+.info-value a {
+    color: #176b4d;
+    overflow-wrap: anywhere;
+}
 
-        /* RESPONSIVE */
+footer {
+    background: #123f35;
+    color: white;
+    padding: 30px 5%;
+}
 
-        @media (max-width: 800px) {
+.footer-content {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
 
-            .nav-links {
-                display: none;
-            }
+.footer-content h3 {
+    margin-bottom: 8px;
+}
 
-            .future-grid {
-                grid-template-columns: 1fr;
-            }
+footer p {
+    color: #c7ddd5;
+    font-size: 12px;
+    line-height: 1.8;
+}
 
-            .empty-profile {
-                padding: 50px 20px;
-            }
+@media (max-width: 700px) {
+    nav {
+        align-items: flex-start;
+    }
 
-        }
+    .nav-links {
+        gap: 14px;
+    }
 
-    </style>
+    .ngo-grid,
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
 
+    .hero {
+        padding: 40px 18px;
+    }
+
+    .profile-header {
+        padding: 23px;
+    }
+}
+</style>
 </head>
-
 
 <body>
 
-
-<!-- NAVBAR -->
-
 <nav>
-
     <a href="index.html" class="logo">
-
         <span class="logo-mark">R</span>
-
         ReConnect
-
     </a>
-
 
     <div class="nav-links">
-
         <a href="index.html">Home</a>
-
         <a href="ngos.html">Find NGOs</a>
-
         <a href="donate.html">Donate</a>
-
         <a href="college.html">College/NSS</a>
-
         <a href="reuse.html">Reuse & Recycle</a>
-
         <a href="login.html" class="login-btn">Login</a>
-
     </div>
-
 </nav>
 
+<section class="hero">
+    <span class="hero-tag">🌱 VERIFIED ORGANIZATIONS</span>
+    <h1 id="heroTitle">Discover NGOs</h1>
+    <p id="heroDescription">
+        Learn about verified organizations, their work,
+        contact details and the causes they support.
+    </p>
+</section>
 
-<!-- PAGE -->
+<main class="page">
+    <a href="ngos.html" class="back-btn">← Back to NGO Directory</a>
 
-<div class="page">
-
-
-    <a href="ngos.html" class="back-btn">
-        ← Back to NGO Directory
-    </a>
-
-
-    <!-- EMPTY PROFILE -->
-
-    <div class="empty-profile">
-
-        <div class="empty-icon">
-            🌱
+    <div id="content">
+        <div class="status-message">
+            <div class="status-icon">⏳</div>
+            <h2>Loading NGO information</h2>
+            Please wait while we connect to ReConnect.
         </div>
-
-        <h1>
-            NGO Profile
-        </h1>
-
-        <p>
-            NGO profiles will appear here once verified
-            organizations register on ReConnect.
-        </p>
-
-        <p style="margin-top:10px;">
-            Verified NGOs will be able to provide their
-            organization details, contact information,
-            causes, current requirements and ways to
-            support them.
-        </p>
-
-
-        <div class="empty-actions">
-
-            <a
-                href="ngos.html"
-                class="action-btn primary"
-            >
-                🔎 Find NGOs
-            </a>
-
-            <a
-                href="login.html"
-                class="action-btn secondary"
-            >
-                🏢 Register as NGO
-            </a>
-
-        </div>
-
     </div>
-
-
-    <!-- FUTURE PROFILE -->
-
-    <div class="future-section">
-
-        <h2>
-            What will an NGO profile contain?
-        </h2>
-
-        <p>
-            Once the ReConnect backend is connected,
-            each verified NGO will have an interactive
-            profile containing its latest information.
-        </p>
-
-
-        <div class="future-grid">
-
-
-            <div class="future-card">
-
-                <div class="future-card-icon">
-                    🏢
-                </div>
-
-                <h3>
-                    NGO Information
-                </h3>
-
-                <p>
-                    Organization name, registration details,
-                    area of work and establishment information.
-                </p>
-
-            </div>
-
-
-            <div class="future-card">
-
-                <div class="future-card-icon">
-                    📍
-                </div>
-
-                <h3>
-                    Contact & Location
-                </h3>
-
-                <p>
-                    Address, contact person, phone number
-                    and email information.
-                </p>
-
-            </div>
-
-
-            <div class="future-card">
-
-                <div class="future-card-icon">
-                    🎯
-                </div>
-
-                <h3>
-                    Current Requirements
-                </h3>
-
-                <p>
-                    NGOs will be able to publish their
-                    current money, item and volunteer needs.
-                </p>
-
-            </div>
-
-
-            <div class="future-card">
-
-                <div class="future-card-icon">
-                    ❤️
-                </div>
-
-                <h3>
-                    Donate
-                </h3>
-
-                <p>
-                    Users will be able to support an NGO
-                    through available donation options.
-                </p>
-
-            </div>
-
-
-            <div class="future-card">
-
-                <div class="future-card-icon">
-                    🙋
-                </div>
-
-                <h3>
-                    Volunteer
-                </h3>
-
-                <p>
-                    Volunteers will be able to discover
-                    activities and opportunities.
-                </p>
-
-            </div>
-
-
-            <div class="future-card">
-
-                <div class="future-card-icon">
-                    📊
-                </div>
-
-                <h3>
-                    Transparency
-                </h3>
-
-                <p>
-                    Donation updates and impact information
-                    can be displayed for transparency.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-
-</div>
-
-
-<!-- FOOTER -->
+</main>
 
 <footer>
-
     <div class="footer-content">
-
         <div>
-
-            <div class="footer-logo">
-                ReConnect
-            </div>
-
-            <p>
-                Transparent Donations • Community Engagement • Item Reuse
-            </p>
-
+            <h3>ReConnect 🌱</h3>
+            <p>Transparent Donations • Community Engagement • Item Reuse</p>
         </div>
-
-
         <div>
-
-            <p>
-                Connecting people, NGOs and student communities
-                for meaningful social impact.
-            </p>
-
+            <p>Connecting people, NGOs and student communities<br>
+            for meaningful social impact.</p>
         </div>
-
     </div>
-
 </footer>
+
+<script type="module">
+import { app } from "./firebase-config.js";
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+const db = getFirestore(app);
+const content = document.getElementById("content");
+
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, function(char) {
+        return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        }[char];
+    });
+}
+
+function valueOrFallback(value) {
+    if (value === undefined || value === null || String(value).trim() === "") {
+        return "Not provided";
+    }
+    return escapeHTML(value);
+}
+
+function isApproved(data) {
+    return data.status === "approved" ||
+           data.verificationStatus === "approved";
+}
+
+function getNGOName(data) {
+    return data.ngoName || data.organizationName || data.fullName || "NGO";
+}
+
+function safeWebsite(value) {
+    if (!value) return "";
+    try {
+        const url = new URL(
+            /^https?:\/\//i.test(value) ? value : "https://" + value
+        );
+        if (url.protocol === "https:" || url.protocol === "http:") {
+            return url.href;
+        }
+    } catch (error) {}
+    return "";
+}
+
+function infoRow(label, value) {
+    return `
+        <div class="info-row">
+            <span class="info-label">${escapeHTML(label)}</span>
+            <div class="info-value">${valueOrFallback(value)}</div>
+        </div>
+    `;
+}
+
+function showError(title, message) {
+    content.innerHTML = `
+        <div class="status-message">
+            <div class="status-icon">🌿</div>
+            <h2>${escapeHTML(title)}</h2>
+            <p>${escapeHTML(message)}</p>
+            <a class="view-btn" href="ngos.html">Visit NGO Directory</a>
+        </div>
+    `;
+}
+
+function showNGODirectory(organizations) {
+    document.getElementById("heroTitle").textContent = "Verified NGO Profiles";
+    document.getElementById("heroDescription").textContent =
+        "Explore approved NGOs and learn about their work and contact information.";
+
+    if (organizations.length === 0) {
+        showError(
+            "No approved NGOs available yet",
+            "Approved NGO profiles will appear here once organizations are verified by the ReConnect admin."
+        );
+        return;
+    }
+
+    content.innerHTML = `
+        <div class="section-heading">
+            <h2>Meet the organizations</h2>
+            <p>${organizations.length} verified organization(s) available.</p>
+        </div>
+        <div class="ngo-grid">
+            ${organizations.map(function(ngo) {
+                const name = getNGOName(ngo.data);
+                const area = ngo.data.areaOfWork || "Community support";
+                const address = ngo.data.address || "Location not provided";
+
+                return `
+                    <article class="ngo-card">
+                        <div class="ngo-icon">🏢</div>
+                        <span class="verified">✓ Verified NGO</span>
+                        <h3>${escapeHTML(name)}</h3>
+                        <p><strong>Area of work:</strong> ${escapeHTML(area)}</p>
+                        <p><strong>Location:</strong> ${escapeHTML(address)}</p>
+                        <p>${escapeHTML(ngo.data.email || "")}</p>
+                        <a class="view-btn"
+                           href="ngo-profile.html?id=${encodeURIComponent(ngo.id)}">
+                           View Full Profile →
+                        </a>
+                    </article>
+                `;
+            }).join("")}
+        </div>
+    `;
+}
+
+function showNGODetails(ngo) {
+    const name = getNGOName(ngo);
+    const website = safeWebsite(ngo.website);
+    const email = ngo.email || ngo.collegeOfficialEmail || "";
+    const phone = ngo.phone || ngo.collegePhone || "";
+
+    document.getElementById("heroTitle").textContent = "NGO Profile";
+    document.getElementById("heroDescription").textContent =
+        "Learn more about this verified organization and its work.";
+
+    content.innerHTML = `
+        <div class="profile-header">
+            <span class="verified">✓ Verified NGO</span>
+            <h1>🏢 ${escapeHTML(name)}</h1>
+            <p>${valueOrFallback(ngo.areaOfWork)}</p>
+        </div>
+
+        <div class="profile-grid">
+            <section class="info-card">
+                <h3>🏢 Organization Information</h3>
+                ${infoRow("Organization Name", name)}
+                ${infoRow("Registration Number", ngo.registrationNumber)}
+                ${infoRow("Registration Authority", ngo.registrationAuthority)}
+                ${infoRow("PAN", ngo.pan)}
+                ${infoRow("Working Since", ngo.workingSince)}
+                ${infoRow("Area of Work", ngo.areaOfWork)}
+            </section>
+
+            <section class="info-card">
+                <h3>📍 Contact & Location</h3>
+                ${infoRow("Contact Person", ngo.fullName)}
+                ${infoRow("Email", email)}
+                ${infoRow("Phone", phone)}
+                ${infoRow("Address", ngo.address)}
+                ${infoRow("Website", website
+                    ? `<a href="${escapeHTML(website)}" target="_blank" rel="noopener noreferrer">Visit NGO Website ↗</a>`
+                    : "Not provided")}
+            </section>
+
+            <section class="info-card">
+                <h3>🎯 Support & Requirements</h3>
+                ${infoRow("Current Requirements", ngo.currentRequirements || ngo.requirements)}
+                ${infoRow("Items Needed", ngo.itemsNeeded)}
+                ${infoRow("Volunteer Needs", ngo.volunteerNeeds)}
+            </section>
+
+            <section class="info-card">
+                <h3>💚 Support This Organization</h3>
+                <p class="info-value">
+                    Interested in helping this NGO? Explore the ReConnect donation
+                    and volunteering pages to learn about available opportunities.
+                </p>
+                <a class="view-btn" href="donate.html">Explore Donations</a>
+                <a class="view-btn" href="volunteer.html">Volunteer</a>
+            </section>
+        </div>
+    `;
+}
+
+async function loadNGOProfile() {
+    try {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        if (id) {
+            const snapshot = await getDoc(doc(db, "users", id));
+
+            if (!snapshot.exists()) {
+                showError(
+                    "NGO profile not found",
+                    "This organization may no longer be available."
+                );
+                return;
+            }
+
+            const data = snapshot.data();
+
+            if (data.role !== "ngo" || !isApproved(data)) {
+                showError(
+                    "Profile unavailable",
+                    "This NGO has not been approved for public display."
+                );
+                return;
+            }
+
+            showNGODetails(data);
+            return;
+        }
+
+        const snapshot = await getDocs(collection(db, "users"));
+        const organizations = [];
+
+        snapshot.forEach(function(documentSnapshot) {
+            const data = documentSnapshot.data();
+
+            if (data.role === "ngo" && isApproved(data)) {
+                organizations.push({
+                    id: documentSnapshot.id,
+                    data: data
+                });
+            }
+        });
+
+        organizations.sort(function(a, b) {
+            return getNGOName(a.data).localeCompare(getNGOName(b.data));
+        });
+
+        showNGODirectory(organizations);
+
+    } catch (error) {
+        console.error("Error loading NGO profiles:", error);
+
+        showError(
+            "Unable to load NGO profiles",
+            "Please check your internet connection and Firebase permissions, then try again."
+        );
+    }
+}
+
+loadNGOProfile();
+</script>
 
 <script type="module" src="auth.js"></script>
 </body>
-
 </html>
