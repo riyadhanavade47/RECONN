@@ -1462,6 +1462,26 @@ footer {
             style="margin-top: 18px;">
             Analysis will update after the dashboard data loads.
         </div>
+        
+<div class="quick-grid" style="margin-top: 24px;">
+
+    <div class="quick-card">
+        <h3>👥 User Distribution</h3>
+        <canvas id="userAnalysisChart"></canvas>
+    </div>
+
+    <div class="quick-card">
+        <h3>💚 Donation Distribution</h3>
+        <canvas id="donationAnalysisChart"></canvas>
+    </div>
+
+    <div class="quick-card">
+        <h3>🤝 Volunteer Activities</h3>
+        <canvas id="activityAnalysisChart"></canvas>
+    </div>
+
+</div>
+
     </div>
 
 </section>
@@ -3233,28 +3253,20 @@ function updateDashboard() {
    DATA ANALYSIS
 ================================================== */
 
+
 window.refreshDataAnalysis = function () {
 
     const count = (role) =>
-        allUsers.filter(user => user.role === role).length;
+        allUsers.filter(user =>
+            String(user.role || "").toLowerCase() === role
+        ).length;
 
-    document.getElementById("analysisUsers").textContent =
-        allUsers.length;
-
-    document.getElementById("analysisNGOs").textContent =
-        count("ngo");
-
-    document.getElementById("analysisVolunteers").textContent =
-        count("volunteer");
-
-    document.getElementById("analysisColleges").textContent =
-        count("college");
-
-    document.getElementById("analysisDonations").textContent =
-        allDonations.length;
-
-    document.getElementById("analysisActivities").textContent =
-        allActivities.length;
+    const userCount = allUsers.length;
+    const ngoCount = count("ngo");
+    const volunteerCount = count("volunteer");
+    const collegeCount = count("college");
+    const donationCount = allDonations.length;
+    const activityCount = allActivities.length;
 
     const moneyTypes = ["money", "monetary", "cash"];
     const itemTypes = ["item", "items", "clothes", "goods"];
@@ -3271,15 +3283,87 @@ window.refreshDataAnalysis = function () {
         )
     ).length;
 
-    document.getElementById("analysisMoney").textContent =
-        moneyCount;
-
-    document.getElementById("analysisItems").textContent =
-        itemCount;
+    document.getElementById("analysisUsers").textContent = userCount;
+    document.getElementById("analysisNGOs").textContent = ngoCount;
+    document.getElementById("analysisVolunteers").textContent = volunteerCount;
+    document.getElementById("analysisColleges").textContent = collegeCount;
+    document.getElementById("analysisDonations").textContent = donationCount;
+    document.getElementById("analysisActivities").textContent = activityCount;
+    document.getElementById("analysisMoney").textContent = moneyCount;
+    document.getElementById("analysisItems").textContent = itemCount;
 
     document.getElementById("analysisMessage").textContent =
         "Analysis updated using the records currently loaded from Firebase.";
+
+    if (typeof Chart === "undefined") {
+        document.getElementById("analysisMessage").textContent =
+            "Chart library did not load. Please check your internet connection.";
+        return;
+    }
+
+    function drawChart(canvasId, type, labels, values, colors) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+
+        if (canvas.chartInstance) {
+            canvas.chartInstance.destroy();
+        }
+
+        canvas.chartInstance = new Chart(canvas, {
+            type: type,
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: values,
+                    backgroundColor: colors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: "bottom"
+                    }
+                }
+            }
+        });
+    }
+
+    drawChart(
+        "userAnalysisChart",
+        "doughnut",
+        ["NGOs", "Volunteers", "Colleges / NSS", "Other users"],
+        [
+            ngoCount,
+            volunteerCount,
+            collegeCount,
+            Math.max(0, userCount - ngoCount - volunteerCount - collegeCount)
+        ],
+        ["#159957", "#3498db", "#f1c40f", "#9b59b6"]
+    );
+
+    drawChart(
+        "donationAnalysisChart",
+        "pie",
+        ["Monetary", "Items", "Other / Unclassified"],
+        [
+            moneyCount,
+            itemCount,
+            Math.max(0, donationCount - moneyCount - itemCount)
+        ],
+        ["#159957", "#f1c40f", "#3498db"]
+    );
+
+    drawChart(
+        "activityAnalysisChart",
+        "bar",
+        ["Volunteer Activities"],
+        [activityCount],
+        ["#3498db"]
+    );
 };
+
 
 /* ==================================================
    APPROVE
